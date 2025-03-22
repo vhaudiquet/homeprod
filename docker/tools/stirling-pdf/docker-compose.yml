@@ -1,0 +1,53 @@
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    ports:
+      - '8080'
+    networks:
+      - default
+      - proxy
+    volumes:
+      - trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - extraConfigs:/configs
+      - customFiles:/customFiles/
+      - logs:/logs/
+      - pipeline:/pipeline/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
+      - LANGS=en_GB,fr_FR
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stirling-pdf.rule=Host(`stirling-pdf.local`)"
+
+volumes:
+  trainingData:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/stirling-pdf/trainingData'
+  extraConfigs:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/stirling-pdf/extraConfigs'
+  customFiles:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/stirling-pdf/customFiles'
+  pipeline:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/stirling-pdf/pipeline'
+  logs:
+
+networks:
+  proxy:
+    external: true
+    name: proxy

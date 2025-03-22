@@ -1,0 +1,23 @@
+services:
+  roundcube:
+    image: roundcube/roundcubemail
+    container_name: roundcube
+    networks:
+      - default
+      - proxy
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://mail.vhaudiquet.fr
+      - ROUNDCUBEMAIL_DEFAULT_PORT=993
+      - ROUNDCUBEMAIL_SMTP_SERVER=ssl://mail.vhaudiquet.fr
+      - ROUNDCUBEMAIL_SMTP_PORT=465
+    ports:
+      - "8000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.roundcube.rule=Host(`webmail.local`)"
+      - "traefik.http.routers.roundcube.entrypoints=http"
+
+networks:
+  proxy:
+    name: proxy
+    external: true

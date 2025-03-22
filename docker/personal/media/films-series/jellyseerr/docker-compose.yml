@@ -1,0 +1,32 @@
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Paris
+      - PORT=5055 #optional
+    networks:
+      - default
+      - proxy
+    ports:
+      - 5055
+    volumes:
+      - config:/app/config
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.local`)"
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/jellyseerr/config'
+
+networks:
+  proxy:
+    name: proxy
+    external: true

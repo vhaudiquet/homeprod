@@ -1,0 +1,20 @@
+services:
+  semeryfr:
+    container_name: semeryfr
+    image: git.vhaudiquet.fr/semerys/semery.fr:latest
+    networks:
+      - default
+      - proxy
+    ports:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.semeryfr.rule=Host(`semery.fr`)"
+    environment:
+      - NGINX_HOST=semery.fr
+      - NGINX_PORT=80
+
+networks:
+  proxy:
+    external: true
+    name: proxy

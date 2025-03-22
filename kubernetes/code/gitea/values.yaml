@@ -1,0 +1,102 @@
+ingress:
+    enabled: true
+    hosts:
+        - host: git.vhaudiquet.fr
+          paths:
+            - path: /
+              pathType: Prefix
+# Disable HA, we are on a 1-node cluster
+redis-cluster:
+    enabled: false
+redis:
+    enabled: true
+postgresql:
+    enabled: true
+    global:
+        postgresql:
+            auth:
+                postgressPassword: ENC[AES256_GCM,data:S0jkpB+S8jV5+w==,iv:8lZJkw5DN2b0OhI1FHGYv90ZH1Pn0XXU2RSyv4aVx/Q=,tag:9r908balQkich6RFPlpHCQ==,type:str]
+                password: ENC[AES256_GCM,data:+KBkk+NOsM7Amg==,iv:VmBbDVk9G4rRgieFeJrFoWrXIfrY50Aq1/XBKsfamL4=,tag:oK3AFrYG7rGXIjttGgOv3Q==,type:str]
+                database: gitea
+                username: ENC[AES256_GCM,data:jiZce5o=,iv:mKzFJAXbSoaW4REoND/uJ6SW8sNhGOhjxH7X8R9nw0M=,tag:QSRIzYeRWYMju3hCEt+wpg==,type:str]
+    volumePermissions:
+        enabled: true
+postgresql-ha:
+    enabled: false
+persistence:
+    enabled: true
+    subPath: data
+extraVolumes:
+    - name: git
+      nfs:
+        server: truenas.local
+        path: /mnt/main_storage/git
+extraContainerVolumeMounts:
+    - name: git
+      mountPath: /git
+clusterDomain: kube-talos.local
+actions:
+    enabled: true
+    provisioning:
+        enabled: true
+gitea:
+    oauth:
+        - name: Authentik
+          provider: openidConnect
+          key: ENC[AES256_GCM,data:s6yBMmp8FpIaC7m4uGen81nfPbCLnbJ06a0hEeuCLnPouXS2qNibkw==,iv:NpxJ3/fKcaEkctYqN9FV7WDWgdK0f2h4YUkW2e9ifAA=,tag:4WItsUK3J8hRk0c9qlWgMQ==,type:str]
+          secret: ENC[AES256_GCM,data:lO1R+gT+S2FrGhC6Ld/IRnRHDFjoB0/T+/Zle41oMchGtmmbdyKAUmTG9W6FzZzBsTEdV5GjgfwGU/G+PGnB1HPQkDD7INfy8qryfCBXhxqE9tUcpb8umxcXn77Yba1hAdETXY4FNpePv269Opixu/R4o4vTwG4isAGCkyTAwLw=,iv:LmZR/0+nXt5Dj59aqq4u0Qa/bqeMpCrs2TPi+mBG7eE=,tag:5+E5GUbOkF+GXVBLpLtodA==,type:str]
+          autoDiscoverUrl: https://authentik.vhaudiquet.fr/application/o/gitea/.well-known/openid-configuration
+    config:
+        APP_NAME: Gitea
+        server:
+            ROOT_URL: https://git.vhaudiquet.fr
+        lfs:
+            STORAGE_TYPE: local
+            PATH: /git/lfs
+        repository:
+            ROOT: /git/repo
+        database:
+            DB_TYPE: postgres
+        service:
+            ALLOW_ONLY_EXTERNAL_REGISTRATION: true
+        oauth2_client:
+            ENABLE_AUTO_REGISTRATION: true
+            ACCOUNT_LINKING: login
+        openid:
+            ENABLE_OPENID_SIGNIN: false
+            ENABLE_OPENID_SIGNUP: false
+        indexer:
+            ISSUE_INDEXER_TYPE: bleve
+            REPO_INDEXER_ENABLED: true
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2025-03-22T13:26:30Z"
+    mac: ENC[AES256_GCM,data:cVb4woEMFuW+KO9OtBFMQw1bcDeiJ93FR3mVY3l1nrGENXRPmlJQKsSUhMUlrn7nNnAQWbrJJ65u2MPvn2hZXRZsU0jy9vojSnF7XDecnrSzP69/lw8gRozBUlsLuiH7hivtKVuLDFMguuyD9wkCiQxp91ajJPZhaNiUkIgxz3o=,iv:q0L/o+6umhIm0Vf7tJ580Pi3i88VfhV7437qwxkyBvU=,tag:JlFXgYdVjnRHB190emIb1Q==,type:str]
+    pgp:
+        - created_at: "2025-03-22T13:26:30Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+LEKY6WwSXYVrv0Fs79agmy3GIm1zmJGny6Dw6IpB2ZzE
+            +r1h41IMltscDfXmiu2hAn/J7NXupc5Ak3OFR0LxYDsWIyWe8sF9JiRtjlcJHI0s
+            7II4Gg8WrGaOOoEGFpDCnwBkuz/rOrFWcXeE7NPu2UuwWwcKDXqgA0R47U1RJlHH
+            KWzyE9blF3bOvJDALHnxSeyarVmL+IIDpx5+M5oOSHxigR8ltyZnIDvKuZ/ZxDKr
+            e8Te2W5MRjrhsFW2dWyHXaMnJeFM2KqiPQUw4BkEx1LlNf2O85cJhPHKX06PhMtl
+            L7fxLhwWsA0G/VRu1LDpCDKvQrwnhF6MgAI1KrU3Lweeo/LCtv3k20anpFMSFbaF
+            bplci98Ee4pk+Kk3iX+WuCcZOXeCucr/oRb1bbNWLK0eT/vrI2DBGHsgzbkr+S91
+            OZiUjZgKc7KgU8j+opW+Tfao8uvVCamq/VqMVGmxW07j5CcuwxAWB6srxxA/B8PV
+            qzuB046F/hMi3ibAYi+R+zCCM4MR33G0blgKEZk4Z/UQenMpqaQMZWr0pUA+l+9a
+            JT1JVRE4SVMXhNYKxZ3Jcfv56Ua4eMyxNGfbq7iyv/YJPCNvQKcsd4rJRaHgojUm
+            kVwAZO5lPknuDwrIQQ/XaRnd+K5EnyRncFzNow3Dbsr04DZr7e2sGQy5IjM2ob/U
+            aAEJAhD80JnUs0Q0GK4wR0uwEHq8ACsMmJG4qPoljiQ2qL/T/5SLjui2lHThqm1j
+            tM9UbHsGUF/NN0HPZtDVASsaXO+jYCjM108e7yj58IEMvPLymIAXM+eXWoanpBX3
+            YLbnTetfr+ut
+            =u3XM
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.9.4

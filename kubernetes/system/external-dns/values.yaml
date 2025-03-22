@@ -1,0 +1,44 @@
+provider:
+    name: pihole
+registry: noop
+policy: upsert-only
+sources:
+    - ingress
+domainFilters:
+    - .local
+extraArgs:
+    - ENC[AES256_GCM,data:OjceEFEsSdsu8L0cXiJpzXK99e/3qWOTGonYGJ0nCYOWkvQ=,iv:p4NBmSQEcbZ9KlPX6SRE9BszmbamJoDvfHRop3muG+U=,tag:ygCzPPLfpwRX6dYQOQ+z8w==,type:str]
+    - ENC[AES256_GCM,data:HwTgdSrgGbW6Rfq8IdiCPmQNcmeoeb9/HS4=,iv:96u90ODzbS9xcxR9ZM75GYTcklE93mW9zXtStj6vZU4=,tag:Ye+KzC5M5eiy6+qzvKtP9g==,type:str]
+    - ENC[AES256_GCM,data:8+M1yWuV6w2yom3Jiz9WZ2h5g7wO/O3z,iv:bFoZpe+rdZpFBs0ZtzPCQw+CW2Zhvc77dNGfk47SmnU=,tag:L3XWx/eMlkvAo2wK0MyYcA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2025-03-22T13:26:30Z"
+    mac: ENC[AES256_GCM,data:MpvLwjJaIiWXACFarrL/rdAXGqUjEYtrN5X6RnlBL5tmrOJQDnlGo54A4GDTaPjyc1/Wy6gz0sL07Neb8UpzRCqp58l6DQJOEvB7YiYVXpakwQXcHqvVUjBAGyiFdMe31QT577zsA9GB/wOmUDfdWlyTRnKVJUj5PGsZlQIPGgk=,iv:t42wJNK6YAfTTvWbdEGfy75+qY2IneId6/qiOCkYZx8=,tag:xl/R6CukyGJMkKAkWLQp3Q==,type:str]
+    pgp:
+        - created_at: "2025-03-22T13:26:30Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAiylUaDcKIUVjfap79CyDI5TZpMi6xy9wDuvBb5xQj2pH
+            m81D0FKnvo+jyZBKhQe4j0tlH3mdbWWDJHmWkqygMSh9qRijYgyaUGCsSBFJ1A1f
+            3kbO5nDcB2hkGkp7WeghqDNLWoEQCZRx0ofsmId54YiQ9hAWG5yugoftJRSic0r1
+            my+qlENrV5ylt6ejLW62DrdcuYdahdtwzdUYWsKSLNO+7I67+8sx3aOTrzTMlFxv
+            eGnJDX2lcStDrk10KcvyHXOSTemo5Qyd4WCnEd6ushzSdBjxge3vJMowVMNOHyqf
+            gqMCvXflsgrQCd4YiNTkzRhsUHxGi0SaTUEXWpZxRva5dw53fnQGm0/2oTBmbXyo
+            3iorrU770jt3C09+/Wodae4DqZ6mnE/0UnkfuBn8gdaSN9HEVRtqx4gHqghZaQtB
+            V2/7ApyVqhmPPKHaqDN9+XzM1t41rmkdwqOJqC8jhtQo6UynhWGR4TPlzhkg9U1n
+            dhLB4InBy9llX+XyHm94S9T//MtFyX+x5UxU9SwobL2NnONTi55Jct2B9eB7Evpo
+            PHCd8gNpZsUnXPFdh0VWR/mrnivm+ZXGLeWyDAbUgio2pQS+EgcwdbN3jKIPJsny
+            iZiak87ZUrPXcqRCESlyfRUwMDx8Y6MeEnqGWMrHM2OqQzbGjM/DyyOMCTelovjU
+            aAEJAhAFOZyeSq7uAxcdCyYc0iPIUNSQyWc/F6T9C9XOxusvCMcovFaJd1n7dYfD
+            2iI+We5xiT3Ns9S8QZl92SarYnQ3+YFZO+9fao2bVTaW59OxClKPHKH3nctGvSli
+            CQQl/7bFyATK
+            =ZZjJ
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.9.4

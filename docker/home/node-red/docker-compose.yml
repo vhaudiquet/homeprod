@@ -1,0 +1,28 @@
+services:
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Paris
+    ports:
+      - "1880"
+    networks:
+      - default
+      - proxy
+    volumes:
+      - data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.node-red.rule=Host(`nodered.local`)"
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/nodered/data'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

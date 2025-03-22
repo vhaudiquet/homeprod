@@ -1,0 +1,11 @@
+services:
+  sshportal:
+    image: moul/sshportal
+    container_name: sshportal
+    ports:
+      - "2222:2222"
+    volumes:
+      - "data:/root/"
+
+volumes:
+  data:

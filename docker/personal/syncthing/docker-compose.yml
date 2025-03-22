@@ -1,0 +1,42 @@
+services:
+  syncthing-valentin:
+    image: syncthing/syncthing
+    container_name: syncthing-valentin
+    hostname: syncthing-valentin
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - config:/var/syncthing/config
+      - valentin_documents:/valentin/Documents
+      - valentin_photos:/valentin/Photos
+    ports:
+      - 8384:8384 # Web UI
+      - 22000:22000/tcp # TCP file transfers
+      - 22000:22000/udp # QUIC file transfers
+      - 21027:21027/udp # Receive local discovery broadcasts
+    restart: unless-stopped
+    healthcheck:
+      test: curl -fkLsS -m 2 127.0.0.1:8384/rest/noauth/health | grep -o --color=never OK || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/syncthing-valentin/config'
+  valentin_documents:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local'
+      device: ':/mnt/main_storage/valentin/Documents'
+  valentin_photos:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local'
+      device: ':/mnt/main_storage/valentin/Photos'

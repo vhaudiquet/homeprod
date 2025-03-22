@@ -1,0 +1,16 @@
+api:
+  insecure: true
+
+entryPoints:
+  http:
+    address: ":80"
+    forwardedHeaders:
+      trustedIPs:
+        - "127.0.0.1/32"
+        - "10.1.2.11/32" # nginxproxymanager
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    network: proxy
+    exposedByDefault: false

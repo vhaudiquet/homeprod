@@ -1,0 +1,86 @@
+services:
+  pplessbroker:
+    image: docker.io/library/redis:7
+    restart: unless-stopped
+    volumes:
+      - redisdata:/data
+
+  pplessdb:
+    image: docker.io/library/postgres:16
+    restart: unless-stopped
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: paperless
+
+  paperless-webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    networks:
+      - default
+      - proxy
+    depends_on:
+      - pplessdb
+      - pplessbroker
+    ports:
+      - "8000"
+    volumes:
+      - data:/usr/src/paperless/data
+      - media:/usr/src/paperless/media
+      - export:/usr/src/paperless/export
+      - consume:/usr/src/paperless/consume
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.paperless-webserver.rule=Host(`paperless.local`)"
+    env_file: .env
+    environment:
+      PAPERLESS_REDIS: redis://pplessbroker:6379
+      PAPERLESS_DBHOST: pplessdb
+      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_ACCOUNT_DEFAULT_HTTP_PROTOCOL: http
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/paperless/data'
+  media:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/paperless/media'
+  pgdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/paperless/db'
+  redisdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/paperless/redis'
+
+  export:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/paperless/export'
+  consume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/paperless/consume'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

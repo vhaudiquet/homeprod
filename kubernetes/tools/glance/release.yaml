@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: glance
+  namespace: glance
+spec:
+  interval: 1m
+  chart:
+    spec:
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: HelmRepository
+        name: glance
+        namespace: glance
+      chart: glance
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: glance-values

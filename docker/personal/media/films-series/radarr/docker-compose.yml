@@ -1,0 +1,44 @@
+services:
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr
+    ports:
+      - "7878"
+    networks:
+      - default
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Europe/Paris
+    volumes:
+      - config:/config
+      - data_movies:/films
+      - data_downloads:/mediadl
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.local`)"
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/radarr/config'
+  data_movies:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local'
+      device: ':/mnt/media/films'
+  data_downloads:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local'
+      device: ':/mnt/media/download'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

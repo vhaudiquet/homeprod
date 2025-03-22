@@ -1,0 +1,39 @@
+services:
+  jackett:
+    container_name: jackett
+    image: ghcr.io/hotio/jackett
+    ports:
+      - "9117"
+    networks:
+      - default
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Europe/Paris
+    volumes:
+      - config:/config
+      - definitions:/app/Definitions
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jackett.rule=Host(`jackett.local`)"
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/jackett/config'
+  definitions:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/jackett/Definitions/Custom'
+  
+networks:
+  proxy:
+    external: true
+    name: proxy

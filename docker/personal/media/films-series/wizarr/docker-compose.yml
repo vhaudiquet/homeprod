@@ -1,0 +1,27 @@
+services:
+  wizarr:
+    container_name: wizarr
+    image: ghcr.io/wizarrrr/wizarr:latest
+    networks:
+      - default
+      - proxy
+    ports:
+      - 5690:5690
+    volumes:
+      - wizarr_data:/data/database
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wizarr.rule=Host(`wizarr.local`)"
+
+volumes:
+  wizarr_data:
+      driver: local
+      driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: '/app/wizarr/data'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

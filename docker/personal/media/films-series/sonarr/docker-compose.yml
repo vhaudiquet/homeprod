@@ -1,0 +1,48 @@
+services:
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:latest
+    ports:
+      - "8989"
+    networks:
+      - default
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Europe/Paris
+    volumes:
+      - config:/config
+      - data_series:/data/tv
+      - data_downloads:/mediadl
+      - cache:/cache
+      - log:/log
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.local`)"
+
+volumes:
+  cache:
+  log:
+  config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/sonarr/config'
+  data_series:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local'
+      device: ':/mnt/media/series'
+  data_downloads:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local'
+      device: ':/mnt/media/download'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

@@ -1,0 +1,42 @@
+ingressClass:
+    enabled: true
+    isDefaultClass: true
+ports:
+    web:
+        forwardedHeaders:
+            trustedIPs:
+                - 127.0.0.1/32
+                # nginx-proxy
+                - 10.1.2.11/32
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2025-03-22T13:26:30Z"
+    mac: ENC[AES256_GCM,data:PMUHyPCnIhmUo5N1mdoMhDLXaFN6Cl0IGuq8EG3MGtY5X1g1QboL5nI5o25evFbuXdZn9KB2AqgzPZBxykhVpz8W+mj987g4VeDJ7sU/OnJibHSo+ibqoo0NvQaAMukWevqI7fAQZoyI3PZi07mMGYw23h2cmaJmsuAuDnQ0CvA=,iv:RRV/BF7OXFmBJX5lXZjrG4+4jjbjzMrR8BByMo5hfwA=,tag:+lVLSfdjHeJjA3dKMiRIGA==,type:str]
+    pgp:
+        - created_at: "2025-03-22T13:26:30Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/8DGnKyC/pNGEAuuxcZjoLQhK8TJ3NgNQ3HBVLGpbVBb3S
+            P/n94oPwwEbWXpdq1/MapFgaiAP3kXyv308c0CeIICQvg9xFeXK7/o/X3ucJu/YV
+            TiMsBUCAIWKrN4lmNr3wgnMDQiRs9myzgmzJv3KOpbQr5cYnrT51spWCD2Nnt6Xm
+            HfLyZrxGscW0lrRi6jeg/7lts3HYEs75i8xUS95pj5/a+7i83sfpaAFdkGcxV6Vq
+            285Ys7S86Hrp2T0QkADHMJMXmbeTV18Psfy2v9SXgqeRMq1XHQDn+nPPkYY0kmhs
+            7xVEwGHYLkKuyNmTm+ygsQAVGd/kCeqO+hsdKRtmJ5f4vh0w1ePftScqbfEwNuDl
+            ygEVUIoVhDYdUKnjwqjgiOxsx3Y6+RS4g3vg6gNWk1HunM24bzkFRP4w1lVYB07n
+            hDcQeP0bqo7hopJjvM0VtXbSJq81duBup9DyyPaXOf30p0c+l9it4XdoeR7JaZ/y
+            nJ22POfQYCoJyKpgdB/eReLd/2MqLhdnsCUTd+CNTS1+nCz1M4JziagXU9CspnqP
+            sCYylw6aC9XfzScZldpysdqes1/1ZC9F2QeL6ZO66IRV3xBk/5eSsyZ275DRZYAj
+            P4jf1UhA4U0LQoVPAjh9cA8SLm29MgfEwoFSLGx6wsJ//ibxMIlxku9gkiRRTkPU
+            aAEJAhCQKhc7EsDKh7GgrlPh0763p+CuZR7yMp2W1kY9nU/w/802SgYEyLdPW1aY
+            gG3zMpt1roTOQI7D0jM7NjcYOLeOHWR0ac00wqv3S7I9+4tXOxuHyTX6Og19Z3GV
+            OUgA2wzhUFtj
+            =2DEs
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.9.4

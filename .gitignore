@@ -1,0 +1,12 @@
+# Ignore terraform state/vars/lock files
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+.terraform
+*.tfvars
+
+# Ignore output kubeconfig (contains secrets)
+kubeconfig
+
+# Ignore docker environment files (contains secrets)
+.env

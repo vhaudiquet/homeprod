@@ -1,0 +1,41 @@
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    user: 1000:1000 # should be owner of volumes
+    ports:
+      - "4533"
+    restart: unless-stopped
+    networks:
+      - default
+      - proxy
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 24h
+      ND_BASEURL: "http://navidrome.local"
+      ND_PORT: 4533
+      ND_REVERSEPROXYWHITELIST: "172.20.0.0/16,10.1.2.11/32"
+    volumes:
+      - data:/data
+      - "music:/music:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.navidrome.rule=Host(`navidrome.local`)"
+
+volumes:
+  music:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=truenas.local,ro'
+      device: ':/mnt/media/music'
+  data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/navidrome/data'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

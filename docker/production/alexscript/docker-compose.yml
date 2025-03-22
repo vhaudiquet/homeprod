@@ -1,0 +1,27 @@
+services:
+  alexscript:
+    container_name: alexscript
+    image: git.vhaudiquet.fr/vhaudiquet/alexscript:latest
+    networks:
+      - default
+      - proxy
+    environment:
+      - TZ=Europe/Paris
+    ports:
+      - 80
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - reservations:/app/reservations
+      - selenium_data_02:/app/.chrome-selenium
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.alexscript.rule=Host(`alexscript.vhaudiquet.fr`)"
+
+volumes:
+  reservations:
+  selenium_data_02:
+
+networks:
+  proxy:
+    external: true
+    name: proxy

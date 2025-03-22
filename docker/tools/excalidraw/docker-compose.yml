@@ -1,0 +1,16 @@
+services:
+  excalidraw:
+    image: excalidraw/excalidraw
+    networks:
+      - default
+      - proxy
+    ports:
+      - "80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.excalidraw.rule=Host(`excalidraw.local`)"
+
+networks:
+  proxy:
+    name: proxy
+    external: true

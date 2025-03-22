@@ -1,0 +1,29 @@
+services:
+  vhaudiquetfr:
+    container_name: vhaudiquetfr
+    image: git.vhaudiquet.fr/vhaudiquet/vhaudiquet.fr:latest
+    networks:
+      - default
+      - proxy
+    ports:
+      - 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vhaudiquetfr.rule=Host(`vhaudiquet.fr`)"
+    environment:
+      - NGINX_HOST=vhaudiquet.fr
+      - NGINX_PORT=80
+    volumes:
+      - public:/usr/share/nginx/html/public
+
+networks:
+  proxy:
+    external: true
+    name: proxy
+
+volumes:
+    public:
+      driver_opts:
+        type: 'nfs'
+        o: 'addr=truenas.local'
+        device: ':/mnt/main_storage/public'
