@@ -180,6 +180,18 @@ resource "local_file" "kubeconfig" {
     depends_on = [ talos_cluster_kubeconfig.kube ]
 }
 
+data "talos_client_configuration" "talosconfig" {
+  cluster_name = "homeprod"
+  client_configuration = talos_machine_secrets.kube.client_configuration
+  nodes = [proxmox_virtual_environment_vm.kube.ipv4_addresses[7][0]]
+}
+
+resource "local_file" "talosconfig" {
+    content     = "${data.talos_client_configuration.talosconfig.talos_config}"
+    filename = "${path.module}/talosconfig"
+    depends_on = [ data.talos_client_configuration.talosconfig ]
+}
+
 # TODO : Wait for talos_cluster_kubeconfig...
 resource "helm_release" "cilium" {
   name = "cilium"
