@@ -1,0 +1,53 @@
+ingress:
+    main:
+        enabled: true
+        hosts:
+            - host: photoprism.local
+env:
+    PHOTOPRISM_PUBLIC: "false"
+    PHOTOPRISM_DATABASE_DRIVER: mysql
+    PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+    PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
+    TZ: Europe/Paris
+persistence:
+    config:
+        enabled: true
+        mountPath: /photoprism/storage
+    originals:
+        enabled: true
+        type: nfs
+        server: truenas.local
+        path: /mnt/main_storage/valentin/Photos
+        mountPath: /photoprism/originals/photos/valentin
+mariadb:
+    enabled: true
+    primary:
+        persistence:
+            enabled: true
+sops:
+    lastmodified: "2025-04-18T17:26:52Z"
+    mac: ENC[AES256_GCM,data:zuE2EQ+TZMnNXzwBdXeQi0K2ZpIX9lb4N+niXe9vM8tXn7JipZ8tTjJNaLR/pnI/w35eWugRpN6N/7sn/rwXdqReSIN1wN4Ks5DZ/owtGpgB4YHSL2bHHEtZyyFQsyZaU7iY6XfEP6kZ5fnjmCoO+lQE4QZcPbEA54ESUMvUjxM=,iv:PhSqErVuFTik0nVqoNSk24UFgDGt+o9KyESpIHpXegM=,tag:SNUfHN6s9ghtVQaqC+2hXA==,type:str]
+    pgp:
+        - created_at: "2025-04-18T17:26:52Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//X2yFbVt4zYKZ2FSpD++8I5fkL1aWonKoWDv9vrlbZHRI
+            mBphibVhpnDG91xZ8Tf4mml3oJE5W7sPsW9UZGeeOFbGHzisz8VwWr6OhzwCNs1j
+            hA4mWfUtrLdD/ghV9DJi0KuudVXfHtaviWZaaEBFXMi8SMbybp02eM7+Zl4BCdKm
+            eEsaog7nWRe1W2Db0B5930KQHnwVulDXJAp/M0iNGBSb+whC3F0JXWikzq20LUEa
+            PNWkbgW31UFMTI3CoUnFHJ3XfAjGAhwfRLKfICG1ZnXy/dz5UGolDX8jcInxuPZ+
+            ssNQjf6xPv7K/9V1IKFUDUK/f0jPTXqhzvb8G71wfCHs6CVxGTO97GV/dIC/it2e
+            n+oaVhlN9a19revbYMRfG4t4zPvbaH69SmwmiIAmTH+sKEZSqvE71bhiNcsWTGaV
+            ZPtD8h0/CPnzCwZEJ7bcgqacRAiLRAUN1egE+4FCVUzmaiaFr4UHmO9La+oRO9lh
+            HFRmLKGXEis3qjXjTCB5kbS0sQXaa01VlU5mpc/nWktOmGMAUF6KgS+kE9+2f3Xu
+            rSG33Clw+Xl1aUjz864FSc56obqoLrCovev0a2WF8xxp4OZOcg0+ybvPAtPxmnn2
+            QF1XOZy4tBeU3Op+emZ9eKeTSwEXC6ugcJlrkZ47kZ2EFKxLc4Ti2YJpL0xHTHPU
+            aAEJAhDwBW5/fkdJBynqDz7OP0fZHQFdlCSj6/P4H95AjrUKJGeKbVkzCvCVVxl/
+            /kERa+If07+6ogqfZMAMDoPlXikoeQW/+/XlCdsOzxx5udx+cZQHmikfn6wPJQTx
+            GvEaqsNcuSvn
+            =bqlq
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.1

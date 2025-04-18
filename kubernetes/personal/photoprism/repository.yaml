@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: photoprism
+  namespace: photoprism
+spec:
+  interval: 1m
+  url: https://andrenarchy.github.io/helm-charts/
