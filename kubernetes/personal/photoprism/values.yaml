@@ -3,6 +3,8 @@ ingress:
         enabled: true
         hosts:
             - host: photoprism.local
+              paths:
+                - path: /
 env:
     PHOTOPRISM_PUBLIC: "false"
     PHOTOPRISM_DATABASE_DRIVER: mysql
@@ -25,28 +27,28 @@ mariadb:
         persistence:
             enabled: true
 sops:
-    lastmodified: "2025-04-18T17:26:52Z"
-    mac: ENC[AES256_GCM,data:zuE2EQ+TZMnNXzwBdXeQi0K2ZpIX9lb4N+niXe9vM8tXn7JipZ8tTjJNaLR/pnI/w35eWugRpN6N/7sn/rwXdqReSIN1wN4Ks5DZ/owtGpgB4YHSL2bHHEtZyyFQsyZaU7iY6XfEP6kZ5fnjmCoO+lQE4QZcPbEA54ESUMvUjxM=,iv:PhSqErVuFTik0nVqoNSk24UFgDGt+o9KyESpIHpXegM=,tag:SNUfHN6s9ghtVQaqC+2hXA==,type:str]
+    lastmodified: "2025-04-18T17:30:59Z"
+    mac: ENC[AES256_GCM,data:5Z3BwzStMhaHJTQTCCLbREofp+LIebDC2qtmUUkKWuiWEF0kU3ukzl0B6Tjqnciyh59igtittr0Dgra68a0lyp7Ed5yJJc6Tt+GQe2bMN4MFtHRIb/nvBFvBIflHkiDLVnf+EwpJe/4j+PZ6mFTNkHXABRIIMIJM0PiF0cSsz1g=,iv:z1VrAHS+gLbYJ7UXKrXfNEEuXhMSjcH3djzlsojvWLA=,tag:u1Rq2Nr7YQtOJlsnDGxYQw==,type:str]
     pgp:
-        - created_at: "2025-04-18T17:26:52Z"
+        - created_at: "2025-04-18T17:30:59Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//X2yFbVt4zYKZ2FSpD++8I5fkL1aWonKoWDv9vrlbZHRI
-            mBphibVhpnDG91xZ8Tf4mml3oJE5W7sPsW9UZGeeOFbGHzisz8VwWr6OhzwCNs1j
-            hA4mWfUtrLdD/ghV9DJi0KuudVXfHtaviWZaaEBFXMi8SMbybp02eM7+Zl4BCdKm
-            eEsaog7nWRe1W2Db0B5930KQHnwVulDXJAp/M0iNGBSb+whC3F0JXWikzq20LUEa
-            PNWkbgW31UFMTI3CoUnFHJ3XfAjGAhwfRLKfICG1ZnXy/dz5UGolDX8jcInxuPZ+
-            ssNQjf6xPv7K/9V1IKFUDUK/f0jPTXqhzvb8G71wfCHs6CVxGTO97GV/dIC/it2e
-            n+oaVhlN9a19revbYMRfG4t4zPvbaH69SmwmiIAmTH+sKEZSqvE71bhiNcsWTGaV
-            ZPtD8h0/CPnzCwZEJ7bcgqacRAiLRAUN1egE+4FCVUzmaiaFr4UHmO9La+oRO9lh
-            HFRmLKGXEis3qjXjTCB5kbS0sQXaa01VlU5mpc/nWktOmGMAUF6KgS+kE9+2f3Xu
-            rSG33Clw+Xl1aUjz864FSc56obqoLrCovev0a2WF8xxp4OZOcg0+ybvPAtPxmnn2
-            QF1XOZy4tBeU3Op+emZ9eKeTSwEXC6ugcJlrkZ47kZ2EFKxLc4Ti2YJpL0xHTHPU
-            aAEJAhDwBW5/fkdJBynqDz7OP0fZHQFdlCSj6/P4H95AjrUKJGeKbVkzCvCVVxl/
-            /kERa+If07+6ogqfZMAMDoPlXikoeQW/+/XlCdsOzxx5udx+cZQHmikfn6wPJQTx
-            GvEaqsNcuSvn
-            =bqlq
+            hQIMA7uy4qQr71wiAQ//ab96V85whQHoWShJvyWTpwKiK3F0tpQ4JC1NCTJTl+tb
+            BL1WdQ+YMlr4SbFH8JLX07wjTSTv0TJArqrw/72AinnfGmHZ9ndpqaCeaVTmkmP5
+            /vm2FNJmabznR511c+ogKZIE/xqhwyB8sNdiHA3mV2B/S265vpbULyzw3xfPlauR
+            QCU83gVpkgaHlZtdtSeY2uW7sXd/L66kqxGsKbtXTPqx08P1OzszX3bjBm3J+bp4
+            0sK8zeMns3FAFvAIcrCvmIlk2ezhDV/LAoLHUHCF28/XBquhq3C8/7PUsHs1gYsp
+            N3zJbYsiN45q82KACqCQHXAvdf+cJAnDl4XU3/jhY53uerZ9EUu9gjQ4GMJ1/zHX
+            VxjL10rUKz+bxmcfSaTKMijjS2Jw4ERdhDJ1957VARtznWffiyOfQycXGZyuDCNu
+            dZZHK1P8Vg3dJqeeaRmrzMln7WD2v3GnePNKMNkvAaHADfel3oi7f2w8soBgCCp3
+            lBUngwr06e/yOTsIefGsAFwlfVihyCED1jlxG1knu1wkD5Zug0of3aLvdFbqL5az
+            6KdB1GOeuYUos2hC7ihGW1ZuqPLhAkpWvEgLZWkJkOzDnhkoAPsauKZWHX9Q6ZTq
+            qlC+TP3duFvKbctCAm41+MeH3a2/HwmaqskEM1sMbTMUmpkbEpEOc7Nd6fRlzOrU
+            aAEJAhA/+uY2U0p0YCvKt3RYJEJ3qZXWufy/ZzjsVGaG5Fty8vQYN6MhzCKuKbMB
+            D5ofI2Cz02Gmqu2cswvtOxgMEfD4fpCn2boKx2F+xzUjQAVJc8HngqcbVKzpZnAK
+            /ssjG12gJll/
+            =G+te
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
