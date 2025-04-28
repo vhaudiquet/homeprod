@@ -1,6 +1,6 @@
 creation_rules:
   - path_regex: .*values.yaml$
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
     pgp: DC6910268E657FF70BA7EC289974494E76938DDC
   - path_regex: .*.yaml
     encrypted_regex: ^(data|stringData)$
