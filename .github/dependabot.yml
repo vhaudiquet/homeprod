@@ -1,7 +1,36 @@
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
-    directories: 
-      - "/docker/personal/media/films-series/radarr"
     schedule:
       interval: weekly
+    directories:
+      - "/docker/home/home-assistant"
+      - "/docker/home/matter-server"
+      - "/docker/home/mosquitto-mqtt"
+      - "/docker/home/node-red"
+      - "/docker/home/zigbee2mqtt"
+      - "/docker/infrastructure/mail/roundcube"
+      - "/docker/infrastructure/mail/stalwart"
+      - "/docker/infrastructure/network/traefik"
+      - "/docker/infrastructure/sshportal"
+      - "/docker/personal/gramps"
+      - "/docker/personal/media/films-series/jackett"
+      - "/docker/personal/media/films-series/jellyfin"
+      - "/docker/personal/media/films-series/jellyseerr"
+      - "/docker/personal/media/films-series/radarr"
+      - "/docker/personal/media/films-series/sonarr"
+      - "/docker/personal/media/films-series/transmission"
+      - "/docker/personal/media/films-series/wizarr"
+      - "/docker/personal/media/music/navidrome"
+      - "/docker/personal/media/youtube/tubearchivist"
+      - "/docker/personal/paperless"
+      - "/docker/personal/radicale"
+      - "/docker/personal/syncthing"
+      - "/docker/personal/tandoor"
+      - "/docker/production/alexscript"
+      - "/docker/production/semery.fr"
+      - "/docker/production/vhaudiquet.fr"
+      - "/docker/tools/excalidraw"
+      - "/docker/tools/hedgedoc"
+      - "/docker/tools/notesnook"
+      - "/docker/tools/stirling-pdf"
