@@ -2,6 +2,6 @@ version: 2
 updates:
   - package-ecosystem: "docker-compose"
     directories: 
-      - "/docker/*/"
+      - "/docker/personal/media/films-series/radarr"
     schedule:
       interval: weekly
