@@ -48,7 +48,7 @@ resource "proxmox_virtual_environment_vm" "kube" {
     interface = "scsi0"
     iothread = true
     datastore_id = "local-lvm"
-    size = 16
+    size = 30
     discard = "ignore"
     file_format = "raw"
   }
