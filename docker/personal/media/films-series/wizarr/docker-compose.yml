@@ -1,7 +1,7 @@
 services:
   wizarr:
     container_name: wizarr
-    image: ghcr.io/wizarrrr/wizarr:latest
+    image: ghcr.io/wizarrrr/wizarr:2025.5.1
     networks:
       - default
       - proxy

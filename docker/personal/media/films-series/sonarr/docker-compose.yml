@@ -1,7 +1,7 @@
 services:
   sonarr:
     container_name: sonarr
-    image: ghcr.io/hotio/sonarr:latest
+    image: ghcr.io/hotio/sonarr:release-4.0.14.2939
     ports:
       - "8989"
     networks:
