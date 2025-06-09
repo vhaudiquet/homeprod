@@ -1,7 +1,7 @@
 services:
   jackett:
     container_name: jackett
-    image: ghcr.io/hotio/jackett:release-0.22.1992
+    image: ghcr.io/hotio/jackett:release-0.22.1999
     ports:
       - "9117"
     networks:
