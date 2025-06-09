@@ -15,10 +15,10 @@ services:
       - .env
     environment:
       - ES_URL=http://archivist-es:9200
-      - REDIS_HOST=archivist-redis
+      - REDIS_CON=redis://archivist-redis:6379
       - HOST_UID=1000
       - HOST_GID=1000
-      - TA_HOST=tubearchivist.local
+      - TA_HOST=http://tubearchivist.local
       - TZ=Europe/Paris
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -38,7 +38,7 @@ services:
       - "traefik.http.middlewares.tubearchivist-headers.headers.accesscontrolallowheaders=Authorization,*"
   
   archivist-redis:
-    image: redis/redis-stack-server
+    image: redis
     container_name: archivist-redis
     restart: unless-stopped
     expose:
