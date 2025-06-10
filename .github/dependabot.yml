@@ -34,3 +34,15 @@ updates:
       - "/docker/tools/hedgedoc"
       - "/docker/tools/notesnook"
       - "/docker/tools/stirling-pdf"
+  - package-ecosystem: "helm"
+    schedule:
+      interval: weekly
+    directories:
+      - "/kubernetes/code/gitea"
+      - "/kubernetes/code/harbor"
+      - "/kubernetes/infrastructure/authentik"
+      - "/kubernetes/personal/photoprism"
+      - "/kubernetes/system/csi-driver-nfs"
+      - "/kubernetes/system/external-dns"
+      - "/kubernetes/system/traefik"
+      - "/kubernetes/tools/glance"
