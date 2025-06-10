@@ -19,7 +19,7 @@ spec:
 apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
-  name: webapp
+  name: homeprod
   namespace: flux-system
 spec:
   type: github
@@ -30,4 +30,4 @@ spec:
     name: webhook-token
   resources:
     - kind: GitRepository
-      name: webapp
+      name: homeprod
