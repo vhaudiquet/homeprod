@@ -9,7 +9,7 @@ services:
 
   web_recipes:
     restart: always
-    image: vabene1111/recipes
+    image: vabene1111/recipes:1.5.34
     env_file:
       - ./.env
     volumes:
@@ -20,7 +20,7 @@ services:
       - db_recipes
 
   nginx_recipes:
-    image: nginx:mainline-alpine
+    image: nginx:1.27.5-alpine
     restart: always
     networks:
       - default
