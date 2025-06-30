@@ -15,6 +15,7 @@ cat > "$tmpfile" <<'YAML'
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
+    open-pull-requests-limit: 15
     schedule:
       interval: weekly
     directories:
@@ -32,6 +33,7 @@ find docker -name 'docker-compose.yml' -print0 \
 # dependabot.yml helm header
 cat >> "$tmpfile" <<'YAML'
   - package-ecosystem: "helm"
+    open-pull-requests-limit: 15
     schedule:
       interval: weekly
     directories:

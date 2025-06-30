@@ -1,6 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "docker-compose"
+    open-pull-requests-limit: 15
     schedule:
       interval: weekly
     directories:
@@ -35,6 +36,7 @@ updates:
       - "/docker/tools/notesnook"
       - "/docker/tools/stirling-pdf"
   - package-ecosystem: "helm"
+    open-pull-requests-limit: 15
     schedule:
       interval: weekly
     directories:
