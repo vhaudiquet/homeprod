@@ -1,6 +1,6 @@
 services:
   hedgedoc-database:
-    image: postgres:11.6-alpine
+    image: postgres:17.5-alpine
     env_file:
       - .env
     environment:
