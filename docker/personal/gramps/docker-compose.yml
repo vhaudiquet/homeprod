@@ -1,7 +1,7 @@
 services:
   grampsweb:
     container_name: grampsweb
-    image: ghcr.io/gramps-project/grampsweb:v25.6.0
+    image: ghcr.io/gramps-project/grampsweb:25.7.0
     restart: always
     networks:
       - default
