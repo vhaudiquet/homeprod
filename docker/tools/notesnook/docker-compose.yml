@@ -48,7 +48,7 @@ services:
     restart: "no"
 
   notesnook-db:
-    image: mongo:8.0.10
+    image: mongo:8.0.11
     hostname: notesnookdb
     volumes:
       - dbdata:/data/db
@@ -72,7 +72,7 @@ services:
   # upgrading it to a replica set. This is only required once but we running
   # it multiple times is no issue.
   initiate-rs0:
-    image: mongo:8.0.10
+    image: mongo:8.0.11
     networks:
       - notesnook
     depends_on:
