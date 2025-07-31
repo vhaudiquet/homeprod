@@ -18,28 +18,31 @@ linkwarden:
               issuer: authentik
               clientId: 6qhU9p6ik0U9WeMetWHv2UQue6r5Rar51agVKn8e
               clientSecret: rwJhqkWFMN805iXpqqITh0XsdelCMICIxI7RLt9DHegLnliPwJCledbgnyNCEvxbikvD4o4l5ouHKsfMcV1GrSUWtYMTOBivG4tuxpG43Lffky5txAeLkOkRbLFQGzQG
+    data:
+        filesystem:
+            storageClass: nfs-csi
 sops:
-    lastmodified: "2025-07-31T21:14:59Z"
-    mac: ENC[AES256_GCM,data:Rj0SOGwtVmb2yTFwAqdSyo83vwSaNNFea6Lhoj/ougMfW7pQTYngsRD9Qw8yw62emMQlyoFwcEh7bvqVzf+oIE1UUe4VHONF9OZSLDsLOEcuLFNdsw8nPS/VVQftw4+SzFKbfZmknBpmvp1c3d8Q9Vt8Us9vaKXJjgxpbgfUZ2s=,iv:T+X8M2vtNzIWPrbeZt7gbold/uOOzOWEY3GlC+uyHXk=,tag:DC2pgxmeg4Bz5LceYYk2AA==,type:str]
+    lastmodified: "2025-07-31T21:21:54Z"
+    mac: ENC[AES256_GCM,data:4KUHUGG1vkkIq8vmvU5sHHiXbimneXZx+EVQXD5PEYRrbl+ZqAHONrhWryTYWLuQfnJ0QQZobGr1HPgFI/Ekl+mcggjysGpmYg6WU0Am1lw1lTBWT2yNXLHEmZ59+Uyt+iIZICXOen6QJ2jtkz6jxuHS4A6++VewwGtQ+J9tvPE=,iv:LwTxLqLI+V4Yi56Nj0/AKLDvNPMdsX238YICiVLr0Ag=,tag:8N4IOYq4d5DqafpI+z/52Q==,type:str]
     pgp:
-        - created_at: "2025-07-31T21:14:59Z"
+        - created_at: "2025-07-31T21:21:54Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//b4y2XNe+t3rKaRE+o3ZAkc63wl6bu1rIZqBT9sAaWC1g
-            L1TcCT/7mSaOGVw6WJ35nZPQO0vpuRlwq9hoMTHRcRYRvLDAUUmC9pEoI1YXDXuK
-            IXjgCvya2bMohbiFNbvh6Frr1LHPcUIULJWMN/K06/GlZYHvESKlJ4103dbd4W4A
-            Cgz2vr47B6rt1LcHBWPDALpFWAITsi60Acu5r6IpHrTVjrhGOYm9c99QBnqMAbJC
-            Vo0ZJuM4PA2scIkBb2kRKUBLVuvRDWX6+mzkstAWpw9Uk0tzJtY4BTGSW/KwJCrl
-            nKfzcLj08xJ/eXbMGtbwde6gv9qrO39XHNzBBnUTOLVuS0bKiPG46qNrkXcoKsdp
-            rMJVxJB2nTrAmK5UYn5YeomwFsavXFsZEyTY4l/2h52psxN7YyaJzoJLBMQB8BRx
-            OTJ7g1L6uyr2H+E1lX9WyPutlWMdIU/J8WPc8zatPSyj8Qpnvu3+8FQ4pAwhQFPU
-            e9Ls7wvp7m2+egz0APMjHqjvcXXdzoDlhUITlY5BB/1aWFIgtBTiI5yfoSGVefTj
-            ilzT8q5CyilS1YuPN/dlg6yIg3K6J6Q2f15VJw0SZgexkFSkiau3ZIR8QV/tmDtu
-            S33DcAs/ZGjj0Wz11JB1/yI0MjX48fgm40E25kWws3b5wgbSiX1TDYUKin3XumDS
-            XgHmYYO637JCguXg05EpQdkoAZfrhHAWfwbEF4R1zSyM0LgPo2F2hUKBXMJpDUir
-            DYD0jBsWjrPpPqA0ldbrQuHSQ9o/rlvbvc8r2/4nn9RPcDYuJkFY+gr/lwSEmUg=
-            =Brgi
+            hQIMA7uy4qQr71wiARAAwdGXFYP5eJIoQ29Q2YiJo5PH+hF1RGQScL//Os71XCXG
+            lOGhyFtSa7AfOV7VG0SHZxqHeElqvXGAnkAt46OJh9gmGv0UlXujim5jfZc/MU7D
+            oTb9VoNcOOg/rIaduIRHI5MhSb69Yo6EOCBN61mepetJC1zZXPzteyMocQ0kNH8c
+            Xls9h3ovuxWBm70N+9S9DAhQNYCQDthDSFZyY3o99DQESC8K4oZTYodFiRDLVwsD
+            duMM2Eu18waChbTZ/sZ5Q72o84trVDcqz5maegApMefdmOKrs3sJSu2y/zajDn2n
+            mcme/cZETw6xZVhSzJrP30yXGoA9V+t0I+ZAAHQlQrfA2sPZNFglucp9/rfcXvvr
+            ps5jHJGVZWQg47XCj/zMGab47IiJKla8BDP1ZCmK3GqAcLOmzK37rJMajkRXTVeu
+            OzW50gVZ/FxkDLjupwfKZfgShCHanZzeg0eBxbCDx9MDpoYWhLyBKKsFUMsgx60N
+            D4iFbIEpSWT7xGnFebun3HyfLhpiRlshksdy+K849qW6OMuTtbypktZ0oEYYXVmW
+            N/ERzXjepMkv0mC9qRA28zGRAIVe2a41F3Q81pYHJoDPeDiHviT5jFNwnW3Yq3j5
+            SEFmEDLStT2EHdQgCKuSk/PhbPmG6l9PcEZZut6evmSyo5FW2DHVVnMJQzmgHavS
+            XgEIUmbpVTjoGSIXoaqnP1u6/9wfLxzJ+b+cUS6LcQJPp4AaWnXxqpZjoGlQFArb
+            3KPLusAFnKtwt3nufoy8pJPOynpIT3CyUoKEJYf6PA6fQ8JoCzhArfGRaWvbCX4=
+            =jdMl
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
