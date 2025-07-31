@@ -1,0 +1,44 @@
+image:
+    repository: linkwarden/linkwarden
+    tag: v2.11.5
+    pullPolicy: IfNotPresent
+ingress:
+    enabled: true
+    extraHosts:
+        - linkwarden.local
+linkwarden:
+    domain: linkwarden.local
+    auth:
+        disableRegistration: true
+        sso:
+            - provider: authentik
+              customName: authentik
+              issuer: authentik
+              clientId: 6qhU9p6ik0U9WeMetWHv2UQue6r5Rar51agVKn8e
+              clientSecret: rwJhqkWFMN805iXpqqITh0XsdelCMICIxI7RLt9DHegLnliPwJCledbgnyNCEvxbikvD4o4l5ouHKsfMcV1GrSUWtYMTOBivG4tuxpG43Lffky5txAeLkOkRbLFQGzQG
+sops:
+    lastmodified: "2025-07-31T21:10:45Z"
+    mac: ENC[AES256_GCM,data:bumJMtg3pgIy7j63JKawwMgBeqfq0BLmqPLWWrbW5/5H5udOierXjBUpaieG8FvvkBOhc0i+LzVnnpGD1cFsV0LMDD283UY0FDPiXJ4C8ZBmiMwX9znEsef1vkDJ/Sk1EZ+iqR4ciZhI87XEuEWmJ++rY6EyE6s9ayLnlnlJgk8=,iv:yd136BDR1r/W2/UglXhcCfGJoi+FGv5HGi5od9xHu0o=,tag:siNqenrklEt+p+n8lQkD3w==,type:str]
+    pgp:
+        - created_at: "2025-07-31T21:10:45Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAudydjFhUimSnZ0R4AQz5URpgF7FDKShsMFWdXIqEVj71
+            AT+44Dl4zLdNx7B9rHVrlfjqAuOjaDSmPvdvcvLSQ30GJKVIt+n9/KJVN2ogkHTN
+            DgubKJ5KT2k+HE4lBWBIe+/GdbD7F8XzbXWsnI5pSV3RQDkU8qXB5umMxg22WlQ+
+            5Ur3ZR2ATgzTlT94nrgwNkef2wdTlYdMPEvCXeRoC3e593/QsGMyzqIy8R9GAiO6
+            iD9lhAFQIty12dJ9G7b1+XNDKgdkq/gGY9cax0MzxNSACUzBCcmVfAiqV2Jsff16
+            IdLB5ESl1Q//nqriDxjyYHslnrd+DHdg8jgTLwqoPGxcHWZ4NqsTV8qlgCgqZeXx
+            pKF/rVtaHoIdUJ2pcM8hU7xuIssiAxTwfKulQZXP3iwwzTfPxCfwdKD5IYrntVjW
+            83bp+V4LcLOYeBoJwbXXKroQ+GPZ7JMzNgQvsZy7BAt9zyBdKDBZ3+UK8cjGSlgt
+            Ttf+VZHBKKRX888rMAcpSUDT2W/26fkPPiXrj33lBDXk0TDv2mubsO/pVqXPeXZd
+            qzWuiG8GdyVaYgdn4oO9ePguPZHHB247UUAs4tPYZHjQ7t/BNRpGf0PZ47n29YBU
+            a6X2oKLUuoeNrCynh83El83tjfom5KMCQ6uPtCnuaRWtqAdc2raavRs/z8qVQFvS
+            XgEZVHchElyRgJ5eNVLRgnUuVfB3TNnvjFeh6zDDQoZNlrkNTU1Txo7ix/eCzjsJ
+            imY2/JV/cUVo0Ax+UE8U9TLkmsaLAvo2d4nY5w0wK0Lt4lkC4TqWogw/t5SKeZc=
+            =6KWY
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: linkwarden
+  namespace: linkwarden
+spec:
+  interval: 1m
+  url: https://fmjstudios.github.io/helm
