@@ -12,7 +12,7 @@ spec:
         name: linkwarden
         namespace: linkwarden
       chart: linkwarden
-      version: '0.3.3'
+      version: '1.0.5'
       interval: 1m
   valuesFrom:
     - kind: Secret
