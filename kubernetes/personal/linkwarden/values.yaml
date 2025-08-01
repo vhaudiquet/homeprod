@@ -8,46 +8,49 @@ ingress:
         - host: linkwarden.local
           paths:
             - path: /
-env:
-    nextauth:
-        url: http://linkwarden.local/api/v1/auth
-        secret: ENC[AES256_GCM,data:o7satcZFwa1WNpTuLToqrke3KkutXyBsiG6gziJrrj5awzMyZjlV4RlXkkrzWvVdF7iuqpSgw2snZ0P1y9w4wg==,iv:f+C5LCSffX73myFtirpij6P+lcE5OvRRNCJDYa8hn7w=,tag:H7DO8egV9BaOBYU+/F2aaA==,type:str]
-extraEnv:
-    AUTHENTIK_ISSUER: https://authentik.vhaudiquet.fr/application/o/linkwarden
-    NEXT_PUBLIC_AUTHENTIK_ENABLED: "true"
-    AUTHENTIK_CUSTOM_NAME: Authentik
-    AUTHENTIK_CLIENT_ID: 6qhU9p6ik0U9WeMetWHv2UQue6r5Rar51agVKn8e
-    AUTHENTIK_CLIENT_SECRET: ENC[AES256_GCM,data:8Jz0zfJggS9pMIqLhiY4M6uOfKHkQFO7Wd3ZLDs9/A2YCIESQjVhbKQXHKzw9u1qNl1oOXBvHygQPRRIjcHjrHaFjWisZYil+pXpzfiyG5tC4B/HnLl/MoxMRjYZrFo9deaxJiz7o4X2fXfTyIbozdr+tm33zJn+Yd0LsJA3KQc=,iv:q+wAgldeKWgCvsyOucHlRwNvm451BmGvosH2KJyHbqM=,tag:3th9B4wycikDWZ7hQQfulA==,type:str]
+configuration:
+    publicDisableRegistration: true
+    publicCredentialsEnabled: false
+    disableNewSSOUsers: false
+    authentication:
+        disableRegistration: true
+        disableNewSSOUsers: false
+        PublicCredentialsEnabled: false
+        authURL: http://linkwarden.local/api/v1/auth
+        authSecret: ENC[AES256_GCM,data:nuGB9vN3ETXDmbh6+99mIKPdDab4eFrEA2dzdgiI3osZsXyiy9G8KfYnKhnEw1wAaaZ+eSAW7KOYe04C6PSiXg==,iv:eJ37D2Pv2EDd/rFx3ltF6onnqK6+RTc0eywFFXpga1o=,tag:W4hK9hLKTIyS13ICJrIamQ==,type:str]
+    sso:
+        enabled: true
+        authentik:
+            enabled: true
+            clientId: ENC[AES256_GCM,data:yOZS7BoEdOvsI49gHV9gVAleXDVPKhCGTIvKZEHgZz9ivYWgh8nu/g==,iv:lxzpbMrdLTBUheUdo6E8Z0rYrLAGTMQpGcrToFsWnP8=,tag:S1R55Sw0ZMdMsoIyJxymWg==,type:str]
+            clientSecret: ENC[AES256_GCM,data:MOzL5OFc1HqhrIsNSobEZRmeZMDeff7ais0z/DJgB02rD33/95M4PyTn0ppmewLjHkXU5889Hkfh+QPjgkAPgIUlDJmiUvRDlM+yrbZumqZN8R42QWt+qaHEI36Y2P9+9PIZNy4agKwBpd/3Z8guLryMuJZpMy1ABBOuTe92FJk=,iv:jsdiNdX6G8qEAYQHj9rsWtZyS+tgKoeeIYsqRh1jhDk=,tag:sR4eTTktwXoGhFukmieBYA==,type:str]
+            customName: Authentik
+            issuer: https://authentik.vhaudiquet.fr/application/o/linkwarden
 persistence:
     enabled: true
-externalPostgresql:
-    host: postgresql.postgresql.svc.kube-talos.local
-    port: "5432"
-    database: linkwarden
-    username: ENC[AES256_GCM,data:VVYc4KDYRZwEQA==,iv:8kx5gn4Ex0MvAR5U9/uIaJWReXJRFCwJ27t8AR57SGA=,tag:DnJz8QWJ/IXPs8IeuVYvHQ==,type:str]
-    password: ENC[AES256_GCM,data:nT5FD73mAKaTSw==,iv:pIp51iH8bA9xD9WQyID+24bYkBle29IanWnVhOm1tpo=,tag:ymWAyuvNR+hPyfdo6GBpxQ==,type:str]
+    storageClass: nfs-csi
 sops:
-    lastmodified: "2025-07-31T23:09:38Z"
-    mac: ENC[AES256_GCM,data:rigKCLw4fa25fuz4Q2RZut74mG0DE3aJKf+VoxTPuiQJj70qrvSiElih+8/ZLqdPAcT0nyD0jPfymdu1zJ01PF6gN5VQECvt/x78+HxMsqvhwhqFat9bQaIAN9E5r7oZpLOC13BvonRnfBQvtQY3arXkGsJtxoiMx5uQ9YoHtpA=,iv:JL63shNDhqnXurBBlalbvZrqYUmnwunLFJfe2/iWDHo=,tag:tf9zr43cPc5u8Q4DuF/rTw==,type:str]
+    lastmodified: "2025-08-01T11:47:31Z"
+    mac: ENC[AES256_GCM,data:Jb3lqhdx9DpGsVZUrUOe4t3mjgd6/mExJgUAx5tS/Nc/LWg5cv76HIQXd9V0YXPYloMIlGJoXI5BLXVtAwr4KDjPq2fmXAVkcwXYWG3b5N4rhmkiuJtRiAEVJHRJFANAT3ipha3WxNCiFgXsBbaRMjFRvRZ68KAYxg4w3Rxva5g=,iv:vyldZuDeDPpUIZI5avOzNA7CnthKqIKm5cEyH7yxGGU=,tag:W3/3K6ZEhjcfjW5tKScZ9w==,type:str]
     pgp:
-        - created_at: "2025-07-31T23:09:38Z"
+        - created_at: "2025-08-01T11:47:31Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//RsHqf/cIfKKO38l5iEEfiZE0YEsk+ST5r03e436PmEax
-            7hZOKXvDYC93MpUDArBmftKZK6pU0NDNF1dzD1L5QLEjw4nZfEmG5loG8yQiFSfO
-            tQX1I2NLMJlcDZjxi6LRcQE0JQ0TlQ3FH0EB2ZMZn/XPbvte63ODBRyi0kpgWTOd
-            NUPTqOH7SYbY4sKg4DXzihV+Fc40IyWc/+Ch2sG15PxlopUT9Y5k98xAgGeWsHhv
-            yLgmmNlPkwXpNKhXFTlslzaE/CEjRtGkc3LoXNcFE/BeXGxK3QTfSRnDmPVql6Uk
-            FJ2cMhs+4azhVxgs+nOdbGz4Cbq3sDV/o9BcFUQwgTjCsZmEqPi7gY0FETdFlZDz
-            BRZQwe+vDgSD45APvGFBrpRh+9IrXahUYcgbYYdijvt9zqwSYvSKPLjK39/gpCk8
-            Ymu+/peRYqFVEYsv/lkjFS9W4rkDP/8hZKS52R2WcHIZhhTJ0Yk0NPjTW1UiJ6DS
-            cpn/8eDUt4ruuFgtdkcoXgdYBJt1ctvy8cFZynyZi5kxOzMSS5Pv9C0lB8zMKUak
-            9QP9bnGxxlHVGSY3QE0gWOwjOW1NGSzGxJZkOp7VwXk+jc05yLavGo+n2dPQC0zh
-            TX2LNVvNiIngfMeDgoxkBRK6SJP761sWdmIz+V+RJVhNgahfIjmme/0bEzT0CUnS
-            XgE8xCU+FAe3dqVSAFVpS9QR+X6kwmXBiY3TRBiK9jonaXKXRCKenoWhLPNDU/ch
-            ah5Q7X/oerFb8a+hp2w1ONFEVAkoALJonKwIq9zd1pDLoba3pmaSAdOPUSpCEc4=
-            =o9qF
+            hQIMA7uy4qQr71wiAQ//WPBXC2GkHQOT1gelU+XNe3Z+GCrT934npTm7Pav6GwbF
+            fUdnDHoy9j/pIVFHOVzlzj3BQAcouQJ/UOooEZBVGH2a6VLbmsKOf8ClthTR4dia
+            L3yIcYBz+xGQrbSHanbJWKl7jZlE6rUsv2HiCPfp4rkjuuMwboI+zme+ImrlbA7E
+            K17kXfXd+hmAt4tLjX+VX9xXgpmHhUGPMS27wNYjSU3nUcLCMCvS9vpKmdcB5DRj
+            5dANthSW7C6hEyBzlks8+W2rR9gMYx2SFQFaxYKDnSHfXRkAlWbDmZGkyvdE3zUx
+            jg8i0LCJGsDQZZh5yGesO5sN/+/ySvfpBaSn6PE8ht+0M4Njxx9k+lTPf6XvUqf5
+            uchkfoMptwGfUxFWQRDKfN2UMaP4/SyoDtvi2SH7ZTy7NCt5CxmzKjr4p7WHR08o
+            1uaTfwAJSI+pDb06vGAqZ8jT3UDZRqs7ZwgeICf8ulXdSVS0/K0y1dB10MVdDzcE
+            HTn96URRX4HNHYtTNwcJzN2gOoeCyC60kaKDZTPktaKmikWl5cuY1LQITdTX8nNg
+            ParMi4qBgT/0WJw6ORl+26sqMGoZqiIOAXcnct/R6tH3F2E0WpYLhWAGjwR4xDX7
+            5UloZO5gi5yHav6UBSpWhhjm9IL3zT6d0z4Nd5QYQGIwZr06BOZ6/dHwNi1dnXvS
+            XgFicme/usul1nfQISCMHpUle0AyRdWeGxDg+fI9rCS3QdKMqp31chZnd+DYOcGy
+            HIpGh8k6CNCv3faFWvI/l/Z62D5BB60E7tizsSehy6tm8SHKIqSigZnEZZqhTDw=
+            =QVuy
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

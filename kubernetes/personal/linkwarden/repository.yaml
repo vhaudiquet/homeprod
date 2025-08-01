@@ -5,4 +5,4 @@ metadata:
   namespace: linkwarden
 spec:
   interval: 1m
-  url: https://charts.schoenwald.aero
+  url: https://soubenz.github.io/linkwarden-helm-chart/
