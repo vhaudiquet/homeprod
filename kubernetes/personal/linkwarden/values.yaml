@@ -18,40 +18,43 @@ configuration:
         disableNewSSOUsers: false
         PublicCredentialsEnabled: false
         authURL: http://linkwarden.local/api/v1/auth
-        authSecret: ENC[AES256_GCM,data:gpwroYuT57jVlmCVYSA8lcKdQGt3R/w/I+SiEDrMnWZdl9IwQ1654aqB60wEWab8CEFA2Go9iG7nS2HX1uV05Q==,iv:F5kQTnFPQPZwRkj0I7+qZgvocT/tX81ogObBu1Xa1dM=,tag:tSSzaelFQpZbRdRvzI3cmg==,type:str]
+        authSecret: ENC[AES256_GCM,data:eFWZAe3YtUsIJfvGTnguv66OJ88nHrcxDJpsA3UKjHxucI9irv6eNdIJFJfyKMWxvwy38W/BjhoctK/Y4cgRhw==,iv:DTBEhJtd/t4Upg25UgR3xeTSNdTUAFueMCzTkd/HNsQ=,tag:YtgVMKfdgQ2JT1YXH+nidg==,type:str]
     sso:
         enabled: true
         authentik:
             enabled: true
-            clientId: ENC[AES256_GCM,data:TJS9j56w1yRxqcds6amNccSH+ybpNp9R2oJu6xbsGrFfWPg0nAicew==,iv:iC39C8ubZViRQMqEN/YCl+ZeMewfZtRuEx0PpnXJMwo=,tag:UXLXAYuVY8KH/c/zCXDsPQ==,type:str]
-            clientSecret: ENC[AES256_GCM,data:wFNwrAYMgsev8D9ICCbYsV4+5CVFgEO8uHEpy05JgdipqL4VX9yaaEwfIbw1ej4mBw4nBkfTkHPI74OOg53yA1gzTktDeHP2XYC7f3MD6XPxMxa0IeOOFDCqK6Q3vmEkMfs/BV39xy2n9bg/7B4qKIkHjCD/+aqp/BTDji7YNgk=,iv:UgfomOD1aASBTWWZRVKBAP1NqOErZz9Dmu8PMUMoZkE=,tag:cWValfbR0PgcywWJAKyB/w==,type:str]
+            clientId: ENC[AES256_GCM,data:LHyP3SlVYpg6gLfY0/WcZOfSInClMqH8Zrh47crefYtSMYkT4mSw1g==,iv:EvzH8Z7l8sD7gTqMDqZYapRi1UdNgCDpyxE2oOANLe8=,tag:plo6Cr1GkMIQT/Liuzz1pw==,type:str]
+            clientSecret: ENC[AES256_GCM,data:R08OwPU8oeyf/YphZpCFxz788LjuHngAs2abBZYuOnhqpTY/f80v/bBzCxuNimqH5iBrsnCM64RTYkPJKuiuDUjmPrWX3eh946X7AP7JgLJC18kvlvnhuYxQMQbg12z/on3Grr8HtggQvfKmvkzvH4ObNK0VsEbaRjx4/UF0Yaw=,iv:F6Uq3TcEaPoVdXI+OMitJYbAl1PAezG6PemhuvWJM2E=,tag:HdDiyvqYUslwLN5qVZRtMA==,type:str]
             customName: Authentik
             issuer: https://authentik.vhaudiquet.fr/application/o/linkwarden
 persistence:
     enabled: true
     storageClass: nfs-csi
+postgres:
+    enabled: true
+    host: linkwarden-postgresql.linkwarden.svc.kube-talos.local
 sops:
-    lastmodified: "2025-08-01T11:49:51Z"
-    mac: ENC[AES256_GCM,data:Telaw1X63OAnP9X9kYkQf1ebLINYx3d34UemVcLOZqsNNLJb3Qow+QT8V3UmuHcWOFlZRl4USH2/LDBC7ujNf2u+NP1xAKBQqk67awlq6eZTM6S5lITq7sq1KyCKCumrwiGk3rW5chEFwksuEOkbMrxe7mXrOQ2eWCVs/iTmBSk=,iv:+/yME2u2Dpbko1BXHKAZlQXaopseWEd1ZGFhyvJbhOs=,tag:EfEvCx8Kjx4R2qERarUfOg==,type:str]
+    lastmodified: "2025-08-01T12:57:45Z"
+    mac: ENC[AES256_GCM,data:bbaga9jFlCTdRdFIiMNuU33ZtQYeQI0Xx8tq5ttMmhlh7+hyB4POIhHQmLjk6dEypua8XddDQxzZC+zD7Mp0d0K44YeAtyAPZBnKFNLAWqzkgzy+GF8wQUKC61BXkzN7WPjTxYarsSYb4aqtUtsehZ1seqAEwnMPfRyDSrHYGFU=,iv:w5WAFUlKFcl6E3/bXsKr3NiKPF3T6Zvy/vk44X1j3Jc=,tag:B843cnSBmXMt1zweXGyYxw==,type:str]
     pgp:
-        - created_at: "2025-08-01T11:49:51Z"
+        - created_at: "2025-08-01T12:57:45Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//VI9iHWxPnQYHtbKphWo81+qlSKY8BSL+kbhl1ZZUJwvZ
-            P1hQn57oT5pZvgQzK6dWFDfsSelb+0J2urA2VyZpJbI30A4s5cfqqw0OqZss+c3f
-            UgsXLJaxGMmyNcrpzXGyiT51upQL9lA9GmeVJHiOkFdtGORrGUDPvYb2td6SGrA3
-            0LTOwf9hsog4e+FidyQVMfXuB5ICMLiUcTqfHyRKaSx7YR0nEYRVlKCTNJ2kngsy
-            yuXJG2NgRSCW8iQeZgnrc8JR8dz/c1Q+B93Q9BBK9coie/YB6Ja4A6hIZUOVrsEH
-            yKt+pIxVXkHEAZHf9a0Mpsekgk2/1avTlX5IvC0+yLXetFKkYyrXSxGUXKtfY7uL
-            H5u/iWdoBgTBePomJ4LK50rhpW7jlVL3ioVXIrjKXZH2ZfYfoUZxz6bTaGXYyv8V
-            zyIRUdFCqqRLc0lo85LqB9uhxmcS4InMSlqD5rAGZyh2IEOHzf4L/yclhEeqU3sN
-            EHhf42OW2CdaH0aXv35cFXIoqMIt5wik4s5B64S7Dj9vBNQBHShN4kT+RHgHCX+Y
-            YmkId8OZ+08f6kSG7//ceRWAq2LfMWiS/JBaV9LC8cu9IuCtRRZekuh8efQylT5C
-            x4KSuhRziTRTmZyE2AMeNwZZuswDd7bpY/Qdy3C76T4UR3OZq1mdqib6T2zsjlfS
-            XgEdn2clpwcLzgkjAGlXFiduMPYW72PEkAxRrIFxXE9VYebXzU++oHh+KUM9xncu
-            uDGOGTUpZzxtmPWX3TQnyGa4uH2XbyQeOECCwvv4qslYOP12Ec8a9wj1L5vbDQ4=
-            =YHi8
+            hQIMA7uy4qQr71wiAQ/+NkEonX3+5TBC6AeaT6ifC4dlb70nJ5DWiR3Q1VnI9gGl
+            knJMjWTSoCQplCcVebidijeg6ClMc0IYNhLXavryICytxT0AZfv4ZdHUWJY30aic
+            ISndCJp88IjeULgyfeX+c99B7BUIu1YR2L9RY+NBH9G0SdBkgFPUItcWAB5SdcJb
+            o76E5TCveoJnunI5ti8BieLn0UC8T9P2adgvlN4aNAkO4+maqo6MTsnhvdMsEFPj
+            yAM/e6YLzFB8nFzUE7I1zLfWyAfgcJYiFMpXE9xFpFpZaiP0POK0bctANY/sTSxQ
+            vJrLsa54jWLGnaQoSZfQY4yRXcZuC9XXgsmV/Leg9StBOBNdw3nNInWnjf97UJfQ
+            fuyrIFbss0056pj6L6jHUUhMbZI7kwJ88RfqdGAxf3W0wcHcksud5dnBy7dA80aF
+            BthH6MVGcLHDSyL6ULsfEBA9vPOALXUy3anhjht3NrP4x7KjMJVtKFxQ0O0W7Ixq
+            GVCNzZZsyn+XFk87dCYwgy7O7BmVUC7STX9fS37s/pFChANJYfJGVYWjoF5mNH04
+            01U53DKwh92EKQDLh/vVJEbKHpob0wFU2enWHXpqjQZ0utLbXBkSWtdDujzHLwbI
+            sTEafZkboUbnaAfCQrpMCyrbNvT1TEcs2jYpoZ/f/dN7+LhLikMKPIt2n0z+31PS
+            XgEa5Qa0b8ye3AO+B4FQ4qOBok07u/muI8jnfU2LFG5GtpCipt953iNXsXG2ozKc
+            XjUq+h0J47NBEfpoUVG9Y1L5taGnDr9A8wPAV2tGxi3NUIhGZbUrAyqLNlAy8bk=
+            =FKfr
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
