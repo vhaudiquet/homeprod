@@ -1,6 +1,6 @@
 services:
   roundcube:
-    image: roundcube/roundcubemail
+    image: roundcube/roundcubemail:1.6.11-apache
     container_name: roundcube
     networks:
       - default
@@ -11,7 +11,7 @@ services:
       - ROUNDCUBEMAIL_SMTP_SERVER=ssl://mail.vhaudiquet.fr
       - ROUNDCUBEMAIL_SMTP_PORT=465
     ports:
-      - "8000"
+      - "80"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.roundcube.rule=Host(`webmail.local`)"

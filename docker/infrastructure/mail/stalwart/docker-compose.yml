@@ -1,12 +1,12 @@
 services:
   stalwart:
-    image: stalwartlabs/mail-server:latest
+    image: stalwartlabs/stalwart:v0.13.2
     container_name: stalwart
     networks:
       - default
       - proxy
     volumes:
-      - stalwart_data:/opt/stalwart-mail
+      - stalwart_data:/opt/stalwart
     ports:
       - "25:25" # SMTP port
       - "465:465" # SMTPS port
