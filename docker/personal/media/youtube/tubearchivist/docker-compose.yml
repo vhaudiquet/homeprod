@@ -49,7 +49,7 @@ services:
       - archivist-es
 
   archivist-es:
-    image: bbilly1/tubearchivist-es:8.18.0 # only for amd64, or use official es 8.16.0
+    image: bbilly1/tubearchivist-es:8.18.2 # only for amd64, or use official es 8.16.0
     container_name: archivist-es
     restart: unless-stopped
     env_file:
