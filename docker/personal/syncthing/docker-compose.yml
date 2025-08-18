@@ -1,6 +1,6 @@
 services:
   syncthing-valentin:
-    image: syncthing/syncthing:1.30
+    image: syncthing/syncthing:2.0
     container_name: syncthing-valentin
     hostname: syncthing-valentin
     network_mode: host
