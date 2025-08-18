@@ -20,7 +20,7 @@ services:
       - db_recipes
 
   nginx_recipes:
-    image: nginx:1.29.0-alpine
+    image: nginx:1.29.1-alpine
     restart: always
     networks:
       - default
