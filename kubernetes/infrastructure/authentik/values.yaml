@@ -1,22 +1,22 @@
 authentik:
-    secret_key: ENC[AES256_GCM,data:yQdifXBB7FmkUh5Ofa5n60zHuvuZmcYIke1ygNYJzB6WHD2VTJS2+dDyN6ydQCC4qvYWTp6aX8xFs4K84uJVIted7iqH2yibEC0nJasko9s=,iv:AX+/Uxffp7ZDFY+fecnA3TjcsqedaZlFRHUvRfP5HUE=,tag:8HftF99tt6tHiK+3pndE2Q==,type:str]
+    secret_key: ENC[AES256_GCM,data:o7yrtJ93jbwGEbF9noIn1kifWTRj9oTZ1W10vaXGkqn2a98SE5+1KHWATFNkLq68TPSyKlGDrvXKEXX7jdAPgDkDBFv9XXTfWAPX22Jymhk=,iv:iyCygmcW5jR4QfzUfOfX4uIERmef/rZ6/vddJ5SMu7Q=,tag:CV78h8WCvyZ4piMvOElm6g==,type:str]
     postgresql:
-        password: ENC[AES256_GCM,data:Eu22EidYos6nMA==,iv:WM+VnwmxzP1EIZNuJ0I9/ASEdhg9mu075Xk9Ug95AYo=,tag:vKZGqlVHZKUWcONPHFtxCg==,type:str]
+        password: ENC[AES256_GCM,data:BnUPCDLW/cA1hw==,iv:odEP+d3nx2Q0X9/MXimujGx7ZFnwhNCzTs1F+Vdhm48=,tag:Z2l7EhHM3qxAGY6Adue7FA==,type:str]
     email:
         from: webbot@vhaudiquet.fr
         host: mail.vhaudiquet.fr
         port: 587
-        username: ENC[AES256_GCM,data:47GnkZGHFObGlMqRLQyTSeL6Gf4=,iv:6aQnIIZMXu7Rz1yybcrwq9NH6pUtsZkT6IJ8i7TY9hY=,tag:pW2qMTcDtB2GDChjupk/XQ==,type:str]
+        username: ENC[AES256_GCM,data:aPUSXDiYvDF/E/Gd8yJdIuuoHsE=,iv:+K2CeYD8CFg9ncpPsyQQKf1YzCAc1qj2b3m7hbS7Q1I=,tag:4KLvqKvhe2bqi65h5zRslg==,type:str]
         use_tls: true
-        password: ENC[AES256_GCM,data:RPHCsc7tG80Wdkz/4VI=,iv:+VgfACN7Xfes69bP7DaAI6YqboEgpKSR1DT2nHul+Zo=,tag:2xVllKd8FGTjC+NKobERyQ==,type:str]
+        password: ENC[AES256_GCM,data:0RP14fdOUDlqPLam0jo=,iv:jZpdUzBIyqSS16t6kHvpa3YEoAPc1Z4vnWfo2zMWUXw=,tag:AHNgHPvZvdyo2UJcuUHL8g==,type:str]
 postgresql:
     enabled: true
     volumePermissions:
         enabled: true
     auth:
-        password: ENC[AES256_GCM,data:h6BcXJrXMiXqsQ==,iv:QOaIStujVnDai+Q7FG6W3eB+mOJBtLKQuQL1q/H1EOc=,tag:k9pj5XbFizvlEzX7mvs3AA==,type:str]
+        password: ENC[AES256_GCM,data:+3x5Tyegl7AXDw==,iv:7wYEX57Cqr7CH57FwHi9mulZa34l0pCOyh13nWRPD+k=,tag:x0k/Yjr9DrZLbZUfz+LmTw==,type:str]
     image:
-        tag: 15.9.0-debian-12-r0
+        tag: 15.9-bookworm
 redis:
     enabled: true
 server:
@@ -25,28 +25,28 @@ server:
         hosts:
             - authentik.vhaudiquet.fr
 sops:
-    lastmodified: "2025-06-05T20:34:56Z"
-    mac: ENC[AES256_GCM,data:Ke2AoiFhp0Gq9cY6OtO/fws32B+ddg5nAK54TcdZ4ZJfSkRdeKWBXhegBcdF3iCyJHz0RZiUUVUZgopWG0gnK63+5kR5cPLQ0cQZsWwaaMfrDBriaYKP7EBKMuZtNAGuj3CJkgrr66RMYoxNp/ak2c5OsrxWyI/JiYZp4Fw//Z0=,iv:ekIt2sqqwYcV9MhgvHLvjdFbgH2WBptmcsW41bQR3Wg=,tag:6GpeCiPaj7yZYTppgDaPnA==,type:str]
+    lastmodified: "2025-08-24T08:01:35Z"
+    mac: ENC[AES256_GCM,data:R9FBswMSQKehwWNQ2oKhsRkbIPkPeuTMnPCxrMZZouWZgkAq7OLYSAdj1dOYZ0PJn6gyoiyFRzx/9GOklwqthCKRES4Kg1u1jTrv7GmUxI7H8lTPfMg37i1BXYIc4Lkr87/qWT8b4NGIZY83ufauVhryY/heXtLBXovzRXg5vEw=,iv:e2ZkquHUAFG2yjj+J2X1cte3u1s4HvqKQhKk9wZpTAg=,tag:HHZ1DV7SbIGhICAJ2uLZoQ==,type:str]
     pgp:
-        - created_at: "2025-06-05T20:34:56Z"
+        - created_at: "2025-08-24T08:01:35Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+NZ/ZPjir8NIrOQ7XtPz9rKsuyR/1AIRRVTn+OR3zsyJf
-            fXzrMIjC5blJDYltyL+OF9lxWEhSVPPHf5fPxrhp5VT2LMEjZvmiOvJrR9hj7xTf
-            xDBaaWvdmDd6Lc3/Z+1ufb/nccHqqq/gNeoIwpgR0YR9EjuBF1AqqJSCqIgbQiNO
-            e4clH86MydS0jJYAogJ2T1+CHcWDUckzhgmv7FpDn/3lPNmzgJu6Zwv27zSWqBR/
-            p5IZ4yQHEyuN7ayHSUtTLvwLFn9wvt23dqXNjY/NKLE5MX+bV0JPlNKoIcqlwcCY
-            PGnQ7gYN4HEsvsaXIeLxd/s7f7JT4eXuTnnQhtxO9wKLz35n24RJTJb+4I/mU2gq
-            Be39gfh4AKVk2MIDsI0acfVuzWaRuZ8RR8d6t5x29ij6BJJ3NXXO8xshd+Dmyyo7
-            ATu3T19w/D6oslnhxXIkowCLrPkK5y6hiToR6sUWGEI27ergpkyHnR5+EuIS4p0W
-            RfMahE2uJn8q9P0MQKBxoWXOxlVnRvmuMorpYAj2eL+B2J0uSOKR2iRXfMUsW8Hb
-            Ij3MEHUMe+LvNa3N5dZH6xr2A2sUD1aBqWR+RYadDIPYeCyfbUM0132wOix5X5fO
-            H70pU/MUdoQ3J2YvtiC/1XJJFOASj37FE4xvUfQbphBt+6UxRAQ+/ex9+e0sh1bS
-            XgEm9IpcUbb6kLRwefcEifq79R6wq7gmvYggM2WqyURey+l/oq70N0rTLcQLpCg3
-            FkFfdxpgfrp80BQe2QL28LAiQUgbkbu5vodo2EnWwHiktacYf40/STDhJ8jFDRo=
-            =FYJN
+            hQIMA7uy4qQr71wiAQ//XLw8WkiLxJjC0PDTflh9Yn/ruDENUznyl/z342jizaWA
+            49o0jrmnlktRtnPVR2BZAC27CaZX2waR+nhlrSwSNRyOwyhxIcw+MpCthc0uPcd2
+            8w/MCCNPxf2UcdmXn7djl5rQV8cOlomFweDga9nUna7PGv7SWewQOmCDGOzplnik
+            MxpBRhFyOZxuheQIqq5u5it3e+gUfwHC9My8m3OJKBqFaEAhf3clnDy0nrq+xrgZ
+            Dgc5DvEwCHbjXE/C9pgv/vmLUHEpXoEsmIurIO9ruxxzm2D6CaOXSL1WN6zwwQ1q
+            3/UvrCAJx4JSNbmiXFfwYHTw3Xu3kAqpBssIyHP7qeiU+hIX11psDRFDnJHpRxnI
+            a6Sc5hGICirKFLQPGJAIYFce/nuAVpHZ4dfaCKhlZF1sqHoO8MZtOw/MG6pnYu3j
+            rpyw0db1ehnGaWVjBTUrtV4wPVQ1jN0UPJ2OTRJrxAIEu/AY9gNqLGcv8tGtjnZr
+            /SpWn7Uvu11lpayXy7vFsXz5JsnBv/6cN6M8Ze3VcRDBKF15/S7K/YX8JyD6/oOF
+            MosvgFeOZ7Hxw22M7Q+pKXoNvBj17+iBkqiZaJOVFVUG8GlxeF8hkSUBWkdWCGq8
+            7URVftX1uNAvYjKptzSREDvCSu6fXfE+znSYUzGZT6u55lOWerdtGraRUPBr94TS
+            XgF1ukkgRyYqbf/eyiN02LvVDBl0IfxYiedRCkMeX6L8NCVU9vxZZZattGDf6U3O
+            lIT5wZTKLLAu3qeLQMOc/CkIJLePNhfzZVwcGLtQ12bLMnuTSjeS3S3EmajcFnI=
+            =yqSe
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
     version: 3.10.2
