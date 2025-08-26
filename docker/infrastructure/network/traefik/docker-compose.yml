@@ -16,7 +16,7 @@ services:
         target: /etc/traefik/traefik.yml
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.local`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.lan`)"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
 
 networks:

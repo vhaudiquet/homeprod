@@ -18,7 +18,7 @@ services:
       - LANGS=en_GB,fr_FR
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.stirling-pdf.rule=Host(`stirling-pdf.local`)"
+      - "traefik.http.routers.stirling-pdf.rule=Host(`stirling-pdf.lan`)"
 
 volumes:
   trainingData:

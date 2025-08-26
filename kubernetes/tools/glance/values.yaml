@@ -1,7 +1,7 @@
 common:
     ingress:
         enabled: true
-        hostName: glance.local
+        hostName: glance.lan
         tls:
             enabled: false
     persistence:
@@ -13,36 +13,46 @@ common:
               mountPath: /mnt
               data:
                 - content:
-                    glance.yml: ENC[AES256_GCM,data:xwuScPkmEAdR/ng76IYN0O2YyseSk8HF3JNROruim2xj388yUvKNSfxuzIN1Frh4GjqxluhLhAq5//PQXi4sbTdkzOV2uutBWVNxdSlbyyG67Ruv/Oxa+PB4aQLKPGmGOARXrAd8eh/LKemzb0Myj3OVpGkw2/X5twse7w4Mvll0d/iO5oKVQubqXsMERJv4Xtq+3SYjEn8UL4WBLDVPdKbDlMlva1EVqtvqm3AevegZdO4a46gXSO4/rJZwSdPZCYgcnLNAnvvI6Mx87EuU2xNnN5gOTdArSQBrlCur1vIsAaWUmttnAHAO+unC4AzyWYXNi2XJOKkHnWFE0RzeZdX2ZA5DgHxdH4/8EyfeUY5EPjR0mDbvawyqMERR4H6/k+FtDnpoTKEGFUnzVIqZLrQ62sffO1kOfeskh9P0PtSK9C8UufBo6QNQwyiZTNesCdE1v39IM9zfhao1GRlB2rC3EbEhBYIn/UN2Nun68rWFr53iRqyu1yxuTA/E2mjN1Q5qz/8zT8yI0uwCu9+ICEEZ/AA0hMq5wEyev4EPlFxyWvX9tuGf+BB81OKNl/X5bOF4Xvo3M1Obo765e+j5petRGPJsb9Aio4U0ayCOZ6u/nOBotr9uIfJWDa0mB7w/FGVTGGvQueIs8OTu80YVDbImoq33FegmajPMGJzwe4poi7vOTalG0fK4aQi0voh0V5l7Xv03cxUT0qE7CjncYa+XJ5h4SqDW/DuWFPn2f1etmDoKluPgADOpSEMueFKNoF5UQryeLl4/2xdFNVhlYnTea80pwH+E/ixpxxloOUbl0L2ZDa7xs/h7sTWhZu3a4j/pB00TC8Bf1jSAvLw2btD4IwssiFXQxW36zH/b4mwr21K6bKV6MSAj529etbSJLCk/S/rBR9T2E3GptIuJWsqBrLw24B7tIZ9e/V2dIYlG+DdsEk6DxiJdFOetU4DE2Re+v/5vpjKZ+yww0GyWs6CazCXzHZwTL5rRgnXe7kQKEkDW9NIlyiU8Mg7+Xp3/dz0RIIBA0sGNLgdeBbLDcZu4reMYx4QL7RVpADD0gzBb1n7RMcEbNUNLok2I0g0KHrysVx7UM5wufCdpvmwBHRL5Ettn4sD1yLytaCo7brJKOF31dtKy/ZMkgg0RjQ/cJZWi+f8ypBD+RD9pYvB5XW0QGwDUwdVs45SGzyMVQH5KOJrvCZIYjTcuG7wEy9A/s+fCieCPeLSwpIa5y1kd7Tcw33P5wK1H8JfFONlAnT/sJWf1YnGLKIoJaoX6GqMAdFt8tPU5bpS58E1esLuQ7etGp46a4Im69Ni8aDCcfCbMhuK+yVKPkS+7VC2jqYsgxnq2qxXOflj2bn3J9iONEkBUbNF8DkWjaqMyq/3dNf5uXepKbhYzRtAoAkqDoDd/JlztA0botqBxttMdvNwfadwplirkoSsSzgEqRuVBBdb+oD5LQuIycGskb7vA+7DNPYQ+TTs5eYmiNX0SmduCqXG3b8yci+nRPXVzAX/5GUmlBpgG4pGMIXTAKO7+Nt1Si7/QbLTa/JtxHm2fQUPlmmKE1fNRnXGJjNoYQlQovEhgA7Bz1YlKApWCJPw68zamMQyVQBQrbuJ8da7QZByscqE8RgHc1Gnac9aODSZk08so/sHMA4rv5qG2gnSlPOmxJLPy1Ozil/giiZhFpW0BU3ilaS8uSXqylT3iQRYNgsp2orJ6BfkNyOlEqPl/dXpj87z3mw==,iv:K5q8LTDsKVK6DKZPDGMbRiRK+tatjY48LMHNUcuxMfQ=,tag:dESi4+zGANHHLh+zHLoWuQ==,type:str]
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2025-03-22T13:26:30Z"
-    mac: ENC[AES256_GCM,data:9pjOdnlatlraKYdXJ1p05e5GmzGZ9+MR6sXYBFWoeBC/XJO3/R4BJXaE1ox6Wcz3W11535RRBYykGNLGMM5Y8FmLCl4OBqHoxwbxA6Mvz/7VTyb9IIKvw7+KU09i1AZ2P+E7wzQfhGKGMuFuB7mMYGWDDFZpNSSlFj0sLMGKGcM=,iv:WvbSDjthkMF62xrKgy3oDZZsXqB7YXU591XVAF7LQ2o=,tag:z/g323lfi+P8aty0bDtrnA==,type:str]
-    pgp:
-        - created_at: "2025-03-22T13:26:30Z"
-          enc: |-
-            -----BEGIN PGP MESSAGE-----
-
-            hQIMA7uy4qQr71wiAQ//cuVt31J6vMCVjO+/G1ZmL8UsjpPceHqSmR1Wox0JVLFD
-            cmUrK4RJ/2Zf8zY9UUpZVhOSwJj9WuW/Jq0EpVH7Ba3ihzUog21/bAPjHFncLmhM
-            fvNyjujWmWtwYYoB5aV2J9kbgZ8A7jewXT7vtoGtkAvAsRzupr2ZpSx2BgHCduVT
-            Yp74ANuZFPqIb+/20rDNWdqY7XwQxLzCaZ267mHn3d/jPCv7mNnEWRgydwMCWkYI
-            XN3cHjgHvM05nydpHZYsDrwGOHs/DoCNM+P4vYbujSIKoGOHP+uG2j57Mv9WXtIU
-            /ARFc0IM1/dthc5MDqWQVY6HgnrXA9zyZmhoE+mdUHRxZQmjo6q0h1qY4bJwI42S
-            MEM79CcbdlqQczx1+GzHcbT0KQvA+khsWsO63j56eNnt5SLw9pCzrNylgW2JiAzC
-            0arjLYG3Mq4LaV32i1W2dx06EG091+7/+wlvdMhj7z0152+EX4O4udo0fRNE4Gcz
-            0h9/urIJokfAjF3CWAa+bGUm/LmZqu2uRAmgWMmCeoYRCzgIVD5oukYKeb3UykU7
-            foNw4QKH2wHnrjgmq4UCa11rvNkjdGnu+PCK6ZC2ePw1EjcA0SxwNeUm885KM2h/
-            D8nJHygpMn4qWiMvjqbPwXwGD0RmfP9DKBVFOVbnvJndJ6MJHd34C8xrUwbuoxbU
-            aAEJAhCpBrpztZL8OAbDHDcTNDM25RJ7ZqX8NpmQEmvXBSy3Yu0bXFIsNmd/qbg3
-            AB76XAOtbGMoq7VGenwuZqxLF6xH/G4eT1Uew3QsT6VFec1CD2RVtKsJ95+1aR9i
-            DxqXP46SGZIW
-            =AHr7
-            -----END PGP MESSAGE-----
-          fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
-    version: 3.9.4
+                    glance.yml: |
+                        pages:
+                          - name: Home
+                            columns:
+                              - size: small
+                                widgets:
+                                  - type: calendar
+                                    first-day-of-week: monday
+                              - size: full
+                                widgets:
+                                  - type: monitor
+                                    cache: 1m
+                                    title: Services
+                                    sites:
+                                      - title: Home Assistant
+                                        url: http://homeassistant.lan
+                                        icon: si:homeassistant
+                                      - title: Gitea
+                                        url: https://git.vhaudiquet.fr
+                                        icon: si:gitea
+                                      - title: Jellyfin
+                                        url: https://flix.vhaudiquet.fr
+                                        icon: si:jellyfin
+                                      - title: Proxmox
+                                        url: https://pve.lan:8006
+                                        icon: si:proxmox
+                                        allow-insecure: true
+                                      - title: NodeRed
+                                        url: http://nodered.lan
+                                        icon: si:nodered
+                                      - title: Paperless
+                                        url: http://paperless.lan
+                                        icon: si:paperlessngx
+                                  - type: videos
+                                    channels:
+                                      - UCsBjURrPoezykLs9EqgamOA # Fireship
+                                      - UC5UAwBUum7CPN5buc-_N1Fw # The Linux Experiment
+                              - size: small
+                                widgets:
+                                  - type: weather
+                                    location: Toulouse, France
+                                    units: metric
+                                    hour-format: 24h

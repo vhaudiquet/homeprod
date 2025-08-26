@@ -1,42 +1,23 @@
-externalURL: http://harbor.local
+externalURL: http://harbor.lan
 expose:
     type: ingress
     ingress:
         hosts:
-            core: harbor.local
+            core: harbor.lan
 core:
     extraEnvVars:
-        - name: ENC[AES256_GCM,data:eMpF9wMbBxkYceKeTXU4CPc/zDME,iv:zOZrXlAv45gNv2FffG2kqXq2670HwXCKSZjQaegEz+Y=,tag:dTNolgpFxKuXCg5/5/s0gQ==,type:str]
-          value: ENC[AES256_GCM,data:c5wQjHgl9y4rAYf1gHnK26cGRtg4wKVf9oHliewruhZkGflu8ds9OL5EPe8U7FuPjt9IGTHtovbjlWv3L+8myfYX1IBEe9tJ/2VdAsaldNFQKvBTm8V9TXPQeyoiZz9wsBT7Dq15vFBQBs2e3+u2ZVd6Kv0F62Ioq6Utc/Ng2WpoKVo0kFrBbwqg4wdDojnT+oXxyEBLnPUEPsES48w6L8zjcy+SF52FPAAXIM5tj9KVD6BlF/8b3B8TUTSZHI/rw5WkOVLL33iCrQnLVa8svR1DncvatEoe4yhfHS38ioft+WuO+pK7DpYYif/6RF7snKVs92mS6hrHreBxiQiiwaSvvMqdGN2G/l/iLaxypxPO4aykhHUPwayJyrX+ay7BOCbyGoXB2fUFxgWv3Shed++iIJc/tyd2n0p0wve0YZUHNrOoFjj8zuYIsGxr4igI0Tao/Gxf27ljGoEwc/A94fVY4AmISj/PYpHGaeTmNbcQJ7QetNXDtkJvBBQ0t7TyDmo+5kUrWU08PBrPxh8H+j0loZFJnbq/hjDHygRXFs+2cpYeV6GjvncWaMlp2Rdu7oq+TBvL9KFlzgp/8pNhOXTFJeQPqyHIzi0Q/JrIZoR8ixYGuvBBBNARWnMyfLbrM5BzJWns8Ybif8WzFIHZy/9ISB13lIiJEDveLbHA4yJGplFFYWBfUzGwEN4K9swE4aAjDC8Vmk7ap/uqFufj4oZT62e/na4hKW+Rtj3bbLzXZPgGzczojTOMet5UGuY=,iv:X8JmR3oy1G94f/K5vYeARyGB0usmMlZl3VrAiDQurH8=,tag:tSlixKKBI2dB4FSx03erZg==,type:str]
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2025-03-22T13:26:30Z"
-    mac: ENC[AES256_GCM,data:LIYTSXxmp7xpnrucygefTyHhI0Wi6EbGD0sA1NNLR9x/h+yG/5nlmdr02+dWFiEaeyvpA+6aSeoUWCHOMGMXV0EM5nmcZk14lQBQUWOVeYPbo5KSYzEdCy4ywVIa8HLG5yGJIhGuMPN7EDidkAiHcWNfaVRwRbG0PuczohYlwLg=,iv:fLqIPUlk8XkluxHA/WZd44JiM4FIZEvla33lCcvod2k=,tag:Xtg+QcTYy33WLJDWTECPeA==,type:str]
-    pgp:
-        - created_at: "2025-03-22T13:26:30Z"
-          enc: |-
-            -----BEGIN PGP MESSAGE-----
-
-            hQIMA7uy4qQr71wiAQ/+IoSA9GM+l1zIjF0mhXxmzMQC5yjcJPXkxBQ1bZTJEvkZ
-            pL7fl/8Jvc/eQ96DKXpC95vE6m0jRSXhv0kz4HgoRV+tZUBl6CYMPcQXmY4/Zh+a
-            olL5xkk0U2fjEqX/cxNDomTZP85TQpZy2k4vxx1A4Nun7lhjLPsYM+49Ql9WP69e
-            f/UZDxyfuZf0ScK0wnCIXJMdB5mgbdMacw7VXrGtbv6vz8tQUk6jqM7S+7VyLeWv
-            G9jDXn2Cs8FFHJcmlifvTqxdRv8AjSPpYyQ7CVpuSMm3xQzsDGH2pKlkFORNcEXH
-            76+z7IaE09xiJA07lOiXVnGrAlkK5Y/eSt7227uQJlewQMYXHIm7LffakQzlrEq0
-            EEmevA1AFtR6Dn1Q9yb7G0QQNFA+Vire7zF/RNkUobqXY2nC9CLgDdyhph+XLfSx
-            aZILDqhrHKSUVe+YrbZvkQK6MNKKZe7icQtp1NjESS4InWQajXAYzNhy5bPz/9vh
-            1JbmF0zF9rviOoK8mKXPw5xR5guvK2jVu+zNPuQClrONW6EvKKXhudcnw2JNtbJl
-            TN1hRXVu6gFJhtpSwt07RCEYNCp15E7foPDKijiG4OZCXZQHSdhLQ3bGo64sbCOq
-            BIB7OYNNSoMBZZxLzdjX/amBQNzpQFbGZx9560ZyLWcTbJWQYSACh0ukjvA76YLU
-            ZgEJAhCinfjS8XV8hdGbk08slYRTcoZT0VFuV4J+1CnilNACwxAF/fjvHR4NtIbs
-            gEhh5W6LjVSol+PxQHyjEPaU6KHV0pryHn5U7AzD0NMbn7o2A5O/DOk12EXQeekk
-            EWSu2T+KJw==
-            =UYvy
-            -----END PGP MESSAGE-----
-          fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
-    version: 3.9.4
+        - name: CONFIG_OVERWRITE_JSON
+          value: |
+            {
+              "auth_mode": "oidc_auth",
+              "oidc_name": "authentik",
+              "oidc_endpoint": "https://authentik.vhaudiquet.fr/application/o/harbor/",
+              "oidc_groups_claim": "groups",
+              "oidc_admin_group": "authentik Admins",
+              "oidc_client_id": "zIq9uP91ISpS6wA2xmDJ50Z9hMNXdjMK5VgtTYcD",
+              "oidc_client_secret": "kwnkUXXtvOCMuSRMQAvFggO6g0aAs5OQcqS4vJFIug6kiWdVX3ZHDtnh87hreNvTuBnKTC4QVlYSnMtxU80B5FjyXC7BS9HnyyV8L9C4r7PYaSM73FAHAi5bRUPJD4SP",
+              "oidc_scope": "openid,email,profile",
+              "oidc_verify_cert": "false",
+              "oidc_auto_onboard": "true",
+              "oidc_user_claim": "preferred_username"
+            }

@@ -14,7 +14,7 @@ services:
       - "80"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.roundcube.rule=Host(`webmail.local`)"
+      - "traefik.http.routers.roundcube.rule=Host(`webmail.lan`)"
       - "traefik.http.routers.roundcube.entrypoints=http"
 
 networks:
