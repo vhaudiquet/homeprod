@@ -26,7 +26,7 @@ services:
       - gramps_tmp:/tmp
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.grampsweb.rule=Host(`gramps.local`)"
+      - "traefik.http.routers.grampsweb.rule=Host(`gramps.lan`)"
 
   grampsweb_celery:
     container_name: grampsweb_celery

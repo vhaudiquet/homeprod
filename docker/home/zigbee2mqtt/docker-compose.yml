@@ -17,7 +17,7 @@ services:
       - /dev/ttyUSB0:/dev/ttyUSB0
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.local`)"
+      - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.lan`)"
 
 volumes:
   data:

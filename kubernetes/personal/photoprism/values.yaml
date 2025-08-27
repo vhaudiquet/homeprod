@@ -6,7 +6,7 @@ ingress:
     main:
         enabled: true
         hosts:
-            - host: photoprism.local
+            - host: photoprism.lan
               paths:
                 - path: /
 env:
@@ -32,28 +32,29 @@ mariadb:
         persistence:
             enabled: true
 sops:
-    lastmodified: "2025-07-14T12:24:33Z"
-    mac: ENC[AES256_GCM,data:0NpGRkI1sDR6TZUEZdwOgGy0gchuplNT/n7DnqlAoQLCgFM1vmArT6K47Yayt96i7TzpNiAd6MDc7m96U3OofrUujcohwszQeIBXEsFVw9dcsRF/seqk5Ee7n05syndUIKv5lz9pOB5CZJ8wjstFo8FCgzDseLY+m8RogJlJl2c=,iv:s5qjyAbZOMP6a1BvQRo/+7pFk1e7PfOG7L3Ctmm5st0=,tag:QjMUsELrF2aAbcsvVqBApg==,type:str]
+    lastmodified: "2025-08-27T10:07:51Z"
+    mac: ENC[AES256_GCM,data:adWzoJckZb8ZeODL9xBK/fx9Xv0xDerkK9NBnw9k2wjtKOjd9DSedlnfoxc7GPQOLT5Sx5hE81pirvEIBU6zvs+CzyXI78Y7cOXSM5NwzUJmNdXxp9/7qOW/+0fKa3eSAZjXz4T+/eEws7LCgE8suZcEJS9QyxJzDgG7my1UmOM=,iv:ZNMBsWVN2AHlxhP9eca1i93qlUf2S0d+cz/HpMS+rgc=,tag:BWt6Or4k04VFVJNilXuEgg==,type:str]
     pgp:
-        - created_at: "2025-07-14T12:24:33Z"
+        - created_at: "2025-08-27T10:07:49Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAmrZV/nZH6Uq4Jp3S7zQwINucsYUrFMxqNjNeGEy2RZKj
-            BAUp1CkWPPK3SmOIWPUQsfNPaJNjtHwvXZ44PbFlarmeiR566YvggmP4SMJpmllL
-            5H7j/ug7bPgmykEuE62ifgdShD1dTtE23O6yze01QGE/8RkGxFhF/CC/kVoODQ8a
-            mdIpWekPKrkNv8mF4LGrDVBo9aVQ7RHZppXhS35jBrSI5+JLHeHAfOOBZJKYDJS0
-            fViTSbpxzl7HDgFxKkmoBjnYNQam6aaTreCFIEYfwWAXGd0AeBLOwVuPLaBUhi4H
-            gNArmAEOnBe0gH77e/UEF92ttNXygmL8ro3wDkEV0DcA1Rfex0hxdu1zHzT4UfyT
-            132UJ0eqaa85MpSwHQZv6y53TamoBvdTPaZPsqv1+/GVwv0Z2dyzgT59+QoGVQt4
-            7kHsHK8C1dKAQeH3qYTo2Y4xgaHc5DtFTJ1v1u/DkEnurlzPvxeiRiWQRAE/ClMl
-            K2TVHtDQuS+ZRPjEntAqxBckVn7ArZFanoYcBkly1RNDkT3iAPUp/hKzCSm8+z8O
-            +MZ6yNa5lyHMYgypqvVcJGBsdeq90O6eHkvLvDmTK5MmGN5W7D6EYHpQpw01pZid
-            dMndS6He4Jt435/xZBWAvjf9kKgnXvL7D2KnSm4dGBnPomvlNMfT+ZuzZp2MgDnS
-            XAGWdGBrZm0wunNWMkqXsAi010a7XrEErfLxR+kAoHoISB5+vC5loXmSX+Lo1zyb
-            e/0JeH2jL4mDeXsVot3lhFnhuKEXa5RLTHwp0HMsKXKQnSkYrEvTHUBsyRk3
-            =fwhF
+            hQIMA7uy4qQr71wiARAAsWsaP2fKfz/jI/zR/rFpwKEGju67sG5IlAtIDQVbl7Nb
+            nbLW5PwlfGDf5ZBhQmR37MLogO6YI1EjF3kw1fxgJ5RQagaVSlW4xW/Dzid6nKax
+            b49MaHmWQc5tdxF/o8fIXMbXIu/P7MkOFLbEsN0/K78wIvkJNvU/KhOygdjKsdn6
+            qlSEmdlNbabZBLRyKTsrgQeeVGDGhJu5o1RLCq6uZ7pKMVNxeXQeFth9V34BI05Q
+            mxw3Mbp8bF4tDjBVgbzk2HKUYwzkDMig/i0EP1xmPjwepz0cO5iU0pbwjiROPoyi
+            ztloaYrXvO7mZGaew9zZb8UTw/LrHNYFOFQ9x9VeOSvQFK3mXtYvowk9rQUMsMh5
+            dvMal/UtX43Z+ckTbOr+PDWMC10RmLeZn//an/x/xdK3vW3UGcEvczqjkBOdSrlt
+            G94SamWqdVPAqm4C7fFiNb14mafk7/GoKKmFkGOlKL6Bd30tkLUlXDpLbfIlMTFD
+            YrBQxu4zQD/UL86Av5jov43WSc78uNDMGCo/WI1PdTk/fCZhH0wlyrWbolkHGOrV
+            Ui0M974JfB3hX8ZEVINDW4bw2ylQE34ZYB9cw522EpxfHmdLxEy30iU7/55LQecm
+            2x7gwgUONDIwt5a1Ey4JdcgB39ZB4mkgH5Fj8ArTBzy0PghCK4ddGFhICr8Sv/bU
+            aAEJAhB7/d3fDtj2jWs9X2TEwv2MaFnthC5bVRuMqsrtNq4QmCXEatRU9+ipNyCU
+            kjbRLfFLrAu4pZ/allJqE0AstPeJA3nMXBxCVWkSvX6tNZA6Y2hcpgG1hXnUgnxp
+            cMtSdengvVOT
+            =044i
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
     version: 3.10.2

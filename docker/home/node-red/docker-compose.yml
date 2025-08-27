@@ -12,7 +12,7 @@ services:
       - data:/data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.node-red.rule=Host(`nodered.local`)"
+      - "traefik.http.routers.node-red.rule=Host(`nodered.lan`)"
 
 volumes:
   data:

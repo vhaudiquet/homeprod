@@ -11,7 +11,7 @@ services:
       - wizarr_data:/data/database
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wizarr.rule=Host(`wizarr.local`)"
+      - "traefik.http.routers.wizarr.rule=Host(`wizarr.lan`)"
 
 volumes:
   wizarr_data:

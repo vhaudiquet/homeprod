@@ -37,7 +37,7 @@ services:
       - mediafiles:/media:ro
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx_recipes.rule=Host(`tandoor.local`)"
+      - "traefik.http.routers.nginx_recipes.rule=Host(`tandoor.lan`)"
 
 volumes:
   nginx_config:

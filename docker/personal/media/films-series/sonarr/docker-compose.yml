@@ -20,7 +20,7 @@ services:
       - log:/log
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.local`)"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.lan`)"
 
 volumes:
   cache:

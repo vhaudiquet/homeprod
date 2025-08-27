@@ -18,7 +18,7 @@ services:
       - REDIS_CON=redis://archivist-redis:6379
       - HOST_UID=1000
       - HOST_GID=1000
-      - TA_HOST=http://tubearchivist.local
+      - TA_HOST=http://tubearchivist.lan
       - TZ=Europe/Paris
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]

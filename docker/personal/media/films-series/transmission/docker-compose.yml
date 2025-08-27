@@ -11,7 +11,7 @@ services:
       - TZ=Europe/Paris
       - USER=transmission
       - PASS=transmission
-      - HOST_WHITELIST=transmission.local
+      - HOST_WHITELIST=transmission.lan
     volumes:
       - config:/config
       - downloads:/mediadl
@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.transmission.rule=Host(`transmission.local`)"
+      - "traefik.http.routers.transmission.rule=Host(`transmission.lan`)"
 
 volumes:
   config:

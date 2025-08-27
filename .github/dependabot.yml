@@ -5,6 +5,7 @@ updates:
     schedule:
       interval: weekly
     directories:
+      - "/docker/home/ha-linky"
       - "/docker/home/home-assistant"
       - "/docker/home/matter-server"
       - "/docker/home/mosquitto-mqtt"
@@ -43,6 +44,7 @@ updates:
       - "/kubernetes/code/gitea"
       - "/kubernetes/code/harbor"
       - "/kubernetes/infrastructure/authentik"
+      - "/kubernetes/personal/linkwarden"
       - "/kubernetes/personal/photoprism"
       - "/kubernetes/system/csi-driver-nfs"
       - "/kubernetes/system/external-dns"

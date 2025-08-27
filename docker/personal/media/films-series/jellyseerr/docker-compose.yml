@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.local`)"
+      - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.lan`)"
 
 volumes:
   config:

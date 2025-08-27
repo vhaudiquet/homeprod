@@ -29,7 +29,7 @@ services:
       - data:/data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.radicale.rule=Host(`radicale.local`)"
+      - "traefik.http.routers.radicale.rule=Host(`radicale.lan`)"
     networks:
       - default
       - proxy

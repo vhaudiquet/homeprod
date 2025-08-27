@@ -33,7 +33,7 @@ services:
       - consume:/usr/src/paperless/consume
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.paperless-webserver.rule=Host(`paperless.local`)"
+      - "traefik.http.routers.paperless-webserver.rule=Host(`paperless.lan`)"
     env_file: .env
     environment:
       PAPERLESS_REDIS: redis://pplessbroker:6379

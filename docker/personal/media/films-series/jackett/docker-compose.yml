@@ -17,7 +17,7 @@ services:
       - definitions:/app/Definitions
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jackett.rule=Host(`jackett.local`)"
+      - "traefik.http.routers.jackett.rule=Host(`jackett.lan`)"
 
 volumes:
   config:

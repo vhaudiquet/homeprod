@@ -18,7 +18,7 @@ services:
       - data_downloads:/mediadl
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.radarr.rule=Host(`radarr.local`)"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.lan`)"
 
 volumes:
   config:

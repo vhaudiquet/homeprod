@@ -5,40 +5,35 @@ policy: upsert-only
 sources:
     - ingress
 domainFilters:
-    - .local
+    - .lan
 extraArgs:
-    - ENC[AES256_GCM,data:OjceEFEsSdsu8L0cXiJpzXK99e/3qWOTGonYGJ0nCYOWkvQ=,iv:p4NBmSQEcbZ9KlPX6SRE9BszmbamJoDvfHRop3muG+U=,tag:ygCzPPLfpwRX6dYQOQ+z8w==,type:str]
-    - ENC[AES256_GCM,data:HwTgdSrgGbW6Rfq8IdiCPmQNcmeoeb9/HS4=,iv:96u90ODzbS9xcxR9ZM75GYTcklE93mW9zXtStj6vZU4=,tag:Ye+KzC5M5eiy6+qzvKtP9g==,type:str]
-    - ENC[AES256_GCM,data:8+M1yWuV6w2yom3Jiz9WZ2h5g7wO/O3z,iv:bFoZpe+rdZpFBs0ZtzPCQw+CW2Zhvc77dNGfk47SmnU=,tag:L3XWx/eMlkvAo2wK0MyYcA==,type:str]
+    - ENC[AES256_GCM,data:ym7grahK+0f0ydcdbWjamJdu/fOBUdH186xaQVaXZWEb,iv:PYGTuE/0z23pXVmitjDRcESs6dwuZA89VUhC1Dw/YlI=,tag:eIFd/J0gk8AWkaBmkHXoxg==,type:str]
+    - ENC[AES256_GCM,data:ah50AImpMpFgRmu7IFsOKUO8WK+dcFSQakw=,iv:WyrXKk0WxD86A3nDu2kvjZD185LZhDwTx28g9tPvgFA=,tag:B/7Kv4FT9l3SjIuGboIkaQ==,type:str]
+    - ENC[AES256_GCM,data:5eFuaAUaRwrscxSSEOKpLxUrfgo+jfim,iv:6MQ10olVkkRzOaOf02vWKOrvmwgmEr1HedHpraprEaY=,tag:Kc2F03NjLMWmzHaByYHR9A==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2025-03-22T13:26:30Z"
-    mac: ENC[AES256_GCM,data:MpvLwjJaIiWXACFarrL/rdAXGqUjEYtrN5X6RnlBL5tmrOJQDnlGo54A4GDTaPjyc1/Wy6gz0sL07Neb8UpzRCqp58l6DQJOEvB7YiYVXpakwQXcHqvVUjBAGyiFdMe31QT577zsA9GB/wOmUDfdWlyTRnKVJUj5PGsZlQIPGgk=,iv:t42wJNK6YAfTTvWbdEGfy75+qY2IneId6/qiOCkYZx8=,tag:xl/R6CukyGJMkKAkWLQp3Q==,type:str]
+    lastmodified: "2025-08-27T10:07:50Z"
+    mac: ENC[AES256_GCM,data:wb+0NBxUIqQUbCVsEZUTE7fAvFy+pxaxaD+zb76BploLk0qzB66Ui+xvArNW1RV8qOVTr/fLLxAcIfDlmN+HvJRFeUZLUhZroZXWIIElDN6O8IgzFRy3B+ps5bhVtkgUGACdmML9NJ7wCKEX67AqbuqquR/JagN55cDSTzhUvwk=,iv:qIu3X8SD5H/iKkJvwfK1aI0Rd4/fpt9ApIT5cpEDwVs=,tag:9nvr+LnN1RA8WQgtUg+GTA==,type:str]
     pgp:
-        - created_at: "2025-03-22T13:26:30Z"
+        - created_at: "2025-08-27T10:07:49Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAiylUaDcKIUVjfap79CyDI5TZpMi6xy9wDuvBb5xQj2pH
-            m81D0FKnvo+jyZBKhQe4j0tlH3mdbWWDJHmWkqygMSh9qRijYgyaUGCsSBFJ1A1f
-            3kbO5nDcB2hkGkp7WeghqDNLWoEQCZRx0ofsmId54YiQ9hAWG5yugoftJRSic0r1
-            my+qlENrV5ylt6ejLW62DrdcuYdahdtwzdUYWsKSLNO+7I67+8sx3aOTrzTMlFxv
-            eGnJDX2lcStDrk10KcvyHXOSTemo5Qyd4WCnEd6ushzSdBjxge3vJMowVMNOHyqf
-            gqMCvXflsgrQCd4YiNTkzRhsUHxGi0SaTUEXWpZxRva5dw53fnQGm0/2oTBmbXyo
-            3iorrU770jt3C09+/Wodae4DqZ6mnE/0UnkfuBn8gdaSN9HEVRtqx4gHqghZaQtB
-            V2/7ApyVqhmPPKHaqDN9+XzM1t41rmkdwqOJqC8jhtQo6UynhWGR4TPlzhkg9U1n
-            dhLB4InBy9llX+XyHm94S9T//MtFyX+x5UxU9SwobL2NnONTi55Jct2B9eB7Evpo
-            PHCd8gNpZsUnXPFdh0VWR/mrnivm+ZXGLeWyDAbUgio2pQS+EgcwdbN3jKIPJsny
-            iZiak87ZUrPXcqRCESlyfRUwMDx8Y6MeEnqGWMrHM2OqQzbGjM/DyyOMCTelovjU
-            aAEJAhAFOZyeSq7uAxcdCyYc0iPIUNSQyWc/F6T9C9XOxusvCMcovFaJd1n7dYfD
-            2iI+We5xiT3Ns9S8QZl92SarYnQ3+YFZO+9fao2bVTaW59OxClKPHKH3nctGvSli
-            CQQl/7bFyATK
-            =ZZjJ
+            hQIMA7uy4qQr71wiAQ/+IMnGLNPR17dXFL/tT/Jzm2SbZnRQJVk8pEikESBazMHy
+            qcXjwI4ZXOVKC9Azc1jwigWx1wsRzksqHWI7YihkJKSTWgDkr/WbRZUkkndMyC6o
+            1rUghPTMnw3ykrLOHw0dP5KrQyeTqj3EakJKzPLl1M5AqOlRIEQzJhpcGACy9teR
+            RZ4Z0WQL4lxl1bVQ/Yq+o7iEWDqAwlLxllBnvAz/nIfMQgaTfa9UyEz5Up71nXtz
+            f98txsSmB0kEYqEJNeNSQa6+MFT1OXJX8XijlfcEYVIyX7XO8+vKu99Neae026Ki
+            o+yXgVB8UIV/8tfhhRYofYFEUP9SPNeIrlJlXPopv1axnhhxCJeUUMDfQtrQFR1Q
+            8AUNbWluEU5q3/YLtk1HsLIDHGLG4o2WIS67Do3Feik3oZc5jP4b2sLrsSYc/2Rn
+            DkjDrnYKqXojr2jD4B9fMiKen1/MxqZwP78CFNNIjqDf44fvmHPK1BlCUbMmBmyV
+            yti3wTZEWUa3P9a1EApt3/ez+51o4R1q5En6bkZWqrzDtjd1qhs8ygP1pyU5eRJZ
+            dn0FzzDn4UuecCjXx6rZLw8ugSPIw+z3BMvB/JRx6OY3Dm6NKHBwfdIELoWwpWoY
+            28cH5X8hfVhr3uDIXmXVkJhrri3q35mRQnBIw+Gw7hgeMfWdLLmMSgwhCVvWNwDU
+            aAEJAhBlX9Uiqb+tS5fNYsnGVwS4XNIUozxtkdy3t+ZHK/rqCJ0qVr6m2rTO8QCg
+            jfNwgjOfpFC5YSsHjEuPaISBTfEMJea/1fqeUoPSXIMtgnceOT5xeqR5d7K1cOKR
+            sRirvHEkhbG3
+            =uej8
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
-    version: 3.9.4
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

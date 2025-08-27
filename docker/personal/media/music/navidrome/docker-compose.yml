@@ -12,7 +12,7 @@ services:
       ND_SCANSCHEDULE: 1h
       ND_LOGLEVEL: info
       ND_SESSIONTIMEOUT: 24h
-      ND_BASEURL: "http://navidrome.local"
+      ND_BASEURL: "http://navidrome.lan"
       ND_PORT: 4533
       ND_REVERSEPROXYWHITELIST: "172.20.0.0/16,10.1.2.11/32"
     volumes:
@@ -20,7 +20,7 @@ services:
       - "music:/music:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.navidrome.rule=Host(`navidrome.local`)"
+      - "traefik.http.routers.navidrome.rule=Host(`navidrome.lan`)"
 
 volumes:
   music:

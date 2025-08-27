@@ -1,0 +1,9 @@
+services:
+  ha-linky:
+    image: ha-linky
+    env_file: ".env"
+    environment:
+      - WS_URL=ws://homeassistant.lan/api/websocket
+      - TZ=Europe/Paris
+    volumes:
+      - /root/ha-linky:/data
