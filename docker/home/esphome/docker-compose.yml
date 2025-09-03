@@ -1,0 +1,29 @@
+services:
+  esphome:
+    image: ghcr.io/esphome/esphome:2025.8.2
+    ports:
+      - "6052"
+    networks:
+      - default
+      - proxy
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - esphome_config:/config
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.esphome.rule=Host(`esphome.lan`)"
+
+volumes:
+  esphome_config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/esphome/config'
+
+networks:
+  proxy:
+    external: true
+    name: proxy
