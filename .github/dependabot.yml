@@ -5,6 +5,8 @@ updates:
     schedule:
       interval: weekly
     directories:
+      - "/docker/gitea-actions"
+      - "/docker/home/esphome"
       - "/docker/home/ha-linky"
       - "/docker/home/home-assistant"
       - "/docker/home/matter-server"

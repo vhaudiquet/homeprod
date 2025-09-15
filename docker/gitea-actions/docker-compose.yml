@@ -1,0 +1,6 @@
+services:
+  runner:
+    image: docker.io/gitea/act_runner:nightly
+    env_file: .env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
