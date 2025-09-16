@@ -5,9 +5,9 @@
 resource "proxmox_virtual_environment_download_file" "talos-cloudimg" {
   content_type = "iso"
   datastore_id = "local"
-  file_name = "talos-v1.9.4-nocloud-amd64.iso"
+  file_name = "talos-v1.11.1-nocloud-amd64.iso"
   node_name = "pve"
-  url = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.9.4/nocloud-amd64.iso"
+  url = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.11.1/nocloud-amd64.iso"
 }
 
 resource "proxmox_virtual_environment_vm" "kube" {
@@ -16,7 +16,7 @@ resource "proxmox_virtual_environment_vm" "kube" {
   tags = ["kubernetes", "talos", "terraform"]
 
   node_name = "pve"
-  vm_id = 702
+  vm_id = 703
   machine = "q35"
   keyboard_layout = "fr"
 
@@ -39,7 +39,6 @@ resource "proxmox_virtual_environment_vm" "kube" {
   scsi_hardware = "virtio-scsi-single"
 
   cdrom {
-    enabled = true
     file_id = proxmox_virtual_environment_download_file.talos-cloudimg.id
     interface = "ide0"
   }
@@ -48,7 +47,7 @@ resource "proxmox_virtual_environment_vm" "kube" {
     interface = "scsi0"
     iothread = true
     datastore_id = "local-lvm"
-    size = 64
+    size = 128
     discard = "ignore"
     file_format = "raw"
   }
@@ -63,7 +62,8 @@ resource "proxmox_virtual_environment_vm" "kube" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = "10.1.2.187/24"
+        gateway = "10.1.2.1"
       }
     }
 
@@ -83,7 +83,6 @@ resource "proxmox_virtual_environment_vm" "kube" {
   network_device {
     bridge = "vmbr0"
     model = "virtio"
-    mac_address = "BC:24:11:F6:E1:C9"
     vlan_id = 2
   }
 
@@ -103,13 +102,13 @@ resource "talos_machine_secrets" "kube" {}
 data "talos_machine_configuration" "kube" {
   cluster_name = "kube"
   machine_type = "controlplane"
-  cluster_endpoint = "https://kube-talos.local:6443"
+  cluster_endpoint = "https://kube-talos.lan:6443"
   machine_secrets = talos_machine_secrets.kube.machine_secrets
   config_patches = [
     yamlencode({
       machine = {
         install = {
-          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.9.4"
+          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.11.1"
         }
         network = {
           nameservers = [
@@ -121,11 +120,11 @@ data "talos_machine_configuration" "kube" {
         allowSchedulingOnControlPlanes = true
         apiServer = {
           certSANs = [
-            "kube-talos.local"
+            "kube-talos.lan"
           ]
         }
         network = {
-          dnsDomain = "kube-talos.local"
+          dnsDomain = "kube-talos.lan"
           cni = {
             name: "none"
           }
@@ -141,13 +140,13 @@ data "talos_machine_configuration" "kube" {
 data "talos_client_configuration" "kube" {
   cluster_name = "kube"
   client_configuration = talos_machine_secrets.kube.client_configuration
-  nodes = ["kube-talos.local"]
+  nodes = ["kube-talos"]
 }
 
 resource "talos_machine_configuration_apply" "kube" {
   client_configuration = talos_machine_secrets.kube.client_configuration
   machine_configuration_input = data.talos_machine_configuration.kube.machine_configuration
-  node = proxmox_virtual_environment_vm.kube.ipv4_addresses[7][0] # lo + 6 talos-created interfaces before eth0
+  node = "10.1.2.187" #proxmox_virtual_environment_vm.kube.ipv4_addresses[7][0] # lo + 6 talos-created interfaces before eth0
   depends_on = [ proxmox_virtual_environment_vm.kube ]
   lifecycle {
     replace_triggered_by = [ proxmox_virtual_environment_vm.kube ]
@@ -155,7 +154,7 @@ resource "talos_machine_configuration_apply" "kube" {
 }
 
 resource "talos_machine_bootstrap" "kube" {
-  node = proxmox_virtual_environment_vm.kube.ipv4_addresses[7][0] # lo + 6 talos-created interfaces before eth0
+  node = "10.1.2.187" #proxmox_virtual_environment_vm.kube.ipv4_addresses[7][0] # lo + 6 talos-created interfaces before eth0
   client_configuration = talos_machine_secrets.kube.client_configuration
   depends_on = [ talos_machine_configuration_apply.kube ]
   lifecycle {
@@ -235,7 +234,7 @@ resource "helm_release" "cilium" {
   }
   set {
     name = "etcd.clusterDomain"
-    value = "kube-talos.local"
+    value = "kube-talos.lan"
   }
   set {
     name = "hubble.relay.enabled"

@@ -2,6 +2,14 @@
 * Docker machine terraform file
 */
 
+resource "proxmox_virtual_environment_download_file" "debian-latest-cloudimg" {
+  content_type = "iso"
+  datastore_id = "local"
+  file_name = "debian-12-generic-amd64.qcow2.img"
+  node_name = "pve"
+  url = "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2"
+}
+
 resource "proxmox_virtual_environment_file" "docker-machine-cloud-config" {
   content_type = "snippets"
   datastore_id = "local"
@@ -18,6 +26,7 @@ resource "proxmox_virtual_environment_file" "docker-machine-cloud-config" {
       - curl
       - gnupg2
       - qemu-guest-agent
+      - nfs-common
     runcmd:
       - systemctl enable --now qemu-guest-agent
       - install -m 0755 -d /etc/apt/keyrings
@@ -27,6 +36,10 @@ resource "proxmox_virtual_environment_file" "docker-machine-cloud-config" {
       - apt-get update
       - apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
       - docker swarm init
+      - git clone https://github.com/vhaudiquet/homeprod /root/homeprod
+      - mkdir /app
+      - echo "truenas.local:/mnt/fast_app_data/docker-homeprod      /app     nfs     defaults,_netdev    0 0" >>/etc/fstab
+      - mount -t nfs truenas.local:/mnt/fast_app_data/docker-homeprod /app
     EOF
     file_name = "docker-machine-cloud-config.yaml"
   }
@@ -44,7 +57,7 @@ resource "proxmox_virtual_environment_vm" "docker-machine" {
   tags = ["debian", "debian-latest", "docker", "terraform"]
 
   cpu {
-    type = "kvm64"
+    type = "host"
     cores = 4
     sockets = 1
     flags = []
@@ -76,16 +89,17 @@ resource "proxmox_virtual_environment_vm" "docker-machine" {
   boot_order = ["scsi0"]
   scsi_hardware = "virtio-scsi-single"
 
+  vga {
+    type = "serial0"
+  }
+
   disk {
     interface = "scsi0"
     iothread = true
     datastore_id = "local-lvm"
-    size = 8
+    size = 128
     discard = "ignore"
-  }
-
-  clone {
-    vm_id = data.proxmox_virtual_environment_vms.debian_vm_template.vms[0].vm_id
+    file_id = proxmox_virtual_environment_download_file.debian-latest-cloudimg.id
   }
 
   vm_id = 701
@@ -93,6 +107,30 @@ resource "proxmox_virtual_environment_vm" "docker-machine" {
   initialization {
     datastore_id = "local-lvm"
     interface = "ide2"
+    
+    ip_config {
+      ipv4 {
+        address = "10.1.2.175/24"
+        gateway = "10.1.2.1"
+      }
+    }
+
+    user_account {
+      keys = [trimspace(var.ssh_public_key)]
+      password = var.machine_root_password
+      username = "root"
+    }
+
     vendor_data_file_id = proxmox_virtual_environment_file.docker-machine-cloud-config.id
   }
+
+  operating_system {
+    type = "l26"
+  }
+
+  tpm_state {
+    version = "v2.0"
+  }
+
+  serial_device {}
 }

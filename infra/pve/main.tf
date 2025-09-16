@@ -3,15 +3,15 @@ terraform {
   required_providers {
     proxmox = {
       source = "bpg/proxmox"
-      version = "0.69.1"
+      version = "0.83.2"
     }
     talos = {
       source  = "siderolabs/talos"
-      version = "0.7.1"
+      version = "0.9.0"
     }
     kubernetes = {
       source = "hashicorp/kubernetes"
-      version = "2.36.0"
+      version = "2.38.0"
     }
     helm = {
       source = "hashicorp/helm"
@@ -22,7 +22,7 @@ terraform {
 
 # Proxmox configuration
 provider "proxmox" {
-  endpoint = "https://pve.local:8006/"
+  endpoint = "https://pve.lan:8006/"
   api_token = var.api_token
   insecure = true
   ssh {
@@ -43,10 +43,4 @@ provider "helm" {
   kubernetes {
     config_path = "${path.module}/kubeconfig"
   }
-}
-
-# debian-latest vm template(s), cloned to make other vms
-data "proxmox_virtual_environment_vms" "debian_vm_template" {
-    node_name = "pve"
-    tags = ["template", "debian-latest"]
 }

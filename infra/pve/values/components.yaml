@@ -10,7 +10,7 @@ instance:
     type: kubernetes
     multitenant: false
     networkPolicy: true
-    domain: "kube-talos.local"
+    domain: "kube-talos.lan"
   kustomize:
     patches:
       - target:
