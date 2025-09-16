@@ -12,7 +12,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - type: bind
-        source: /root/traefik.yml
+        source: /root/homeprod/docker/infrastructure/network/traefik/traefik.yml
         target: /etc/traefik/traefik.yml
     labels:
       - "traefik.enable=true"
