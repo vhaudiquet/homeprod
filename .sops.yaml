@@ -5,3 +5,6 @@ creation_rules:
   - path_regex: .*.yaml
     encrypted_regex: ^(data|stringData)$
     pgp: DC6910268E657FF70BA7EC289974494E76938DDC
+  - path_regex: .*.env$
+    input_type: dotenv
+    pgp: DC6910268E657FF70BA7EC289974494E76938DDC

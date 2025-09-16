@@ -17,8 +17,16 @@ find docker -name 'docker-compose.yml' -print0 \
   | sort \
   | while read -r dir; do
       file="$dir/docker-compose.yml"
+      
+      # Discover env file if it exists, and add it to secret list
+      if [ -f "$dir/.env" ]; then
+        env="  sops_files:\n    - $dir/.env\n"
+      else
+        env=""
+      fi
+
       name=$(basename "$dir")
-      echo -e "$name:\n  repo: homeprod\n  branch: main\n  compose_file: $file\n" >> "$tmpfile"
+      echo -e "$name:\n  repo: homeprod\n  branch: main\n  compose_file: $file\n$env" >> "$tmpfile"
     done
 
 # Overwrite file on change

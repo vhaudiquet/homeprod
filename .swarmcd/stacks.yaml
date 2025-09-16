@@ -2,6 +2,8 @@ gitea-actions:
   repo: homeprod
   branch: main
   compose_file: docker/gitea-actions/docker-compose.yml
+  sops_files:
+    - docker/gitea-actions/.env
 
 esphome:
   repo: homeprod
@@ -12,6 +14,8 @@ ha-linky:
   repo: homeprod
   branch: main
   compose_file: docker/home/ha-linky/docker-compose.yml
+  sops_files:
+    - docker/home/ha-linky/.env
 
 home-assistant:
   repo: homeprod
@@ -107,11 +111,15 @@ tubearchivist:
   repo: homeprod
   branch: main
   compose_file: docker/personal/media/youtube/tubearchivist/docker-compose.yml
+  sops_files:
+    - docker/personal/media/youtube/tubearchivist/.env
 
 paperless:
   repo: homeprod
   branch: main
   compose_file: docker/personal/paperless/docker-compose.yml
+  sops_files:
+    - docker/personal/paperless/.env
 
 radicale:
   repo: homeprod
@@ -127,6 +135,8 @@ tandoor:
   repo: homeprod
   branch: main
   compose_file: docker/personal/tandoor/docker-compose.yml
+  sops_files:
+    - docker/personal/tandoor/.env
 
 alexscript:
   repo: homeprod
@@ -152,11 +162,15 @@ hedgedoc:
   repo: homeprod
   branch: main
   compose_file: docker/tools/hedgedoc/docker-compose.yml
+  sops_files:
+    - docker/tools/hedgedoc/.env
 
 notesnook:
   repo: homeprod
   branch: main
   compose_file: docker/tools/notesnook/docker-compose.yml
+  sops_files:
+    - docker/tools/notesnook/.env
 
 stirling-pdf:
   repo: homeprod

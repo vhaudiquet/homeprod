@@ -40,6 +40,7 @@ resource "proxmox_virtual_environment_file" "docker-machine-cloud-config" {
       - mkdir /app
       - echo "truenas.local:/mnt/fast_app_data/docker-homeprod      /app     nfs     defaults,_netdev    0 0" >>/etc/fstab
       - mount -t nfs truenas.local:/mnt/fast_app_data/docker-homeprod /app
+      - echo "${var.sops_private_key}" | gpg --import
     EOF
     file_name = "docker-machine-cloud-config.yaml"
   }
