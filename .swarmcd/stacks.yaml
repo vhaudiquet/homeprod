@@ -1,0 +1,165 @@
+gitea-actions:
+  repo: homeprod
+  branch: main
+  compose_file: docker/gitea-actions/docker-compose.yml
+
+esphome:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/esphome/docker-compose.yml
+
+ha-linky:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/ha-linky/docker-compose.yml
+
+home-assistant:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/home-assistant/docker-compose.yml
+
+matter-server:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/matter-server/docker-compose.yml
+
+mosquitto-mqtt:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/mosquitto-mqtt/docker-compose.yml
+
+node-red:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/node-red/docker-compose.yml
+
+zigbee2mqtt:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/zigbee2mqtt/docker-compose.yml
+
+roundcube:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/mail/roundcube/docker-compose.yml
+
+stalwart:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/mail/stalwart/docker-compose.yml
+
+traefik:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/network/traefik/docker-compose.yml
+
+sshportal:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/sshportal/docker-compose.yml
+
+gramps:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/gramps/docker-compose.yml
+
+jackett:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/jackett/docker-compose.yml
+
+jellyfin:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/jellyfin/docker-compose.yml
+
+jellyseerr:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/jellyseerr/docker-compose.yml
+
+radarr:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/radarr/docker-compose.yml
+
+sonarr:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/sonarr/docker-compose.yml
+
+transmission:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/transmission/docker-compose.yml
+
+wizarr:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/films-series/wizarr/docker-compose.yml
+
+navidrome:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/music/navidrome/docker-compose.yml
+
+tubearchivist:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/media/youtube/tubearchivist/docker-compose.yml
+
+paperless:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/paperless/docker-compose.yml
+
+radicale:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/radicale/docker-compose.yml
+
+syncthing:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/syncthing/docker-compose.yml
+
+tandoor:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/tandoor/docker-compose.yml
+
+alexscript:
+  repo: homeprod
+  branch: main
+  compose_file: docker/production/alexscript/docker-compose.yml
+
+semeryfr:
+  repo: homeprod
+  branch: main
+  compose_file: docker/production/semeryfr/docker-compose.yml
+
+vhaudiquetfr:
+  repo: homeprod
+  branch: main
+  compose_file: docker/production/vhaudiquetfr/docker-compose.yml
+
+excalidraw:
+  repo: homeprod
+  branch: main
+  compose_file: docker/tools/excalidraw/docker-compose.yml
+
+hedgedoc:
+  repo: homeprod
+  branch: main
+  compose_file: docker/tools/hedgedoc/docker-compose.yml
+
+notesnook:
+  repo: homeprod
+  branch: main
+  compose_file: docker/tools/notesnook/docker-compose.yml
+
+stirling-pdf:
+  repo: homeprod
+  branch: main
+  compose_file: docker/tools/stirling-pdf/docker-compose.yml
+

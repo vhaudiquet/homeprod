@@ -11,4 +11,8 @@ repos:
         entry: generate-dependabot.sh
         language: script
         pass_filenames: false
-
+      - id: generate-docker-swarmcd
+        name: generate docker swarmcd
+        entry: generate-docker-swarmcd.sh
+        language: script
+        pass_filenames: false

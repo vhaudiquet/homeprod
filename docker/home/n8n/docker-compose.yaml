@@ -1,0 +1,29 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    environment:
+      - TZ=Europe/Paris
+      - N8N_SECURE_COOKIE=false
+    ports:
+      - "5678"
+    networks:
+      - default
+      - proxy
+    volumes:
+      - data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.rule=Host(`n8n.lan`)"
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/n8n/data'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

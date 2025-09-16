@@ -34,7 +34,7 @@ Running as single-node Proxmox
 | <img width=32 src="https://avatars.githubusercontent.com/u/12724356"><img width=32 src="https://avatars.githubusercontent.com/u/40275816"> | Repository applications | Gitea, Harbor to store code and images |
 | <img width=30 src="https://buildpath.win/_ipx/w_60&f_webp/buildpath-high-resolution-logo-transparent.png"> <img width=32 src="https://avatars.githubusercontent.com/u/13844975"> | Production applications | Personal applications running on the server |
 
-Debian and docker / docker swarm are deployed by Terraform ; then the stacks are deployed by hand for now, looking at something like [SwarmCD](https://github.com/m-adawi/swarm-cd) for the future.
+Debian and docker / docker swarm are deployed by Terraform, which also deploys [SwarmCD](https://github.com/m-adawi/swarm-cd) ; then the stacks are deployed by SwarmCD.
 
 #### Kubernetes one-node cluster
 
