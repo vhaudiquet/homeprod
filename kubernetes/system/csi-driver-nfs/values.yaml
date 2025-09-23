@@ -4,7 +4,7 @@ storageClass:
     annotations:
         storageclass.kubernetes.io/is-default-class: "true"
     parameters:
-        server: truenas.local
+        server: truenas.lan
         share: /mnt/fast_app_data/kube/
         subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}
     reclaimPolicy: Delete
@@ -16,34 +16,28 @@ driver:
 feature:
     enableFSGroupPolicy: true
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2025-03-22T13:26:31Z"
-    mac: ENC[AES256_GCM,data:ceN4v+5tV5iCU3jld/INz689kJpF/v7ChIVObD+4FL5KiaRb0DToygiAzgo5BvbmCL9cudrZ1qtXLSe47PMxBrS2DOzuFfp3nlBfhIc1vyl9IwMJJrdM3VWmTKMQUcjbMpb0bnD0P6S230+DU+lB9Sx+2prCzRpGl1tTEkXjrYo=,iv:dEMp7H/5Ry/uQR5OuweSwUF6h4Cbjm3Dq+ZD2rCxvGI=,tag:NF1wMICn+c2SXoI15ugsdg==,type:str]
+    lastmodified: "2025-09-23T20:49:33Z"
+    mac: ENC[AES256_GCM,data:PzR0Bd7Zri4gjpaSaeouJxSJbUP8f3dHuzuNlXm7q0B3SgTExHAYWT+YQ4S1QZPibE7LcPMln8Al+ac2TtVaIYD+voISUMt1+w6bqA2RmO0ZbF0mOqMiMTnWtbvCI5b/8g5+lYQRWt+5k6Lwtl5qxbdEeaBKa9qYpNw/DoEDwlM=,iv:T2XcsYVdQUGrjbleoAfcZXmS/m+kh1VcdMpU6TAMnX8=,tag:eWpR8XjOdSujxaz5aeWz2Q==,type:str]
     pgp:
-        - created_at: "2025-03-22T13:26:31Z"
+        - created_at: "2025-09-23T20:49:33Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+PxuU+B8+VPXqQ8jHkIxCN3cplCGMbyv+lgaiBGUSb3Dl
-            pfwircBKOYUwobYeCBKL8aGVkvE0AtJ3oAE0sGcLCk5vTggAzU3UctiS79cYCJlu
-            MoCzfLUonYgG9UBMWhNURE6BPXw8kj5YAmoyFx67pVlgc+6DfloH8crcm7puIMAe
-            qNcKKDw4H6VY3mBJqKElbRwHdPDMQuOXyViZYGTNbtQTpO9P9wlGNjOrL5weYT/q
-            t/WDIUjBYO133KDrbBGUq/jPfk0NnGICBYqF7qoEG+1G+Brw8VnRgNNH8UvvqA4/
-            rGKtvkXFYf563qVPNVeoYvnQG6YSTr4VYfiW1Ru8SvSpsZVJu2Xqhg0ga9JVuLn8
-            6qFp0Dd2UmskEoHz7HOk9jV712/EzATvEGY8o/LFIR/EVNlLaOQug10GQxQ9MFX4
-            qfVnnFkNlNW288n6f5fEpCrn1vOllftMbQDeev20qJUXTwVxsammdGUMDoWW7t2U
-            bf42OIJicrJ+msOSohN1zFafwb09njnpiAP3jJ9kwBACByRaSp9I6p0w1CU2xN0x
-            J31hRI5ByDQ4ZcTLDNPQmE9bpTy3sfVEiv0EalPAqevxR70CkQEFJZoxIuKxBAaC
-            O49TIuEfudcL6431m6W29EEW7V944ojKMvEWSx9HgJIfJ8wqU8S4wBcDFy1SoJTU
-            ZgEJAhB0f09p6f5t6umTqrzGKiHGPrAwlvErbdUTwH3gdk6j3YJCyYR1xzZCFdzW
-            lMa4kXu3v3wndGU1FteUE3HKkoRPttBg4sf1ekJvICv4HXfADCRar5Hf0CtbHVzB
-            sH6aWEmtVQ==
-            =1kP6
+            hQIMA7uy4qQr71wiAQ/+IMPmEpFfZkMC65azxf/qhbBg6z2rVC5Yjb2x0F9vhiCS
+            nbyrAe1jTi5sLXBFAeB3NSR4NAdmuicJMIVcCTBbIQFOdGgE9zh62ZK3nR32JabJ
+            cPIiQLI0N3Mk3Jgmll2m2Zfj4FoanDYm3rJ2mAaKRhqN+txjHCv6bfTMcWfx09FZ
+            QjZbtU3frO+5dbSv7SAvQGpk2ehZJ/zcbhnwMv/wD8uMj9fjRLdhP4yBqDDapiL5
+            IvHkEZhm0egy6dYx2KsM17j31GbA+b74GU1+2+OiZI8CVym8ZqYjHTwMGYjSQrmF
+            v5DqpNrmmq0iumkRkjwYD1z6VCRJTWaSgUplfUoJnXGx8Grgmh7TqTBzAH2LlkR/
+            lqqOo1+GydP1H292AQ21JMTEUoTjbVSJgYDZo+FgfbWIWQMa3DfPx5byC1cL1iQY
+            kIJHkJ5k6NyPzJAF88Wah0dGlUx7IQ8wVZ8T43hf7VaeU1KoLucQfBiSau068cUn
+            zekMh0apT3PadC3w5t5yia+gl4acy6PdpyqFdqEE1CahsIxr8PzFIa3c9lyzkr+E
+            /naeDLQT0akEnRUnvSFLYEwo9TD+pA63eGAMg0fxNtvBpn0l7T9ygyw70ERqyOGk
+            RixYAOwemlFKm4vsJa8Om3vE8chZ70z9e50/bx+kybGgTWKR6251AWU/yCxQd5HS
+            XgFgCrzXAVInmOTNqpafadWJloLrMh9ukeDS2eNIeTe+rbRL9z1iWnBWnJSJ0RBr
+            RYagnwWcQTdxi13qUQcxFGynYZGa703r2/yvCnE0iDVU44IJvWr2B9PW0wnjOSI=
+            =NHP9
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|ssh-key|api-key|user|username|privateKey|apiKey|extraArgs.*|extraEnvVars|.*secret.*|key|.*Password|.*\.ya?ml)$
-    version: 3.9.4
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
