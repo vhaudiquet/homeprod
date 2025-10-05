@@ -17,6 +17,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.lan`)"
+      - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
 
 volumes:
   ha_config:

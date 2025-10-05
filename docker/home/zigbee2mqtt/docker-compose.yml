@@ -18,6 +18,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.lan`)"
+      - "traefik.http.services.zigbee2mqtt.loadbalancer.server.port=8080"
 
 volumes:
   data:
