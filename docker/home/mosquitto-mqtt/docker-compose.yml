@@ -4,7 +4,9 @@ services:
     container_name: mosquitto
     restart: unless-stopped
     ports:
-      - "1883:1883"
+      - target: 1883
+        published: 1883
+        mode: host
       - "9001:9001"
     volumes:
       - data:/mosquitto/data
