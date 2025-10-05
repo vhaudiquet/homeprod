@@ -56,9 +56,6 @@ services:
     networks:
       - notesnook
     command: --replSet rs0 --bind_ip_all
-    depends_on:
-      validate:
-        condition: service_completed_successfully
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh mongodb://localhost:27017 --quiet
       interval: 40s
@@ -97,9 +94,6 @@ services:
       - s3data:/data/s3
     environment:
       MINIO_BROWSER: "on"
-    depends_on:
-      validate:
-        condition: service_completed_successfully
     env_file: *env-files
     command: server /data/s3 --console-address :9090
     healthcheck:
@@ -266,9 +260,6 @@ services:
       - AUTOHEAL_INTERVAL=60
       - AUTOHEAL_START_PERIOD=300
       - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10
-    depends_on:
-      validate:
-        condition: service_completed_successfully
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 networks:
