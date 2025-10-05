@@ -32,6 +32,11 @@ mosquitto-mqtt:
   branch: main
   compose_file: docker/home/mosquitto-mqtt/docker-compose.yml
 
+n8n:
+  repo: homeprod
+  branch: main
+  compose_file: docker/home/n8n/docker-compose.yml
+
 node-red:
   repo: homeprod
   branch: main

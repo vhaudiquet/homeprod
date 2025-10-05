@@ -11,6 +11,7 @@ updates:
       - "/docker/home/home-assistant"
       - "/docker/home/matter-server"
       - "/docker/home/mosquitto-mqtt"
+      - "/docker/home/n8n"
       - "/docker/home/node-red"
       - "/docker/home/zigbee2mqtt"
       - "/docker/infrastructure/mail/roundcube"
