@@ -138,8 +138,8 @@ services:
       SSE_SERVER_PORT: 7264
       SSE_SERVER_HOST: sse-server
       SELF_HOSTED: 1
-      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
-      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
+      IDENTITY_SERVER_URL: https://notesnook.vhaudiquet.fr/identity
+      NOTESNOOK_APP_HOST: https://app.notesnook.com
       MONGODB_CONNECTION_STRING: mongodb://notesnookdb:27017/identity?replSet=rs0
       MONGODB_DATABASE_NAME: identity
     labels:
@@ -177,8 +177,8 @@ services:
       SSE_SERVER_PORT: 7264
       SSE_SERVER_HOST: sse-server
       SELF_HOSTED: 1
-      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
-      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
+      IDENTITY_SERVER_URL: https://notesnook.vhaudiquet.fr/identity
+      NOTESNOOK_APP_HOST: https://app.notesnook.com
       MONGODB_CONNECTION_STRING: mongodb://notesnookdb:27017/?replSet=rs0
       MONGODB_DATABASE_NAME: notesnook
       S3_INTERNAL_SERVICE_URL: "http://notesnook-s3:9000"
@@ -231,8 +231,8 @@ services:
       SSE_SERVER_PORT: 7264
       SSE_SERVER_HOST: sse-server
       SELF_HOSTED: 1
-      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
-      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
+      IDENTITY_SERVER_URL: https://notesnook.vhaudiquet.fr/identity
+      NOTESNOOK_APP_HOST: https://app.notesnook.com
 
   monograph-server:
     image: streetwriters/monograph:latest
@@ -258,10 +258,10 @@ services:
       SSE_SERVER_PORT: 7264
       SSE_SERVER_HOST: sse-server
       SELF_HOSTED: 1
-      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
-      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
+      IDENTITY_SERVER_URL: https://notesnook.vhaudiquet.fr/identity
+      NOTESNOOK_APP_HOST: https://app.notesnook.com
       API_HOST: http://notesnook-server:5264
-      PUBLIC_URL: ${MONOGRAPH_PUBLIC_URL}
+      PUBLIC_URL: https://notesnook.vhaudiquet.fr/monograph
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.monograph-server.rule=Host(`notesnook.vhaudiquet.fr`) && PathPrefix(`/monograph`)"
