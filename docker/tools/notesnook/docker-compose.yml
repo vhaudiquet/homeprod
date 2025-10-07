@@ -1,22 +1,8 @@
-x-server-discovery: &server-discovery
-  NOTESNOOK_SERVER_PORT: 5264
-  NOTESNOOK_SERVER_HOST: notesnook-server
-  IDENTITY_SERVER_PORT: 8264
-  IDENTITY_SERVER_HOST: identity-server
-  SSE_SERVER_PORT: 7264
-  SSE_SERVER_HOST: sse-server
-  SELF_HOSTED: 1
-  IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
-  NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
-
-x-env-files: &env-files
-  - .env
-
 services:
   validate:
     image: vandot/alpine-bash
     entrypoint: /bin/bash
-    env_file: *env-files
+    env_file: .env
     command:
       - -c
       - |
@@ -94,7 +80,7 @@ services:
       - s3data:/data/s3
     environment:
       MINIO_BROWSER: "on"
-    env_file: *env-files
+    env_file: .env
     command: server /data/s3 --console-address :9090
     healthcheck:
       test: timeout 5s bash -c ':> /dev/tcp/127.0.0.1/9000' || exit 1
@@ -119,7 +105,7 @@ services:
     networks:
       - notesnook
     entrypoint: /bin/bash
-    env_file: *env-files
+    env_file: .env
     command:
       - -c
       - |
@@ -135,7 +121,7 @@ services:
     networks:
       - notesnook
       - proxy
-    env_file: *env-files
+    env_file: .env
     depends_on:
       - notesnook-db
     healthcheck:
@@ -145,7 +131,15 @@ services:
       retries: 3
       start_period: 60s
     environment:
-      <<: *server-discovery
+      NOTESNOOK_SERVER_PORT: 5264
+      NOTESNOOK_SERVER_HOST: notesnook-server
+      IDENTITY_SERVER_PORT: 8264
+      IDENTITY_SERVER_HOST: identity-server
+      SSE_SERVER_PORT: 7264
+      SSE_SERVER_HOST: sse-server
+      SELF_HOSTED: 1
+      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
+      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
       MONGODB_CONNECTION_STRING: mongodb://notesnookdb:27017/identity?replSet=rs0
       MONGODB_DATABASE_NAME: identity
     labels:
@@ -164,7 +158,7 @@ services:
     networks:
       - notesnook
       - proxy
-    env_file: *env-files
+    env_file: .env
     depends_on:
       - notesnook-s3
       - setup-s3
@@ -176,7 +170,15 @@ services:
       retries: 3
       start_period: 60s
     environment:
-      <<: *server-discovery
+      NOTESNOOK_SERVER_PORT: 5264
+      NOTESNOOK_SERVER_HOST: notesnook-server
+      IDENTITY_SERVER_PORT: 8264
+      IDENTITY_SERVER_HOST: identity-server
+      SSE_SERVER_PORT: 7264
+      SSE_SERVER_HOST: sse-server
+      SELF_HOSTED: 1
+      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
+      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
       MONGODB_CONNECTION_STRING: mongodb://notesnookdb:27017/?replSet=rs0
       MONGODB_DATABASE_NAME: notesnook
       S3_INTERNAL_SERVICE_URL: "http://notesnook-s3:9000"
@@ -201,7 +203,7 @@ services:
     image: streetwriters/sse:latest
     ports:
       - 7264
-    env_file: *env-files
+    env_file: .env
     depends_on:
       - identity-server
       - notesnook-server
@@ -222,13 +224,21 @@ services:
       retries: 3
       start_period: 60s
     environment:
-      <<: *server-discovery
+      NOTESNOOK_SERVER_PORT: 5264
+      NOTESNOOK_SERVER_HOST: notesnook-server
+      IDENTITY_SERVER_PORT: 8264
+      IDENTITY_SERVER_HOST: identity-server
+      SSE_SERVER_PORT: 7264
+      SSE_SERVER_HOST: sse-server
+      SELF_HOSTED: 1
+      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
+      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
 
   monograph-server:
     image: streetwriters/monograph:latest
     # ports:
       # - 6264:3000
-    env_file: *env-files
+    env_file: .env
     depends_on:
       - notesnook-server
     networks:
@@ -241,7 +251,15 @@ services:
       retries: 3
       start_period: 60s
     environment:
-      <<: *server-discovery
+      NOTESNOOK_SERVER_PORT: 5264
+      NOTESNOOK_SERVER_HOST: notesnook-server
+      IDENTITY_SERVER_PORT: 8264
+      IDENTITY_SERVER_HOST: identity-server
+      SSE_SERVER_PORT: 7264
+      SSE_SERVER_HOST: sse-server
+      SELF_HOSTED: 1
+      IDENTITY_SERVER_URL: ${AUTH_SERVER_PUBLIC_URL}
+      NOTESNOOK_APP_HOST: ${NOTESNOOK_APP_PUBLIC_URL}
       API_HOST: http://notesnook-server:5264
       PUBLIC_URL: ${MONOGRAPH_PUBLIC_URL}
     labels:
