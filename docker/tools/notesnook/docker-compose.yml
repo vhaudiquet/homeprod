@@ -271,4 +271,14 @@ networks:
 
 volumes:
   dbdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/notesnook/dbdata/_data'
   s3data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/notesnook/s3data/_data'
