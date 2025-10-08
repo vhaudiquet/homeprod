@@ -191,6 +191,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.notesnook-server.rule=Host(`notesnook.vhaudiquet.fr`)"
+      - "traefik.http.services.notesnook-server.loadbalancer.server.port=5264"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.notesnook-server.entrypoints=http"
       - "traefik.http.routers.notesnook-server.middlewares=notesnook-server-cors"
@@ -213,6 +214,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.sse-server.rule=Host(`notesnook.vhaudiquet.fr`) && PathPrefix(`/sse`)"
+      - "traefik.http.services.sse-server.loadbalancer.server.port=7264"
       - "traefik.http.routers.sse-server.middlewares=sse-server,notesnook-server-cors"
       - "traefik.http.middlewares.sse-server.stripprefix.prefixes=/sse"
       - "traefik.docker.network=proxy"
