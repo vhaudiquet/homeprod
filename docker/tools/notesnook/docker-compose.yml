@@ -115,7 +115,7 @@ services:
         mc mb minio/attachments -p
 
   identity-server:
-    image: streetwriters/identity:latest
+    image: streetwriters/identity:v1.0-beta.5
     ports:
       - 8264
     networks:
@@ -152,7 +152,7 @@ services:
       - "traefik.http.services.identity-server.loadbalancer.server.port=8264"
 
   notesnook-server:
-    image: streetwriters/notesnook-sync:latest
+    image: streetwriters/notesnook-sync:v1.0-beta.5
     ports:
       - 5264
     networks:
@@ -201,7 +201,7 @@ services:
       - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowcredentials=true"
   
   sse-server:
-    image: streetwriters/sse:latest
+    image: streetwriters/sse:v1.0-beta.5
     ports:
       - 7264
     env_file: .env
@@ -237,7 +237,7 @@ services:
       NOTESNOOK_APP_HOST: https://app.notesnook.com
 
   monograph-server:
-    image: streetwriters/monograph:latest
+    image: streetwriters/monograph:v1.0-beta.5
     # ports:
       # - 6264:3000
     env_file: .env
