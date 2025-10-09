@@ -89,7 +89,6 @@ services:
     env_file: .env
     depends_on:
       - notesnook-s3
-      - setup-s3
       - identity-server
     healthcheck:
       test: wget --tries=1 -nv -q  http://localhost:5264/health -O- || exit 1
