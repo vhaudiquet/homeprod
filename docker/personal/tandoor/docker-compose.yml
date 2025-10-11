@@ -12,29 +12,14 @@ services:
     image: vabene1111/recipes:2.3.0
     env_file:
       - ./.env
+    ports:
+      - 80
     volumes:
       - staticfiles:/opt/recipes/staticfiles
       - nginx_config:/opt/recipes/nginx/conf.d
       - mediafiles:/opt/recipes/mediafiles
     depends_on:
       - db_recipes
-
-  nginx_recipes:
-    image: nginx:1.29.1-alpine
-    restart: always
-    networks:
-      - default
-      - proxy
-    ports:
-      - 80
-    env_file:
-      - ./.env
-    depends_on:
-      - web_recipes
-    volumes:
-      - nginx_config:/etc/nginx/conf.d:ro
-      - staticfiles:/static:ro
-      - mediafiles:/media:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx_recipes.rule=Host(`tandoor.lan`)"
