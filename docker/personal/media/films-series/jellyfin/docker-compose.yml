@@ -31,12 +31,12 @@ volumes:
   nfs_films:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local,ro'
+      o: 'addr=truenas.lan,ro'
       device: ':/mnt/media/films'
   nfs_series:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local,ro'
+      o: 'addr=truenas.lan,ro'
       device: ':/mnt/media/series'
   cache:
   log:
