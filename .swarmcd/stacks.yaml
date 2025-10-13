@@ -158,13 +158,6 @@ excalidraw:
   branch: main
   compose_file: docker/tools/excalidraw/docker-compose.yml
 
-hedgedoc:
-  repo: homeprod
-  branch: main
-  compose_file: docker/tools/hedgedoc/docker-compose.yml
-  sops_files:
-    - docker/tools/hedgedoc/.env
-
 notesnook:
   repo: homeprod
   branch: main
