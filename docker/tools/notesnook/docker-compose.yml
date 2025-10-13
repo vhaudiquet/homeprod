@@ -164,7 +164,7 @@ services:
       NOTESNOOK_APP_HOST: https://app.notesnook.com
 
   monograph-server:
-    image: streetwriters/monograph:1.2.4
+    image: streetwriters/monograph:1.2.5
     # ports:
       # - 6264:3000
     env_file: .env
