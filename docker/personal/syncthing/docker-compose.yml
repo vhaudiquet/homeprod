@@ -12,10 +12,16 @@ services:
       - valentin_documents:/valentin/Documents
       - valentin_photos:/valentin/Photos
     ports:
-      - 8384:8384 # Web UI
-      - 22000:22000/tcp # TCP file transfers
-      - 22000:22000/udp # QUIC file transfers
-      - 21027:21027/udp # Receive local discovery broadcasts
+      - target: 22000
+        published: 22000
+        mode: host
+      - target: 21027
+        published: 21027
+        mode: host
+      - 8384
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.syncthing-valentin.rule=Host(`syncthing-valentin.lan`)"
     restart: unless-stopped
     healthcheck:
       test: curl -fkLsS -m 2 127.0.0.1:8384/rest/noauth/health | grep -o --color=never OK || exit 1
