@@ -33,10 +33,10 @@ volumes:
   valentin_documents:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local'
+      o: 'addr=truenas.lan'
       device: ':/mnt/main_storage/valentin/Documents'
   valentin_photos:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local'
+      o: 'addr=truenas.lan'
       device: ':/mnt/main_storage/valentin/Photos'
