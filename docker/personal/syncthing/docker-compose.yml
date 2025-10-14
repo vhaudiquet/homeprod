@@ -22,6 +22,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.syncthing-valentin.rule=Host(`syncthing-valentin.lan`)"
+      - "traefik.http.services.syncthing-valentin.loadbalancer.server.port=8384"
     restart: unless-stopped
     healthcheck:
       test: curl -fkLsS -m 2 127.0.0.1:8384/rest/noauth/health | grep -o --color=never OK || exit 1
