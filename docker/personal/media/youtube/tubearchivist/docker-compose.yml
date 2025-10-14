@@ -72,7 +72,7 @@ volumes:
   media:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local'
+      o: 'addr=truenas.lan'
       device: ':/mnt/media/youtube'
   cache:
   redis:
