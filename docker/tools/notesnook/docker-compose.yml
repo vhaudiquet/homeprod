@@ -43,7 +43,7 @@ services:
       - "traefik.http.routers.notesnook-s3.entrypoints=http"
 
   identity-server:
-    image: streetwriters/identity:v1.0-beta.3
+    image: streetwriters/identity:v1.0-beta.5
     ports:
       - 8264
     networks:
@@ -80,7 +80,7 @@ services:
       - "traefik.http.services.identity-server.loadbalancer.server.port=8264"
 
   notesnook-server:
-    image: streetwriters/notesnook-sync:v1.0-beta.3
+    image: streetwriters/notesnook-sync:v1.0-beta.5
     ports:
       - 5264
     networks:
@@ -128,7 +128,7 @@ services:
       - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowcredentials=true"
   
   sse-server:
-    image: streetwriters/sse:v1.0-beta.3
+    image: streetwriters/sse:v1.0-beta.5
     ports:
       - 7264
     env_file: .env
@@ -164,7 +164,7 @@ services:
       NOTESNOOK_APP_HOST: https://app.notesnook.com
 
   monograph-server:
-    image: streetwriters/monograph:1.2.4
+    image: streetwriters/monograph:1.2.5
     # ports:
       # - 6264:3000
     env_file: .env
