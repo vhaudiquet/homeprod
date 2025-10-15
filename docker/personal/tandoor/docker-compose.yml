@@ -10,6 +10,9 @@ services:
   web_recipes:
     restart: always
     image: vabene1111/recipes:2.3.2
+    networks:
+      - default
+      - proxy
     env_file:
       - ./.env
     ports:
