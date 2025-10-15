@@ -122,9 +122,9 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.notesnook-server.entrypoints=http"
       - "traefik.http.routers.notesnook-server.middlewares=notesnook-server-cors"
-      - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolalloworiginlist=https://app.notesnook.com,http://localhost:3000,https://notesnook.vhaudiquet.fr"
-      - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowheaders=Authorization,*"
+      - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolalloworiginlist=*"
+      - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowmethods=*"
+      - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowheaders=*"
       - "traefik.http.middlewares.notesnook-server-cors.headers.accesscontrolallowcredentials=true"
   
   sse-server:
