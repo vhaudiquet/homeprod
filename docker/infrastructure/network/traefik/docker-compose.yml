@@ -4,8 +4,10 @@ services:
     command: 
       - "--configFile=/etc/traefik/traefik.yml"
     ports:
-      - "80:80"
-      - "8080:8080"
+      - target: 80
+        published: 80
+        mode: host
+      - "8080"
     networks:
       - default
       - proxy
