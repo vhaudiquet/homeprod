@@ -37,7 +37,7 @@ services:
       - manyfold
 
   redis-server:
-    image: redis:7
+    image: redis:8
     restart: unless-stopped
     networks:
       - manyfold
