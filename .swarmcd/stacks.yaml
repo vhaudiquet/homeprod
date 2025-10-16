@@ -42,6 +42,11 @@ node-red:
   branch: main
   compose_file: docker/home/node-red/docker-compose.yml
 
+apt-cacher-ng:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/apt-cacher-ng/docker-compose.yml
+
 roundcube:
   repo: homeprod
   branch: main

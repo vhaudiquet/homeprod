@@ -1,0 +1,25 @@
+services:
+  apt-cacher-ng:
+    image: sameersbn/apt-cacher-ng
+    container_name: apt-cacher-ng
+    networks:
+      - default
+      - proxy
+    ports:
+      - "3142"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apt-cacher-ng.rule=Host(`apt-cacher.lan`)"
+      - "traefik.http.routers.apt-cacher-ng.entrypoints=http"
+      - "traefik.http.services.apt-cacher-ng.loadbalancer.server.port=3142"
+    volumes:
+      - apt-cacher-ng:/var/cache/apt-cacher-ng
+    restart: always
+
+volumes:
+  apt-cacher-ng:
+
+networks:
+  proxy:
+    name: proxy
+    external: true

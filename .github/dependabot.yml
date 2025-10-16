@@ -13,6 +13,7 @@ updates:
       - "/docker/home/mosquitto-mqtt"
       - "/docker/home/n8n"
       - "/docker/home/node-red"
+      - "/docker/infrastructure/apt-cacher-ng"
       - "/docker/infrastructure/mail/roundcube"
       - "/docker/infrastructure/mail/stalwart"
       - "/docker/infrastructure/network/traefik"
