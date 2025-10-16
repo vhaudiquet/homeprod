@@ -164,7 +164,7 @@ services:
       NOTESNOOK_APP_HOST: https://app.notesnook.com
 
   monograph-server:
-    image: streetwriters/monograph:1.2.5
+    image: streetwriters/monograph:1.2.4
     # ports:
       # - 6264:3000
     env_file: .env
@@ -190,6 +190,7 @@ services:
       IDENTITY_SERVER_URL: https://notesnook.vhaudiquet.fr/identity
       NOTESNOOK_APP_HOST: https://app.notesnook.com
       API_HOST: http://notesnook-server:5264
+      MONOGRAPH_PUBLIC_URL: https://notesnook.vhaudiquet.fr/monograph
       PUBLIC_URL: https://notesnook.vhaudiquet.fr/monograph
     labels:
       - "traefik.enable=true"
