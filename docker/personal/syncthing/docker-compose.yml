@@ -26,9 +26,9 @@ services:
     restart: unless-stopped
     healthcheck:
       test: curl -fkLsS -m 2 127.0.0.1:8384/rest/noauth/health | grep -o --color=never OK || exit 1
-      interval: 10m
-      timeout: 10s
-      retries: 5
+      interval: 1m
+      timeout: 30s
+      retries: 10
 
 volumes:
   config:
