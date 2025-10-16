@@ -1,0 +1,63 @@
+services:
+  manyfold:
+    image: ghcr.io/manyfold3d/manyfold:latest
+    ports:
+      - "3214"
+    volumes:
+      - models:/models
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - postgres-server
+      - redis-server
+    networks:
+      - manyfold
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.manyfold.rule=Host(`manyfold.lan`)"
+      - "traefik.http.services.manyfold.loadbalancer.server.port=3214"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETUID
+      - SETGID
+
+  postgres-server:
+    image: postgres:15
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file: .env      
+    restart: unless-stopped
+    networks:
+      - manyfold
+
+  redis-server:
+    image: redis:7
+    restart: unless-stopped
+    networks:
+      - manyfold
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/manyfold/db_data'
+  models:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/manyfold/models'
+
+networks:
+  manyfold:
+  proxy:
+    name: proxy
+    external: true
