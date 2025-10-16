@@ -1,0 +1,24 @@
+services:
+  squid:
+    image: ubuntu/squid:6.13-25.04_edge
+    ports:
+      - target: 3128
+        published: 3128
+        mode: host
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - log:/var/log/squid
+      - cache:/var/spool/squid
+      - type: bind
+        source: /root/homeprod/docker/infrastructure/squid/squid.conf
+        target: /etc/squid/squid.conf
+
+volumes:
+  log:
+  cache:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/squid/cache'

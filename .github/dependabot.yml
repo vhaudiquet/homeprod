@@ -16,6 +16,7 @@ updates:
       - "/docker/infrastructure/mail/roundcube"
       - "/docker/infrastructure/mail/stalwart"
       - "/docker/infrastructure/network/traefik"
+      - "/docker/infrastructure/squid"
       - "/docker/infrastructure/sshportal"
       - "/docker/personal/gramps"
       - "/docker/personal/media/films-series/jackett"

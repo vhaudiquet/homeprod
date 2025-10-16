@@ -57,6 +57,11 @@ traefik:
   branch: main
   compose_file: docker/infrastructure/network/traefik/docker-compose.yml
 
+squid:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/squid/docker-compose.yml
+
 sshportal:
   repo: homeprod
   branch: main
