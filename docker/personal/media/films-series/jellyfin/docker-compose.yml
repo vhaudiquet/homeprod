@@ -11,7 +11,6 @@ services:
       - config:/etc/jellyfin
       - data:/var/lib/jellyfin
       - cache:/cache
-      - log:/log
       - nfs_films:/films
       - nfs_series:/series
     restart: 'unless-stopped'
@@ -20,7 +19,6 @@ services:
       - JELLYFIN_PublishedServerUrl=https://flix.vhaudiquet.fr
       - JELLYFIN_CONFIG_DIR=/etc/jellyfin
       - JELLYFIN_DATA_DIR=/var/lib/jellyfin
-      - JELLYFIN_LOG_DIR=/log
       - JELLYFIN_CACHE_DIR=/cache
     labels:
       - "traefik.enable=true"
@@ -38,7 +36,6 @@ volumes:
       o: 'addr=truenas.lan,ro'
       device: ':/mnt/media/series'
   cache:
-  log:
   config:
     driver: local
     driver_opts:
