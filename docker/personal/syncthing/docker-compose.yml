@@ -3,7 +3,6 @@ services:
     image: syncthing/syncthing:2.0
     container_name: syncthing-valentin
     hostname: syncthing-valentin
-    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
@@ -19,6 +18,9 @@ services:
         published: 21027
         mode: host
       - 8384
+    networks:
+      - default
+      - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.syncthing-valentin.rule=Host(`syncthing-valentin.lan`)"
@@ -47,3 +49,8 @@ volumes:
       type: 'nfs'
       o: 'addr=truenas.lan'
       device: ':/mnt/main_storage/valentin/Photos'
+
+networks:
+  proxy:
+    external: true
+    name: proxy
