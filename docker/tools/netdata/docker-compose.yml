@@ -1,0 +1,58 @@
+services:
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    ports:
+      - "19999"
+    networks:
+      - default
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.netdata.rule=Host(`netdata.lan`)"
+      - "traefik.http.services.netdata.loadbalancer.server.port=19999"
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - config:/etc/netdata
+      - lib:/var/lib/netdata
+      - cache:/var/cache/netdata
+      - /:/host/root:ro,rslave
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - /var/log:/host/var/log:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /run/dbus:/run/dbus:ro
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/netdata/config'
+  lib:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/netdata/lib'
+  cache:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/netdata/cache'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

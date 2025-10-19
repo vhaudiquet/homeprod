@@ -37,6 +37,7 @@ updates:
       - "/docker/production/vhaudiquetfr"
       - "/docker/tools/excalidraw"
       - "/docker/tools/manyfold"
+      - "/docker/tools/netdata"
       - "/docker/tools/notesnook"
       - "/docker/tools/stirling-pdf"
   - package-ecosystem: "helm"
