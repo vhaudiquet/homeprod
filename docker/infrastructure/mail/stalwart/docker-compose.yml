@@ -1,6 +1,6 @@
 services:
   stalwart:
-    image: stalwartlabs/stalwart:v0.13.4
+    image: stalwartlabs/stalwart:v0.14.0
     container_name: stalwart
     networks:
       - default
