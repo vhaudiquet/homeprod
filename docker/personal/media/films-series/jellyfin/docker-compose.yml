@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:2025101305
+    image: jellyfin/jellyfin:2025110305
     container_name: jellyfin
     networks:
       - default
