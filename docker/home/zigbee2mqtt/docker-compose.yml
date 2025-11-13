@@ -13,8 +13,6 @@ services:
       - "8080"
     environment:
       - TZ=Europe/Paris
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.lan`)"
