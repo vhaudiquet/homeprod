@@ -1,0 +1,59 @@
+services:
+  mongo:
+    hostname: mongo
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    env_file: .env
+
+  patch_detector:
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-patch_detector:${GIT_COMMIT_HASH:-latest}
+    build: ./patch_detector
+    restart: "no"
+    deploy:
+      restart_policy:
+        condition: any
+        delay: '0'
+        window: 10s
+    env_file: .env
+
+
+  match_collector:
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:${GIT_COMMIT_HASH:-latest}
+    build: ./match_collector
+    restart: "no"
+    deploy:
+      restart_policy:
+        condition: any
+        delay: '0'
+        window: 20s
+    env_file: .env
+
+  frontend:
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:${GIT_COMMIT_HASH:-latest}
+    build: ./frontend
+    restart: always
+    networks:
+      - default
+      - proxy
+    ports:
+      - "3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`buildpath.win`)"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+    env_file: .env
+
+volumes:
+  mongo_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/buildpath/data'
+
+networks:
+  proxy:
+    external: true
+    name: proxy

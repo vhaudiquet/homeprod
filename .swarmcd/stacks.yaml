@@ -153,6 +153,13 @@ alexscript:
   branch: main
   compose_file: docker/production/alexscript/docker-compose.yml
 
+buildpath:
+  repo: homeprod
+  branch: main
+  compose_file: docker/production/buildpath/docker-compose.yml
+  sops_files:
+    - docker/production/buildpath/.env
+
 semeryfr:
   repo: homeprod
   branch: main
