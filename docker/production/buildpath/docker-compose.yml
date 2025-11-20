@@ -1,11 +1,11 @@
 services:
-  mongo:
-    hostname: mongo
-    image: mongo:8.2.2
-    restart: always
-    volumes:
-      - mongo_data:/data/db
-    env_file: .env
+  # mongo:
+  #   hostname: mongo
+  #   image: mongo:8.2.2
+  #   restart: always
+  #   volumes:
+  #     - mongo_data:/data/db
+  #   env_file: .env
 
   patch_detector:
     image: git.vhaudiquet.fr/vhaudiquet/lolstats-patch_detector:${GIT_COMMIT_HASH:-latest}
