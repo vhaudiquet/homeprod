@@ -31,7 +31,7 @@ services:
     healthcheck:
       test: curl -f http://127.0.0.1:5000 || exit 1
       interval: 30s
-      retries: 3
+      retries: 6
 
   grampsweb_celery:
     container_name: grampsweb_celery
