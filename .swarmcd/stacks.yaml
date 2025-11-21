@@ -175,13 +175,6 @@ excalidraw:
   branch: main
   compose_file: docker/tools/excalidraw/docker-compose.yml
 
-manyfold:
-  repo: homeprod
-  branch: main
-  compose_file: docker/tools/manyfold/docker-compose.yml
-  sops_files:
-    - docker/tools/manyfold/.env
-
 netdata:
   repo: homeprod
   branch: main
