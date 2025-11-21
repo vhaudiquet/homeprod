@@ -14,6 +14,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.couchdb.rule=Host(`obsidian-livesync.lan`)"
+      - "traefik.http.services.couchdb.loadbalancer.server.port=5984"
     restart: unless-stopped
 
 networks:
