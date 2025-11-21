@@ -187,6 +187,13 @@ notesnook:
   sops_files:
     - docker/tools/notesnook/.env
 
+obsidian-livesync:
+  repo: homeprod
+  branch: main
+  compose_file: docker/tools/obsidian-livesync/docker-compose.yml
+  sops_files:
+    - docker/tools/obsidian-livesync/.env
+
 stirling-pdf:
   repo: homeprod
   branch: main
