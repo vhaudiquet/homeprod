@@ -1,7 +1,7 @@
 services:
   grampsweb:
     container_name: grampsweb
-    image: ghcr.io/gramps-project/grampsweb:25.10.2
+    image: ghcr.io/gramps-project/grampsweb:25.11.0
     restart: always
     networks:
       - default
@@ -34,7 +34,7 @@ services:
 
   grampsweb_celery:
     container_name: grampsweb_celery
-    image: ghcr.io/gramps-project/grampsweb:25.10.2
+    image: ghcr.io/gramps-project/grampsweb:25.11.0
     restart: always
     environment:
       GRAMPSWEB_TREE: "Gramps Web"  # will create a new tree if not exists
