@@ -1,0 +1,36 @@
+services:
+  couchdb:
+    image: couchdb:3.5.1
+    container_name: couchdb
+    env_file: .env
+    volumes:
+      - couchdb-data:/opt/couchdb/data
+      - couchdb-etc:/opt/couchdb/etc/local.d
+    networks:
+      - default
+      - proxy
+    ports:
+      - 5984
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.couchdb.rule=Host(`obsidian-livesync.lan`)"
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
+    name: proxy
+
+volumes:
+  couchdb-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/obsidian-livesync/data'
+  couchdb-etc:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/obsidian-livesync/etc'
