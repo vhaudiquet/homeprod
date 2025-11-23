@@ -5,6 +5,7 @@ services:
     restart: always
     volumes:
       - mongo_data:/data/db
+      - mongo_data:/data/configdb
     env_file: .env
 
   patch_detector:
