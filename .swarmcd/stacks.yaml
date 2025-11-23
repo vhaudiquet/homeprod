@@ -175,11 +175,6 @@ excalidraw:
   branch: main
   compose_file: docker/tools/excalidraw/docker-compose.yml
 
-netdata:
-  repo: homeprod
-  branch: main
-  compose_file: docker/tools/netdata/docker-compose.yml
-
 notesnook:
   repo: homeprod
   branch: main
