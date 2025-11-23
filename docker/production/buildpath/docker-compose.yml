@@ -7,6 +7,7 @@ services:
       - mongo_data:/data/db
       - mongo_data:/data/configdb
     env_file: .env
+    command: ["mongod"]
 
   patch_detector:
     image: git.vhaudiquet.fr/vhaudiquet/lolstats-patch_detector:${GIT_COMMIT_HASH:-latest}
