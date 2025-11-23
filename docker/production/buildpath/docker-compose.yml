@@ -53,7 +53,7 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/app/buildpath/data'
+      device: '/app/buildpath/data/_data'
 
 networks:
   proxy:
