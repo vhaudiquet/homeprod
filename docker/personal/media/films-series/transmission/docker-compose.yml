@@ -34,7 +34,7 @@ volumes:
   downloads:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local'
+      o: 'addr=truenas.lan'
       device: ':/mnt/media/download'
 
 

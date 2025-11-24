@@ -30,12 +30,12 @@ volumes:
   data_movies:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local'
+      o: 'addr=truenas.lan'
       device: ':/mnt/media/films'
   data_downloads:
     driver_opts:
       type: 'nfs'
-      o: 'addr=truenas.local'
+      o: 'addr=truenas.lan'
       device: ':/mnt/media/download'
 
 networks:
