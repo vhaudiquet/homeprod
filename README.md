@@ -61,7 +61,7 @@ This setup allows running multiple applications, either self-hosted applications
 | Icon | Software     | Description |
 |------|--------------|-------------|
 | <img width=30 src="https://buildpath.win/_ipx/w_60&f_webp/buildpath-high-resolution-logo-transparent.png"> | BuildPath | https://buildpath.win, website for League of Legends champion builds |
-| <img width=32 src="https://vhaudiquet.fr/assets/favicon.ico_256x256.png"> | vhaudiquet.fr | https://vhaudiquet.fr, personal website |
+| <img width=32 src="https://vhaudiquet.fr/favicon.ico_256x256.png"> | vhaudiquet.fr | https://vhaudiquet.fr, personal website |
 
 #### Personal applications
 
