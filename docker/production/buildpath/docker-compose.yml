@@ -3,6 +3,7 @@ services:
     hostname: mongo
     image: mongo:8.2.2
     restart: always
+    user: mongodb:mongodb
     volumes:
       - mongo_data:/data/db
       - mongo_data:/data/configdb

@@ -2,6 +2,7 @@ services:
   notesnook-db:
     image: mongo:8.2.2
     hostname: notesnookdb
+    user: mongodb:mongodb
     volumes:
       - dbdata:/data/db
       - dbdata:/data/configdb
