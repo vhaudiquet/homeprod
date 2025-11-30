@@ -10,13 +10,6 @@ esphome:
   branch: main
   compose_file: docker/home/esphome/docker-compose.yml
 
-ha-linky:
-  repo: homeprod
-  branch: main
-  compose_file: docker/home/ha-linky/docker-compose.yml
-  sops_files:
-    - docker/home/ha-linky/.env
-
 home-assistant:
   repo: homeprod
   branch: main
