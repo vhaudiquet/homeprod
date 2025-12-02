@@ -56,7 +56,7 @@ services:
     command: celery -A gramps_webapi.celery worker --loglevel=INFO --concurrency=2
 
   grampsweb_redis:
-    image: docker.io/library/redis:7.2.4-alpine
+    image: docker.io/library/redis:8.4.0-alpine
     container_name: grampsweb_redis
     restart: always
 
