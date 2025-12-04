@@ -1,6 +1,6 @@
 image:
     repository: photoprism/photoprism
-    tag: "250707"
+    tag: "251130"
     pullPolicy: IfNotPresent
 ingress:
     main:
@@ -32,28 +32,27 @@ mariadb:
         persistence:
             enabled: true
 sops:
-    lastmodified: "2025-08-27T10:07:51Z"
-    mac: ENC[AES256_GCM,data:adWzoJckZb8ZeODL9xBK/fx9Xv0xDerkK9NBnw9k2wjtKOjd9DSedlnfoxc7GPQOLT5Sx5hE81pirvEIBU6zvs+CzyXI78Y7cOXSM5NwzUJmNdXxp9/7qOW/+0fKa3eSAZjXz4T+/eEws7LCgE8suZcEJS9QyxJzDgG7my1UmOM=,iv:ZNMBsWVN2AHlxhP9eca1i93qlUf2S0d+cz/HpMS+rgc=,tag:BWt6Or4k04VFVJNilXuEgg==,type:str]
+    lastmodified: "2025-12-04T23:13:55Z"
+    mac: ENC[AES256_GCM,data:IHOkprHdv+aHw7pPFdJSQuxOwXoleySjBUtxjobMBxSj1o5oSn7Ppif1wqQ6P4AcK+t8EhqalI3npvZ+IuNV/PZW5jBpfStO90RgjPvhDVBwGqfuRK6Y5vpkWfTP52VQNnVsYqQvjpSjP85Zi95tzAY+VVoe6xpTFmYOcojuKDM=,iv:UWE5DbuwmSTVwOqYSRntPnXthLWaUhIW9AAfmkdxmVY=,tag:K35XE2/ZeFvXZTiPY0r9Tw==,type:str]
     pgp:
-        - created_at: "2025-08-27T10:07:49Z"
+        - created_at: "2025-12-04T23:13:55Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAsWsaP2fKfz/jI/zR/rFpwKEGju67sG5IlAtIDQVbl7Nb
-            nbLW5PwlfGDf5ZBhQmR37MLogO6YI1EjF3kw1fxgJ5RQagaVSlW4xW/Dzid6nKax
-            b49MaHmWQc5tdxF/o8fIXMbXIu/P7MkOFLbEsN0/K78wIvkJNvU/KhOygdjKsdn6
-            qlSEmdlNbabZBLRyKTsrgQeeVGDGhJu5o1RLCq6uZ7pKMVNxeXQeFth9V34BI05Q
-            mxw3Mbp8bF4tDjBVgbzk2HKUYwzkDMig/i0EP1xmPjwepz0cO5iU0pbwjiROPoyi
-            ztloaYrXvO7mZGaew9zZb8UTw/LrHNYFOFQ9x9VeOSvQFK3mXtYvowk9rQUMsMh5
-            dvMal/UtX43Z+ckTbOr+PDWMC10RmLeZn//an/x/xdK3vW3UGcEvczqjkBOdSrlt
-            G94SamWqdVPAqm4C7fFiNb14mafk7/GoKKmFkGOlKL6Bd30tkLUlXDpLbfIlMTFD
-            YrBQxu4zQD/UL86Av5jov43WSc78uNDMGCo/WI1PdTk/fCZhH0wlyrWbolkHGOrV
-            Ui0M974JfB3hX8ZEVINDW4bw2ylQE34ZYB9cw522EpxfHmdLxEy30iU7/55LQecm
-            2x7gwgUONDIwt5a1Ey4JdcgB39ZB4mkgH5Fj8ArTBzy0PghCK4ddGFhICr8Sv/bU
-            aAEJAhB7/d3fDtj2jWs9X2TEwv2MaFnthC5bVRuMqsrtNq4QmCXEatRU9+ipNyCU
-            kjbRLfFLrAu4pZ/allJqE0AstPeJA3nMXBxCVWkSvX6tNZA6Y2hcpgG1hXnUgnxp
-            cMtSdengvVOT
-            =044i
+            hQIMA7uy4qQr71wiARAAwnO3b4OqVDBXXaWjWH+IQYjNU7NafTX9bgZxBbSCbtk1
+            9rSxn5SOFOBJU2ksniOhHwud/5pECjfU2evz2gHhBPQBUKHTETsqUawtHR2Axzv7
+            PD1JOtruWyxjSeXxUpucAqdyF5GdEvtYoXcmFbrxblvBmQKb/n2z4QbwEhOsOGLk
+            8Ry7uEaqTg/kB/kQzS5m+YkKluAgteG+nv1REA9NdIsNYWk/PYs9uRpNWTqqs6xg
+            wAPRLZ7KjvWtJYlF1TSvl2PnLTY61W/hb7q95tH0LIOQCkdYyzyyuGQ0dw8sOB6j
+            yiLBhtQd56vrFX6E6rgE7P5ay7oh18bB5v9GzEJWuZR9OvGyTMAkG6ioWHApSg/C
+            e4yaYi1At+NXu8BdaljAcF1aMXOa8M7+zIDagFYJPIOodhsHah8LZ6T6YhNOzcSw
+            PtnMdcpTe43jQm4ah3zMZgE0xzCnripF+JXqhHZQ8UaegB234PmkVeWaZsT6VfO7
+            XvM8E345t5F4tco9pnPBf7Ur6s2ULDc75CCGAdnnNX7j3lEGdTGDtFANW78Zxw69
+            cgWERBAlE0iDKef03KkLkV/4eSAWMPFXuqGZavihTKTdcl85wuN4dpF+X5KRGigd
+            HjpBYvXffxJT/KoW2bDqr2xgyfnOqSvLDVekDgVeuC+t1LSErF87VuQ2DM3vzpHS
+            XAHUqbhJW4G0du2GBJ5OWYQEC8CetjaBFFlB6PRXzvok+UQJgdejlrCjxr89ukag
+            m1zWsAOLqOtvECOYNFHufB8OUzqcQymqLKDii2UbjCkpDV6VtN2Pc+IPRWff
+            =SlEa
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

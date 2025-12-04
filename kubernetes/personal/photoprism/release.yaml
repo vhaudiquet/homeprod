@@ -12,7 +12,7 @@ spec:
         name: photoprism
         namespace: photoprism
       chart: photoprism
-      version: '8.9.0'
+      version: '8.11.0'
       interval: 1m
   valuesFrom:
     - kind: Secret

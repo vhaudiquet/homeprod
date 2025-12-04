@@ -47,7 +47,6 @@ updates:
       - "/kubernetes/code/gitea"
       - "/kubernetes/code/harbor"
       - "/kubernetes/home/home-assisant"
-      - "/kubernetes/home/zigbee2mqtt"
       - "/kubernetes/infrastructure/authentik"
       - "/kubernetes/personal/linkwarden"
       - "/kubernetes/personal/photoprism"
