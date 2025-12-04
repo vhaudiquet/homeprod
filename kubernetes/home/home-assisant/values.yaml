@@ -1,16 +1,42 @@
 persistence:
-  enabled: true
+    enabled: true
 ingress:
-  enabled: true
-  external: false
-  hosts:
-    - host: homeassistant-test.lan
-      paths:
-        - path: /
-          pathType: Prefix
+    enabled: true
+    external: false
+    hosts:
+        - host: homeassistant.lan
+          paths:
+            - path: /
+              pathType: Prefix
 configurations:
-  trusted_proxies:
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - 192.168.0.0/16
-    - 127.0.0.0/8
+    trusted_proxies:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+        - 127.0.0.0/8
+sops:
+    lastmodified: "2025-12-04T18:23:43Z"
+    mac: ENC[AES256_GCM,data:JSaTCBXqpiP0R3rIEa/EZaDPbBInY2a6UMhFD9Gcw/mJVq/wF72KsFRfJl2hZ3d1FtsQ6Z0l3GrbiV41348jxzWM4XnE0e0hywdc2Ryqw0B3GS0EoNk1IoPR8ieZtxWNtFvglR2gVWWUnN7caYf/acE04NnzIDxl0tPEFckS+Nc=,iv:C784uqYb7KGhn2wGWZnCA7rhGocJWP6mfBhjNLWbimE=,tag:A7JLOmSVJ+ZrNA36DJfRCw==,type:str]
+    pgp:
+        - created_at: "2025-12-04T18:23:43Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+J1e3KfHaAkFS+lYz9jKzPAffkiDVCeecEf31Lk9DJxFd
+            7agtTWvcXtIsiJwF4sv4NzxY3pQrNRKwiq8pd3iXWHSqflIaQ2M9+dUGHykkjA5W
+            R+y/wgM+K0MBaFMxQU/xC0lM7YFwypV1JBp4jmpNn3McGba2yZAoKo1uAQ9LMP4L
+            Fd5wqNUrLNfwbh5Ts1rBVAGwStVlkRUvdUVCXjngdWVmE5xB3IBypdrFX2oclkl8
+            0zSNJwknC4bi4FeKBxWC90HT0n8zSMybdZOltcl8J3YVCL6l0F9hw6Ub5j1ej7qN
+            Igyll2/T4FEOExdo9oRXbEjC6GSZZBD6NMlrgJqVVUWoqDm4WQlKc7JRYAjtRgbS
+            Us8qCD8CMb57E6AZHD+GRZDK48OeevM21YxRvpSQlQfyeGbMrxF05zzw5InHSMhw
+            VslHQRmUMQqEzTsSeFbNxTeqy1YGGDYlnBpEjl8TPIZXE+mjwHm9QJbKwQFUK4Rh
+            YuEZDlUONdaKQpNX9OS6kwiV493sSruC2yWNwYIlgERrkcjBggKYPiV7lDiFnl1W
+            RVcsqOGnsrrwFHT7m6/MTIzH0k4fDt6Vv/FCToaoadvLPYNZb7xoKMahzT1z3SP9
+            FMuGus2r8h6ShEZVyLAt6o+BuuYyzOrVo10k1yTKDqEDD662rbRvTrBZlOk1vUPS
+            XgEtw6w6fFkESJKetHiN6TxG2+WyJw5PILm2sjak5AcR3qWiux/ENPb8kE0BIB0S
+            1Z/YTHYNP2mtEegDsp1DoT9tOSTWfrllL+p3kccvizEB5hq9+oMEzPGBstjWRjg=
+            =5PDx
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

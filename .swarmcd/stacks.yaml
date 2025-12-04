@@ -10,11 +10,6 @@ esphome:
   branch: main
   compose_file: docker/home/esphome/docker-compose.yml
 
-home-assistant:
-  repo: homeprod
-  branch: main
-  compose_file: docker/home/home-assistant/docker-compose.yml
-
 matter-server:
   repo: homeprod
   branch: main

@@ -7,7 +7,6 @@ updates:
     directories:
       - "/docker/gitea-actions"
       - "/docker/home/esphome"
-      - "/docker/home/home-assistant"
       - "/docker/home/matter-server"
       - "/docker/home/mosquitto-mqtt"
       - "/docker/home/n8n"
@@ -47,6 +46,8 @@ updates:
     directories:
       - "/kubernetes/code/gitea"
       - "/kubernetes/code/harbor"
+      - "/kubernetes/home/home-assisant"
+      - "/kubernetes/home/zigbee2mqtt"
       - "/kubernetes/infrastructure/authentik"
       - "/kubernetes/personal/linkwarden"
       - "/kubernetes/personal/photoprism"
