@@ -31,28 +31,32 @@ mariadb:
     primary:
         persistence:
             enabled: true
+    image:
+        registry: docker.io
+        repository: bitnamilegacy/mariadb
+        tag: 12.0.2-debian-12-r0
 sops:
-    lastmodified: "2025-12-04T23:13:55Z"
-    mac: ENC[AES256_GCM,data:IHOkprHdv+aHw7pPFdJSQuxOwXoleySjBUtxjobMBxSj1o5oSn7Ppif1wqQ6P4AcK+t8EhqalI3npvZ+IuNV/PZW5jBpfStO90RgjPvhDVBwGqfuRK6Y5vpkWfTP52VQNnVsYqQvjpSjP85Zi95tzAY+VVoe6xpTFmYOcojuKDM=,iv:UWE5DbuwmSTVwOqYSRntPnXthLWaUhIW9AAfmkdxmVY=,tag:K35XE2/ZeFvXZTiPY0r9Tw==,type:str]
+    lastmodified: "2025-12-04T23:21:48Z"
+    mac: ENC[AES256_GCM,data:UbrmZVQ9Jcy7/+N9agnQI201d5kp8lIeJ3bBymKpU7ORyYouA+AyllVts3sqWFQhFnbK2Be1IkOY+F9iEvKrjJn6frtd7b1Qz1q8j1COdpQ+h/Ok11yCsaqkVfDr32to7zlf7fHW3YdcEEmYFt/CbbzMM4C4fbxHcgFOlyzrcDk=,iv:iYggVr703vYaZ/bPXZywYOeP6ePTxyGyoLI1jfsbSFE=,tag:Ic8e2mnZD69JAlwiQmeV6A==,type:str]
     pgp:
-        - created_at: "2025-12-04T23:13:55Z"
+        - created_at: "2025-12-04T23:21:48Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAwnO3b4OqVDBXXaWjWH+IQYjNU7NafTX9bgZxBbSCbtk1
-            9rSxn5SOFOBJU2ksniOhHwud/5pECjfU2evz2gHhBPQBUKHTETsqUawtHR2Axzv7
-            PD1JOtruWyxjSeXxUpucAqdyF5GdEvtYoXcmFbrxblvBmQKb/n2z4QbwEhOsOGLk
-            8Ry7uEaqTg/kB/kQzS5m+YkKluAgteG+nv1REA9NdIsNYWk/PYs9uRpNWTqqs6xg
-            wAPRLZ7KjvWtJYlF1TSvl2PnLTY61W/hb7q95tH0LIOQCkdYyzyyuGQ0dw8sOB6j
-            yiLBhtQd56vrFX6E6rgE7P5ay7oh18bB5v9GzEJWuZR9OvGyTMAkG6ioWHApSg/C
-            e4yaYi1At+NXu8BdaljAcF1aMXOa8M7+zIDagFYJPIOodhsHah8LZ6T6YhNOzcSw
-            PtnMdcpTe43jQm4ah3zMZgE0xzCnripF+JXqhHZQ8UaegB234PmkVeWaZsT6VfO7
-            XvM8E345t5F4tco9pnPBf7Ur6s2ULDc75CCGAdnnNX7j3lEGdTGDtFANW78Zxw69
-            cgWERBAlE0iDKef03KkLkV/4eSAWMPFXuqGZavihTKTdcl85wuN4dpF+X5KRGigd
-            HjpBYvXffxJT/KoW2bDqr2xgyfnOqSvLDVekDgVeuC+t1LSErF87VuQ2DM3vzpHS
-            XAHUqbhJW4G0du2GBJ5OWYQEC8CetjaBFFlB6PRXzvok+UQJgdejlrCjxr89ukag
-            m1zWsAOLqOtvECOYNFHufB8OUzqcQymqLKDii2UbjCkpDV6VtN2Pc+IPRWff
-            =SlEa
+            hQIMA7uy4qQr71wiAQ//XxIcDxmC0y3KzKw6OxM/9Z5HPcdJvfyXaQ7nOIqob4OH
+            1ST3R2R5liDI2XOE0Eb2cLs0LACAih0PycWfju8fLkDeB9ztenxKnCW1DFbUYmpw
+            DXrW/opbGXMLBdPcsoq6GPeWjlNypXepIXGWwgT/+gdxZPKsqxHglauCnVHub/Ki
+            inoFimxvkVaAefFTOazJvFfSfWI04KPSl0PgnwzWna/7rycFDYkidVKjBkmHAGad
+            BFwhXFWi4taKPdNH3/7WBYlOyB+fs7xNPENQP8Fj7/oqF8Vb9pYTpPIGvgXNC/pB
+            0DbtvprxAxKYGODHn5WJIjnUBkYVkq+B8q7ZsjxeFdUfNXU+89f24PSGDe0VKMFf
+            7mJ3cio0uhizslbwtUQvFOC5I7HEjWIFGoulQqDjXXE2ocGlsS8vvW1NYtJGpJx0
+            aYRIRdM5+CM2tSLbZVik3IGqEmnLKNhMtObxFt0UXeoUwzBFNMQLO8zw+Fxy9VEq
+            gzrmNYnnFfx5oiwg7OWmsq7NoXTkhB+VktCb3Bcl3JjJgqalquqmmodThFhU52Ac
+            yRhGhjrBcsXx12BCy6r3Hq6nn9PFjZsBRJvXw2WSsevBghOTWSuXRmaT05aMoiD7
+            y5ia09N4xKvms8/e4qhwpNV/X2Ee4rS3diQFNunxk5aZTPO5kpy704KthDFODnvS
+            XgGcE+XcinmUFJ1RasziSK6RoYMpSK+JaNgpJMyuaz1iQu9Wc9ptnXgEees5qH2g
+            2rA2AzfdcBhZIHWAak2LZuuC9i5O0YGP89idZOjuEaUyGdOHzgB+jQnJ97c4pPE=
+            =wfLM
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
