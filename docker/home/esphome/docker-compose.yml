@@ -1,6 +1,6 @@
 services:
   esphome:
-    image: ghcr.io/esphome/esphome:2025.11.2
+    image: ghcr.io/esphome/esphome:2025.11.3
     ports:
       - "6052"
     networks:
