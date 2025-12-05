@@ -58,7 +58,7 @@ resource "proxmox_virtual_environment_vm" "ai" {
   cpu {
     type = "host"
     cores = 20
-    sockets = 2
+    sockets = 1
     flags = []
   }
 

@@ -54,8 +54,8 @@ resource "proxmox_virtual_environment_vm" "docker-machine" {
 
   cpu {
     type = "host"
-    cores = 40
-    sockets = 2
+    cores = 20
+    sockets = 1
     flags = []
   }
 
