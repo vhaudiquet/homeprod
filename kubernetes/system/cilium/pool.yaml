@@ -4,4 +4,4 @@ metadata:
   name: "local-pool"
 spec:
   blocks:
-  - cidr: "10.1.2.187/32"
+  - cidr: "10.1.2.171/32"
