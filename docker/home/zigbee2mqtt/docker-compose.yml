@@ -2,7 +2,7 @@ services:
   zigbee2mqtt:
     container_name: zigbee2mqtt
     restart: unless-stopped
-    image: koenkk/zigbee2mqtt:2.7.0
+    image: koenkk/zigbee2mqtt:2.7.1
     networks:
       - default
       - proxy
