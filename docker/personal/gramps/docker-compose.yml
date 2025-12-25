@@ -30,8 +30,8 @@ services:
       - "traefik.http.routers.grampsweb.rule=Host(`gramps.lan`)"
     healthcheck:
       test: curl -f http://127.0.0.1:5000 || exit 1
-      interval: 30s
-      retries: 6
+      interval: 1m
+      retries: 10
 
   grampsweb_celery:
     container_name: grampsweb_celery
