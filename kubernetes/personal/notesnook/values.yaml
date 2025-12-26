@@ -1,0 +1,65 @@
+instance:
+    name: vhaudiquet-notesnook
+api:
+    secret: ENC[AES256_GCM,data:Awl8G231jX8RkJyhzoinH1blCueM0Do65VivZOc7Kq+4HPYqJiPXCTT98f3DOB4Z,iv:Ikjxar57yVVNVW74wduTga+GQwuinGX1h/Ig9aiuAMY=,tag:cm/NvVJr+bKGFHOzAOfrQQ==,type:str]
+    knownProxies: 10.0.0.0/8
+    disableSignups: true
+publicUrls:
+    app: https://app.notesnook.com
+    auth: https://auth.nook.vhaudiquet.fr
+    monograph: https://n.vhaudiquet.fr
+    attachments: http://localhost:9000
+smtp:
+    username: ENC[AES256_GCM,data:iB9Q5CXiS/ESIeKbMW9O+MmC8/0=,iv:6EbYqQhqLbrLb6U7QJOXHclSlGDyEQuww7HJjZQtaw0=,tag:mD/fmFCECQhTicPUIZDIOw==,type:str]
+    password: ENC[AES256_GCM,data:8RKHLENgL5y1JorgdMk=,iv:RSkVPaj6jfrjiTuk8R16I5vKqOtbdE2JE5PojsZren8=,tag:dTiR/4GSsw2iOS8XyQrdrA==,type:str]
+    host: mail.vhaudiquet.fr
+    port: 465
+ingress:
+    enabled: true
+    hosts:
+        identity:
+            - host: auth.nook.vhaudiquet.fr
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+        notesnook:
+            - host: nook.vhaudiquet.fr
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+        sse:
+            - host: sse.nook.vhaudiquet.fr
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+        monograph:
+            - host: n.vhaudiquet.fr
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+sops:
+    lastmodified: "2025-12-26T17:59:27Z"
+    mac: ENC[AES256_GCM,data:opl6kc4fv2r/GAtwWPA7m2oHe63zcIlA0jesYMCe+HW5k9Dko9IlRMGbCrFJB44FQyC7/eUZissy11a8PDUvmf6wM25ZV9FEIc2TPUQmsDj93egRReg2awoZ87MMrubVfWJU6k9eCfExKPkyeBQy+iLKTm21vL48TM1ChwOu65s=,iv:3lKvBZ9hdgQFeie37QTuO/hk+GZJ2DtuPBdQ2BSYJEA=,tag:pjCLaQxehwcr4vlrXwbgIA==,type:str]
+    pgp:
+        - created_at: "2025-12-26T17:59:27Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAArVfgUVyDksn4oA9XbK/VuClDkLs1v5DG35u5tM36tvHr
+            56QgkKvF0a6V56utnufToXqvwWhEOpe0UzszHz92vP+GaNWpYtuTvP3+nGV+wEcy
+            yMhctmGWO2Gn1MhFIS4w09GocrSuGLElEntBu4ETaMjrk2+FdqeULrF7KXlGhD/k
+            C1xqkRKRk/UqgaJmnKSmuQCJ7zzrzo9B+FYIiTo1i4IUCc94YkCgvR/m+fyofLLy
+            zsNeVwLpSW2JayG2DQSTCyAbEsg/J13BSq+tvusENiehj8nwKJnRrUf9JhrWbOBz
+            fDB+9Rg6shyl7hxtPAk+v4lKoGzoaXN9Vi+cyC2Cg6YOtn2vylW0UiB+76M+C1fc
+            FD6JpLVhEYoaMEjtcSPSC9byEUQ/LHlboigd6QHi8aOTC2A1wWZabLO/h7e2jpTm
+            0biPqxina+7tjl49Y6299RPiOTkqtbBMVjZtbWi4P5BYu6NFq+wH1pVKiWx7MUtZ
+            4i+GuyAcI07Alz8BOS8VjdB2ZyKwn7X5oApiKA+G5yHmOkeUtyMS1r1Y1CLH2eDG
+            lJzGEx5x2kCKkIOLyEADyrafQRRTcqN4OlWhPeJdL71Svlf+NHoXkunXLc8n9Kgi
+            tIpQduEE47tLwJDaUCK5+ZppIE4JIgGWNn/wXIQL2DwtTkoImF6Z5H9+GAj+o2rS
+            XAFU4ERMR3K8CwXOSpjB2fW+S8XWbaq2Nr+YgYte8v5Md93YngL+AQyMJVmHdrEv
+            LPgvuR7r89fFWN/i/a2jTfRjqxTtV5yh++id3+epjtNZCsaeflLzzv1cCdJA
+            =nZr3
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

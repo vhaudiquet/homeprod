@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: notesnook
+  namespace: notesnook
+spec:
+  interval: 1m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: notesnook
+        namespace: notesnook
+      chart: notesnook
+      version: '1.0.5'
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: notesnook-values

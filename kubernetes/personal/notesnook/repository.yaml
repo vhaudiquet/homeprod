@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: notesnook
+  namespace: notesnook
+spec:
+  interval: 1m
+  url: https://gitlab.ibaraki.app/api/v4/projects/130/packages/helm/stable
