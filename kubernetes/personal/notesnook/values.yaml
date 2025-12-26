@@ -1,17 +1,17 @@
 instance:
     name: vhaudiquet-notesnook
 api:
-    secret: ENC[AES256_GCM,data:nnovwmS8p9lYIUCUR82q2mRGurCPy9KmEx+1ROVyQQBJfrm3kYkrF6dOxd3DmcW6,iv:edfBSS2cElEUJ2hL0O/LU3JpHzaBUay/OvkEFhQIuwc=,tag:EbX72kEG44Dg1rHeUA/UEw==,type:str]
+    secret: ENC[AES256_GCM,data:C3mpoEG6y6IShpX1+o9eNn8NACaKy8s1xw5tY1/ncBzqaKrK3YiE7K0rl4d6Bq6q,iv:rGWxSmV98ef8Qx1jkVbQEKPkFmGEaCOXXFFZ4I1US7s=,tag:VBDOhPRTRRhFu5cU024Sqg==,type:str]
     knownProxies: 10.0.0.0/8
-    disableSignups: false
+    disableSignups: true
 publicUrls:
     app: https://app.notesnook.com
     auth: https://auth-nook.vhaudiquet.fr
     monograph: https://n.vhaudiquet.fr
     attachments: http://localhost:9000
 smtp:
-    username: ENC[AES256_GCM,data:l8HGXpqrQZ4SncVYvGvaLzCiswg=,iv:DhJVYmRL5hv9BsLE1WptPDNjQxBKHd7WnTt5Qx6+Vok=,tag:GVsqjRFF4/o0JUP3z+i3Jg==,type:str]
-    password: ENC[AES256_GCM,data:kijmdu9qeQ0BN6Y6JSU=,iv:4l70jUy+8mew5v6PukGf61BITFaoOO7IH2IiVm04wlY=,tag:N01BcWAQRIjMId1UbUWuVg==,type:str]
+    username: ENC[AES256_GCM,data:C4dTnVaJCwxqTdevLJ+a9eJOWPk=,iv:9iHoQzZjHjmOuaoOWdedPHuv06MqtXZXJhWGiTdzhwE=,tag:xDL+WInm/Ms/LuZi53JuHA==,type:str]
+    password: ENC[AES256_GCM,data:tIkKqwVBy94oqFJH0V8=,iv:cOKiwDhngz6mnZlD+XSfWFg1KZa+UCkhXKBgjK7IdnE=,tag:91d/aUlfeHbJqtRWPmTskQ==,type:str]
     host: mail.vhaudiquet.fr
     port: 465
 ingress:
@@ -38,27 +38,27 @@ ingress:
                 - path: /
                   pathType: ImplementationSpecific
 sops:
-    lastmodified: "2025-12-26T18:13:50Z"
-    mac: ENC[AES256_GCM,data:MXo+d1XtY+fqzP4SZq141DdZiBvLMtfzOxaMdskgCcGRna0oBju82HnUvvnGmXe+mVOPALNMY5AjlkloZp0ozqEwYlJftjORXRIZdjIC0BD0ZnybdnUsNYz2KDo8hnY6BxTcwhEyoZuLOZpt7HuPrlpWEBlt7A3oRKh16wgilr0=,iv:bWEIO6u4LvoZ9Xp4nS9x2VOsgxuDGaMrWHT8ZTdsaus=,tag:uUtUuuZH+7c/3rezHB6I1w==,type:str]
+    lastmodified: "2025-12-26T18:18:01Z"
+    mac: ENC[AES256_GCM,data:Xy9P+Ifuz18apN7GoYdehc2bzTjUKMJAT7f8HZNTnvV/wkZEt4EUGJL2WGex12nYQyj6Ut+I9pwFwwX5m0oLO82s1zS2DK3BiaxFa6LFJ2VDUthKt8h9ZTNeT+2P5S5cOvEMvS6tljX8y8/HCUwVMCXGMNCIl8RtWo1Q9CgLjrw=,iv:6MdJwJh3xVrXX6sKCQMAEIpdOD8E0V6+305xcaQnnMI=,tag:5JE9M09u6ukPoQBzT9g0sA==,type:str]
     pgp:
-        - created_at: "2025-12-26T18:13:50Z"
+        - created_at: "2025-12-26T18:18:01Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/8CbBNYGwyF5O5oYhw9VJuP3StfNxPahtN4x1LtoMt2AKt
-            pDwH/xdVvs2vXFVIX+PkF3AcF+6by8d0G3ljlFBx2y2m3NLc5sQ/PiXh9bt4BwOV
-            D4bnrTs1uE8cwE/LxOkQ8SPHgxQk9twAv2496xQrTNij5r6m67krsiEvkJEViX6l
-            06gC//Uu9iJNp9Eh0Y9ozm3j0x7CJl26Jo04MHi8EANNfuww06bwmOnFi0tvBbKy
-            gDwpK+IdT5M9ExcnAq1Yu8W/CxWmfANpxRLORouQVRahpa5658fhwd7Hz30WM/fI
-            Uh/5eGB/dnp/fN9IbWMA38tXOCibUkypnI2gYo886s0CPvEcBmthui5Z1Xv0wa9x
-            eltQ4Qb1olNsd5g3oRpgL0acJpjKMNYzhu9ER6hoDZRkkrLA8/jXbPdKaGGIda/F
-            77TxyQhkSPQtGn1v33K88Icg1yPmmKhNKP28B1wivOHrcomXTmc9D/vY6Nir3hv1
-            oah/aVO9sX3O8THR2Cb7zT6Xov67J/ccQgOUVxQi4XjfYW9ax4QeejiUVNJRLHDw
-            pFF8hBv2W2wmMwgvwIuXdFVPOPmpKlhcUukxTO0m4KoLvTT1aMW4aMscjjG/Whld
-            KrcddYqwz4l+Cn/IZb3Jq3epn9IxDtGDVHE3mIifzkt+13p9n3Sn7aSXnqDAl/7S
-            XgFLs/phSm181uTSh72QCZYBpD98yKJyqG1GOocoORX2mBgoENK557FjsGe38sLA
-            QDsjt3d50iqF2SoBniSoYVwTdRkQ0pCbikhL77A2Q/gQjNZ/XsoaOMr4P21qtJ4=
-            =ZzmF
+            hQIMA7uy4qQr71wiAQ/+KZ6WDFaDTZVt6n+pu1hwxhNC9ShCSSLkiHlZjtX9DW8O
+            eizwH6GAG8LQeKYr61aXXVwxsqDdM9gx/i0ynDO4fflqEQniEjlFzBeVhsqOf3CX
+            rL5WImv0LSe9KjFNAZvfBhtUVENfN/Tu6RGagNb98ChOoH10MvmrzQ5t754AKPVM
+            hB2f5kmOn0evFQQftYyXkQqzLvhlqdGGfBnCutXDoLz67RQwB37npzXx/c+GtlOX
+            Msmp4wiYqlX9v97vjLHUX/ZeBtzm38DzUw+OTcnDPbsdZpeUMqYnpkIl8GIgSd2D
+            2jZUJU4wYyOCYCnfw0+zXu3O5/1bzZ9fdc5FH6A+OlJUFbMLPXx7n9uhVOztxQ1g
+            5ajZKkszSWk58IvaTueDL2QjxhJLop1y4JITgzOhiSPserXrizGn765bVEAtY8kR
+            zgULAG5f41zeoJzzdMyuCFUlIJec4DFigbe7fRul4sJEjeeHtDdyINWuUXCnS4ZX
+            e8/ZZ0+z98IMm7Lstb75rUezTUdlIxfJ+EtAX3L1Bdb4yJZ3i3E1VTQKWxaZWrcc
+            zF5nOIZsHgD22Um8fA4mDlhX5/ygiKMHxZe2pdwps4F7H0rRzVLlM5n4g+71WeMe
+            0eT4atgKPICzMNkyRJ/KWrtk4c6Kq7sSqpQKlcFsRLMga1ZBt0LQwFW+G7PU30vS
+            XAFljxtoFrbdc8Yl37cQh9XCBqXMqUXSNd9t1hsgv+Vsrmv6ntPVStep8Fod/n16
+            nCACAKTOe//z0OmwUXxdUCIqT/N+XEA8tOrHS+HsbB5MCfnexLDul/yUfviZ
+            =yK0X
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
