@@ -1,7 +1,7 @@
 services:
   mongo:
     hostname: mongo
-    image: mongo:8.0.1
+    image: mongo:8.2.3
     restart: always
     user: 2000:2000
     volumes:
