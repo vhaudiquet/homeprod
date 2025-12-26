@@ -1,24 +1,24 @@
 instance:
     name: vhaudiquet-notesnook
 api:
-    secret: ENC[AES256_GCM,data:WJ4GOecFLFCdwFd15nCi6uLXf7NcVpo62TaZQd/lh4IKOYPGJOVkY0cf9b6zI1oH,iv:GTZ1Z2BSSfgJtek6m1xuuPF00mRvGtWnVzQRMg2IMNU=,tag:ClcuiFKOxThuzP0alIxhKw==,type:str]
+    secret: ENC[AES256_GCM,data:nnovwmS8p9lYIUCUR82q2mRGurCPy9KmEx+1ROVyQQBJfrm3kYkrF6dOxd3DmcW6,iv:edfBSS2cElEUJ2hL0O/LU3JpHzaBUay/OvkEFhQIuwc=,tag:EbX72kEG44Dg1rHeUA/UEw==,type:str]
     knownProxies: 10.0.0.0/8
     disableSignups: false
 publicUrls:
     app: https://app.notesnook.com
-    auth: https://auth.nook.vhaudiquet.fr
+    auth: https://auth-nook.vhaudiquet.fr
     monograph: https://n.vhaudiquet.fr
     attachments: http://localhost:9000
 smtp:
-    username: ENC[AES256_GCM,data:6EDeqm2nmHHTxpn/LY/gCy6AqJo=,iv:QDOC5b4oiCC9E88fO47sFdaQgALYAdfBvnN3RO3q0qU=,tag:FFYMXC7X2xsdbMuXghWB6A==,type:str]
-    password: ENC[AES256_GCM,data:4HGG1DXfaa3EC/o/3v0=,iv:nN44eQCG4L7dYGYXlD8k1rAII96b0FwDdUhnAroqJFs=,tag:hVnw7hGhin15w048dNVJyw==,type:str]
+    username: ENC[AES256_GCM,data:l8HGXpqrQZ4SncVYvGvaLzCiswg=,iv:DhJVYmRL5hv9BsLE1WptPDNjQxBKHd7WnTt5Qx6+Vok=,tag:GVsqjRFF4/o0JUP3z+i3Jg==,type:str]
+    password: ENC[AES256_GCM,data:kijmdu9qeQ0BN6Y6JSU=,iv:4l70jUy+8mew5v6PukGf61BITFaoOO7IH2IiVm04wlY=,tag:N01BcWAQRIjMId1UbUWuVg==,type:str]
     host: mail.vhaudiquet.fr
     port: 465
 ingress:
     enabled: true
     hosts:
         identity:
-            - host: auth.nook.vhaudiquet.fr
+            - host: auth-nook.vhaudiquet.fr
               paths:
                 - path: /
                   pathType: ImplementationSpecific
@@ -28,7 +28,7 @@ ingress:
                 - path: /
                   pathType: ImplementationSpecific
         sse:
-            - host: sse.nook.vhaudiquet.fr
+            - host: sse-nook.vhaudiquet.fr
               paths:
                 - path: /
                   pathType: ImplementationSpecific
@@ -38,27 +38,27 @@ ingress:
                 - path: /
                   pathType: ImplementationSpecific
 sops:
-    lastmodified: "2025-12-26T18:04:47Z"
-    mac: ENC[AES256_GCM,data:REGxuHSC2g7V/tyuX4QKcbi4iKH3Gv8I2RaZBI5l+kzYiDsa3qGHAKMSxgxL0gylb09i6GaGbkwR5uBd8IKNZlPI/UwDM5756n/XMHjyBtq3mwaR7bM4+wo8afWRmGmB3u/vssQxzbLReNjDd8GZWTlwtxAmlZi1MiMXh0IXkK0=,iv:pnAExoGus9dDXwyPRyIuPKQdCKXtXzqFyo6LRrev+HQ=,tag:4CCcINBiNWjbjhFJsiDkDg==,type:str]
+    lastmodified: "2025-12-26T18:13:50Z"
+    mac: ENC[AES256_GCM,data:MXo+d1XtY+fqzP4SZq141DdZiBvLMtfzOxaMdskgCcGRna0oBju82HnUvvnGmXe+mVOPALNMY5AjlkloZp0ozqEwYlJftjORXRIZdjIC0BD0ZnybdnUsNYz2KDo8hnY6BxTcwhEyoZuLOZpt7HuPrlpWEBlt7A3oRKh16wgilr0=,iv:bWEIO6u4LvoZ9Xp4nS9x2VOsgxuDGaMrWHT8ZTdsaus=,tag:uUtUuuZH+7c/3rezHB6I1w==,type:str]
     pgp:
-        - created_at: "2025-12-26T18:04:47Z"
+        - created_at: "2025-12-26T18:13:50Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//a5wAlz5Hg1tTMDvgmXWJdAnUdlw0yuxkrkfngywnfhHC
-            xviUhfCGsXnYUUnL27emqwdDxQBr3ihGuYyqkldiyUgAoWXqcfcRmT2eccZw+LMs
-            jrHddI+Z4NdaxB1myp7b35M7ZyMDWDypmp/v0nr8AtXhkAXuKrDkRwz+3rCiCetU
-            l1G7ZLhBKwNwKm7Q/idiOySQqXqGwn0KQjwauFn2BpLYGWDnWXzg2ZlYr2T8xmGk
-            PpxrG/kdpfmYU9/SRo58bPqCCA64pDo0ACL3oBJRpTb6Yxl+YHRdp0AjJ2UNarvR
-            eXMWY2T0PfaG2HZadeypHLl/7Uin0NJVXMxqJS5OWGg7Xb62QMqd+56z7jqZ9a1u
-            vkZYNowiG7Tp6R7eb7dJkALJG0uBkSiU0RHKn8uWG4/ExNeGVtWiuqEP5oQUnKlt
-            hpLQESwJCoF5IiWRbRMpFx52BrbhgPLmHIV0WjX47J8BhrUA+lCJW2dm6f5Gxjpe
-            Zxw0u3Oh/DYdo9afRWV5gVt5s0aEoKVSLDkGYKQH47EJPLHsnKapF/1b//4nH7xJ
-            ZyaegA00a8FfqaHb0997cd24lk3GZERp/4Q5sXht4JZH5c1HqKf+OFKCYXa1BDyX
-            6xBWkFui7uRxbtv/JUAMNsdDPx6s8lbzGjBrdYIculfiAWpY+045usOZSO9HW1nS
-            XgG54MqABbAnmhQQ6xnEYW1wwziX8hi7bYruDC36eV+8V2EPJ85Z6ERa7tr2zvZf
-            LZnjzaFshzBB/ySKw7iKERMBvTqYBQJw+9HM/dBrn3C6P2Jh2psIPoZrYZz5+rc=
-            =ZsUw
+            hQIMA7uy4qQr71wiAQ/8CbBNYGwyF5O5oYhw9VJuP3StfNxPahtN4x1LtoMt2AKt
+            pDwH/xdVvs2vXFVIX+PkF3AcF+6by8d0G3ljlFBx2y2m3NLc5sQ/PiXh9bt4BwOV
+            D4bnrTs1uE8cwE/LxOkQ8SPHgxQk9twAv2496xQrTNij5r6m67krsiEvkJEViX6l
+            06gC//Uu9iJNp9Eh0Y9ozm3j0x7CJl26Jo04MHi8EANNfuww06bwmOnFi0tvBbKy
+            gDwpK+IdT5M9ExcnAq1Yu8W/CxWmfANpxRLORouQVRahpa5658fhwd7Hz30WM/fI
+            Uh/5eGB/dnp/fN9IbWMA38tXOCibUkypnI2gYo886s0CPvEcBmthui5Z1Xv0wa9x
+            eltQ4Qb1olNsd5g3oRpgL0acJpjKMNYzhu9ER6hoDZRkkrLA8/jXbPdKaGGIda/F
+            77TxyQhkSPQtGn1v33K88Icg1yPmmKhNKP28B1wivOHrcomXTmc9D/vY6Nir3hv1
+            oah/aVO9sX3O8THR2Cb7zT6Xov67J/ccQgOUVxQi4XjfYW9ax4QeejiUVNJRLHDw
+            pFF8hBv2W2wmMwgvwIuXdFVPOPmpKlhcUukxTO0m4KoLvTT1aMW4aMscjjG/Whld
+            KrcddYqwz4l+Cn/IZb3Jq3epn9IxDtGDVHE3mIifzkt+13p9n3Sn7aSXnqDAl/7S
+            XgFLs/phSm181uTSh72QCZYBpD98yKJyqG1GOocoORX2mBgoENK557FjsGe38sLA
+            QDsjt3d50iqF2SoBniSoYVwTdRkQ0pCbikhL77A2Q/gQjNZ/XsoaOMr4P21qtJ4=
+            =ZzmF
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
