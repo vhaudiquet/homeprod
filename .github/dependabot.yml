@@ -36,7 +36,6 @@ updates:
       - "/docker/production/semeryfr"
       - "/docker/production/vhaudiquetfr"
       - "/docker/tools/excalidraw"
-      - "/docker/tools/notesnook"
       - "/docker/tools/obsidian-livesync"
       - "/docker/tools/stirling-pdf"
   - package-ecosystem: "helm"

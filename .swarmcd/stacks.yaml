@@ -163,13 +163,6 @@ excalidraw:
   branch: main
   compose_file: docker/tools/excalidraw/docker-compose.yml
 
-notesnook:
-  repo: homeprod
-  branch: main
-  compose_file: docker/tools/notesnook/docker-compose.yml
-  sops_files:
-    - docker/tools/notesnook/.env
-
 obsidian-livesync:
   repo: homeprod
   branch: main
