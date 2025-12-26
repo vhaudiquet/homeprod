@@ -1,7 +1,7 @@
 services:
   grampsweb:
     container_name: grampsweb
-    image: ghcr.io/gramps-project/grampsweb:25.11.2
+    image: ghcr.io/gramps-project/grampsweb:25.12.0
     restart: always
     networks:
       - default
@@ -30,12 +30,12 @@ services:
       - "traefik.http.routers.grampsweb.rule=Host(`gramps.lan`)"
     healthcheck:
       test: curl -f http://127.0.0.1:5000 || exit 1
-      interval: 30s
-      retries: 6
+      interval: 1m
+      retries: 10
 
   grampsweb_celery:
     container_name: grampsweb_celery
-    image: ghcr.io/gramps-project/grampsweb:25.11.2
+    image: ghcr.io/gramps-project/grampsweb:25.12.0
     restart: always
     environment:
       - GRAMPSWEB_TREE="Gramps Web"  # will create a new tree if not exists
