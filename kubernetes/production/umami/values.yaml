@@ -1,0 +1,33 @@
+ingress:
+    enabled: true
+    hosts:
+        - host: umami.lan
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+sops:
+    lastmodified: "2025-12-29T14:08:28Z"
+    mac: ENC[AES256_GCM,data:efRSNqXGpsn9fJqX5exXiq3HRM4BDyEGogVpiZTVBp3P+QWh5QZSNtE2DMTXIkOFSG52lEKUmKlRhBjO2RnwqaFWeYvuNnpJiIPwZXW0bq7kT5y48C+tuSznj2Shrk1MegqklK4ccFc/zQG56gANOcPZ7/vz6tW2jLD86qFRVmo=,iv:djmPGeibwyEF17F4izA7sRIb5zLzTDkokQzu8VKbqnE=,tag:V/hxBPmMnrgOx+zYiMjiSw==,type:str]
+    pgp:
+        - created_at: "2025-12-29T14:08:28Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+PhSbkqtutVp8cmBinvGyVxJTQVGeziuzgRRc67SsfZsh
+            TTbQ5SM3hNgK4lAKpdmdTaNk7pbtj8eTxCUe7F4kR4Rx0ReEI8o9B9v2KIe5SILW
+            n2fz0kEKRjKZW7uDojXNzSvQLEBV4RKejkAOyWalq0Wu1vG+wA2+Y5sN5OIK1eBT
+            z+F5nStfT7QPV5Jmb/lvZwTvTGDnvdFfwLBMraCrH3mvrnAHI4tRfz9UvbNQN/ip
+            KTMUdL8P2Ry3lHx99cDibVHs2e/BMVARVng4Lozc3KEBuF3/J2eURiGgQQw18dBe
+            tdMiaB1P2hlT0mtH9Z0IWgm3JDsduV3GgctE4UXtEk8b8SMrG5DRpmviWQ1IYJnR
+            EMOigatT/B2tr+5je02+F34KYl56WAZPZXrB4RZkxqtelhvo/GBxF/FdR54iDKvU
+            iPhXTx5Tkflk2NXTuAFRPSreAYSh4fjsI5ozkCmb5g1GX9FPbw5Sdz7wnD0z/nSn
+            obfkb5hfRdeUcXHQolwI5/5mhhpUH51cTF4pKExzgX5b6fHUgCo631/lFbI5fv1X
+            VmZ6sGi/pCv03fJ61TAg2xxwblJBVmoAF/+LYRBRqmcesHyiNGs/ko+GStR1DeBh
+            LVDoaTJAngEOrXIOu9zGonN6h9j09M5B7NWjs9+H1XkF6fEjfucrKCnvkRbMl0zS
+            XgFV4z7lrG/XI86xBUWULNPKkI/bD1bgQwHHkSslDTyfXgq5q5hlGqstJSC+Ga6l
+            MZkNV1Al0xlIGgveEamfnNN9jivgsISWIhts4GyYWTEypPJk2x1crLm5rqOFp2w=
+            =jgoW
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
