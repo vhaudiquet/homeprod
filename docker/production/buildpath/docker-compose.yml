@@ -1,12 +1,11 @@
 services:
   mongo:
     hostname: mongo
-    image: mongo:8.2.3
+    image: mongo:7.0.12
     restart: always
-    user: 2000:2000
     volumes:
-      - mongo_data:/data/db:Z
-      - mongo_data:/data/configdb:Z
+      - mongo_data:/data/db
+      - mongo_data:/data/configdb
     env_file: .env
 
   patch_detector:
