@@ -1,32 +1,32 @@
 ingress:
     enabled: true
     hosts:
-        - host: umami.lan
+        - host: umami.vhaudiquet.fr
           paths:
             - path: /
               pathType: ImplementationSpecific
 sops:
-    lastmodified: "2025-12-29T14:08:28Z"
-    mac: ENC[AES256_GCM,data:efRSNqXGpsn9fJqX5exXiq3HRM4BDyEGogVpiZTVBp3P+QWh5QZSNtE2DMTXIkOFSG52lEKUmKlRhBjO2RnwqaFWeYvuNnpJiIPwZXW0bq7kT5y48C+tuSznj2Shrk1MegqklK4ccFc/zQG56gANOcPZ7/vz6tW2jLD86qFRVmo=,iv:djmPGeibwyEF17F4izA7sRIb5zLzTDkokQzu8VKbqnE=,tag:V/hxBPmMnrgOx+zYiMjiSw==,type:str]
+    lastmodified: "2025-12-29T18:15:28Z"
+    mac: ENC[AES256_GCM,data:npCm/Cwhn5wCsf5qIu2rcwVP+OFe8Ph1qRHQriVANMTC9dioFPuS5IMU1RRnJPNt9y0nE5hSscg5LrfGBB5qCPUbqj3Ca9/Iv3raZLYR6SUcAaitFlxhdcFSEXOhLa+PW6yW5RZjjD9uD0IEuOje3+oa+05kIm3HqdL5Qszarns=,iv:LlywSpl9l1iEa9f1KatvLJSGU/jZWvUbK1HI9uRpZT4=,tag:I3L6JD3GeLNlrR8e5Gz3JA==,type:str]
     pgp:
-        - created_at: "2025-12-29T14:08:28Z"
+        - created_at: "2025-12-29T18:15:28Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+PhSbkqtutVp8cmBinvGyVxJTQVGeziuzgRRc67SsfZsh
-            TTbQ5SM3hNgK4lAKpdmdTaNk7pbtj8eTxCUe7F4kR4Rx0ReEI8o9B9v2KIe5SILW
-            n2fz0kEKRjKZW7uDojXNzSvQLEBV4RKejkAOyWalq0Wu1vG+wA2+Y5sN5OIK1eBT
-            z+F5nStfT7QPV5Jmb/lvZwTvTGDnvdFfwLBMraCrH3mvrnAHI4tRfz9UvbNQN/ip
-            KTMUdL8P2Ry3lHx99cDibVHs2e/BMVARVng4Lozc3KEBuF3/J2eURiGgQQw18dBe
-            tdMiaB1P2hlT0mtH9Z0IWgm3JDsduV3GgctE4UXtEk8b8SMrG5DRpmviWQ1IYJnR
-            EMOigatT/B2tr+5je02+F34KYl56WAZPZXrB4RZkxqtelhvo/GBxF/FdR54iDKvU
-            iPhXTx5Tkflk2NXTuAFRPSreAYSh4fjsI5ozkCmb5g1GX9FPbw5Sdz7wnD0z/nSn
-            obfkb5hfRdeUcXHQolwI5/5mhhpUH51cTF4pKExzgX5b6fHUgCo631/lFbI5fv1X
-            VmZ6sGi/pCv03fJ61TAg2xxwblJBVmoAF/+LYRBRqmcesHyiNGs/ko+GStR1DeBh
-            LVDoaTJAngEOrXIOu9zGonN6h9j09M5B7NWjs9+H1XkF6fEjfucrKCnvkRbMl0zS
-            XgFV4z7lrG/XI86xBUWULNPKkI/bD1bgQwHHkSslDTyfXgq5q5hlGqstJSC+Ga6l
-            MZkNV1Al0xlIGgveEamfnNN9jivgsISWIhts4GyYWTEypPJk2x1crLm5rqOFp2w=
-            =jgoW
+            hQIMA7uy4qQr71wiAQ//S5Ormwo6DS8bywMVa3JJLuBbkD1aIvuxItPHzdJFte24
+            1b3xRi/byR3i5pgOg55/VPNfscxZranA0GGayYALAepTpdKwYHkrfeZF4RNZHlwe
+            C/7eQoljncOyGUw4txEcD0gfMkQ9aNYYnSs0GwWYylpc/dxaogzwsmsZOGNVK0Rc
+            oeOFonEABIFs/dW+pGTAyUnexJPZO9cWQyt22dEDzRRiifPOJGcSE9+2RICS5p4A
+            75riaa9jC/ANrDi3d/fTYFffAStggChNUtDQMzSKP/itpqK4rs+xWRcsF/U4LLZM
+            xgDPHzJsw4apZiDT+p4dH43DWmEATPcUH/UftG420cHOJdeU7rMuabVbxRXJeXA2
+            1idQiODRW4pEUNEqPMTtjrmxl+SVvCx2TlJ31idiJL9rM0DXfzEF0dacnTjV4LuW
+            2oo9CiU5n+Vh6PRKPYkBXxc0GF6Vcs9/SZj47X8RQcxxqP9BoEZs4JclIS6OGiY7
+            K8dw/xDmpHhLgQ1JCHEWAVuKDNH+KcnMm0mzmCHetI5yMXDVQpxuTkquhUptV3VA
+            XL5+girkZ5W1XMuQiKYcKzS/r3UOHieKBRLw+MhuN+MRLOLr9FRQ+YbEGQ5Mi57R
+            Qcp+nycwU+59rFRjpJaKauRDNZx3P9GnpTJBL9L/4/uibYtyyWEmMNWQcDtyhPnS
+            XAG3SEsYE0547TKm/fP7q9rnAOfKwV4NwBBzGblAUJa/HIFjsT7uGicRdTexrvkK
+            pbIqbyBn0qr8Y1ipaqEimfyc6OT5JDT8239SYnOwG4QPz4DV5vibjG24kykf
+            =GDKV
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

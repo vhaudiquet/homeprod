@@ -1,7 +1,7 @@
 services:
   vhaudiquetfr:
     container_name: vhaudiquetfr
-    image: git.vhaudiquet.fr/vhaudiquet/vhaudiquet.fr:9b807bcb7365b7c20dc5206175c858409bd86c96
+    image: git.vhaudiquet.fr/vhaudiquet/vhaudiquet.fr:1aa8d9c7fba12aecad1505e0b61052fd878dae7a
     networks:
       - default
       - proxy
