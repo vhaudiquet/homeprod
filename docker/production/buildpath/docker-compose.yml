@@ -1,7 +1,7 @@
 services:
   mongo:
     hostname: mongo
-    image: mongo:7.0.12
+    image: mongo:8.2.3
     restart: always
     volumes:
       - mongo_data:/data/db
@@ -48,11 +48,6 @@ services:
 
 volumes:
   mongo_data:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/app/buildpath/data/_data'
 
 networks:
   proxy:
