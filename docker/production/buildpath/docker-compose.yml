@@ -3,9 +3,10 @@ services:
     hostname: mongo
     image: mongo:8.2.3
     restart: always
+    user: root:root
     volumes:
-      - mongo_data:/data/db
-      - mongo_data:/data/configdb
+      - bp_mongo_data:/data/db:Z
+      - bp_mongo_config:/data/configdb:Z
     env_file: .env
 
   patch_detector:
@@ -47,7 +48,8 @@ services:
     env_file: .env
 
 volumes:
-  mongo_data:
+  bp_mongo_data:
+  bp_mongo_config:
 
 networks:
   proxy:
