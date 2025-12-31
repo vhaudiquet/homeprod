@@ -5,8 +5,8 @@ services:
     restart: always
     user: root:root
     volumes:
-      - bp_mongo_data:/data/db:Z
-      - bp_mongo_config:/data/configdb:Z
+      - bpmongo_data:/data/db:Z
+      - bpmongo_config:/data/configdb:Z
     env_file: .env
 
   patch_detector:
@@ -48,8 +48,8 @@ services:
     env_file: .env
 
 volumes:
-  bp_mongo_data:
-  bp_mongo_config:
+  bpmongo_data:
+  bpmongo_config:
 
 networks:
   proxy:
