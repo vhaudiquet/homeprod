@@ -4,6 +4,7 @@ services:
     environment:
       - TZ=Europe/Paris
       - N8N_SECURE_COOKIE=false
+      - NODES_EXCLUDE="[]"
     ports:
       - "5678"
     networks:
