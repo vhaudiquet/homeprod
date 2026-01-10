@@ -24,6 +24,7 @@ resource "proxmox_virtual_environment_file" "docker-machine-cloud-config" {
       - qemu-guest-agent
       - nfs-common
     runcmd:
+      - systemctl mask tmp.mount
       - systemctl enable --now qemu-guest-agent
       - install -m 0755 -d /etc/apt/keyrings
       - curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
