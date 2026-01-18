@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: dashy
+  namespace: dashy
+spec:
+  interval: 1m
+  url: https://ivanwongtf.github.io/nas-helm-charts/

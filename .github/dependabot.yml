@@ -46,6 +46,7 @@ updates:
       - "/kubernetes/code/gitea"
       - "/kubernetes/code/harbor"
       - "/kubernetes/home/home-assisant"
+      - "/kubernetes/home/zigbee2mqtt"
       - "/kubernetes/infrastructure/authentik"
       - "/kubernetes/personal/linkwarden"
       - "/kubernetes/personal/notesnook"
@@ -54,4 +55,5 @@ updates:
       - "/kubernetes/system/csi-driver-nfs"
       - "/kubernetes/system/external-dns"
       - "/kubernetes/system/traefik"
+      - "/kubernetes/tools/dashy"
       - "/kubernetes/tools/glance"
