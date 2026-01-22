@@ -5,7 +5,6 @@ updates:
     schedule:
       interval: weekly
     directories:
-      - "/docker/gitea-actions"
       - "/docker/home/esphome"
       - "/docker/home/matter-server"
       - "/docker/home/mosquitto-mqtt"
@@ -46,7 +45,6 @@ updates:
       - "/kubernetes/code/gitea"
       - "/kubernetes/code/harbor"
       - "/kubernetes/home/home-assisant"
-      - "/kubernetes/home/zigbee2mqtt"
       - "/kubernetes/infrastructure/authentik"
       - "/kubernetes/personal/linkwarden"
       - "/kubernetes/personal/notesnook"
