@@ -1,0 +1,11 @@
+ingress:
+  main:
+    enabled: true
+    hosts:
+        - host: dashy.lan
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+persistence:
+  data:
+    enabled: true
