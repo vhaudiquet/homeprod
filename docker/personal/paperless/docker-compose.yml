@@ -16,7 +16,7 @@ services:
       POSTGRES_DB: paperless
 
   paperless-webserver:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.4
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.5
     restart: unless-stopped
     networks:
       - default
