@@ -1,6 +1,6 @@
 services:
   n8n:
-    image: docker.n8n.io/n8nio/n8n:2.4.5
+    image: docker.n8n.io/n8nio/n8n:2.6.3
     environment:
       - TZ=Europe/Paris
       - N8N_SECURE_COOKIE=false
