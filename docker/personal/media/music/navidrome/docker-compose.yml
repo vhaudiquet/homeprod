@@ -1,6 +1,6 @@
 services:
   navidrome:
-    image: deluan/navidrome:0.59.0
+    image: deluan/navidrome:0.60.3
     user: 1000:1000 # should be owner of volumes
     ports:
       - "4533"
