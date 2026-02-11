@@ -9,7 +9,7 @@ services:
 
   web_recipes:
     restart: always
-    image: vabene1111/recipes:2.3.6
+    image: vabene1111/recipes:2.5.0
     networks:
       - default
       - proxy
