@@ -34,8 +34,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.4gaBoards.rule=Host(`gjam.vhaudiquet.fr`)"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
 volumes:
   user-avatars:
