@@ -151,6 +151,13 @@ vhaudiquetfr:
   branch: main
   compose_file: docker/production/vhaudiquetfr/docker-compose.yml
 
+4gaboards:
+  repo: homeprod
+  branch: main
+  compose_file: docker/tools/4gaboards/docker-compose.yml
+  sops_files:
+    - docker/tools/4gaboards/.env
+
 excalidraw:
   repo: homeprod
   branch: main
