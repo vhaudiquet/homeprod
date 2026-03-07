@@ -20,6 +20,7 @@ services:
     restart: always
     networks:
       - boards-network
+      - proxy
     volumes:
       - user-avatars:/app/public/user-avatars
       - project-background-images:/app/public/project-background-images
