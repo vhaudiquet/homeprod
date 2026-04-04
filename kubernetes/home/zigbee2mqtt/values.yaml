@@ -1,0 +1,59 @@
+ingress:
+    enabled: true
+    hosts:
+        - host: z2m.lan
+          paths:
+            - path: /
+              pathType: Prefix
+zigbee2mqtt:
+    homeassistant:
+        enabled: true
+        discovery_topic: homeassistant
+        status_topic: hass/status
+        legacy_entity_attributes: true
+        legacy_triggers: false
+    permit_join: false
+    blocklist: []
+    availability:
+        active:
+            # -- Time after which an active device will be marked as offline in
+            # minutes (default = 10 minutes)
+            timeout: 10
+        passive:
+            # -- Time after which a passive device will be marked as offline in
+            # minutes (default = 1500 minutes aka 25 hours)
+            timeout: 1500
+    timezone: Europe/Paris
+    external_converters: []
+    mqtt:
+        server: mqtt://localhost:1883
+    serial:
+        port: tcp://10.1.1.159:6638
+        baudrate: 115200
+        rtscts: false
+sops:
+    lastmodified: "2026-04-04T22:10:41Z"
+    mac: ENC[AES256_GCM,data:fc+gtHrUtZzsLCZc7olJZ9mPfm82wMu42Pr+oVAkqxGT+0ND9cAA3JmYXcU+Afl789wYKLSA6i/BQoadDHi7nPpo6zb72y27c3kSG6W1boqVmMBUxxJJfs5L8NhMVKynLcX+XD9s/PiH2NnKKk6aTft7MhwrUC3wQfgJcKlsjUQ=,iv:/viUmMqfxk9fMr7C+lGBfR11YRd6NASn5kvduXuzYXs=,tag:Ze39N2f2w8xxJ5a5ZmUYoA==,type:str]
+    pgp:
+        - created_at: "2026-04-04T22:10:41Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//adkILNh2VxjJD4rs/OfwRek5aXFxmUc8uG7Ir587k/Ah
+            bplaXzXgke7r1Wv2kH/7l2nvccJeo26icBOwKDVOnwWLX7rgTIacgVxJXotCxFtl
+            iP54x3VehrOR3yJ/sm7pV0P/2G2a85XCPbTlk5rNG/t0V4ChFH0OKiQkOB8/Op6H
+            UhY4xH8lJUINBeAdgf82D9Fjmp5Zir7yFWkOTQ6VDqZS7B9zRMdGkSH8j60wfmvz
+            ugosTRBGCF+Au6vuXCs2KHA0qbdeDkgJoZIxL2+p5ltAW+QtK4G06VNmVE1Y2KWa
+            KdW0fsma6vtUXSL2JuRjk4LP5JAnYTcm48+EgEphE81dakyCyT8q3dO+nGx2lAH7
+            O9RlgIfue43QH9vG6BKaVzkNHPrcYoeNaZe83C8Zz2gKrrIwUYrjBkw6egwJHKRx
+            tpAyALEG6f+IifcO6VbBdAyurCYEFD+rElvvurrc5tEtPra19oDDiKWASmVDO3wf
+            oe7rcHyr4ogv1iGknq9AooIkyMlYcFmT0JSFz4GYYDyxZoMdePliWrVU64dDkhFQ
+            SJt+GpgwFSLg5w2SCY3j3aH2WXZ89KY9uIN8uLLQNlzJEupfaqXMNbJIkPXGkrDe
+            wOE3xwXEPCn6YrpuFS6GnxHRLdHLQQoJZeOxhuaG1x8Jljhc4l71DNW0BQ5ZaV3S
+            XgFyfVGjtpvgAnjl0eg1cXplKPMWeCS4DP+sizjmbjOBhHP/5jlJPHPnByBDDMiJ
+            SjSLsjSwy7LfDmbYwDF0Uff5qgLQ1j4xD7Un1VhribpseIqh2dT6NgnagJBYdc4=
+            =GQ7A
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
