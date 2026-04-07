@@ -1,0 +1,498 @@
+---
+? ''
+: - octodns:
+      cloudflare:
+        auto-ttl: true
+    ttl: 300
+    type: A
+    value: 83.113.30.49
+  - octodns:
+      cloudflare:
+        auto-ttl: true
+    ttl: 300
+    type: MX
+    values:
+    - exchange: mail.vhaudiquet.fr.
+      preference: 10
+    - exchange: vhaudiquet.fr.
+      preference: 10
+  - octodns:
+      cloudflare:
+        auto-ttl: true
+    ttl: 300
+    type: TXT
+    values:
+    - v=spf1 a ra=postmaster -all
+    - v=spf1 mx ra=postmaster -all
+202412e._domainkey:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  values:
+  - v=DKIM1\; k=ed25519\; h=sha256\; p=jln+6mPae83WbgR5FHA1yw0exmcGVmkEwNx1ZpISv7k=
+  - v=DKIM1\; k=ed25519\; h=sha256\; p=zue5tDdPhC91KvjPj28r1F3RoQNiQamYahX371tPmd8=
+202412r._domainkey:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  values:
+  - v=DKIM1\; k=rsa\; h=sha256\; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3Pzzsp4MALfuXDoYsmXotp5mCidcKsDeWycjCMyhGvBDjfaX8l0ZCPemPOjD+uMPhbZV7e1RkzIt6A0qmutDixT1Dup3uhYhnyblp4Gkx1e85vaIncE1V2paJ85EOsDH/4rcGtdcPQfANbPw9LlqcdU3S+X9KpYaMf2DqPPfYa7emhJxBklUMymY06lssqb7+3ltLujGH8J+qNIYJmPa0s1tf2Pu1/opBKkk1qeUyF/wLmW0UTwNB3UyRCSMwR4DzburfHfE9cSNcm/STzrWcPmDnro2E3S69pTmzECU0g2xRqBBq3eYfQO8KxtGGQy63KUqAAhN5D8n9BZ4+TbD5QIDAQAB
+  - v=DKIM1\; k=rsa\; h=sha256\; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs7vM7V1LhJJ6NRazIFyZ5bGseKOABnwBwzNspD+hdeVa7bbE38L+xfbhKKopXwQCCV8lJ+BgDpLJQvTYgRR+6UjuYm7/b/BX8qewPZUGphamkNRExBalsMAxAf9zeMqPUfpjDEKggten90RdrklQCnn5ebyUcTFk+uKfImqn3S2L34vSHfuCtsaZExu8mCych2Q3ZBdx3gsAtmMsmqrAJqBOlF/d/1xVloNMMWBIUNY9NYdC+ZspTvoakIrTOIzHCfoiG3lzpWLM8Du7GWd2umpXOsM4RpJL1vTRDOWjnd25N63L3GlCnAfr8Yu2K77A2PvloOIwZXYrLFOB5S7jxwIDAQAB
+202508e._domainkey:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=DKIM1\; k=ed25519\; h=sha256\; p=B25PCl1mN4ajiGlVW/CZnWlZzfUxKaB8EhIal4bAHEo=
+202508r._domainkey:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=DKIM1\; k=rsa\; h=sha256\; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1PMbJghh91KpUfghVLVuDiwyo3ChtYiphsR6Z/YJcCGcoNIInH4SJCfL43M5WDboWLzOw8ddGCZLERgY6AOt7LjpzXJpH8ReeZjBNvo57ZJLV9PYdr7Ejrj+ZB/9GAHk4WChWBWIPtbOvFrKyRUNABI2c5fVNPp2c57im+G10rgpCOrp1Y34PaNYpqKu2YyLpkWyAZc4kMUsuxKd9iSIDUCBPKibmQaKt1xJk8Wo1fqsXgVqRJ1iAvTFRyEjGkcA1g1m11mO7aXNuJmr7J41i6MqSwG2vQEPpadqJdqA9TkK2HcMeVV9Tn+4XLxpAHN31e96kXET+9CZlUW1lrSyfQIDAQAB
+202510e._domainkey:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=DKIM1\; k=ed25519\; h=sha256\; p=ieEhnbQlDTWNsK8s38f392ef/Fvfrj511kHz9OoN06c=
+202510r._domainkey:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=DKIM1\; k=rsa\; h=sha256\; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvlO5KyPBJAYmGnIoaerGzNlWiiWCOiKaluIauTmRKArSDfDafDiy+k30mwtGRn4i4Q8EAWgplG4Xd3fRYCZsjsEna7QV0GDHsX5fY3eFPOnzdU0M5bbXne9UIztej+qUuPTq5BIZhCCNboAIKCKXbRdAJ+hVGnPkPUq+JjfD1EB2E4aoZ/ukoA+QYfq8A86X2TU1WQKNARRsQvGob1No1xyjtztu+1mt8FC15q/YGYfrNt9GxgPnWlsp2PuHgLblX8COiJMejWJ8DgRTmLc0ncEI3qVVpNICDzl0I8+cvkEgJxF6QA4EKB/SjzlfRooHbf7zwfxmcc5ndTsxix9NawIDAQAB
+_25._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TLSA
+  values:
+  - certificate_association_data: 5dfdb3cf31b26f23d87c09f3a0cef642f64069a9fb7cfe29270bb5dc0f1e16bb
+    certificate_usage: 2
+    matching_type: 1
+    selector: 0
+  - certificate_association_data: 76e9e288aafc0e37f4390cbf946aad997d5c1c901b3ce513d3d8fadbabe2ab85
+    certificate_usage: 2
+    matching_type: 1
+    selector: 0
+  - certificate_association_data: 4e32b7ee52c9bd2a15b2df3cae5e3b060d737d71faaaac25336c5f193cbdb52ed2fdf38b29aea9fb97f59c8f86e75b5c364309a232623a99e638116ed66063fd
+    certificate_usage: 2
+    matching_type: 2
+    selector: 0
+  - certificate_association_data: afab698cbbbf892ebb555e09175056c1d4630fe7c350f44dcc6e71843d3b290df00d30ab4e356b630c69169d7633788338922fb637cf5b9f7be20a413eeaa518
+    certificate_usage: 2
+    matching_type: 2
+    selector: 0
+  - certificate_association_data: 3586d4ecf070578cbd27aedce20b964e48bc149faeb9dad72f46b857869172b8
+    certificate_usage: 2
+    matching_type: 1
+    selector: 1
+  - certificate_association_data: d016e1fe311948aca64f2de44ce86c9a51ca041df6103bb52a88eb3f761f57d7
+    certificate_usage: 2
+    matching_type: 1
+    selector: 1
+  - certificate_association_data: a1ef14fea3ca15a552d42665d2fe685672cfdd903de4b370b0d7d87c6d31b5df07142483f36e0e15e16b58f9ba1cbdeeebd4bcb8d74ab7ea32a087db2105f402
+    certificate_usage: 2
+    matching_type: 2
+    selector: 1
+  - certificate_association_data: f8a2b4e23e82a4494e9998fcc4242bef1277656a118beede55ddfadcb82e20c5dc036dcb3b6c48d2ce04e362a9f477c82ad5a557b06b6f33b45ca6662b37c1c9
+    certificate_usage: 2
+    matching_type: 2
+    selector: 1
+  - certificate_association_data: a69ec216999308f0ee575cdef98d6edabed8a6b4d2328e050ac9c7fa06404ad9
+    certificate_usage: 3
+    matching_type: 1
+    selector: 0
+  - certificate_association_data: ccae2719a01f7a6d17d939d8ec13324b7bdb0921ea55d5bfc2f226e54b8c15dd
+    certificate_usage: 3
+    matching_type: 1
+    selector: 0
+  - certificate_association_data: 7cd33aa6bafc850cc89d008fbd0a5cea942c6a573d605984f174fbe7360abbf71fc157ffe0324e380a8dfea62047b9aa140d5899188402ac677c29f96cc1118e
+    certificate_usage: 3
+    matching_type: 2
+    selector: 0
+  - certificate_association_data: 8149784990ba7e448295f9c4eb22abcaa4ecefa1b44f1a71ea13d6827d7068c6469cf5fb08a8ae772c1ef59cddbcfd84d744713c48e985136a234b494511fd03
+    certificate_usage: 3
+    matching_type: 2
+    selector: 0
+  - certificate_association_data: 08f3ffd1b6027093c136f6bb5bc1645a8db31cf2a4392b779c2a2045e152b8b8
+    certificate_usage: 3
+    matching_type: 1
+    selector: 1
+  - certificate_association_data: 12b3946513281ab20ebee4d38d2e139cac1688420015db90ee8e932fe153bc89
+    certificate_usage: 3
+    matching_type: 1
+    selector: 1
+  - certificate_association_data: 7b60aee1a230de2c32c0252540c606897ad66cbabc7331c2d40b7dd0e3249e0cc53e145605e610d8dc2f41dd16e12f51dca4641d13e748553bd0f596455dae77
+    certificate_usage: 3
+    matching_type: 2
+    selector: 1
+  - certificate_association_data: 8cee22274c3f828eda9d18c9954ed0a3ad5172e71b7852c780384bf3828ff1bb26fca899395e99e4d191c2d1e0a55404f97e76bb7d4ad8dff71c6c271d34de49
+    certificate_usage: 3
+    matching_type: 2
+    selector: 1
+_caldavs._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  value:
+    port: 443
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_carddavs._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  value:
+    port: 443
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_dmarc:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=DMARC1\; p=reject\; rua=mailto:postmaster@vhaudiquet.fr\; ruf=mailto:postmaster@vhaudiquet.fr
+_dmarc.ligory:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=DMARC1\; p=reject\; rua=mailto:postmaster@ligory.vhaudiquet.fr\; ruf=mailto:postmaster@ligory.vhaudiquet.fr
+_imap._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 143
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 143
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_imaps._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 993
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 993
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_jmap._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 443
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 443
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_mta-sts:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  values:
+  - v=STSv1\; id=12286879188751086068
+  - v=STSv1\; id=15827089775314309854
+_pop3._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 110
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 110
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_pop3s._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 995
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 995
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_smtp._tls:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=TLSRPTv1\; rua=mailto:postmaster@vhaudiquet.fr
+_smtp._tls.ligory:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=TLSRPTv1\; rua=mailto:postmaster@ligory.vhaudiquet.fr
+_submission._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 587
+    priority: 0
+    target: ligory.vhaudiquet.fr.
+    weight: 1
+  - port: 587
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 587
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+_submissions._tcp:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: SRV
+  values:
+  - port: 465
+    priority: 0
+    target: ligory.vhaudiquet.fr.
+    weight: 1
+  - port: 465
+    priority: 0
+    target: mail.vhaudiquet.fr.
+    weight: 1
+  - port: 465
+    priority: 0
+    target: vhaudiquet.fr.
+    weight: 1
+alexscript:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+auth-nook:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+authentik:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+autoconfig:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: CNAME
+  value: mail.vhaudiquet.fr.
+autodiscover:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: CNAME
+  value: mail.vhaudiquet.fr.
+canada:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 192.99.6.159
+flix:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+flux-webhook:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+git:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+gjam:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+jupyter:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+kasm:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+      proxied: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+ligory:
+- octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 82.64.154.58
+- octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: MX
+  value:
+    exchange: ligory.vhaudiquet.fr.
+    preference: 20
+lol:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+mail:
+- octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+- octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: TXT
+  value: v=spf1 a ra=postmaster -all
+md:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+mta-sts:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: CNAME
+  value: ligory.vhaudiquet.fr.
+n:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+nook:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+notesnook:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+overleaf:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+sse-nook:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+umami:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
+www:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49

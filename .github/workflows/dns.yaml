@@ -1,0 +1,21 @@
+name: DNS
+
+on:
+  push:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: ./dns
+
+jobs:
+  update-records:
+    name: octodns
+    runs-on: ubuntu-latest
+    container: octodns/cloudflare:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: octodns-sync - production
+        run: octodns-sync --config-file ./config/production.yaml --doit
+        env:
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}

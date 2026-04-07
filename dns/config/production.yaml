@@ -1,0 +1,16 @@
+providers:
+  config:
+    class: octodns.provider.yaml.YamlProvider
+    directory: ./production
+    default_ttl: 3600
+    enforce_order: True
+  cloudflare:
+    class: octodns_cloudflare.CloudflareProvider
+    token: env/CLOUDFLARE_TOKEN
+
+zones:
+  '*':
+    sources:
+      - config
+    targets:
+      - cloudflare
