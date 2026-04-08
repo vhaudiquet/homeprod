@@ -16,7 +16,7 @@ services:
       retries: 50
 
   4gaBoards:
-    image: ghcr.io/rargames/4gaboards:latest
+    image: ghcr.io/rargames/4gaboards:3.3.4
     restart: always
     networks:
       - boards-network
