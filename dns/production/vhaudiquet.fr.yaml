@@ -376,13 +376,6 @@ git:
   ttl: 300
   type: A
   value: 83.113.30.49
-gjam:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
 jupyter:
   octodns:
     cloudflare:
