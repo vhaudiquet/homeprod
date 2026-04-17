@@ -10,7 +10,7 @@ services:
     env_file: .env
 
   patch_detector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-patch_detector:dae65c8fa228798b2286f35535c99c03e459d3df
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-patch_detector:2c774caf5f1dd70bfa9404f1077d717dd93c8b27
     build: ./patch_detector
     restart: "no"
     deploy:
@@ -22,7 +22,7 @@ services:
 
 
   match_collector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:dae65c8fa228798b2286f35535c99c03e459d3df
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:2c774caf5f1dd70bfa9404f1077d717dd93c8b27
     build: ./match_collector
     restart: "no"
     deploy:
@@ -33,7 +33,7 @@ services:
     env_file: .env
 
   frontend:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:dae65c8fa228798b2286f35535c99c03e459d3df
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:2c774caf5f1dd70bfa9404f1077d717dd93c8b27
     build: ./frontend
     restart: always
     networks:
