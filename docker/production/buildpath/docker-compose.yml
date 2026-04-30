@@ -9,20 +9,8 @@ services:
       - bpmongo_config:/data/configdb:Z
     env_file: .env
 
-  patch_detector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-patch_detector:af51d61e0cce2831e70530bc0db4923669faa83e
-    build: ./patch_detector
-    restart: "no"
-    deploy:
-      restart_policy:
-        condition: any
-        delay: '0'
-        window: 10s
-    env_file: .env
-
-
   match_collector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:af51d61e0cce2831e70530bc0db4923669faa83e
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:686962b678e16612ee938b6bd0e331b6ca7f2009
     build: ./match_collector
     restart: "no"
     deploy:
@@ -33,7 +21,7 @@ services:
     env_file: .env
 
   frontend:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:af51d61e0cce2831e70530bc0db4923669faa83e
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:686962b678e16612ee938b6bd0e331b6ca7f2009
     build: ./frontend
     restart: always
     networks:
