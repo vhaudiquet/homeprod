@@ -10,8 +10,10 @@ services:
     env_file: .env
 
   match_collector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:686962b678e16612ee938b6bd0e331b6ca7f2009
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:c506bad73921d1b728c2c2f48582b5a08427da49
     build: ./match_collector
+    volumes:
+      - bpcdragon_cache:/cdragon
     restart: "no"
     deploy:
       restart_policy:
@@ -21,9 +23,11 @@ services:
     env_file: .env
 
   frontend:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:686962b678e16612ee938b6bd0e331b6ca7f2009
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:c506bad73921d1b728c2c2f48582b5a08427da49
     build: ./frontend
     restart: always
+    volumes:
+      - bpcdragon_cache:/cdragon
     networks:
       - default
       - proxy
@@ -38,6 +42,7 @@ services:
 volumes:
   bpmongo_data:
   bpmongo_config:
+  bpcdragon_cache:
 
 networks:
   proxy:
