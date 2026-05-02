@@ -5,6 +5,7 @@ image:
     pullPolicy: IfNotPresent
 controller:
     replicas: 1
+    dnsPolicy: ClusterFirst
 env:
     TZ: Europe/Paris
 service:
@@ -29,3 +30,29 @@ resources:
         memory: 64Mi
 # Full list of options https://github.com/0xERR0R/blocky/blob/v0.18/docs/config.yml
 config: "upstream:\n  default:\n    - 1.1.1.1\n    - 1.0.0.1\n  lan:\n    - coredns.coredns.svc.cluster.local\n\nconditional:\n  mapping:\n    lan: coredns.coredns.svc.cluster.local\n\nblocking:\n  whiteLists:\n    ads:\n      - dealabs.digidip.net\n      - s.click.aliexpress.com\n      - fonts.googleapis.com\n      - fonts.gstatic.com\n      - wl.spotify.com\n      - www.googleadservices.com\n  \n  blackLists:\n    ads:\n      - https://big.oisd.nl/\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n      - https://adaway.org/hosts.txt\n  \n  clientGroupsBlock:\n    default:\n      - ads\n  \n  blockType: zeroIp\n  blockTTL: 1m\n  refreshPeriod: 4h\n  downloadTimeout: 60s\n\ncaching:\n  minTime: 5m\n  maxTime: 30m\n  prefetching: true\n  prefetchExpires: 2h\n  prefetchThreshold: 5\n\nprometheus:\n  enable: true\n  path: /metrics\n\nport: 53\nhttpPort: 4000\nbootstrapDns: tcp+udp:1.1.1.1\nlogLevel: info\nlogFormat: text\nlogTimestamp: true\n"
+sops:
+    lastmodified: "2026-05-02T13:29:01Z"
+    mac: ENC[AES256_GCM,data:cfgRW7HlYE1MqgT1hiy6ZfGeiGiVbclDKJIELNrEl7DEJcaSKEwZLujBUiNQGZ0eVkY8oGkiPfEF/J0xcBtQBp/JGtKbvdxoJGTYUAZhwpyJ7LIucAXVwyMUM7ahD76jDAwiKLYxwV40Egr5X06FlyAjVZ07S3l3hmrKQzQXgao=,iv:SnkDaDUR+aCVqp61lkjO1IxPxrRc3sdYnHYCaP0Vv8c=,tag:TZdvBSzbKbbRO7FANRmXuw==,type:str]
+    pgp:
+        - created_at: "2026-05-02T13:29:00Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//TdM8u50xb2DbQ96kgXxgh3iJnKSMnAJxZwch6RRgTDKI
+            R88+IoHRx1jLWN6yVoWumzFyyR04YB/AieZJbECCmW+qoO/fDdfolXohMxYtzus3
+            oTLNXdVHbL4O/SnLu1po8RhUWnIBJ4MCTSsA7JnqX/omdCL2VGhQjCTZye1+zc3q
+            jaFds7tz6ElZYlDtRYx07E+NkeC7UFtJDF5xzg1yoc8y6B1eBl/x5yvY3TJhXjXF
+            wEUV6x6P35ieOforlE8s8oTt89lEe12FRnA8DtvecSaA6rrd1pC7mSq2acVRxooT
+            1CdrUjQMGAFVvAYYFHEcKPaHsnPPOjuIld+eR9HqqluaIVZNPOrdN1NQkZi2q76E
+            rnvxeeBTKhiVdxkOXA9yEkFUGrAr92FJp4CuWYym/ptqxto+/qNoziT8+wCmj+xL
+            GN2tJHwHyPgGoUUYRP70pDsok7bxx4iyZCChrBzfSezkQKKN2bDHAHOjO6/+x9dU
+            V7AJOy/Cg8TDO3kBY1MWghazdbfMPCwMtZa0SCMOZU7w1FpQrG5fi3pEKrpbirSM
+            4v8QApvarzuj+OAHKAJrckMq8ocGPbaUNCC767CniQfGQR0x4/4Ff7UAZ1K0H4eO
+            hm1dzy4RUKXcQMYO7zp/ZXrTL6+uNx8CiXd4sC76yA1GeVCkWKBhUdsQoDXwzAHS
+            XgGR+qzw99Sbsx8IGx+zCgB1Kf/udAyIolzsNDw4sCmGKkzq0FpzjceLtsa2JAqE
+            n1DWl62HGL8JoozMa/4Rd9wWPfjBFcoB19QbqRuMGqg2pEw2sJL3BPSVDWADNFk=
+            =8/Jy
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
