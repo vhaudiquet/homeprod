@@ -17,7 +17,7 @@ service:
         enabled: true
         type: LoadBalancer
         annotations:
-            io.cilium/lb-ipam-ips: 10.1.2.172
+            lbipam.cilium.io/ips: 10.1.2.148
         ports:
             dns-tcp:
                 enabled: true
@@ -28,7 +28,7 @@ service:
         enabled: true
         type: LoadBalancer
         annotations:
-            io.cilium/lb-ipam-ips: 10.1.2.172
+            lbipam.cilium.io/ips: 10.1.2.148
         ports:
             dns-udp:
                 enabled: true
@@ -45,27 +45,27 @@ resources:
 # Full list of options https://github.com/0xERR0R/blocky/blob/v0.18/docs/config.yml
 config: "upstream:\n  default:\n    - 1.1.1.1\n    - 1.0.0.1\n  lan:\n    - coredns.coredns.svc.cluster.local\n\nconditional:\n  mapping:\n    lan: coredns.coredns.svc.cluster.local\n\nblocking:\n  whiteLists:\n    ads:\n      - dealabs.digidip.net\n      - s.click.aliexpress.com\n      - fonts.googleapis.com\n      - fonts.gstatic.com\n      - wl.spotify.com\n      - www.googleadservices.com\n  \n  blackLists:\n    ads:\n      - https://big.oisd.nl/\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n      - https://adaway.org/hosts.txt\n  \n  clientGroupsBlock:\n    default:\n      - ads\n  \n  blockType: zeroIp\n  blockTTL: 1m\n  refreshPeriod: 4h\n  downloadTimeout: 60s\n\ncaching:\n  minTime: 5m\n  maxTime: 30m\n  prefetching: true\n  prefetchExpires: 2h\n  prefetchThreshold: 5\n\nprometheus:\n  enable: true\n  path: /metrics\n\nport: 53\nhttpPort: 4000\nbootstrapDns: tcp+udp:1.1.1.1\nlogLevel: info\nlogFormat: text\nlogTimestamp: true\n"
 sops:
-    lastmodified: "2026-05-02T10:17:47Z"
-    mac: ENC[AES256_GCM,data:afeVocj8AZS4w7LwdawL7ypaJEHrJQwB3iymV9ixOeqjzPid+5irBhCJf5teAV5iO0XLQwkcINYFr29cSTDaNA8YzcvQaCMDd+Ttd1bktkBWgzXARk+VYqXTWtnIFqxwJOI7o0AXMEk0Slxt7XNDlIfzzVCu0bgVcVxq4w8ruwA=,iv:88S0VDEsu8f3wPy+Qji+/VXJVHC80RK3ja/h/6MNlUk=,tag:hm2xBuvtZ+wc8XPEYmOCuA==,type:str]
+    lastmodified: "2026-05-02T13:11:47Z"
+    mac: ENC[AES256_GCM,data:TsrUiHf/jEo3irmbBzMxZHfxzN8dhS9jvscoow1FNpgpxGfAbKGSox860BhrV10cg1okb6l2WB6YmLsG+qHKf1Em87UG7Vy0KMoTAdISG/m/gyGsHmJaoPlALThvZfMhTFiTTbMTboj0RKtOMO2EpQhknXo6n9sKeWYLg9JHY24=,iv:EMtGJFQehrVAJIKHAM47I21Xx/129RoLKCbuo7QFxvQ=,tag:9wehHJ/n2GcKI8+78YA9OA==,type:str]
     pgp:
-        - created_at: "2026-05-02T10:17:45Z"
+        - created_at: "2026-05-02T13:11:46Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//S4dAoXLk7mB5RF2bks/rvmpQCDk0zDwq8DPe8lpWyzOV
-            KGu72IGjykzGSV5HzUAS8VEnDtwsVIU2fwpmGKjAZ5VGM66HxQHNbjqhlpIS+0o/
-            VlpK+p2O2cgkcJlOqWLG1BumzZ4BcWE6cbXNpbzY7IGUJr7SoN2sJWOnJPXZvrq4
-            9bSPhkM13zeFaFDPE1XvPFtposQzyiITchYZezxA9GGrzIvmmu21vut0bF7qidzD
-            B21lZox8jyWPOFaso8YbB6N85OcMb3fM0OYWucBIt6TiaYu0OrhcpUiN5fw8pNqT
-            w5ezMTe7aP5jmQ0JCvUd4G1wXCU/u5lpX9MIYXa3mly9WHLBYNwpSGwpVRCz2qir
-            STGkmu5gZq77YoKIspFmGrMVeFKU3UA6Ig8EgeoNDlmyLD3bVPAwBAOIcNtUmVLT
-            0ScsGll2m1a036jLG/vm9eNcPHJFn+CTRzTsytbS0/5M/VLqC6heMllqdDQfnDXT
-            3DzrBUmJPzSIjHN2t85TI+Gr34Itc93UCMSuS/RhwxBxLml5ZlYQpPVZwGVQD7Q8
-            EmrR93Nfd1D+vSkDUzUb1FOU7n/GrC3IRrJS7cGQlHgCYI9XMGRaQTsMc4RdygG8
-            24ykqywklV3bwCw06ExVTkxRiQz7VDnxJGJY87XveXkqVSyG6xmMS+TG6VDHGvrS
-            XAEORYAo/czk+z4tGZKNpHxQjY5PTn67Opuxa0EgnnVwY+7GnsyOPrG1vXzymOzL
-            Jb14MyCNYdpEVCiGOg5gcS3W6VgknuMgjLK9ewFlDANwxOEwtrCXRNf74qqg
-            =SISB
+            hQIMA7uy4qQr71wiARAAo8yCHLnFAmisqZMPIFF5henCf68NuUbXRr8dAQdap5db
+            /Qv7M/eiW69gLgokSfiuHv6ElTD6tUGU5/eo+A1HVSVkUBz6SyX8aYMXTI1YIni9
+            wiNOUePDjNaOApGTXgXUC2Kyalk3z05JghrpSyHPj/3OD1VWizsabmtna5GLjblC
+            TnyfGZKv2Yq4ydJWwvW9hicXJqZzWzaDWU2tPzlaabQ5XEZ7W6lO+dEEx2VOwkiu
+            M/XAlabymvu/IlSTI3xAYz2p90vlAouX5qpY5W3FR5u/r5uDRUwj3PYo+C8xegi5
+            EzeRD/Cvg1N0REg57Oa2Jt7Qw7+erVlIv1gLxv8Zap0HnzCuoXsqmODSNuW3LusE
+            kGeyW+kNpfrcXPEvcBxX7OIA+FaYQ5lI2qU4GWUfBEdMYqStWtQIzECaEZWOiM7U
+            LRsHDelbNcgT5fEMQYcH5D4K4/E/spRQm9lfVlPYUFSHtsKtaw1lswyFzuZ05C+R
+            FXkFbOZAtI2YLNVdkoWSh/CcR8dPAPLnxMY9HZhDJpVLFtc03F+HSUVAzojA4Fpx
+            uSbAHjeQOvw8wti3fuxBmllvGusp53xZaBNzcvy0seghLQbPXs8wKM38Iqo5jJOj
+            sO2I3gm40TdDwlQtFH9EPRsZiHY8+nJ060iRf5QStHTLLSamEartFh6DgWlmWzLS
+            XgGjmUv8X3d35XRVcEY6SLJdvDIX0sxTS5lodTeAyqGkBMpc13p5goozeZ/bbzEA
+            v9rJeG7xJefbF0BoId8L+D+UFrnFSQ3me6jtWWrCeqNKAy5gpvGGKEXxcM1Pjaw=
+            =5fXg
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

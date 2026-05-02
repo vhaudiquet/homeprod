@@ -83,6 +83,12 @@ resource "proxmox_virtual_environment_vm" "kube" {
     vlan_id = 2
   }
 
+  network_device {
+    bridge = "vmbr0"
+    model = "virtio"
+    vlan_id = 2
+  }
+
   operating_system {
     type = "l26"
   }

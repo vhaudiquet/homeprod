@@ -5,4 +5,4 @@ metadata:
 spec:
   blocks:
   - cidr: "10.1.2.171/32"
-  - cidr: "10.1.2.172/32"
+  - cidr: "10.1.2.148/32"
