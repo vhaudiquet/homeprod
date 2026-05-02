@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
     repository: coredns/coredns
-    tag: 1.12.0
+    tag: 1.14.3
     pullPolicy: IfNotPresent
 deployment:
     dnsPolicy: ClusterFirst
@@ -36,9 +36,6 @@ servers:
           configBlock: lameduck 5s
         - name: ready
         - name: debug
-        - name: file
-          parameters: /etc/coredns/zones/lan.zone lan
-          configBlock: reload 10s
         - name: etcd
           parameters: lan
           configBlock: |-
@@ -58,27 +55,27 @@ extraVolumes:
       configMap:
         name: coredns-lan-zone
 sops:
-    lastmodified: "2026-05-02T16:36:12Z"
-    mac: ENC[AES256_GCM,data:S2E66otRNsnglS5imQrwHtr0dVywh1Y9pI0UKUzlwH1aC91a0FPlar1yxrqi2ttsBSMjGlWhwY4DMU6XWL6RggbuXLbGLpD6LWdxK6qfP4lBumj1tjnQVTU2x3jCEmR3QXkquKIfebBZuxuFsDoS0qRkfNvMnfWed5xSaC9BPdk=,iv:Xhq8K4sxnJANo715DIo4XuJfb8aK2K9IWiQ9nLhkkAE=,tag:I+VSNRz+8AcCkQiGyK2TWQ==,type:str]
+    lastmodified: "2026-05-02T16:43:27Z"
+    mac: ENC[AES256_GCM,data:KctpidDekFIfCDh7BRi5TNNSGemKD5IWxDg11maqtdB3kE3R1n//iS1IOHPc6wF2nGIToZS1RRj6sGbec1dKiCL77ZvXOeauB2iq6COVQwfJeZMYG2cIHsJ3kIgu+U7WKsFJdRQJMcRbNo4m81wH1Q7RYkxX+bRUOfK7V1y1GX8=,iv:nwioCrAnsFbc3asba2cWv3xrQf6tmX9oZpBr/w64Mqg=,tag:zlsUBm8nQHsiGS5nz21grw==,type:str]
     pgp:
-        - created_at: "2026-05-02T16:36:11Z"
+        - created_at: "2026-05-02T16:43:26Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAmiRxIbrqxTDiDn28Fp0v5Yh6CW+ytA0uzB+F3p+HaC9U
-            m3reL+H2COPJmcS1Y2AttqCpmmWBwA63e6bW0Zi74kh/NQkYv7GepZE0fvsryk61
-            tkRxAnMTVsmUHNSa9oFN3I/WF+htnfrNU7WOs7ZLdmGiemgrpl5fqK/bQTR2Hl5U
-            tUAaPfk9c4WQgbybLQ/lUe08lQFvsEoS2CESv5bmtHbd7xvaGmSIaXbOTeycrN4z
-            FYm7O3SRiqf2qm2+jyEM3sD0KIIWnqTCX8plX3zBnG9TBBoA8zhkjQaMDGxTyXQX
-            z7/eAzT+t0P9soRCx2duPl2co+Uxe+PV3/rgNT+GNRQYyxUzQ6HO3veV9B20ThBo
-            Etkrz756EzdbjpXqKtb7FQYc/XXfNOREiEtYpc2n4E3H13J3HdIqluaP60hVZYGC
-            gG5YqCm1BLQna3OaNszx8m2cmYdB6AaFb8in2iC0YOuUFN9MKe1vkE2eq+SrZT3L
-            OBOnI5EAhk6RB0Fcr/AegMuFYXH/gIfcC/pZdQTR1GmRXfcrwPZujlTSELeLfEEB
-            xoiU1VLarqZVLstpMmeLZIXHCr7TQPnhv30JiF/u9I0DA+6KrW8gNEHjSW01dshY
-            6Gh0vFvptqZxieiPQf6qgvlqq/OKB0Mim2KCqgtUCOji831yEL/i8SJpGckbbnrS
-            XgHDX314auBSE/0YBadYC8h55YI7zom5Z8PrEF2PmJBcl/BtBgOLBxt/AzsSKXg/
-            MowMdZMVwpNqwMeuniXkxfWFSyaPP4QIpD85wP06jMKzXMrS4WWZg8e8Q3JwOkY=
-            =9ebC
+            hQIMA7uy4qQr71wiAQ//Q08bJ9Ihzp4fIpklYFZF1jE99q+I1queOVqvbcbCgZiP
+            vKFGEOBZNVmeGwJGUjJEliU77B0na+wqdiK9cDPgv6uhoxtdxo6t0848ePtjbBQN
+            F4Dijm5kZtyxZXLUELMGMQ/jq6I2pMkb4UWsghkOpAbIRM4yfVkhm+QVz8+gC50O
+            FmJGmsPAx7EtKuO+RRD9tOBEVcQjo29CpwFcC9MrSoKkQ0ry0ONK/eeZ541l8mvm
+            o5ePHGpZo4pcjxjHpKk3s0Cn0i6/Rb3U7KeLczGS3VTHCn7dJ/hv0nVZHc0wByMe
+            duQ4CTjxw5vkADcxARs3fNPG1weq3J2E7XzGvNFjspP0G7UK/29Gzb0tbUEYjk2M
+            u7ZUeKbplTn/u7ByMNO8G0YP3eeDPTPAb967oVyil36RkgGdDIauIam1ijub0FCK
+            7bzyy9EnqYkW3npyd1osceIgJc+yeTWcQzMXXby3Pg5bFxyTcd9oBAQsJqMAdD5s
+            kJoVmGqeaF+wG1Ij7YT1VixVbESBZtUkkXlzFfkpgchHc0gXDig2bvzP5rJ9s445
+            T0tMDc+w63Tu//TuZ3xafxxf8wz73WOPST6AurJm8KUxN+yRd2N8r3f9Xx/MSPo1
+            2wY4v1apjtfGl9rmV9SXsj2/Pur3cXrh2cvqZ5Crw2dGTIjlalMQOs+kBSdy9jbS
+            XgFgEA6lvjV4EOnCoOgWKv4fSbj61V5ikpkkMl86yA9Bdnu+43j1R7N27yTFmeKM
+            GhLkny3/Pz/rLsHNeBrnKoYAuPF4mDe5046iGZdJXfOE7rve6+VNSMjyyyMzxMo=
+            =9AsX
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
