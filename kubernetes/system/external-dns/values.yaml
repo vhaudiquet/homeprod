@@ -1,38 +1,39 @@
 provider:
-    name: pihole
-registry: noop
-policy: upsert-only
-sources:
-    - ingress
+    name: coredns
+    registry: noop
+    policy: upsert-only
+    sources:
+        - ingress
 domainFilters:
     - .lan
 extraArgs:
-    - ENC[AES256_GCM,data:ym7grahK+0f0ydcdbWjamJdu/fOBUdH186xaQVaXZWEb,iv:PYGTuE/0z23pXVmitjDRcESs6dwuZA89VUhC1Dw/YlI=,tag:eIFd/J0gk8AWkaBmkHXoxg==,type:str]
-    - ENC[AES256_GCM,data:ah50AImpMpFgRmu7IFsOKUO8WK+dcFSQakw=,iv:WyrXKk0WxD86A3nDu2kvjZD185LZhDwTx28g9tPvgFA=,tag:B/7Kv4FT9l3SjIuGboIkaQ==,type:str]
-    - ENC[AES256_GCM,data:5eFuaAUaRwrscxSSEOKpLxUrfgo+jfim,iv:6MQ10olVkkRzOaOf02vWKOrvmwgmEr1HedHpraprEaY=,tag:Kc2F03NjLMWmzHaByYHR9A==,type:str]
+    - ENC[AES256_GCM,data:u6qw40tfgn73KEP/m32c/gCOPx+/9acgvJU=,iv:A2g5Af2YC7OYkSnEadAmKaSzvrB/aPiDtjWCxWGL51U=,tag:Fd25mqGJtwCK7eUNMr7sCQ==,type:str]
+    - ENC[AES256_GCM,data:nd31hq1/EPerMXB1I0QSmHCr,iv:/hCDwU24JNqYKZIFfSSerxvYVsdiFr7h6+YQxY4yVQk=,tag:EOmmGns8E9z9KECsVZjUdg==,type:str]
+env:
+    - name: ETCD_URLS
+      value: ENC[AES256_GCM,data:c1aXvAvXWSe7oEKxXpEPOeBuacbccc6Yj6hX1qZh/qbyHahJDG/hFmN2YXEe,iv:n0PsS9AughHZLlKQ9sPBwJvmoROFZV/APPCWGJgPARs=,tag:FR4U0igmBQ7bMbXSYd3Vkw==,type:str]
 sops:
-    lastmodified: "2025-08-27T10:07:50Z"
-    mac: ENC[AES256_GCM,data:wb+0NBxUIqQUbCVsEZUTE7fAvFy+pxaxaD+zb76BploLk0qzB66Ui+xvArNW1RV8qOVTr/fLLxAcIfDlmN+HvJRFeUZLUhZroZXWIIElDN6O8IgzFRy3B+ps5bhVtkgUGACdmML9NJ7wCKEX67AqbuqquR/JagN55cDSTzhUvwk=,iv:qIu3X8SD5H/iKkJvwfK1aI0Rd4/fpt9ApIT5cpEDwVs=,tag:9nvr+LnN1RA8WQgtUg+GTA==,type:str]
+    lastmodified: "2026-05-02T13:58:23Z"
+    mac: ENC[AES256_GCM,data:rH8SvC0kOL1E+cHrRaFgLKtjlVgqyI3MbMVMtt73sOmYnyE3MqJTvRAOSzRNeZU+5VBQ/NrHVUyP5hzd0gN1v/lqNIDNzo3MmcvcHZG9g3Hvo1LmsVyY9JdNx5RNJFMokFzr9bKmeSiia5wtpoM4L1wA+VE7CDt9Dx745pzm87I=,iv:Y/oSE9xQjJznBFUrXnRWZ8X1GOYR7OuOOd2A14S7m9g=,tag:L/MiiAtvYBHw91wJZw8yyQ==,type:str]
     pgp:
-        - created_at: "2025-08-27T10:07:49Z"
+        - created_at: "2026-05-02T13:58:23Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+IMnGLNPR17dXFL/tT/Jzm2SbZnRQJVk8pEikESBazMHy
-            qcXjwI4ZXOVKC9Azc1jwigWx1wsRzksqHWI7YihkJKSTWgDkr/WbRZUkkndMyC6o
-            1rUghPTMnw3ykrLOHw0dP5KrQyeTqj3EakJKzPLl1M5AqOlRIEQzJhpcGACy9teR
-            RZ4Z0WQL4lxl1bVQ/Yq+o7iEWDqAwlLxllBnvAz/nIfMQgaTfa9UyEz5Up71nXtz
-            f98txsSmB0kEYqEJNeNSQa6+MFT1OXJX8XijlfcEYVIyX7XO8+vKu99Neae026Ki
-            o+yXgVB8UIV/8tfhhRYofYFEUP9SPNeIrlJlXPopv1axnhhxCJeUUMDfQtrQFR1Q
-            8AUNbWluEU5q3/YLtk1HsLIDHGLG4o2WIS67Do3Feik3oZc5jP4b2sLrsSYc/2Rn
-            DkjDrnYKqXojr2jD4B9fMiKen1/MxqZwP78CFNNIjqDf44fvmHPK1BlCUbMmBmyV
-            yti3wTZEWUa3P9a1EApt3/ez+51o4R1q5En6bkZWqrzDtjd1qhs8ygP1pyU5eRJZ
-            dn0FzzDn4UuecCjXx6rZLw8ugSPIw+z3BMvB/JRx6OY3Dm6NKHBwfdIELoWwpWoY
-            28cH5X8hfVhr3uDIXmXVkJhrri3q35mRQnBIw+Gw7hgeMfWdLLmMSgwhCVvWNwDU
-            aAEJAhBlX9Uiqb+tS5fNYsnGVwS4XNIUozxtkdy3t+ZHK/rqCJ0qVr6m2rTO8QCg
-            jfNwgjOfpFC5YSsHjEuPaISBTfEMJea/1fqeUoPSXIMtgnceOT5xeqR5d7K1cOKR
-            sRirvHEkhbG3
-            =uej8
+            hQIMA7uy4qQr71wiARAAqzzr5TVwekK1oPMnlpeVJxs5BuVxSPa7qAarZCidXPEa
+            CE/tAHNtnat7grvHjIjijuZsYSDwP2eBZaQotIPmoRnu06SfD3Dc9/jSCPqefa5c
+            J/xRbJdqx8lyMQkXFVr9AvPCkrR+pypDUvA+BxXbCkfMoy3xmbqmG51ql0U/joEd
+            Z6cFY5Xd+4a5E2sJDicrtQHTy0KF1b66EthMf0jFaRfX4gAaHQuxLDDnEr1+c/JA
+            udQokySmmQzIIDcFxPE8071buBDAXj35ePOTh5vAPLPt7CcRjmEEPhC8xA5ksimN
+            uZmafCGMIXFg1Vzxg6r7vzxCJokWr+cWMP+ocWcpjEBGm9+uP7JFneb/AZ1W/W95
+            oblnkoH0NfJELN6b0qc3CTm5VAM3I8ysdoUcjOTc/cVAgp0cP2UcK86PMCLieBx7
+            /hOKPM+QPn17kcWMe2+0aDvAormUkdwIpM2bRItkwDUM1AKTpTk1NKvs6EIIQZmL
+            V+4lmLkjD+C2YrGjz4f0oFDH9zTOxzAdhh0MxT4xtdQjbckzGcC2jl+VC/rQZZj6
+            yCtyd1EfcmivvbD8iBRLRozLggS1qODB6CwWiFIVNPpY6FYGGWneNTpkYhKrPiGb
+            6zoI0K0Sbr7bZEtn9dZ3JBzABlj2+9NZmP1EAkQLsqCBOBvdEIa3gNxM0VT28ffS
+            XgHZcKe8kQlniJRrdQZGSaK7Cv6/Ibo678yZIzNebxWDTlFCgUNyaK4Wh3wF+3Lx
+            wodYqILIoLIZ32eRabgeCQKk+/9kWnwf6stq+2X40mECY95ZTLJilxK8qtaxMzc=
+            =Phmg
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
