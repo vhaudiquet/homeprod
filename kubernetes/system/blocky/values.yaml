@@ -74,27 +74,27 @@ config:
     http:
         address: 0.0.0.0:4000
 sops:
-    lastmodified: "2026-05-02T09:18:55Z"
-    mac: ENC[AES256_GCM,data:IDPC5eGBYJRslmWBDyVMV4Hee2wWXiXqsn0hVKLdq9aP5DCqNT9tAUvm/v8+EyU/zNIQwwJq4iTlpvh+bJ1VVnbGBKAWoviCOtQdF8I2TR0iBFERP0KUEb96HoCyZBGgaaaIcsMbu0btdcJP6H0438jZdx7W/xmXKpLtlfad/B4=,iv:l7a2hRF8czlWE3iucxHL0L5edBe/aVW+PgTl3H26J+I=,tag:tYsBcwp1ySLYADbKuBVxKw==,type:str]
+    lastmodified: "2026-05-02T09:29:44Z"
+    mac: ENC[AES256_GCM,data:VsTrsCFEFQnZXhOOwGEt1yMcrnTOzhA69xF8G4ZjtmpjtyQ6aPlkCdOOKpPKryOXo9W6tUScvRJLNdxFeugqSALfXPiEQXMvypiiavVmGy9ALkQML+fRYFISD0ABz4Wd389KUdIZJR8C01GzwrjcyXiwwD/RTdCaYyu7vtwIP+o=,iv:hw867evKgefM18toiCEbGGZ49N0dZnCNXPR4Fzf/v1g=,tag:q7RpSPfDoz4f5Qt1NdIX0w==,type:str]
     pgp:
-        - created_at: "2026-05-02T09:18:53Z"
+        - created_at: "2026-05-02T09:29:43Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//fnWp8+ny12XyIJoWgC3YHF3gg+1QlkTozBxyEHzTHTlp
-            GFPDZGzzX4KFwLwIeDV4rQMYVyvQ4mz8LqPI8tw/421GfhW32hFo+IqzvlEdfwyl
-            y/sJVrBs8vRqZTHsWpkel2P1qwhdN42jvFGKSeP04SHZGjYBQnGWI10nUH9NTU3I
-            8QD3P8J0+OiGBrbOyRGsbis6SVcqQJTwLsQkpY0gLpiu6RcIh2FF97jNFPr2gxby
-            AVtPP5JPToS/rIlJIvj5+B/VF6ayauZkrOsn26eyzlBVh425PfVc1UbDgtXv1HWW
-            HDef/QHQmK1ipTsH4U6cycY0l/y1eR4/OIAEgYce13BLFAPotIqJnsCxmTTLIsh+
-            ZaS3JnrRVo+63nGiakAJFitkLna3dwHXC5nB7DgKpbfuDjJDwhmOvcf7c9KtnImg
-            CrWNVOtE66caq6N242pmQhV45sM/U51OAXGF3ONXoNgHdvFDN07jM9csxsLIT4mo
-            pbsQhwrpbpy9JNYuJOEfuXWtWf95b2ISH7FruKQS4AEcrMqT5DrfrK+Ez8Weuftd
-            TQn0eg2CsB1o7uJX1/vb7sLeRfzImxi7X0lS6b/4xPamUJemnFi4rSgxohgAIxLo
-            Inur9D2rwLE/Yfm/LdPb8vltYNpeJhOPZo/zC85QlTRwDpxfBDSo4ehhho+zgJ/S
-            XgFX8ZIUaRomYa8F9soY5QBUqlg3tzBBs3QN9EEl1qM89wcjjnm5U79jpT+zPTEp
-            rDnSl7EDaEmYFnwOM8QQsCk56fGVHL3PyaLtXq6go0xjYONUM6DOhcRCF5QizUQ=
-            =K+43
+            hQIMA7uy4qQr71wiARAArXJGrHPy+Ll0CzMkn3LouguZSTfhBYGKbhHq8N+y+GJc
+            wwHVpu6TZ6NPIS1RuN6yUSA2/+eTkf411ASvsboD0MnabSIumZI7zlGkv+kQSh/J
+            q5zL7mOhYP4EuqUIoXCip2ZSGBiu5s2LFcV+Ie7Txp6L5YqClza694DjZsVKZd8g
+            kx8EMTlRxRl3xor5qAXaZhdOzlQxIbspfqCOStri4HiKNIHyeaB3HjtfrYbY1iDT
+            y+FfLTuQlWZkDe0dHqmNctVL4mozfTJbnyx/wsCgVL7ns1/IxqNcADrsA02tb17c
+            zCj8tdRCJxmwfcnTnYukZMgszqGVfjz/+4tZuDcblN7vvN2eMHao54VYk5u4qQ6V
+            NGtkazB/D1vFqw/YLMscbfSBQa36jp/xHijrwR1p00PWet9Mre6v19Vwyq0qkVKO
+            CpU5mfrLuX0ewQZTUaPr6fOvuybKVlBhEU8ESz1bq+6KpXLiJgj9PzFCdXks8cC8
+            qh1t9/9z9O1I4JIQrrL6mkyORRr+7ivNpKVHniwHtYa/yphICv5HhlXbF36kc6aF
+            QTHe/rYe9lFgwrWFcq8PeHKNVxm4svK+pIf5HnSBPNuk3V2lGkA/1BRRVaThYhMY
+            3OwpnBYtlX5vXBuWdWP3bMWY25ggoZLPQym9leBDnoNpEewNPQORHTO2RQgS/bPS
+            XgGvrlSfN/dns6YtkyJPL+bal0xiziMVMIFEIUYtjQzC11F1CKYVhsxwQHcmUMD3
+            jmn9iwGRGf6uAhZ8v4KUAQxuVbKq9/Q7O4LOMUe6Zhmhxch/qWtBu9fXexlfWWA=
+            =tK2P
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
