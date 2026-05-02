@@ -38,13 +38,14 @@ servers:
         - name: debug
         - name: file
           parameters: /etc/coredns/zones/lan.zone lan
-          configBlock: reload 10s
+          configBlock: |-
+            reload 10s
+            fallthrough
         - name: etcd
           parameters: lan
           configBlock: |-
             path /skydns
             endpoint http://etcd.coredns.svc.cluster.local:2379
-            fallthrough
         - name: cache
           parameters: 30
         - name: loadbalance
@@ -58,27 +59,27 @@ extraVolumes:
       configMap:
         name: coredns-lan-zone
 sops:
-    lastmodified: "2026-05-02T16:29:37Z"
-    mac: ENC[AES256_GCM,data:176iKVmI9pDajkWYE58u3mDK/bwukayxEWKdQmslyPnq8QuG2xNzj5/QZDKIen3v8epRRVi/9Eev4buXYqQlS5ldxTJoyQbAZO5IUJgpu5DiVl0OUpfzTNB86dXMf6ZzHjx01fdvIPsfmMAHpYevV07xm9jkNLrjHO21ZTygGzs=,iv:Hn7nekDWlB4EqRHImVsTl8f8tlmFAWRx30TLUs192Qw=,tag:VBgKBQMvDclBg41P0UZj+Q==,type:str]
+    lastmodified: "2026-05-02T16:32:04Z"
+    mac: ENC[AES256_GCM,data:ikCPQl82EyhaFPKy0Tzts2hZLxjYj92VqnEw+Ubm63BDZn/8aVnYE1wcXy3rc8hY+piHImeqeEQQKkCyQOkfkIU6MGiopOaNGyOhZBfC0R98xKhzG+/GTOdYCQvRInqnlMhE2kc94VWwNLgCS+kUibIueLZHnaCfiflLvwXAGmE=,iv:EP4r+R2m1r/d9PMDwB549/QfgriAiedA60p6Lhcdymk=,tag:3pQDEfcnhPLJI1/eVka2nQ==,type:str]
     pgp:
-        - created_at: "2026-05-02T16:29:36Z"
+        - created_at: "2026-05-02T16:32:03Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//bZUdKB8UNSr3OmgrwD4tar/fckc2tkyCYFWdqxfk20LC
-            ji4RKO5WcrHAvsk5t4hjARt8QEt+xpAFz+zN8V6O2rMZeIhjctkRwoHiZHKVxYSb
-            3vSRC2vxRF5zyvTlRgW+TO2HaxiO6lgr7RtUgrQ9R/oi/k7F0sBKWZMKHLumOxCV
-            mffS7TzpV0bEFu3J1D6Ns/OsLC0V4yKT90aheoR3Im59vJzuL4AghSOV36YOxxWN
-            dIWyrJJFgZ5tPhzGQ2zDG8Zs4Q8QPFiokMPvEIGACxs4Wwy8trnqzxZn8X9dEmgx
-            P7WI7ZEojYlFC8PU7RPW7jXs+gwhOOKMLLLmYGtU1CZ534Y77FdQt2w9ZDDNFbag
-            /EY7f0If+5xV1GMWptuTWLAfywAXgG6k8hl6HSH+qGljh1t2cG7nxJmL128zgoX1
-            XQS+NDcqBEbZeG9Ism1egJk5lNRf6zdYRxUo3TA6oa59oGMFUESadEzuWPdPQoNr
-            Pd+gDfmd9WSRywHyRGAeEe/jMzmLEQaxt6zm5Kp3N/y2BQr7CYfNZoRwaQVFius3
-            gGb6A8lNpe4m+habv9vxQTMiOARh3nPCoiTuQTplCY06i4BSW/rLn5ERzdBwcTMD
-            hyyffKjVxDEzg5PbnYUnEYlWIQqHBHLxnH3/MYF+rR90h/7RuuV3RW9hDLtd00nS
-            XgF8jre5MJnADqW31pxFndnJWwmy1UtiLpsWic9Tep0pVK0WANQso2JZriDIkibi
-            yDz3ihSWyUVFhDR/cacriaU1oXmm//EIzxF7Ny9NJ1Dp4daaF0J0edlKTVjhN+E=
-            =P9sL
+            hQIMA7uy4qQr71wiARAAuTHK511l3xQThp59MBXKU253U8ngxXUyOAaDqPZDlyPu
+            x86OqfiPmLVfyJviUp8U9n7jer/7btGbLVoUm2LtKXH3FgwmxC8lqTWl19bjCkl5
+            VdCsY0Bn9h9vB363dROk6v5vd/kZ3PKbrP8lqO/v9s55DfqswMudKu0Sce4zhL7n
+            Fe7LdUjLeS1IIC3UHTo+VUSy+IWd2hkKb+7rQkggTfFCCSWazYF7Pvzrd17MHH2g
+            v4HDVy04jzHeqMv2ofgooZGyadKgMR9YQu1ajC4EhH/c2ulhTLKXW5wj8Y5e3OPW
+            25lIxn71kYRQW7TcozODkvPnB4gAPqCeeW5VLizHrYOmTtIV2uTeNPVhzBAk9GUp
+            IEXjkiUXR88MQjCFgIHxtepNaJ2JW/DMLBOaM1jyXcTeqA6yr3bXlS8+G7PG3nxF
+            o2RSidgdjZPFtjTiIX77DXCPmo1w/RsK8NH2ROGSmMqEKTWm9TwFopzR8fbwzLwF
+            3YxPVNrkkWlujVmNRbKPc5aTrZm8+mW9pnlTkegegFPVPNnIM1/fG1lnOZkbXUBG
+            mADELmB9ovN0nMGAOBqLeJqlJ0mlGoZE8YOL/53NSf7wI7I2r2+cyIlmODn3m127
+            dbVQEbzgRKNKUU3jAnsrGLfli7L9uazWWhigKFwOagkkMdRSrPf6xJWDGnEW20nS
+            XgFPeT4yCTf17H4I4rTlZXKXwpgPjvwtL7m8n9oEb9XKNqwDXDBJG9sYez9aOMHZ
+            YMqBdG0oK33IY88c2YGBj5pJIQGYvbqTzX/Wp61A64W/plN94ViEb3175NrnO04=
+            =Q9u1
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
