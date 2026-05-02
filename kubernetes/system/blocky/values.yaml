@@ -1,7 +1,7 @@
 # Default values for blocky (k8s-home-lab chart)
 image:
     repository: ghcr.io/0xerr0r/blocky
-    tag: v0.24
+    tag: 0.29.0
     pullPolicy: IfNotPresent
 controller:
     replicas: 1
