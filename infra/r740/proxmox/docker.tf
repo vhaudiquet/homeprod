@@ -61,7 +61,7 @@ resource "proxmox_virtual_environment_vm" "docker-machine" {
   }
 
   memory {
-    floating = 16192
+    floating = 22222
     dedicated = 38768
   }
 
