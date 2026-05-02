@@ -3,8 +3,7 @@ image:
     repository: coredns/coredns
     tag: 1.12.0
     pullPolicy: IfNotPresent
-controller:
-    replicas: 1
+deployment:
     dnsPolicy: ClusterFirst
 resources:
     limits:
@@ -59,27 +58,27 @@ extraVolumes:
       configMap:
         name: coredns-lan-zone
 sops:
-    lastmodified: "2026-05-02T16:20:50Z"
-    mac: ENC[AES256_GCM,data:DDYTTaqlM4rrnpMORXt/w4M5fNxNCca+tm3av9+mrNSOUbT4eTPZiUNDF/j50tO5I7w2QPCtO8+KXIYmCfat8dU/tdKnkzAYn6Iv1lbpRr87q4lVUQa8gKcLlHELh7ymnF4pvYbGLlUNTm6Cdwy1nmiC5VQRUMd78DDMgKCNevE=,iv:DkOMwtT4kiv8hwMVGhgLhnjHs1mQLZEEJx+CxEgLJZ4=,tag:aFcYZFwdKqF/0MFtrRPBbA==,type:str]
+    lastmodified: "2026-05-02T16:24:22Z"
+    mac: ENC[AES256_GCM,data:P3COCTltq31Zx+xWD1S5m42yTwiEsj+8NFAUxIp1sYtCpwObeZOMhHMsbbycUOkQ+yRY78SW8+x4avMMTyI97uCFw8IYBMlFN00aaV/1di5jGP8A6d7i0Ma72P/sm2VGGuADQF5GfGiRhghdvIz8uuAU/1u3jjENIHm3X69Pfrs=,iv:l0HrWPnPyzJh/dbNl2IbfeW8BifLa8UV9ZwYAlZxuqs=,tag:isFt1Q2XczbrAtfJUHvqcw==,type:str]
     pgp:
-        - created_at: "2026-05-02T16:20:48Z"
+        - created_at: "2026-05-02T16:24:21Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAiBaEmRXabkxs/Cx8tl/TbBzHxK8abLu3PRXoYQ2cL9IO
-            2r7djipAIOXEDP+ag2STKU2Rgui+5HtrWDrPUxfSiCL0Oeg+iRBOyQ6Isvuet5XY
-            6YThV3xbEAhHpn7hGIfaZF3Q/45sbxtxit4LVlzoHy4XiSPejkkn/rDCABtwcMCG
-            pLEz9dmE14O3380OpL5A+PwJSXu8ycDEN3NiuP3CQancOoXATCjGV6S+rSorKOlz
-            DIU1YIuQ6dqaazTCpVqKnzQmRpctuw1AZGEtsdbD573gNvBiBfGtl2YTv245ssRI
-            +v+msey+zsRLsCNHaw3dRwVLMdnOL3UzOMEi3xL1F+1vO1FQamsibIbW5jGAyiwe
-            f9quWU1gIIvyOCaqrDg2ChJkgWaQKUG6C27Ql19jwiLFXDFw4GOkQc8sY3IgnUdX
-            Ur1z05vbZnaTp5G4Of/RtRrYgoc5fdUJRVijZVvnML7c3Lk9Kuz2RRgAshUf6wE3
-            cpKJWwqEhw852g1fJkZ+1yOrp9uoKwgjiMJQ23aOi5DKf2xNwCPVUV7PeoBl+6xO
-            zUBSu7CaOL+wkHtGV9k9HGKyZLPs2NyYdGQBmxNFXHnw+6jhKxkLZNIIOZHQyNZ1
-            dMGfcrnjpDY97R7gh+bqAwcOcaFszIpGpvs9YmOvvrniYtzcnYgJ241XeoJjvyjS
-            XgE0CKicCaqrBxs9lhg5a356Mjdv/Ih6gPIbWBgMfftdpj7gnO1QRUKERSSXzyEk
-            fLBs7y5oEtGUgN7O00FGnpXWuH3jKRa90W6ggNFSb7skCCW9A1GLY0tTiO8mxf4=
-            =9bfc
+            hQIMA7uy4qQr71wiARAAjq/E1wLzVCjStu6WmEDNnEwwwYxjhDqqKyC/UaEPftv4
+            unAEazPIbo6qSYITOXy8/nO+rHC4gCGIBpi5iREo6cO58g4oJrKfqrVyR+JhokZa
+            tDZ0qwQjvHjx17JxVy+LRA6D578KlGN6jL/fhdX3vqkS9b7QLW5DhZiUZbA8shl/
+            o3qOS6hep9fRMXFBzemAfXWnBJqqeQZDEx4J1sHzgH8YltfRr4L7zE9ctBdt9Ksc
+            r8vnwuttUT2OtWIt1WNeILbPGzHNF7o8Ll1sy1dLciSqWbGzz31Y2EC8CqwDVfoq
+            eL+kl/ScZDHW6uLmuwSrBituV4Vc1xPRB/B6AFc2FC6TC94xSxULuqpfriepxCs3
+            Vz3Nh7szg0aoKecNrwanKYixoOZSaYZTNBdvUQNLUpmdX6VAhTPKBlivQw0LjkSW
+            7uo1lpnJU39xYK9uYGYschfWybIQmMsxdtz0G/2hl/iPDiUwFddRj6v+SsVWYnz5
+            /kU+ytkuPysLSZ0kfMyFhsay3h/5DJzCWexXL4q7LgEOasPiRgEPPOK6v9VmKC1h
+            EaV2lyVIV9zJHB2/mi3f1cIB4XNNZnNmv5PVYR3ROFa6bSuOgH+mt3ApHh7LHPdK
+            uHWl/GhyiQkcM5EHG14IPqjkYn6KGKutvacx+vH78pxioCKzRDLIlDCKlrFfNpTS
+            XgFBlYuqR1fVD5EYPCbbgXC6bVi4k7GHqz7QkrHattKLjM5cteGoADepdTLNcaDu
+            2laxXxJizphBGmSL4v63Cs9uL5ps+nvWbbAOwyZFDybpZw5dTPnPPIwE1Gc47H8=
+            =kfX7
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
