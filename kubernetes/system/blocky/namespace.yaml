@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: blocky
+  labels:
+    app.kubernetes.io/name: blocky
+    app.kubernetes.io/component: dns

@@ -51,6 +51,8 @@ updates:
       - "/kubernetes/personal/notesnook"
       - "/kubernetes/personal/photoprism"
       - "/kubernetes/production/umami"
+      - "/kubernetes/system/blocky"
+      - "/kubernetes/system/coredns"
       - "/kubernetes/system/csi-driver-nfs"
       - "/kubernetes/system/external-dns"
       - "/kubernetes/system/traefik"

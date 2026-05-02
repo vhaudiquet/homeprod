@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: coredns
+  namespace: coredns
+spec:
+  interval: 1m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: coredns
+        namespace: coredns
+      chart: coredns
+      version: "1.x.x"
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: coredns-values

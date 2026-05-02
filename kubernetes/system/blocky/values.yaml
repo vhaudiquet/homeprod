@@ -1,0 +1,101 @@
+replicaCount: 1
+image:
+    repository: ghcr.io/0xerr0r/blocky
+    tag: v0.24
+    pullPolicy: IfNotPresent
+service:
+    type: LoadBalancer
+    annotations:
+        io.cilium/lb-ipam-ips: 10.1.2.172
+    ports:
+        dns:
+            port: 53
+            protocol: UDP
+        dns-tcp:
+            port: 53
+            protocol: TCP
+resources:
+    limits:
+        cpu: 200m
+        memory: 256Mi
+    requests:
+        cpu: 50m
+        memory: 64Mi
+config:
+    upstream:
+        default:
+            - 1.1.1.1
+            - 1.0.0.1
+        # Conditional forwarding for .lan zone to CoreDNS
+        lan:
+            - coredns.coredns.svc.cluster.local
+    conditional:
+        mapping:
+            lan: coredns.coredns.svc.cluster.local
+    blocking:
+        # Whitelist - domains that should never be blocked
+        whiteLists:
+            ads:
+                - dealabs.digidip.net
+                - s.click.aliexpress.com
+                - fonts.googleapis.com
+                - fonts.gstatic.com
+                - wl.spotify.com
+                - www.googleadservices.com
+        # Blocklists
+        blackLists:
+            ads:
+                - https://big.oisd.nl/
+                - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+                - https://adaway.org/hosts.txt
+        # Block all query types for blocked domains
+        blockType: any
+        # Refresh blocklists every 4 hours
+        refreshPeriod: 4h
+        # Download timeout for blocklists
+        downloadTimeout: 60s
+    # DNS caching
+    caching:
+        minTime: 5m
+        maxTime: 30m
+        prefetching: true
+        prefetchExpires: 2h
+        prefetchThreshold: 5
+    # Prometheus metrics
+    prometheus:
+        enabled: true
+        path: /metrics
+    # Logging
+    log:
+        level: info
+        format: text
+        timestamp: true
+    # HTTP API for web UI and API
+    http:
+        address: 0.0.0.0:4000
+sops:
+    lastmodified: "2026-05-02T09:18:55Z"
+    mac: ENC[AES256_GCM,data:IDPC5eGBYJRslmWBDyVMV4Hee2wWXiXqsn0hVKLdq9aP5DCqNT9tAUvm/v8+EyU/zNIQwwJq4iTlpvh+bJ1VVnbGBKAWoviCOtQdF8I2TR0iBFERP0KUEb96HoCyZBGgaaaIcsMbu0btdcJP6H0438jZdx7W/xmXKpLtlfad/B4=,iv:l7a2hRF8czlWE3iucxHL0L5edBe/aVW+PgTl3H26J+I=,tag:tYsBcwp1ySLYADbKuBVxKw==,type:str]
+    pgp:
+        - created_at: "2026-05-02T09:18:53Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//fnWp8+ny12XyIJoWgC3YHF3gg+1QlkTozBxyEHzTHTlp
+            GFPDZGzzX4KFwLwIeDV4rQMYVyvQ4mz8LqPI8tw/421GfhW32hFo+IqzvlEdfwyl
+            y/sJVrBs8vRqZTHsWpkel2P1qwhdN42jvFGKSeP04SHZGjYBQnGWI10nUH9NTU3I
+            8QD3P8J0+OiGBrbOyRGsbis6SVcqQJTwLsQkpY0gLpiu6RcIh2FF97jNFPr2gxby
+            AVtPP5JPToS/rIlJIvj5+B/VF6ayauZkrOsn26eyzlBVh425PfVc1UbDgtXv1HWW
+            HDef/QHQmK1ipTsH4U6cycY0l/y1eR4/OIAEgYce13BLFAPotIqJnsCxmTTLIsh+
+            ZaS3JnrRVo+63nGiakAJFitkLna3dwHXC5nB7DgKpbfuDjJDwhmOvcf7c9KtnImg
+            CrWNVOtE66caq6N242pmQhV45sM/U51OAXGF3ONXoNgHdvFDN07jM9csxsLIT4mo
+            pbsQhwrpbpy9JNYuJOEfuXWtWf95b2ISH7FruKQS4AEcrMqT5DrfrK+Ez8Weuftd
+            TQn0eg2CsB1o7uJX1/vb7sLeRfzImxi7X0lS6b/4xPamUJemnFi4rSgxohgAIxLo
+            Inur9D2rwLE/Yfm/LdPb8vltYNpeJhOPZo/zC85QlTRwDpxfBDSo4ehhho+zgJ/S
+            XgFX8ZIUaRomYa8F9soY5QBUqlg3tzBBs3QN9EEl1qM89wcjjnm5U79jpT+zPTEp
+            rDnSl7EDaEmYFnwOM8QQsCk56fGVHL3PyaLtXq6go0xjYONUM6DOhcRCF5QizUQ=
+            =K+43
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

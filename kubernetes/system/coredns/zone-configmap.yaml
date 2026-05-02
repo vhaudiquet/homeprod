@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-lan-zone
+  namespace: coredns
+  labels:
+    app.kubernetes.io/name: coredns
+    app.kubernetes.io/component: dns-zone
+data:
+  lan.zone: |
+    $ORIGIN lan.
+    @       IN  SOA ns.lan. admin.lan. (
+                    2024010101 ; serial
+                    3600       ; refresh
+                    1800       ; retry
+                    604800     ; expire
+                    86400 )    ; minimum
+            IN  NS  ns.lan.
+    
+    ; Nameserver record
+    ns            IN  A   10.1.2.172
+    
+    ; Static hosts
+    openwrt         IN  A   10.1.1.1
+
+    ; R740 and virtual machines
+    r740            IN  A   10.1.1.223
+    bw-r740         IN  A   10.1.2.233
+    kube-r740       IN  A   10.1.2.171
+    docker-r740     IN  A   10.1.2.212
+    truenas         IN  A   10.1.2.139
+
+    ; PVE
+    pve             IN  A   10.1.2.10
+    docker-homeprod IN  A   10.1.2.12
+
+    ; Ligory
+    pve-ligory      IN  A   10.2.2.10
+    docker-ligory   IN  A   10.2.2.232
+
+    ; IoT
+    c210            IN  A   10.1.1.106
+    elegoo-neptune-4pro IN  A  10.1.1.155
+
+    ; docker-r740 services
+    esphome         IN  A   10.1.2.212
+    excalidraw      IN  A   10.1.2.212
+    gramps          IN  A   10.1.2.212
+    jackett         IN  A   10.1.2.212
+    jellyseerr      IN  A   10.1.2.212
+    mqtt            IN  A   10.1.2.212
+    n8n             IN  A   10.1.2.212
+    obsidian-livesync IN  A   10.1.2.212
+    paperless       IN  A   10.1.2.212
+    proxy           IN  A   10.1.2.212
+    radarr          IN  A   10.1.2.212
+    radicale        IN  A   10.1.2.212
+    sonarr          IN  A   10.1.2.212
+    stirling-pdf    IN  A   10.1.2.212
+    syncthing-valentin IN  A   10.1.2.212
+    tandoor         IN  A   10.1.2.212
+    traefik         IN  A   10.1.2.212
+    transmission    IN  A   10.1.2.212
+    tubearchivist   IN  A   10.1.2.212
+    webmail         IN  A   10.1.2.212
+    wizarr          IN  A   10.1.2.212
+    zigbee2mqtt     IN  A   10.1.2.212
