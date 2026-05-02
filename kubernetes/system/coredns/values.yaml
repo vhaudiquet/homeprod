@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
     repository: coredns/coredns
-    tag: 1.12.0
+    tag: 1.14.3
     pullPolicy: IfNotPresent
 resources:
     limits:
