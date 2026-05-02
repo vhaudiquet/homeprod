@@ -21,80 +21,30 @@ resources:
     requests:
         cpu: 50m
         memory: 64Mi
-config:
-    upstream:
-        default:
-            - 1.1.1.1
-            - 1.0.0.1
-        # Conditional forwarding for .lan zone to CoreDNS
-        lan:
-            - coredns.coredns.svc.cluster.local
-    conditional:
-        mapping:
-            lan: coredns.coredns.svc.cluster.local
-    blocking:
-        # Whitelist - domains that should never be blocked
-        whiteLists:
-            ads:
-                - dealabs.digidip.net
-                - s.click.aliexpress.com
-                - fonts.googleapis.com
-                - fonts.gstatic.com
-                - wl.spotify.com
-                - www.googleadservices.com
-        # Blocklists
-        blackLists:
-            ads:
-                - https://big.oisd.nl/
-                - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-                - https://adaway.org/hosts.txt
-        # Block all query types for blocked domains
-        blockType: any
-        # Refresh blocklists every 4 hours
-        refreshPeriod: 4h
-        # Download timeout for blocklists
-        downloadTimeout: 60s
-    # DNS caching
-    caching:
-        minTime: 5m
-        maxTime: 30m
-        prefetching: true
-        prefetchExpires: 2h
-        prefetchThreshold: 5
-    # Prometheus metrics
-    prometheus:
-        enabled: true
-        path: /metrics
-    # Logging
-    log:
-        level: info
-        format: text
-        timestamp: true
-    # HTTP API for web UI and API
-    http:
-        address: 0.0.0.0:4000
+# Config must be a string (YAML content) for the k8s-home-lab chart
+config: "upstream:\n  default:\n    - 1.1.1.1\n    - 1.0.0.1\n  lan:\n    - coredns.coredns.svc.cluster.local\n\nconditional:\n  mapping:\n    lan: coredns.coredns.svc.cluster.local\n\nblocking:\n  whiteLists:\n    ads:\n      - dealabs.digidip.net\n      - s.click.aliexpress.com\n      - fonts.googleapis.com\n      - fonts.gstatic.com\n      - wl.spotify.com\n      - www.googleadservices.com\n  \n  blackLists:\n    ads:\n      - https://big.oisd.nl/\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n      - https://adaway.org/hosts.txt\n  \n  blockType: any\n  refreshPeriod: 4h\n  downloadTimeout: 60s\n\ncaching:\n  minTime: 5m\n  maxTime: 30m\n  prefetching: true\n  prefetchExpires: 2h\n  prefetchThreshold: 5\n\nprometheus:\n  enabled: true\n  path: /metrics\n\nlog:\n  level: info\n  format: text\n  timestamp: true\n\nhttp:\n  address: 0.0.0.0:4000\n"
 sops:
-    lastmodified: "2026-05-02T09:29:44Z"
-    mac: ENC[AES256_GCM,data:VsTrsCFEFQnZXhOOwGEt1yMcrnTOzhA69xF8G4ZjtmpjtyQ6aPlkCdOOKpPKryOXo9W6tUScvRJLNdxFeugqSALfXPiEQXMvypiiavVmGy9ALkQML+fRYFISD0ABz4Wd389KUdIZJR8C01GzwrjcyXiwwD/RTdCaYyu7vtwIP+o=,iv:hw867evKgefM18toiCEbGGZ49N0dZnCNXPR4Fzf/v1g=,tag:q7RpSPfDoz4f5Qt1NdIX0w==,type:str]
+    lastmodified: "2026-05-02T10:08:29Z"
+    mac: ENC[AES256_GCM,data:vX21wz1PJy+Ds5M+LDmGcv6EtBtPszg1j7rbFaDmxbJpBkN7SnyrfbHqOp7J6q2NUh+Ki4ekRbK8VRMbIkvL/klHz9We6A5zn+GGxjlIFkFCTqC9cNVJU9zYT8dlpqVPVdzSdW3U66SCEH2lWE/DcyHAVPqVVBj1UhXQL0g9okw=,iv:1GedoGjXhskJ7OVYyWEheOneyGR72tVztlyN+Y7m4xw=,tag:Fc/iSUqpgwa3U8r3KV1mlw==,type:str]
     pgp:
-        - created_at: "2026-05-02T09:29:43Z"
+        - created_at: "2026-05-02T10:08:28Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAArXJGrHPy+Ll0CzMkn3LouguZSTfhBYGKbhHq8N+y+GJc
-            wwHVpu6TZ6NPIS1RuN6yUSA2/+eTkf411ASvsboD0MnabSIumZI7zlGkv+kQSh/J
-            q5zL7mOhYP4EuqUIoXCip2ZSGBiu5s2LFcV+Ie7Txp6L5YqClza694DjZsVKZd8g
-            kx8EMTlRxRl3xor5qAXaZhdOzlQxIbspfqCOStri4HiKNIHyeaB3HjtfrYbY1iDT
-            y+FfLTuQlWZkDe0dHqmNctVL4mozfTJbnyx/wsCgVL7ns1/IxqNcADrsA02tb17c
-            zCj8tdRCJxmwfcnTnYukZMgszqGVfjz/+4tZuDcblN7vvN2eMHao54VYk5u4qQ6V
-            NGtkazB/D1vFqw/YLMscbfSBQa36jp/xHijrwR1p00PWet9Mre6v19Vwyq0qkVKO
-            CpU5mfrLuX0ewQZTUaPr6fOvuybKVlBhEU8ESz1bq+6KpXLiJgj9PzFCdXks8cC8
-            qh1t9/9z9O1I4JIQrrL6mkyORRr+7ivNpKVHniwHtYa/yphICv5HhlXbF36kc6aF
-            QTHe/rYe9lFgwrWFcq8PeHKNVxm4svK+pIf5HnSBPNuk3V2lGkA/1BRRVaThYhMY
-            3OwpnBYtlX5vXBuWdWP3bMWY25ggoZLPQym9leBDnoNpEewNPQORHTO2RQgS/bPS
-            XgGvrlSfN/dns6YtkyJPL+bal0xiziMVMIFEIUYtjQzC11F1CKYVhsxwQHcmUMD3
-            jmn9iwGRGf6uAhZ8v4KUAQxuVbKq9/Q7O4LOMUe6Zhmhxch/qWtBu9fXexlfWWA=
-            =tK2P
+            hQIMA7uy4qQr71wiAQ/9EXsxwYvWb35xyIvFVG5ISrptzJlYYysRx3NdWtjb7tdL
+            3Fg/31PONAA2NfS588svmvOnspJta1dnR6UC4OgXCIH2hLyIHE9dpjoABASQnvt9
+            2kikUB55TrN1YtNQJVzpAf3gPA5gvLjSnwsLTqyTU5P89mXxxHsImZo2NG7Uu26f
+            qOO2LjnjlnCcUfCaJ3loxMEYNjDRHqwCOsolL/R87usWUSaNBVeijzyrR6nyq2fB
+            wwiuTprQloWYK9WM0WJ9mKv0MTlh3kEFlK1FFfwXaQqpLOdglD2FhIusiBvxueUX
+            CGYelebLllBhvH/Fk1FSQeXBUcSVK56aA3Kbul3NiGbxq6VlpFt0H+5q9Vt8Jzil
+            KSLURL21Bjx0iMrOukiKjSn5y7OhYk9ry4ZzBmvoG543l20ToEbqUsinUr9eUPk4
+            M9f0yUy0o6b9K/QIpIfrGM+dudrZnHMVHeKCcpmbLw1F7NEmW9p31kKeVfguJAaz
+            KgoUhHZjOZDBDHoOd9LAibJnVi0LYpyyt5xGiaMSLf91QOdD545LoclatIxexgnR
+            YLo32fkI+nrwfllvMqRuBna0Hyew6wcpL1cQfeP97TigNtDnzB20tDBA5q1Zaf65
+            t3Mx9nx4DW1pcGT/08yqApM5oG/4ZXLa7uLDM7lrUzXyxwSNovf7xn4Odl9crqXS
+            XgGy0pRQWNvtfgUZGdCXj+XGomNx/EXn+8JKmpKO636Q8aTE7ygtmN1leDctOaMm
+            g7AAm07jYN1bo3zP6CBaxBYQQ7G2/jwf0VR9E0luyMBaAh+jsvGknvb6vxMKZdc=
+            =mgqd
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
