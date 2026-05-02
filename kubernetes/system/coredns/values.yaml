@@ -16,6 +16,16 @@ service:
         io.cilium/lb-ipam-ips: ""
 servers:
     - zones:
+        - zone: cluster.local
+      port: 53
+      plugins:
+        - name: kubernetes
+          parameters: cluster.local in-addr.arpa ip6.arpa
+          configBlock: |-
+            pods insecure
+            fallthrough in-addr.arpa ip6.arpa
+            ttl 30
+    - zones:
         - zone: .
       port: 53
       plugins:
@@ -24,12 +34,6 @@ servers:
           configBlock: lameduck 5s
         - name: ready
         - name: debug
-        - name: kubernetes
-          parameters: cluster.local in-addr.arpa ip6.arpa
-          configBlock: |-
-            pods insecure
-            fallthrough in-addr.arpa ip6.arpa
-            ttl 30
         - name: etcd
           parameters: lan
           configBlock: |-
@@ -52,27 +56,27 @@ extraVolumes:
       configMap:
         name: coredns-lan-zone
 sops:
-    lastmodified: "2026-05-02T16:04:39Z"
-    mac: ENC[AES256_GCM,data:jk0YAYr09QFJm2lmNEs/za0Na9U09sJvR6LZSbfcW8joxiyK4Ss2TpxwoZ+3VY1DAgCUxVmdUb4W95p9uV9Wbn/R5TFlRTBw8pXduc1F48byOT/mC9HAzL+P2eqSkCwZfOUCbXVAaNtYv8vsFLTaaNBwAtRv0slFO3Saw88/xjs=,iv:1hfIhjNnyP47c7F42EiydzwczzuXBqtNLj4iW4kCB3o=,tag:aewACEooSN/xjFdVamk+JA==,type:str]
+    lastmodified: "2026-05-02T16:12:50Z"
+    mac: ENC[AES256_GCM,data:UWyNz88vXWaju7lPKcFNxWRy2abeY01YErhrAJE5tnfk/1DvH5Pk3MfEz3wsJvAIRehyZwAqJrhXRSWCKcMd3LXeX1t4JmX5hUbxvkwIlN47NF8Q7tgJPQuywiyF0ekeYRqNIKWwQQ1Jl/WtpTm0uTmcNxVBvlvlsjwwaJy7SC0=,iv:kPTEtYAZPloEzKkUAJgz1P97CDNA+Kjr3YeAyqQXo7M=,tag:S38EeZzd6ij9Y93FEtBvxA==,type:str]
     pgp:
-        - created_at: "2026-05-02T16:04:38Z"
+        - created_at: "2026-05-02T16:12:49Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAiMsTRCHiM2L5wK4dP/ckAUYrELFSpEC0n33CDhIC7ghB
-            4y+I5mV0vtLOUv0tTjoomRSupr5oLQmspMoDYuej2HxqkwJ5pasibrqhT+UIO3EC
-            ANsguEIMrNk02AD8KSUGNEiFzCZ5ms/IGuMmh0T8Uo9jhPh8ojDEcOIhOJvSOd/9
-            qCU31ha5Gk+O6yljcSZTkr6IL2VZ3oecqbVQIMyjDmdmrQDGk7y29ZvyLqlI9eov
-            oanLYoHOHZBhGWnB/p3KXTqYKQHHWMO1rt60y3dtj+v6SyJFP4l/3jr3KQFU+wQY
-            cza64NjoYPoWGAkSkh+Ds+XJzlFlSksj6hQJJFPjrW7HlF9np0MGitSoccJWD+I3
-            pB0WPcodOH6lL6FsrSgP6DLkQpiapu+O23A1qm1/DxBkL397wGz7e8r1QxUAf8a9
-            h/yUR0mXLsHTBuDoALjSuXUW0VodLjPNg6kNbZVfcpMMTwpzZ2zgiQjWXKH7mLz2
-            EST708lOfzTKDamIbZ5zs5Id77jhXurq2lj3z1hMP5Lel5zpzTM9jlUTZv6WBPps
-            Lh6bBwWo2IE4bOH/8O5ExVo1OSUQbsi/j8fZLRL/VNitf2voNzYak1shSXuoe3BX
-            in5qVBBUSVqN63MFMtXcSWrhtJOkEfe6fNmAqBigD/fuvzlUitJFm+scBrLeCXjS
-            XAEdkCjULf+pPiCHLNDZso0w+F1sYNjMih5ozcoC6pbopG553EO+IYZufx06VMAA
-            bqugsLnmitk6G2aEy9GEcSTT7rBZ7X3NfpaXWFTFvH7nugjeQTR24DIClGir
-            =FT21
+            hQIMA7uy4qQr71wiARAAmT7TixucqyIemtX/ECJOotWOpHOifrMD7AxaAMz+n7kK
+            7OYGF4q8RyiFigk1xAciFaOoA3WC6u1pkBRC1JI1CYY6gRG+eJVd7f7zQVNPpYtt
+            DG7TeGipxIyHaM+ibyB8uIQMrb0g5267RHhWlAbEM3zc6uTHsNx6padAVtfFqTo1
+            A5jypIT+FLSm8D7iJYJgfebMmYfh65WLLBQ2tsOFHLCuTnlJO76Q3NR2pn01luku
+            /57yWUJzq5ExLUDwPL7E63CSASw+NT1VsYa8tfnzDzYKJvnFYCBJK0o/vWheAnKm
+            YFafK9syFUVXUeSRaESu1kJEHU2Fmm/OfwpWbl0hQQLrcvUPGVXd5wOpts6g/qrx
+            xK69+Gpwy7bAp7fBrwRFRsxW346JqqDaHJe+ZNRmRlYKDUITxLMK66qTEBfOJS18
+            r67ueQtPPn97IAaQ9ZovDuZVAUWw4IO/2dL0HlxbHzCS3vSfsGfUkIeRMW9FySOR
+            z1nvsduphQZLOr7FaAU3cHdVsviegalSrw0D1FBnieTTK2jwQeJdyHDP1NcCOdbp
+            yVdU5NmdgcB3ENCkJ1ADllvzjadGUGtxLFped9lqX2MTcOJCFWsJMVP/0x0Pp3yy
+            cp7fD/56ty6NWavr9ZH4C5pTl1tITjxCsh0KDHTOEP7GI1LZMM0A+URf/Yl0kVbS
+            XgHygNklXJOP28Cd4HYCZkfujdu0I3VYBf3a3cTK3KlOsmbiJY9HrBK4DXjJMQ/U
+            BA7hIpkhxFQEwpG5x0HZytc7fGGjxlqSynneLA1OqYiL4qurInnNsgVi1FxOqgU=
+            =GWqF
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
