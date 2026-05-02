@@ -27,9 +27,12 @@ servers:
           configBlock: |-
             path /skydns
             endpoint http://etcd.coredns.svc.cluster.local:2379
+            fallthrough
         - name: file
           parameters: /etc/coredns/zones/lan.zone
-          configBlock: reload 10s
+          configBlock: |-
+            reload 10s
+            fallthrough
         - name: cache
           parameters: 30
         - name: loadbalance
@@ -43,27 +46,27 @@ extraVolumes:
       configMap:
         name: coredns-lan-zone
 sops:
-    lastmodified: "2026-05-02T14:19:13Z"
-    mac: ENC[AES256_GCM,data:sKMzYey0fs+uydADSBSqRD84RZRjqiRYVg7lP7U0sYzo/0rM2Jz5QJeEZ+HO6MVd0SqzNJrWX72vDpY3Tzl+X/sjPvwHrlD7JJDEnKEBmBdBqi51Y3xAH+Xy/SM1tzOAg52PBv2d0YyD/lNK0REMYXHd5kXoqt4ti89gqhDuNUM=,iv:7QdY/mFfI99ZBefGcqhRI2WD7x9k5kauVye+BC6kUFw=,tag:0C4zn5YuU9wacEFH/ggxbQ==,type:str]
+    lastmodified: "2026-05-02T14:36:12Z"
+    mac: ENC[AES256_GCM,data:YdQflKCt1BXlVT1haK5PyKe/WgNPE6Oul6R1zcbLaXNkaZ1Z+JWVy27wunfTVDviWnh13ohwaBH6m+1/jOLGZs7eFUVXReJzUQcUvMWtgW0p1rM871H/0+wKHCvQSzTQvk/uVU9AvGpHxmEGtSQBQheawMAhmvs4B4pM0w9YdNg=,iv:z9OS7EaESosDOc2y2weT5mHlxGFO7RotEBBTNxHn2R4=,tag:/1gX8Evf2PKSrzmKxZRF9g==,type:str]
     pgp:
-        - created_at: "2026-05-02T14:19:12Z"
+        - created_at: "2026-05-02T14:36:10Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+Ot53Cy0R/rB6qMMY2xLRVxuLQF1wZ+BtUXYVcFxQgumF
-            q9lB9/O03dZp33pTgZwCP8LEFx/NRexMuQxbtRH7gg6c21PSByJ6tBlcjiQOi2Vw
-            rQz+Bn+CCljSHuGJEU6LCbImhzWobvsLUSLmZDU8e1RiIyqweINlSWrmRa0beY/o
-            aEX2kez+pYKhLIRB7C4+nTX/xSEtC4ZZpPyzirTfGbioRZOSp1LnbaI1bFPaX7+d
-            /+Tg/baAMkfunBZ+kOeYbPVYYiUBB4NxOraqfwmvCIXC9ip2yIu71VclKqFmBhCQ
-            1P21tzY5JuPJEO8hRN3L0Lzqazm0Lfo5DI0vkE9YJi2SM+TtGW+GOoJvwbDBoYX+
-            WSFkdZbi0Ky6maSh2bXiq2s/J0iQhrvo/NtdH8KDlwYd7BXZmo5AmnETdxCK+FDW
-            SRVV2PrNhfwIbMourIn7SDraf2xSly5mlXu6sjVwKZf9TsYJukWb+fBopwp3eqCZ
-            iSrfySdmz7jTUtAsZxZ8oJrWE7zNnhgRxyyDs3vCG1fRR082vm9ArmzyruVubhCL
-            mCfiIDCcg1qTwpysb2Qmu8j+woSAG1oiUywx8ZKrP9/kOFsm7mlzv79f1WiSoFvc
-            pROzeyY6hcfG9VwWhsKOggJNWcKLdDt3oVu5MhMNvGqqIDVDjQRWH9k1kOiAEAvS
-            XgEgnkp+IPaaINeF7IxEqvEXx7zg/hC0soZ+erWKIX8GBIkGDFv/DQLzIDpPyZnp
-            dJEcPqosrrsCH3v8cF6fa7p3lPC5CD2tplrd7Phcp3Q+/Ix42eFIJV7SnoIF2+E=
-            =WH3K
+            hQIMA7uy4qQr71wiARAArQqDtkqGx+33d97I/kjpKcrhOZfgSmM7f9uDCdvCFQsO
+            X3yWCfwlCO5ZH3ZJkMRIE7AKT3lXUk1W2zxAvxTPXhQokh6jsUF5/Ih/PEZe2uGU
+            nCpkWE44EBKSSIsfsLlrkpvITa+9ErOKQBytBZrEUlTzFKCMxMYUApCHLXA18e3c
+            uYwKFuyKHzvpOrcnEY+ww+ZHLXL4exPhX79+uhn/BG0k70i39wgGuIZWdfvUVN+x
+            4UFkYvLWRexoFnqTStbuD7IX0O7BIBfliSJjqNCJOi3CO7GXwZ6r4D1B+S6tyxEs
+            JHEwGmR6n1sCjJyrP2toAFhOrFpky6HbOzehdMf3xVm7ry2LmUllrx43HKfjhY91
+            A0vpVAHGkwcUBYBxIQL4L6yeDUsrPLkYeJFCgRsppvPguOH3ZSLqKXx77UFgT+yi
+            lfYRKRnYxfY6wADQ+xhXxgtuHcEezile3s1b9xc6gMgzfuukBrd/WcgexO+c0feY
+            GmFoyfOcxCai+RCSW5eiXRDSdgxKSaTuGdPzLYtMeyceoXY/ML8yRZR/fpSZGNUp
+            1DPFHssmpJMhUjB/XhkkoC025nrLhgWQj9tIrEkBsFmPXk7wfiBj6y50oNwww+MK
+            X/E6mHvIt9ASSUAEaNHqMDZEOXz67qv2YbkTqw/UBCC6ehQXhOkMm7IRSp9iL6zS
+            XAG1+7cdB/aDluAbOAdBA8YMyLn/NrLTf5UB1TdgJmmHqmVsihwX+UCcKRdu8Q8W
+            bbpBVKQA1cjDw0k8jl9eUN/azMuv8xBXuzyvOKImLnUp7FJFhMS1BWD2CQL3
+            =jBX7
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
