@@ -33,35 +33,36 @@ zigbee2mqtt:
     external_converters: []
     mqtt:
         server: mqtt://mqtt.lan:1883
-        user: ENC[AES256_GCM,data:y38nWA==,iv:j0eEQfRb8EFjFgQtAUDnC+SFG5GntgcY9DoI+pQATFE=,tag:i+QSvlWadDq4pLJGLo9mGg==,type:str]
-        password: ENC[AES256_GCM,data:kOJPLKGkuPMlcA==,iv:ecOCgqScF7StVOgb1+khzZDgpAM/WRbSn0iJDMcSnoc=,tag:T39fKp/eDMeMb5XEm+/j3w==,type:str]
+        user: ENC[AES256_GCM,data:FA3NMg==,iv:wsFGruk45E6vpPPTX+98GFqkkJZoTRFQ4W47lKJN5Uc=,tag:SL8ExWkp/3FwaSFhYqZ6Pw==,type:str]
+        password: ENC[AES256_GCM,data:Mbl3v59TBX1Ozg==,iv:osWG07chnexpNWRP2qQILvh7L1UigrAbpW8a9vmy7U8=,tag:9yuNpAcATAuSftHNJIkv8g==,type:str]
+        base_topic: z2m
     serial:
         port: tcp://10.1.1.159:6638
         baudrate: 115200
         rtscts: false
         adapter: ember
 sops:
-    lastmodified: "2026-04-04T23:00:45Z"
-    mac: ENC[AES256_GCM,data:a095DCVFoM6HPGbZSZjysbVhhUBcQtNh1sZYPLHKqhjI65TEAZbPqXUJeB1raqqBTmXr/0hZysx7/O7tqN/h+Gv0/pJTP3yAbXEArp9Soc9tmRBwJeaYMmm9+9s9QSvsCsiFnmVmp0ihYRbag35aXVcl2INDV7ilqVZnXOsThi0=,iv:y3ASd047iwdbJ0F9bLkSpV8uDRvzUFZIa7FV6AbLDH4=,tag:1wBNjiPukFK4xon0FHYkhw==,type:str]
+    lastmodified: "2026-05-02T08:13:47Z"
+    mac: ENC[AES256_GCM,data:zV0nhYd/EZbib1GV5jmQquKVHVub4WhNRaggnUH/6vZCbWetWzV/6ITtpwOPRTupSJFo6MhpGVahw0fyTPxqP3nceYsn78oiqSpaHI72l1QssLJ28CzzojPAzGbMWo1OLGNr9eQTo39yRSL3/ZZEiv0pQJWUcwd5yykjKQlJ3cg=,iv:o2QRBRQtrRmcHvzIc1Btp2AweepfQds435b6fZ/OkxU=,tag:cmnT0WngLv9X1At4A8R1JA==,type:str]
     pgp:
-        - created_at: "2026-04-04T23:00:45Z"
+        - created_at: "2026-05-02T08:13:46Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAn1+iFDYCRrqXbgrAJXdw4KfvqEsX8i6ReCeq4+68YhFQ
-            e6rv3yMBoDLNbMRr6AZaTN9XOLqd7jK0H6zobCdkUK89Fxp5fqxvAaaPloebRKu9
-            YnjG28UCbuqcW7P77GaoO+6t53Y3Ya4s/f1OLZ0zAkJDCV3NiADgBB112fG+HtnT
-            WqkH6dENu5X9YP+PbMJ9qHWOqc88gBE4CpwH5R3F2UWRhfKnErdD8MpjNhDsJBuZ
-            +c7K5mTRaYHqe96pEhOg+rPWa+YDpZb/ztpHeEPcWNdepHnSk4N9pw1bDKKORlQU
-            Tuz80ZVz4SOUet+rYUzH0a4f9ktwxCy3m3D1YHW3rbaLUmu4tIPjsbSLU/ZNnkWv
-            RFMZCUXDKqF0NxYyWgF232kXkrYURUHWd9PZLHjyWgp1k+OW0P9TViwYgC4Bq5NO
-            +uQPpWqfYQWqIZwJA3PGmpQ18ngytAkQKaUw8mXH2dUQYXLwa8RT1EYaTEoN8KQd
-            2gtmyxnhmohZgClvXzGq1ByVj4hkFUC6TqI6t8ZI6AQWpHsEKIsP39z9Ci6ipfpb
-            0ySguqykofTTVVqxzkZ2nviyuw7fNQQHtTAw5JyghotsHgBBMeP4TJm+CkrggYAV
-            e9NnrRJpV0R+gPrAyhAOhIzqaPBB/ZbAJrv0yHn1QQsgCzWqCy3ruAFNtP5BK1DS
-            XAG3zRbI+AfVs6pe50306g5tze71efLlH/7Bd17Rqx45rFsiiQyXJHRwQiLtYuQP
-            RJMrImgAdIgKkm8rA5LTDlnFAm2AhJ/LGLUV9Q9eS+JYSJqKMPX+I4iLq9u6
-            =KhGS
+            hQIMA7uy4qQr71wiAQ/9Hi9xYVwdGGz/ohs0gW+I7ANJh8uwhj0zPfweMXg9Ki88
+            m0IIcbSKk+41uKcBxc9Uke/KCx71Y+CmjxoKDUmKPe0h2428Fe57KXTUwyX+unSu
+            LwUQpwYF8FgZvC9cHLFRPG28TWoXudYv8Om0ASfWD1t0ZtQQH1wWAE7P14+5j/Jd
+            qaL81pcVYRLIM0J63SSj/13qDWGXs5HDEjoiywbAL3KPhbvrV/qpbK2I3LfwG0J/
+            kxRl+xC77GoY9h9tKRDFwMQO/51fqWpxTJYBQUnN40ht5Gavl5qrCxcwErk77OzS
+            iI25wQ3UO2pTX48sKsYbAglSKVcy6ynb/MUOuvV4O00aw42REZtSH0XK6Q9IPWux
+            35sUYEFdhi8QiWggR4IE5T6W3wnbBKJ2jG13VlSDoz7szlf0b2Tcy1DS7VbMlHta
+            ErN4UDIUBao2c85SajcCeFQ+CH4eF4uv9G4VEHJVZw6KoZTl64TcR77b3wfc8x+X
+            eaNsaqcpdKtzr7V1VHWf/PhRd7G8erRvG4/MePa6j/RD9nfYX3O0euDMoucxrCs1
+            dwcpX/lDRMogJogUDN4s2hOz5QwGaLBpioQgiVbOC7FLFy9hj/FqwMUcfFzb/pzh
+            02PuL1fJaUTTfWh7Cn0NBQgtn9vDZVu/JedwIO8rdCWq2P4JjNoyCFkZ/UrYkSzS
+            XgH4gz4lTf353/GCIfPVdVE0ydmQNmhkH7c2HRn8kwhlyNCWDq5d9Pa/M3lUJ0Fx
+            VmwST7v1TCunIDDa9AxNc5/qCFeGdXm9l8onjvgmpqFvztw85hRpIOInYDxQxI8=
+            =ffO/
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
