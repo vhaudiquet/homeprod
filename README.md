@@ -80,3 +80,13 @@ This setup allows running multiple applications, either self-hosted applications
 | <img width=32 src="https://avatars.githubusercontent.com/u/26692192"> | Navidrome | Personal music streaming service |
 | <img width=32 src="https://avatars.githubusercontent.com/u/102734415"> | TubeArchivist | YouTube archiver |
 | <img width=24 src="https://radicale.org/assets/logo.svg"> | Radicale | Calendar and contacts server |
+
+
+## Docs (internal, using this repository)
+
+This repository uses pre-commit hooks to automate tasks like file encryption and configuration generation.
+
+After cloning, install the pre-commit hooks:
+```bash
+pre-commit install
+```
