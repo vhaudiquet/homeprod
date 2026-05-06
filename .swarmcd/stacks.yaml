@@ -53,6 +53,13 @@ sshportal:
   branch: main
   compose_file: docker/infrastructure/sshportal/docker-compose.yml
 
+fireshare:
+  repo: homeprod
+  branch: main
+  compose_file: docker/personal/fireshare/docker-compose.yml
+  sops_files:
+    - docker/personal/fireshare/.env
+
 gramps:
   repo: homeprod
   branch: main

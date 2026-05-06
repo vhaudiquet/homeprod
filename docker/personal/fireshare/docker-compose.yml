@@ -1,0 +1,58 @@
+services:
+  fireshare:
+    container_name: fireshare
+    image: shaneisrael/fireshare:1.6.10-lite
+    ports:
+      - "80"
+    volumes:
+      - data:/data
+      - processed:/processed
+      - video:/videos
+      - images:/images
+    env_file:
+      - .env
+    environment:
+      # PUID/PGID: the user/group ID the container runs as. Files written to your
+      # volumes (data, processed, videos, images) will be owned by this user. Set these to
+      # match the owner of your host directories to avoid permission errors.
+      # Run `id` on your host to find your UID and GID.
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - default
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fireshare.rule=Host(`clips.vhaudiquet.fr`)"
+      - "traefik.http.services.fireshare.loadbalancer.server.port=80"
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/fireshare/data'
+  processed:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/fireshare/processed'
+  video:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/fireshare/video'
+  images:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/app/fireshare/images'
+
+networks:
+  proxy:
+    external: true
+    name: proxy
