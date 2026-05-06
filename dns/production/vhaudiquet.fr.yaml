@@ -355,6 +355,13 @@ canada:
   ttl: 300
   type: A
   value: 192.99.6.159
+clips:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 83.113.30.49
 flix:
   octodns:
     cloudflare:
@@ -483,13 +490,6 @@ umami:
   type: A
   value: 83.113.30.49
 www:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
-clips:
   octodns:
     cloudflare:
       auto-ttl: true
