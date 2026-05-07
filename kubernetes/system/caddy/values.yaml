@@ -1,0 +1,104 @@
+# Caddy Edge Proxy
+replicaCount: 2
+# Listen on standard HTTP port
+listenPort: 80
+# Enable HTTPS
+https:
+    enabled: true
+    port: 443
+image:
+    repository: caddy
+    pullPolicy: IfNotPresent
+    tagSuffix: ""
+    tag: 2.11.2
+service:
+    type: LoadBalancer
+    annotations:
+        io.cilium/lb-ipam-ips: 10.1.2.152
+    externalTrafficPolicy: Local
+# Disable ingress - Caddy IS the edge proxy
+ingress:
+    enabled: false
+resources:
+    requests:
+        cpu: 100m
+        memory: 128Mi
+    limits:
+        cpu: 500m
+        memory: 256Mi
+podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+        drop:
+            - ALL
+    readOnlyRootFilesystem: true
+health:
+    path: /
+    port: 9999
+# Extra volumes: certificates + external routes ConfigMap
+volumes:
+    - name: certificates
+      secret:
+        secretName: ENC[AES256_GCM,data:hpxK4mqVNwVRWutC4ufnqhzu,iv:D/7vhjkr5buSFJ42UeGKicPJA7YxHhv+vmakFFE11Vk=,tag:AExbVZIQu+wrUb5jq86toA==,type:str]
+        optional: ENC[AES256_GCM,data:y19uLw==,iv:S5VEP6p7GspKtXeTDumHy1xJ0yW1qu/t4yqy3bhlZSE=,tag:mkZiVVboLoOhGd1EcE9PaA==,type:bool]
+    - name: routes
+      configMap:
+        name: caddy-routes
+# Extra volume mounts
+volumeMounts:
+    - name: certificates
+      mountPath: /etc/caddy/certs
+      readOnly: true
+    - name: routes
+      mountPath: /etc/caddy/routes
+      readOnly: true
+# Caddy configuration
+config:
+    debug: false
+    # Global options (goes inside the global {} block)
+    global: |
+        auto_https off
+    # The main Caddyfile content - imports routes from external ConfigMap
+    # This keeps routes in a separate, easily editable file
+    caddyFile: |
+        import /etc/caddy/routes/Caddyfile
+affinity:
+    podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                    matchLabels:
+                        app.kubernetes.io/name: caddy
+                topologyKey: kubernetes.io/hostname
+sops:
+    lastmodified: "2026-05-07T22:47:47Z"
+    mac: ENC[AES256_GCM,data:LQqoe/wDLAUJWLiEGoID3CSI4bQmdVaroAkq7Kk9Ullt85X3VmYMOrLXjn1Qew95rpG6gB9Bl7rvv0J7mUDJtewhfkSsSXKTYJAcn4VVoNGZ3PZu9/w5HNvOqDhTkXBWKEgQK4+HMKKEhW8iQ5aJ+oTAEZfKsp9k8+mqgHId100=,iv:E/v+fY9iKM9W9NFSGNtiJV6ZeaAb2Fy2hGDgOBwmFyU=,tag:JOD69j8SUS5339+zrV9L4g==,type:str]
+    pgp:
+        - created_at: "2026-05-07T22:47:46Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAt5P8/X84OYKnWvKc5qRpwHNQwbfqrB/SHkX82oJ8ZlXJ
+            /vlKVDOBrlntePt4cyKT6c3Ubw4xDj/1U3PkvM44AXSRHH8E5dSUI+5T/0+SBlfU
+            6XlkF6cpng/ydMvImTAi3+8bmC3yHE/NEegreldjFj7l2hdFuvfyOp7pmE//Ljox
+            D7tkq9v1/IlvPfeAY0xIEotr1nb41OEhM7OhPQjtGUeufD0eCUhCQaZSo+CjTrf2
+            cG+eE/O2jCLNjWJ33wK1AHtHX1mlyzW8sRkRVgg511G8iquFjD11ZuDZPEIC8Yle
+            idftTlPh0ZTOGXcfDVn5Pq9dgkZ3K6ufhvEb8mw0NrPsysY21PdDaIzLo58b4t2m
+            akJ1xCciwsQDorKfFjpG7gFzV1KvMzw/KjEUFxg5JfKaFGTPhgsf50OiM6VPf4gP
+            cTS5QNewdnbnzHE756PkZqfqdt6Tt9xqji8r72PwTSUy6yaK/lV9owAIZ6V2yTdt
+            l3DckDp0HsU/w98fabiX9CsrJUWeUfioElw2ibXWcXNHmqPoFl1Bf/AbF20t6P9p
+            +1J0vMu6ONsBGv2Flmle2Ya7OQbZF4lQB4dQLUBDKdZArsB5Sspm3Rf+4iP9qUF+
+            Pr/OotbiaOLsEZybIf+L2d5ON4zCbNAU5VbpfWMKH0AsPcIH5Ruw7d/OutAGZOvS
+            XAGAEBjVlZ2IRU6CSPJDG/9TqBHyBHfriV+BoGlKlXbPMoJAZI2wX1o7+M6S65ho
+            aiR70aCo2kIgFvxxBeY1FxtB0DB8Zeoul7ovvhKIq2u9s7X/OSIa0X5dm6sZ
+            =fg1O
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

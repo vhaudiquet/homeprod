@@ -1,0 +1,69 @@
+# Caddy Routes - External ConfigMap
+# This file contains all route definitions, imported by the main Caddyfile.
+# Edit this file to add/modify routes.
+#
+# Certificate files are mounted from the caddy-certificates Secret
+# at /etc/caddy/certs/
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-routes
+  namespace: caddy
+  labels:
+    app.kubernetes.io/name: caddy
+    app.kubernetes.io/component: routes
+data:
+  Caddyfile: |
+    vhaudiquet.fr {
+      tls /etc/caddy/certs/vhaudiquet-fr.crt /etc/caddy/certs/vhaudiquet-fr.key
+      reverse_proxy 10.1.2.212:80
+    }
+
+    *.vhaudiquet.fr {
+        tls /etc/caddy/certs/wildcard-vhaudiquet-fr.crt /etc/caddy/certs/wildcard-vhaudiquet-fr.key
+
+        # Kubernetes services (via Traefik)
+        @authentik   host authentik.vhaudiquet.fr
+
+        @auth-nook   host auth-nook.vhaudiquet.fr
+        @nook-mg     host n.vhaudiquet.fr
+        @nook        host nook.vhaudiquet.fr
+        @sse-nook    host sse-nook.vhaudiquet.fr
+
+        @gitea       host git.vhaudiquet.fr
+
+        @flux-wh     host flux-webhook.vhaudiquet.fr
+
+        @umami       host umami.vhaudiquet.fr
+
+        handle @authentik   { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @auth-nook   { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @nook-mg     { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @nook        { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @sse-nook    { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @gitea       { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @flux-wh     { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+        handle @umami       { reverse_proxy traefik.traefik.svc.cluster.local:80 }
+
+        # Docker VM services (via Traefik)
+        @alexscript     host alexscript.vhaudiquet.fr
+        @clips          host clips.vhaudiquet.fr
+        @jellyfin       host flix.vhaudiquet.fr
+        @mail           host mail.vhaudiquet.fr
+
+        handle @alexscript      { reverse_proxy 10.1.2.212:80 }
+        handle @clips           { reverse_proxy 10.1.2.212:80 }
+        handle @jellyfin        { reverse_proxy 10.1.2.212:80 }
+        handle @mail            { reverse_proxy 10.1.2.212:80 }
+    }
+
+    semery.fr {
+      tls /etc/caddy/certs/semery-fr.crt /etc/caddy/certs/semery-fr.key
+      reverse_proxy 10.1.2.212:80
+    }
+
+    buildpath.win {
+      tls /etc/caddy/certs/buildpath-win.crt /etc/caddy/certs/buildpath-win.key
+      reverse_proxy 10.1.2.212:80
+    }

@@ -53,6 +53,7 @@ updates:
       - "/kubernetes/personal/photoprism"
       - "/kubernetes/production/umami"
       - "/kubernetes/system/blocky"
+      - "/kubernetes/system/caddy"
       - "/kubernetes/system/coredns"
       - "/kubernetes/system/csi-driver-nfs"
       - "/kubernetes/system/external-dns"
