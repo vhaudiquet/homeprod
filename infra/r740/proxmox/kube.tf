@@ -29,7 +29,7 @@ resource "proxmox_virtual_environment_vm" "kube" {
 
   memory {
     dedicated = 32768
-    floating = 16192
+    floating = 22222
   }
 
   boot_order = ["scsi0", "ide0"]
@@ -80,6 +80,12 @@ resource "proxmox_virtual_environment_vm" "kube" {
     bridge = "vmbr0"
     model = "virtio"
     # mac_address = "BC:24:11:F6:E1:C9"
+    vlan_id = 2
+  }
+
+  network_device {
+    bridge = "vmbr0"
+    model = "virtio"
     vlan_id = 2
   }
 

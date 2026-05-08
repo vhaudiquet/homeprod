@@ -47,7 +47,9 @@ resource "proxmox_virtual_environment_file" "ai-cloud-config" {
 resource "proxmox_virtual_environment_vm" "ai" {
   name = "ai-${var.proxmox_node_name}"
   node_name = var.proxmox_node_name
-  on_boot = true
+  
+  on_boot = false
+  started = false
 
   agent {
     enabled = true
