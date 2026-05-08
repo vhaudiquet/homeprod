@@ -26,17 +26,10 @@ resources:
     limits:
         cpu: 500m
         memory: 256Mi
-podSecurityContext:
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
-securityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-        drop:
-            - ALL
-    readOnlyRootFilesystem: true
+# Caddy needs root to bind to ports 80/443 and write runtime data
+# Using restrictive security context causes "operation not permitted"
+podSecurityContext: {}
+securityContext: {}
 health:
     path: /
     port: 9999
@@ -44,8 +37,8 @@ health:
 volumes:
     - name: certificates
       secret:
-        secretName: ENC[AES256_GCM,data:hpxK4mqVNwVRWutC4ufnqhzu,iv:D/7vhjkr5buSFJ42UeGKicPJA7YxHhv+vmakFFE11Vk=,tag:AExbVZIQu+wrUb5jq86toA==,type:str]
-        optional: ENC[AES256_GCM,data:y19uLw==,iv:S5VEP6p7GspKtXeTDumHy1xJ0yW1qu/t4yqy3bhlZSE=,tag:mkZiVVboLoOhGd1EcE9PaA==,type:bool]
+        secretName: ENC[AES256_GCM,data:uaAG/wW6cq2z2tK2gbjXMo/1,iv:hwWluZccIwdbcFg5Xr7uVtX66UJW+POWE97lug+nZiM=,tag:DB57b33GIxm9+FYDTNTA2w==,type:str]
+        optional: ENC[AES256_GCM,data:4ZWBnA==,iv:BZtHxs0w9EJhkHSoxBTTaBpF3xnsXE/rKzHk0cSvQMU=,tag:JI1s2dptpfDMWnnYHsJtLw==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
@@ -77,27 +70,27 @@ affinity:
                         app.kubernetes.io/name: caddy
                 topologyKey: kubernetes.io/hostname
 sops:
-    lastmodified: "2026-05-07T22:47:47Z"
-    mac: ENC[AES256_GCM,data:LQqoe/wDLAUJWLiEGoID3CSI4bQmdVaroAkq7Kk9Ullt85X3VmYMOrLXjn1Qew95rpG6gB9Bl7rvv0J7mUDJtewhfkSsSXKTYJAcn4VVoNGZ3PZu9/w5HNvOqDhTkXBWKEgQK4+HMKKEhW8iQ5aJ+oTAEZfKsp9k8+mqgHId100=,iv:E/v+fY9iKM9W9NFSGNtiJV6ZeaAb2Fy2hGDgOBwmFyU=,tag:JOD69j8SUS5339+zrV9L4g==,type:str]
+    lastmodified: "2026-05-08T08:21:38Z"
+    mac: ENC[AES256_GCM,data:MiF+wRCRfWNVrzcemHsAgyBHMSiXdxO4+ZXnJZaHdnJ4sCxQnJlWxrybZpJTF6n+QceqtV4WQjtnaZhHw5cSUZR9YVV+fsp8ySZOYD5iJJyNz9R4mjJg/JK2OR64DNRL91yGkucT8qT99eE6lUJTDk6EVVrCjByemRenrEq45b8=,iv:buCFuGLbv8GliY8RJn3Kss+Z+mXiT7JGbkPrL2wbbyQ=,tag:Ze6dcMHeCFRsgWnGUtG98Q==,type:str]
     pgp:
-        - created_at: "2026-05-07T22:47:46Z"
+        - created_at: "2026-05-08T08:21:36Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAt5P8/X84OYKnWvKc5qRpwHNQwbfqrB/SHkX82oJ8ZlXJ
-            /vlKVDOBrlntePt4cyKT6c3Ubw4xDj/1U3PkvM44AXSRHH8E5dSUI+5T/0+SBlfU
-            6XlkF6cpng/ydMvImTAi3+8bmC3yHE/NEegreldjFj7l2hdFuvfyOp7pmE//Ljox
-            D7tkq9v1/IlvPfeAY0xIEotr1nb41OEhM7OhPQjtGUeufD0eCUhCQaZSo+CjTrf2
-            cG+eE/O2jCLNjWJ33wK1AHtHX1mlyzW8sRkRVgg511G8iquFjD11ZuDZPEIC8Yle
-            idftTlPh0ZTOGXcfDVn5Pq9dgkZ3K6ufhvEb8mw0NrPsysY21PdDaIzLo58b4t2m
-            akJ1xCciwsQDorKfFjpG7gFzV1KvMzw/KjEUFxg5JfKaFGTPhgsf50OiM6VPf4gP
-            cTS5QNewdnbnzHE756PkZqfqdt6Tt9xqji8r72PwTSUy6yaK/lV9owAIZ6V2yTdt
-            l3DckDp0HsU/w98fabiX9CsrJUWeUfioElw2ibXWcXNHmqPoFl1Bf/AbF20t6P9p
-            +1J0vMu6ONsBGv2Flmle2Ya7OQbZF4lQB4dQLUBDKdZArsB5Sspm3Rf+4iP9qUF+
-            Pr/OotbiaOLsEZybIf+L2d5ON4zCbNAU5VbpfWMKH0AsPcIH5Ruw7d/OutAGZOvS
-            XAGAEBjVlZ2IRU6CSPJDG/9TqBHyBHfriV+BoGlKlXbPMoJAZI2wX1o7+M6S65ho
-            aiR70aCo2kIgFvxxBeY1FxtB0DB8Zeoul7ovvhKIq2u9s7X/OSIa0X5dm6sZ
-            =fg1O
+            hQIMA7uy4qQr71wiARAAodj8t2XLCt+C9ZokE3Ug8auwmMmuTUZnu8zxINfCVM6U
+            eA373tI9U7lIXfC6o3AcM6Okk2/mCSJBcX8l4yxZ/CT/GPm2v8/tqdf66o2E4rxU
+            r/YUyjnO82/k7c7Z8vndqQQMNJv9OU1yMRKrnhbh42Cd1ptuu8mt4XDRG806YssB
+            iznuUupVpYOPyQ9TdwhMxGXvn6QI3EEgvdKnqzPnXyg95hy4Cl+cPsGYEJQgZ4qp
+            e7ZJlT61O3TlEXrb9SzMYikR7St53vyNiIs7SnBwWEjum2ociaPaMz2yvRfoqMvY
+            0mFfWlWhkTNBFeORoUbdtQCNKgrnh+es7t6frQlHFOV7yqATM4/UAGFaVXMhkFBh
+            gGhAWfFTOuJBijEcsD8kBlMSoW+xR0izQs3IIDDPlBb7kepNZlBMV3ty9/Jynb+a
+            cCxtRAoK23R7Yjck6RLdXt/XsDQ9UxMqabngr6OxQZyEX1EV0Y1xdSlRfA9tcp1X
+            rjCSiFA2DD0xXg8LKIkq+GI+vndWtOq5qpO7KngFR02r5ilq+dT0NkRZmdim4stj
+            xQ8OrxCzlY0kJWwL6d6LMpTVNdIhI4cZ9o5c/+X9ENHgeJpRWuu9y3DNn5Wvw2yY
+            f0stU9CDCd21uo2XKQM+pEZ+0qfoFVZufDjz6jSiYm4TNfF98CcSvFMfcLqhlAvS
+            XAEhHFmJsZJBbSElwRXS0/pf0UNSY90y2vf7JbH/IAbT/OyRIOcBXClPnSENkM0C
+            KGV/N2wjfSTixWCQj7YMKuG0pb6w/4QXmmrfxatllXLUiRoUpuKZDd3f/M0C
+            =fLGv
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
