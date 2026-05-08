@@ -13,8 +13,6 @@ image:
     tag: 2.11.2
 service:
     type: LoadBalancer
-    annotations:
-        io.cilium/lb-ipam-ips: 10.1.2.152
     externalTrafficPolicy: Local
 # Disable ingress - Caddy IS the edge proxy
 ingress:
@@ -37,8 +35,8 @@ health:
 volumes:
     - name: certificates
       secret:
-        secretName: ENC[AES256_GCM,data:uaAG/wW6cq2z2tK2gbjXMo/1,iv:hwWluZccIwdbcFg5Xr7uVtX66UJW+POWE97lug+nZiM=,tag:DB57b33GIxm9+FYDTNTA2w==,type:str]
-        optional: ENC[AES256_GCM,data:4ZWBnA==,iv:BZtHxs0w9EJhkHSoxBTTaBpF3xnsXE/rKzHk0cSvQMU=,tag:JI1s2dptpfDMWnnYHsJtLw==,type:bool]
+        secretName: ENC[AES256_GCM,data:1HAy4ntUhnklTlxZgF92RLdT,iv:Vz/nfWy8yie5qre7+yzVzDpO1IW3x4SUJBQIzggGMJY=,tag:+HXDFjKHCJLjE5uW3HsEGQ==,type:str]
+        optional: ENC[AES256_GCM,data:6WPvqQ==,iv:CAxOsnyPZhLLQ4/xfDNFu8mgKVz5keDG0gfopL69v70=,tag:Nta3ov4Zmgu1uwI/1JRsWg==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
@@ -70,27 +68,27 @@ affinity:
                         app.kubernetes.io/name: caddy
                 topologyKey: kubernetes.io/hostname
 sops:
-    lastmodified: "2026-05-08T08:21:38Z"
-    mac: ENC[AES256_GCM,data:MiF+wRCRfWNVrzcemHsAgyBHMSiXdxO4+ZXnJZaHdnJ4sCxQnJlWxrybZpJTF6n+QceqtV4WQjtnaZhHw5cSUZR9YVV+fsp8ySZOYD5iJJyNz9R4mjJg/JK2OR64DNRL91yGkucT8qT99eE6lUJTDk6EVVrCjByemRenrEq45b8=,iv:buCFuGLbv8GliY8RJn3Kss+Z+mXiT7JGbkPrL2wbbyQ=,tag:Ze6dcMHeCFRsgWnGUtG98Q==,type:str]
+    lastmodified: "2026-05-08T08:49:14Z"
+    mac: ENC[AES256_GCM,data:pcStIiaO4zwMLYlpA3FZlwtesiXmhOcclk6GdQ5QRziGv/Te2bUuWGVA6EaeGJML6Mo0JG3jfyua6qQbPdVp6MBt34clcqoU51BG1Nxa6li0K2oqnJlo4evuhJqW1QDzPZZWs8XZaga6rEKNtLwp1R2CIKJU4V5wZAInnqGrnh8=,iv:bhGiargUSIvJ7vePYLBiyG/ZmXDjWyG0x55NG7kxSH8=,tag:H2dIz/JrPGg53BLOvz6ikg==,type:str]
     pgp:
-        - created_at: "2026-05-08T08:21:36Z"
+        - created_at: "2026-05-08T08:49:14Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAodj8t2XLCt+C9ZokE3Ug8auwmMmuTUZnu8zxINfCVM6U
-            eA373tI9U7lIXfC6o3AcM6Okk2/mCSJBcX8l4yxZ/CT/GPm2v8/tqdf66o2E4rxU
-            r/YUyjnO82/k7c7Z8vndqQQMNJv9OU1yMRKrnhbh42Cd1ptuu8mt4XDRG806YssB
-            iznuUupVpYOPyQ9TdwhMxGXvn6QI3EEgvdKnqzPnXyg95hy4Cl+cPsGYEJQgZ4qp
-            e7ZJlT61O3TlEXrb9SzMYikR7St53vyNiIs7SnBwWEjum2ociaPaMz2yvRfoqMvY
-            0mFfWlWhkTNBFeORoUbdtQCNKgrnh+es7t6frQlHFOV7yqATM4/UAGFaVXMhkFBh
-            gGhAWfFTOuJBijEcsD8kBlMSoW+xR0izQs3IIDDPlBb7kepNZlBMV3ty9/Jynb+a
-            cCxtRAoK23R7Yjck6RLdXt/XsDQ9UxMqabngr6OxQZyEX1EV0Y1xdSlRfA9tcp1X
-            rjCSiFA2DD0xXg8LKIkq+GI+vndWtOq5qpO7KngFR02r5ilq+dT0NkRZmdim4stj
-            xQ8OrxCzlY0kJWwL6d6LMpTVNdIhI4cZ9o5c/+X9ENHgeJpRWuu9y3DNn5Wvw2yY
-            f0stU9CDCd21uo2XKQM+pEZ+0qfoFVZufDjz6jSiYm4TNfF98CcSvFMfcLqhlAvS
-            XAEhHFmJsZJBbSElwRXS0/pf0UNSY90y2vf7JbH/IAbT/OyRIOcBXClPnSENkM0C
-            KGV/N2wjfSTixWCQj7YMKuG0pb6w/4QXmmrfxatllXLUiRoUpuKZDd3f/M0C
-            =fLGv
+            hQIMA7uy4qQr71wiAQ//VaH0Exxuw7YlBSLJc2UuNPVzDxkd6udLgpfLerMePX1s
+            9HeJslI2vcUG2lN8Pg9ZxTwqOJHsJDhetKNYIhTJ8ig899FWAz0DMG49Pv6QSQiM
+            eS8Mji6FavAhT9AkIgK635HbNqPQewBsYEyMTL3rScz5a2XEsgsNx+rta4HsFp0F
+            yqlXv/AIbxkr22edHbbfnTU+fcdEcprtaaqIg0hi1gUVqOLp+lZgakr+nfbY9KkB
+            5Y6KZFv2fYJ7xLgugT97sTXbk9YkQ+qjUvFVICkRDneTGmLfNocr+9KWe48KMXAN
+            QJ7Kb5rFkZLUko92i6KOnJlk4rbtmD2/pECmDeR1PX1ACZDRmcJMCSO0tdbuLS3C
+            8zEBsyebl5je4b91bncWNMjkXklhaF4FC8U5m2FP0BwQoGYq+9R3rGTv4Nx5ycPk
+            D4KfKY8p8kn7/AnhpBrFRg1E7YGERipMX6BvcXvgBHHUntp3VXdRG5HzHW3Fs1wq
+            w1HRQcm5VZpKfgJ4WoQ/aQB4clXrHBA+JNrrOhJ2LgRAIvayl0IKA/3ZZMahacbc
+            R1B96qr+2v160vDFp1ocZcDo72cWdCZ03t1eNPaaM7NKVsszD5WjYOomRh7ndLh1
+            l+MK3pvuqF6bekfFNmDVDgt9cpSl0UJ7wo2ZreSn5XhOXY88b7neu2BzUQOlU3LS
+            XAGnHhe99cHTE9NnH7egRZUMDhKI5gn1OkCgKCqBIcYp1gDKiPYdAHK7yjv0aJR/
+            j/VDwJzcB97ooiHmTRYrg5GpUEELkeZ6TIrjvZqOySXG9wIU74o8JUIyGtvt
+            =z8ER
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

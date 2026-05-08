@@ -17,3 +17,14 @@ spec:
   valuesFrom:
     - kind: Secret
       name: caddy-values
+  # Patch the Service to add loadBalancerIP since the chart doesn't support it
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Service
+              name: caddy
+            patch: |
+              - op: add
+                path: /spec/loadBalancerIP
+                value: "10.1.2.152"
