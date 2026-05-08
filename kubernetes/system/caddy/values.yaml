@@ -35,8 +35,8 @@ health:
 volumes:
     - name: certificates
       secret:
-        secretName: ENC[AES256_GCM,data:1HAy4ntUhnklTlxZgF92RLdT,iv:Vz/nfWy8yie5qre7+yzVzDpO1IW3x4SUJBQIzggGMJY=,tag:+HXDFjKHCJLjE5uW3HsEGQ==,type:str]
-        optional: ENC[AES256_GCM,data:6WPvqQ==,iv:CAxOsnyPZhLLQ4/xfDNFu8mgKVz5keDG0gfopL69v70=,tag:Nta3ov4Zmgu1uwI/1JRsWg==,type:bool]
+        secretName: ENC[AES256_GCM,data:Er1F+5xhWKUT43+7jU/pwxWP,iv:Ohc3jFIQ4Enmbhd0F44SYWJiHlj1oFOrMdtM4oYKQEU=,tag:Kk8Y8aFSKMyGmY/uRVvyLw==,type:str]
+        optional: ENC[AES256_GCM,data:JdlpGQ==,iv:xaoqonC9cGHXizHuAFrjhC4ZEtZ2IICeg2hxvGjyFM4=,tag:JYmlIXgIMON7z4++FrBGKQ==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
@@ -57,6 +57,10 @@ config:
     # The main Caddyfile content - imports routes from external ConfigMap
     # This keeps routes in a separate, easily editable file
     caddyFile: |
+        :80 {
+            redir https://{host}{uri} permanent
+        }
+
         import /etc/caddy/routes/Caddyfile
 affinity:
     podAntiAffinity:
@@ -68,27 +72,27 @@ affinity:
                         app.kubernetes.io/name: caddy
                 topologyKey: kubernetes.io/hostname
 sops:
-    lastmodified: "2026-05-08T08:49:14Z"
-    mac: ENC[AES256_GCM,data:pcStIiaO4zwMLYlpA3FZlwtesiXmhOcclk6GdQ5QRziGv/Te2bUuWGVA6EaeGJML6Mo0JG3jfyua6qQbPdVp6MBt34clcqoU51BG1Nxa6li0K2oqnJlo4evuhJqW1QDzPZZWs8XZaga6rEKNtLwp1R2CIKJU4V5wZAInnqGrnh8=,iv:bhGiargUSIvJ7vePYLBiyG/ZmXDjWyG0x55NG7kxSH8=,tag:H2dIz/JrPGg53BLOvz6ikg==,type:str]
+    lastmodified: "2026-05-08T11:43:14Z"
+    mac: ENC[AES256_GCM,data:K0HWw8yTPKy6e3aQV4SdiVwrCjiyCFlFbeycAiyJq4IdlKX9v4wFvjVFLR8VziH8oXJXdUUhr+LOiqNI5HwghXkVn2dOP2ij9jvXZtMic4P0AUN16PfWoedu9ozA+xsGHZ1OTUv+sxvKEUo5Z5Wp+u761w/Xqdn5hHmU2Komatk=,iv:ICwn/LvizIjXVfgiMje50dQ11JAH37wSla29bGAnjuA=,tag:mV7rtahUy4ODZaA7baM12w==,type:str]
     pgp:
-        - created_at: "2026-05-08T08:49:14Z"
+        - created_at: "2026-05-08T11:43:13Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//VaH0Exxuw7YlBSLJc2UuNPVzDxkd6udLgpfLerMePX1s
-            9HeJslI2vcUG2lN8Pg9ZxTwqOJHsJDhetKNYIhTJ8ig899FWAz0DMG49Pv6QSQiM
-            eS8Mji6FavAhT9AkIgK635HbNqPQewBsYEyMTL3rScz5a2XEsgsNx+rta4HsFp0F
-            yqlXv/AIbxkr22edHbbfnTU+fcdEcprtaaqIg0hi1gUVqOLp+lZgakr+nfbY9KkB
-            5Y6KZFv2fYJ7xLgugT97sTXbk9YkQ+qjUvFVICkRDneTGmLfNocr+9KWe48KMXAN
-            QJ7Kb5rFkZLUko92i6KOnJlk4rbtmD2/pECmDeR1PX1ACZDRmcJMCSO0tdbuLS3C
-            8zEBsyebl5je4b91bncWNMjkXklhaF4FC8U5m2FP0BwQoGYq+9R3rGTv4Nx5ycPk
-            D4KfKY8p8kn7/AnhpBrFRg1E7YGERipMX6BvcXvgBHHUntp3VXdRG5HzHW3Fs1wq
-            w1HRQcm5VZpKfgJ4WoQ/aQB4clXrHBA+JNrrOhJ2LgRAIvayl0IKA/3ZZMahacbc
-            R1B96qr+2v160vDFp1ocZcDo72cWdCZ03t1eNPaaM7NKVsszD5WjYOomRh7ndLh1
-            l+MK3pvuqF6bekfFNmDVDgt9cpSl0UJ7wo2ZreSn5XhOXY88b7neu2BzUQOlU3LS
-            XAGnHhe99cHTE9NnH7egRZUMDhKI5gn1OkCgKCqBIcYp1gDKiPYdAHK7yjv0aJR/
-            j/VDwJzcB97ooiHmTRYrg5GpUEELkeZ6TIrjvZqOySXG9wIU74o8JUIyGtvt
-            =z8ER
+            hQIMA7uy4qQr71wiAQ//aGnCSLLWTkhToTh833OJ1GwgN82F8R+RgsfpKIW+XNvI
+            YdTCgaFrYdCGXsaLHijb7vVwCU0VRf/ufZfQp2+GupqRHCbMLSmlkoiyr9ImGlYX
+            VWQDajv74H/3CcyCQNjqfFRdUHLE+rfNuYaH/p3+/Ee2bgJi52f3uRdJ4lXSCWIf
+            KW9lLbwjlfGnOnsnDkaPwcZW9QL353Mi82yXOu7OihobUaVgr83nESXbAS/k4mx1
+            whOXAoEDeLQZfZrITEewOQ0PHjWJwKc0x2YCiQ0If33GSfDjzWPoDuXmQo/xhk98
+            Nt3aNTMDvjriGNOIcZyUlEjq1HqCmd3pQSD5h8soR9Do/NsTocyK1da49iz91dha
+            jwoEga2iFis9Zd9rr7Caf3pWtmKENUGFJl15tpaelvk13jUebSyDubw0OIYbbILr
+            dVZAeiOHrRMD5crxG05zvOeLMASuL/IrK97RLBAonZLEkRrfgAwZHK2U0rq2HXpI
+            wlp4yDlF/eILvmMgAruP7lW0q/m5+DfxQtcZdamtm3FWj9m0iUAthvw02fplmFci
+            xJ82rkfkPAZSm7/yPJ9yiea+tKgX8yk1uArRtf8rsG6SED2lCRKmux8ElcZc5DYV
+            hyLivTN7X5Nr05mvaPIptCVm1iYoWaiQNZcPDax/LBZJhNaJgPUz1ue1Ppf422PS
+            XgE4dh3x1ulcUhXm4nK/0FzKmJUOjcygPeGWmia0ZOEHub/ju+z8LgRAkBasqRXP
+            4aepPm5xVY0g/Z0xksxIWpYUnLRzs0uUKd+zz1MvmWlZckxUO5wWJUWRcwCBDz4=
+            =Ql2K
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
