@@ -34,7 +34,6 @@ updates:
       - "/docker/production/alexscript"
       - "/docker/production/buildpath"
       - "/docker/production/semeryfr"
-      - "/docker/production/vhaudiquetfr"
       - "/docker/tools/excalidraw"
       - "/docker/tools/obsidian-livesync"
       - "/docker/tools/stirling-pdf"

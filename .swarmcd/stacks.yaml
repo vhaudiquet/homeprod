@@ -153,11 +153,6 @@ semeryfr:
   branch: main
   compose_file: docker/production/semeryfr/docker-compose.yml
 
-vhaudiquetfr:
-  repo: homeprod
-  branch: main
-  compose_file: docker/production/vhaudiquetfr/docker-compose.yml
-
 excalidraw:
   repo: homeprod
   branch: main
