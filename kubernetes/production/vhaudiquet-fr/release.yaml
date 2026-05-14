@@ -12,7 +12,7 @@ spec:
         name: vhaudiquet-fr
         namespace: vhaudiquet-fr
       chart: vhaudiquet-fr
-      version: '>=0.1.0'
+      version: '>=0.1.0-0'
       interval: 1m
   valuesFrom:
     - kind: Secret
