@@ -52,6 +52,7 @@ updates:
       - "/kubernetes/personal/notesnook"
       - "/kubernetes/personal/photoprism"
       - "/kubernetes/production/umami"
+      - "/kubernetes/production/vhaudiquet-fr"
       - "/kubernetes/system/blocky"
       - "/kubernetes/system/caddy"
       - "/kubernetes/system/coredns"

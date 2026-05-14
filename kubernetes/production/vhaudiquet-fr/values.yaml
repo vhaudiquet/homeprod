@@ -1,0 +1,67 @@
+# Number of replicas
+replicaCount: 1
+# Container image configuration
+image:
+    repository: git.vhaudiquet.fr/vhaudiquet/vhaudiquet.fr
+    pullPolicy: IfNotPresent
+    # The image tag defaults to the chart appVersion (which is set to git SHA by CI).
+    # Override this only if you need a specific version.
+    tag: ""
+# Image pull secrets for private registries
+imagePullSecrets: []
+# Ingress configuration
+ingress:
+    enabled: true
+    className: ""
+    annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    hosts:
+        - host: vhaudiquet.fr
+          paths:
+            - path: /
+              pathType: Prefix
+    tls: []
+# Environment variables
+env:
+    NGINX_HOST: vhaudiquet.fr
+    NGINX_PORT: "80"
+# NFS Storage configuration for public files
+nfs:
+    enabled: true
+    # NFS server IP address
+    server: truenas.lan
+    # NFS export path
+    path: /mnt/main_storage/public
+    # Mount path inside the container
+    mountPath: /usr/share/nginx/html/public
+    # Storage size for PVC
+    storageSize: 10Gi
+    # Storage class name (leave empty for default)
+    storageClassName: ""
+sops:
+    lastmodified: "2026-05-14T09:33:46Z"
+    mac: ENC[AES256_GCM,data:R5ular4bAyV0cFPGUGYg4NWCGI64rWTax6ObBnCadORwSTh5/VQN3bsDDPFC3dep/7nKzY71d2X4qAcVU3RkWa9eMP+e9dhaGV9/8gvY/qDXZiNEuAXsmpaSATgUo6mUwqrwl5tn4ono4ID8gr7FRVpneTbYX/HpiWDbBa9l1Xk=,iv:wQ552gswkX5aOy/Cht1zY56camnb8EhEwy711osyf4c=,tag:t+U/1wRD7/z39KY9zjNcMQ==,type:str]
+    pgp:
+        - created_at: "2026-05-14T09:33:46Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+JAzu9u2Dgn+lA58pIhRbM1064juEOvebtBK0FdJCi7AG
+            /Up2oooBmLMxybk16q0800kZHgOAcqTWkRcDq3QhC7nK+xcs03plTLLAlqfnh2x0
+            XyqQVk4du9caRdgvgN96tG+oWUJcuUJ/uFunXAzRvPnNysS5sGXVKJmbVVKfTjqk
+            UPyA5sBbCIxW10kPZJjprR1HaRl2dkgz7jZI/q2RXhFjCOhthMErBFr4f6xD3LnN
+            H5XVtixNcVmIinsGUIgvPW+qknjrf17ammgEtOqjtuu4PUevQFt4zkVyjU0Y/ASj
+            HAyYgSNIAXanb3u9ulL6CCg/CXJSofTrexw5RPM9eTQQ7S1KqHm/Ns6jjl/jXtEW
+            cIQZ5bQJPTJu7W9gxGpgaLmWwGfoDWvmT2rIFYC9tf+61F4EbRvY6KepKET9NYTJ
+            EnyDoxRsfVgxwQjyqpIpmNewWpgWwcLbD8INoJUVx/Yr284F9pBCgKqKRmeNH/Sy
+            kEt3QD1ElohuwTx7XLkYf6LuDFy8kA5wFUPKUgxmoFsGZhMhmi8ysUkUxtYPPMD8
+            YLVOK8UX3sYUDdY7tQjlgz6nhMqGL7ekqxyA5PSCGlhg5siKIhltz1CzadNOrsqF
+            jHkiUCrDNu1ToRPllOw4WMwSzII/sf2oP3FJyE+/Rsl49rVjELLfC8eWPhG0yhXS
+            XgGHbmvrm1QPl70dF+896QE/XtSydiqLUynCeIAvh61//ipS9lSZXpdDKEP5Q7ZD
+            /lTbPRH7Y7EZUgarjBtc2wYg3iaBkELtS5lnQeJawHQ8/M3TxdWmgEeBim/qr+A=
+            =K+50
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
