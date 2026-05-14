@@ -52,6 +52,7 @@ find kubernetes -name 'release.yaml' -print0 \
 if ! [ -f .github/dependabot.yml ] || ! cmp -s "$tmpfile" .github/dependabot.yml; then
   mv "$tmpfile" .github/dependabot.yml
   echo "Updated .github/dependabot.yml!"
+  git add ".github/dependabot.yml"
 else
   echo "No changes to .github/dependabot.yml."
 fi

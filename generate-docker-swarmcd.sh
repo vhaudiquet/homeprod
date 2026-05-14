@@ -33,6 +33,7 @@ find docker -name 'docker-compose.yml' -print0 \
 if ! [ -f .swarmcd/stacks.yaml ] || ! cmp -s "$tmpfile" .swarmcd/stacks.yaml; then
   mv "$tmpfile" .swarmcd/stacks.yaml
   echo "Updated .swarmcd/stacks.yaml!"
+  git add ".swarmcd/stacks.yaml"
 else
   echo "No changes to .swarmcd/stacks.yaml."
 fi
