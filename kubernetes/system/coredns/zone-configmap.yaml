@@ -65,3 +65,4 @@ data:
     webmail         IN  A   10.1.2.212
     wizarr          IN  A   10.1.2.212
     zigbee2mqtt     IN  A   10.1.2.212
+    nodered         IN  A   10.1.2.212
