@@ -3,7 +3,7 @@
 : - octodns:
       cloudflare:
         auto-ttl: true
-        proxied: true
+        proxied: false
     ttl: 300
     type: A
     value: 83.113.30.49
@@ -22,7 +22,7 @@ www:
   octodns:
     cloudflare:
       auto-ttl: true
-      proxied: true
+      proxied: false
   ttl: 300
   type: A
   value: 83.113.30.49
