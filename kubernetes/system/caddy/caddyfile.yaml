@@ -38,7 +38,10 @@ data:
         @umami       host umami.vhaudiquet.fr
 
         handle @authentik {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local:80 {
+                header_up Connection {>Connection}
+                header_up Upgrade {>Upgrade}
+            }
         }
         handle @auth-nook {
             reverse_proxy traefik.traefik.svc.cluster.local:80
