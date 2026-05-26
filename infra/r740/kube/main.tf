@@ -44,7 +44,10 @@ data "talos_machine_configuration" "kube" {
         }
         network = {
           nameservers = [
-            "10.1.2.3"
+            # We need a set of nameservers that can work independently of kube
+            # to bootstrap. 
+            "10.1.2.148",
+            "1.1.1.1"
           ]
         }
         certSANs = [
