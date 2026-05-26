@@ -8,6 +8,7 @@ entryPoints:
       trustedIPs:
         - "127.0.0.1/32"
         - "10.1.2.11/32" # nginxproxymanager
+        - "10.1.2.152/32" # caddy
 
 providers:
   docker:

@@ -14,7 +14,7 @@ services:
       ND_SESSIONTIMEOUT: 24h
       ND_BASEURL: "http://navidrome.lan"
       ND_PORT: 4533
-      ND_REVERSEPROXYWHITELIST: "172.20.0.0/16,10.1.2.11/32"
+      ND_REVERSEPROXYWHITELIST: "172.20.0.0/16,10.1.2.11/32,10.1.2.152/32"
     volumes:
       - data:/data
       - "music:/music:ro"
