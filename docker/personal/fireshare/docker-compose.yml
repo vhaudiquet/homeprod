@@ -1,7 +1,7 @@
 services:
   fireshare:
     container_name: fireshare
-    image: shaneisrael/fireshare:1.6.10-lite
+    image: shaneisrael/fireshare:1.6.12-lite
     ports:
       - "80"
     volumes:
