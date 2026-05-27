@@ -1,6 +1,6 @@
 services:
   couchdb:
-    image: couchdb:3.5.1
+    image: couchdb:3.5.2
     container_name: couchdb
     env_file: .env
     volumes:
