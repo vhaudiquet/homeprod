@@ -25,7 +25,7 @@ data:
 
     ; R740 and virtual machines
     r740            IN  A   10.1.1.223
-    bw-r740         IN  A   10.1.2.233
+    bw-r740         IN  A   10.1.2.117
     kube-r740       IN  A   10.1.2.171
     docker-r740     IN  A   10.1.2.212
     truenas         IN  A   10.1.2.139
