@@ -12,6 +12,7 @@ spec:
         name: gitea
         namespace: gitea
       chart: gitea
+      version: '12.6.0'
       interval: 1m
   valuesFrom:
     - kind: Secret
