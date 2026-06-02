@@ -7,17 +7,17 @@ Personal home production environment mono-repo
 
 ### Hardware and operating systems
 
-<img align="left" width="100" src="https://vhaudiquet.fr/public/github_assets/homeprod/p330_sff.png"/>
-
-#### Lenovo ThinkStation P330 SFF
+#### Dell R740
 
 Specifications :
 ```
-Intel Xeon E-2134 @ 3.50GHz (4 cores, 8 threads)
-64 GiB DDR4 ECC RAM
-1 TiB nVME SSD
-Intel X520-DA2 SFP+ 10Gbps network card
-nVIDIA Quadro P620 graphics card
+2* Intel Xeon Gold 6138 @ 2GHz (20 cores, 40 threads)
+144 GiB DDR4 ECC RAM
+2* 2 TiB SAS SSD (mirror)
+10Gbps 4* RJ45 network card
+H730P, 16* SFF 2.5 drive bays
+SAS9300-8E external SAS card
+NVIDIA RTX 3060 12G graphics card
 ```
 
 Running as single-node Proxmox
