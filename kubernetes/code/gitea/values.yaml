@@ -17,12 +17,27 @@ postgresql:
     global:
         postgresql:
             auth:
-                postgressPassword: ENC[AES256_GCM,data:VVBsXwglQd9PWw==,iv:bQhq4WjS2/5dNxmuuTcEUDsHbkWECFDDjFg+SCDc/WQ=,tag:c5wVnj/vdDRuhKkJ7pP4yw==,type:str]
-                password: ENC[AES256_GCM,data:o//XslP4IGAg6A==,iv:dJrETtegyBDnTeazpCG+JU6z3CNDckRyaJMb5QlzwRw=,tag:hRt43K4/ymC0Va/UpI+VZA==,type:str]
+                postgressPassword: ENC[AES256_GCM,data:iS1hZgegYcjUYA==,iv:sQopZNgQvktuVPTcSHGIXe8Vcx0QRrkOBmvCU+lXeYo=,tag:EzQXgSj6Mw8Sj342P6qoKQ==,type:str]
+                password: ENC[AES256_GCM,data:D9ajgAcbx6XJwQ==,iv:JXipoz3yEj85jvyfgTkt8UmACO1R94vrpTCUdQPhS/s=,tag:nJrhXFdtdlrE7CrgrsFHUQ==,type:str]
                 database: gitea
-                username: ENC[AES256_GCM,data:evM49sM=,iv:uXaYq7nuN8vj0jrihU88j66Q0LAxQA3UwQIr/zEzumM=,tag:AkcoP05gx00Kfh0nPRSAuw==,type:str]
+                username: ENC[AES256_GCM,data:ynRejXA=,iv:XxPBPLUywl4rDKo6RMJT1rOzAeK9lkUsYT5DlL+vqyY=,tag:lJFJGebHtj7nC+PFL1f6jw==,type:str]
     volumePermissions:
         enabled: true
+    primary:
+        livenessProbe:
+            enabled: true
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 10
+        readinessProbe:
+            enabled: true
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 6
 postgresql-ha:
     enabled: false
 persistence:
@@ -41,8 +56,8 @@ gitea:
     oauth:
         - name: Authentik
           provider: openidConnect
-          key: ENC[AES256_GCM,data:gyLucoZbo/91yZWPGIrmVBhv3hX4/ZoDNBi6Zmr3/kQKsnGxUVvmQQ==,iv:Md/UgUrrtY9J4JF0+ldgQluNz33OTH7aXEAedSJYVsM=,tag:Zooqlmk+4zPo0YypJG6IdQ==,type:str]
-          secret: ENC[AES256_GCM,data:shGtDGYPSGlUU5dfYH1ahTSqHaFQiI23iDMzsvf7WX22PobkcYmeucvzUdFQkUXs7FJjrbgW/bdZ0HLUp2QdPiTSH0sDxgTlMaQvJ6NGE83POkcRwD4HRft9TdXyEq2xrk0k7AzfueQaBBPDEWwXkGSHxWEw9l237hVXQiFE8bQ=,iv:0fAH/OTagWe93TOudWTxLCdLnPnKs87u9InrOH+or90=,tag:0ykeTEYI7WFzq1KLEnlbFQ==,type:str]
+          key: ENC[AES256_GCM,data:aU+rNnGTT4pji75ZJtBDmAkE0bX1alWTzUG0+DywCjQ66nSCqCa8DQ==,iv:DUxx8EFFBgnIivyf9CPpFx3sDeiu2NkIFDcoj6lVDeo=,tag:Zm6rEsXaCBuFmChgzdb2zA==,type:str]
+          secret: ENC[AES256_GCM,data:mkh0p931YVQ/kqpHdeZHEndQpxNYk+t4LqTkZFLyEFVOuy5ZdxyT/PbhiW4Uw2L9XGO6JyAaJaO89K77HdEjpLU9TntkuU4ETBW3V3vzM+42EysMqmeud8hQSUdtGa4UsRd3dDb354CM7S7i7Gr22CT5/a8ujO9HIXDTuf+UXkU=,iv:QnPOyVft4vvtaOrrhoXQXXXbH1DbdSA0mAu2IextLxs=,tag:0dxGssjnv4DoXylPZsvYrw==,type:str]
           autoDiscoverUrl: https://authentik.vhaudiquet.fr/application/o/gitea/.well-known/openid-configuration
     config:
         APP_NAME: Gitea
@@ -69,27 +84,27 @@ gitea:
             ISSUE_INDEXER_TYPE: bleve
             REPO_INDEXER_ENABLED: true
 sops:
-    lastmodified: "2026-06-05T20:03:49Z"
-    mac: ENC[AES256_GCM,data:LDq7fxXRZ3qzsdJHFaJ+2eweWewA6z6b41jJJ8WQ9l+lF7p2iYq2j0zcujHahXXH47pj59gJF62hwbM6Dgr+QIh+UzQKAKOuhiPRcs45F6oYgUqLYPVUnIs1hNtZX26tw/CmSlHWRQHG8CEGqV6flf8y59YaR7+UwOv3MPkTa4Q=,iv:/xr65RBgW2oUh4YZ9hEBNCDC3ZRUHA+w9UVhU1ABrgo=,tag:WCXzoDC5ZCLqA3j2r11VMQ==,type:str]
+    lastmodified: "2026-06-05T20:21:53Z"
+    mac: ENC[AES256_GCM,data:CySJzul7ciMGGQqt33RUG7sVp0xOt1ylK/uV0hibYDYk/s8JudcAO5bEDRfkeEaQuiURALAgCpg0ooA4wFlhklcfNYP5g2JqEtcwfR1e7DUW3KHmUTA3ViaLo3M7EtP9ALvZlE/L6cPqolIae4tjawIXnUSlZQ3d7O4m50VFHC0=,iv:DxvxcAE1N/J14S+j9N6YkF0885hi1CZoFB6dk1IqNxM=,tag:tbqHPJocfGlRJFDIuoW8VQ==,type:str]
     pgp:
-        - created_at: "2026-06-05T20:03:49Z"
+        - created_at: "2026-06-05T20:21:52Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/5AS+lddVQx1QbvL69B2k0HgriwcmXlJI5M6XjqdjEK4jl
-            eg/IXqBwPsqptOfUq6zQS9ZoYdxWdZQ89X/yQVO3k9gTPH4Gz1xeOoJBn6rGdo5b
-            6yimtGWAsBEyzu6fJjIp0WsKOejFk64T+dnsXdFL63bXkC35Pg/9G3lH9R+ZtvgG
-            LdlBPEVe7kHEEFrfWaL6aZzmbmx9rslO4MhmaYIgfVhFil60V9g/azp2TQM3oZVX
-            slEHTUziXGSnV89VnGkYp5hiqTvzwlrTs/iWvwc2FcpGzAZM4OYJqMfu8Gt1K+8s
-            niFfrg9npOpu3OJJ66ukMtM3j8FHuhjo+PUmNk49AXPnWo8WN1B0hzWjVZ0rQQvG
-            mZq2plbEsAWh5BFqN6o7hmezYbaQ8vlJS42Q1WIudNlDsEvPTrLg/Q0Hlj5HlgHd
-            uQQN2HhZPtQOYeUszPDg6R6RMoVzdZ+0B6Bi/wAXnNuOoxCxyTSziPAVz1gyOdxb
-            UPWIspb6G3zrhdpXj1Hzgt4s7CJ55eseYd3JTcNZTEAc3tTfhrQ9V6VpLGArHbgV
-            HsYNkmvIc2EM0buolKcixrVxV4rDB05iKZkMxVDmTr8yjEVRTXIC3T/7cCiFG+S/
-            Nt4juC/mRj7Qgm1paZTnlU41ps+Y/MGx3EWYgH8VZbgyGXynpW/2JNpYaeFv1KzS
-            XAGaCjhEe3WYbwe9WoIdinUWla5GjQkzvZCk6huf1iLg4RzwwGQhNu5do1IIoQjB
-            QXmhuReaKiBi6UQgsNy8QbdaWJraT4U8iYlGJ/ma382dD9zRiPi2WDt4aY0N
-            =IFXW
+            hQIMA7uy4qQr71wiAQ//VC/fnusp5oupWvPbCJCRl46OfetfXIsY/J8JP3Npp2XB
+            Yz2u3gxwPLDZxLnBsR/jafym1/1wi42SV3eka16j8dKjm4cICA27ycAmU4zSC2/O
+            Os3s5wo4e7ajNHnRZ+SyXzBPeg6LEbv9O/mx2tiQZBHIs5bhQ1ZxQ7lTwiKYP8Es
+            kFf8oVO5rEEpMAd0RpiSlzsTWVWuOEfw0uQXjQOP+ZFAqcf9lPnQp273MbxUe0jL
+            e58OLp3wO+LWRlRnixrx9vLuUsFou+JcSfKoTFbcBXzDs0SSUiAOwz5nELNtlENT
+            dHGzaplWMnHFWPd3Ef7AUGwUlb23mxJNv/yuM6CNgkTec6qYdr3Arc84kGT9qdz3
+            pktw94Wiw3uPLpiGVkFMdBynzVUBbbiWPGByVF0NBRnp8+NABsiekAjFrV2I1wdr
+            rGmNtTS66jf2yEBMP5w64BbVH8zQ/FA4wSEQxFGm02Cp0dv/HSy07aPDUBWZZzr/
+            b9j6EUBZ7DKDLDY4uC05GJqeZFWf3M9disXnUbHQifMNIaRveoKPvBOg58ZpyUrA
+            rffDkBJmy5Cvwll3+8uomsYrU9sWVCs1dHOG3xfbHNmh4XB0J3G59S1+PRBgsQi9
+            zHTDuh9tF+ehCdMQjje+Cq9f6Aajv/S9HDaKxLfVkAVgdzP/Tu5ARZPIoYxyhR3S
+            XgGfZASrRdk9XjmjrBRt5wBl0MjVr9vXEVxNqEGcpcDM5Q9MznRRhGKtAQ4BcC84
+            bajKkGp9+6vas0tKR+Mp2wq4T+GMqLQVa3KedBuwXVdk3gE3jxhzd7rdT8chZbQ=
+            =kMPK
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
