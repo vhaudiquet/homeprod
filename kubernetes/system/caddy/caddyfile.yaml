@@ -38,28 +38,28 @@ data:
         @umami       host umami.vhaudiquet.fr
 
         handle @authentik {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @auth-nook {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @nook-mg {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @nook {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @sse-nook {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @gitea {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @flux-wh {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @umami {
-            reverse_proxy traefik.traefik.svc.cluster.local:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
 
         # Docker VM services (via Traefik)
