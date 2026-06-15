@@ -10,7 +10,7 @@ services:
     env_file: .env
 
   match_collector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:0224b7812c8631bde3e9513adace64341152fc20
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:f2827f85eb71942bbe905b5d83fefaddc3df8e7d
     build: ./match_collector
     volumes:
       - bpcdragon_cache:/cdragon
@@ -23,7 +23,7 @@ services:
     env_file: .env
 
   frontend:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:0224b7812c8631bde3e9513adace64341152fc20
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:f2827f85eb71942bbe905b5d83fefaddc3df8e7d
     build: ./frontend
     restart: always
     volumes:
