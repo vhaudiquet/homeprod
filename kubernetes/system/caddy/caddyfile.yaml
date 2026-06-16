@@ -16,12 +16,12 @@ metadata:
 data:
   Caddyfile: |
     vhaudiquet.fr {
-      tls /etc/caddy/certs/vhaudiquet-fr.crt /etc/caddy/certs/vhaudiquet-fr.key
+      tls /etc/caddy/certs/vhaudiquet-fr/tls.crt /etc/caddy/certs/vhaudiquet-fr/tls.key
       reverse_proxy 10.1.2.171:80
     }
 
     *.vhaudiquet.fr {
-        tls /etc/caddy/certs/wildcard-vhaudiquet-fr.crt /etc/caddy/certs/wildcard-vhaudiquet-fr.key
+        tls /etc/caddy/certs/wildcard-vhaudiquet-fr/tls.crt /etc/caddy/certs/wildcard-vhaudiquet-fr/tls.key
 
         # Kubernetes services (via Traefik)
         @authentik   host authentik.vhaudiquet.fr
@@ -83,11 +83,11 @@ data:
     }
 
     semery.fr {
-      tls /etc/caddy/certs/semery-fr.crt /etc/caddy/certs/semery-fr.key
+      tls /etc/caddy/certs/semery-fr/tls.crt /etc/caddy/certs/semery-fr/tls.key
       reverse_proxy 10.1.2.212:80
     }
 
     buildpath.win {
-      tls /etc/caddy/certs/buildpath-win.crt /etc/caddy/certs/buildpath-win.key
+      tls /etc/caddy/certs/buildpath-win/tls.crt /etc/caddy/certs/buildpath-win/tls.key
       reverse_proxy 10.1.2.212:80
     }

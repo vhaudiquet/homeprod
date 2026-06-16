@@ -1,0 +1,52 @@
+# Certificates managed by cert-manager
+# These will automatically renew before expiry
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vhaudiquet-fr
+  namespace: caddy
+spec:
+  secretName: vhaudiquet-fr-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: vhaudiquet.fr
+  dnsNames:
+    - vhaudiquet.fr
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-vhaudiquet-fr
+  namespace: caddy
+spec:
+  secretName: wildcard-vhaudiquet-fr-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.vhaudiquet.fr"
+  dnsNames:
+    - "*.vhaudiquet.fr"
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
+---
+# semery.fr certificates are managed manually in certificates-secret.yaml
+# until OVH DNS API credentials are added for DNS-01 challenges
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: buildpath-win
+  namespace: caddy
+spec:
+  secretName: buildpath-win-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: buildpath.win
+  dnsNames:
+    - buildpath.win
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry

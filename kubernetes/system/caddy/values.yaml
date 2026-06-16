@@ -31,19 +31,58 @@ securityContext: {}
 health:
     path: /
     port: 9999
-# Extra volumes: certificates + external routes ConfigMap
+# Extra volumes: TLS certificates from cert-manager + external routes ConfigMap
 volumes:
-    - name: certificates
+    - name: vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:Er1F+5xhWKUT43+7jU/pwxWP,iv:Ohc3jFIQ4Enmbhd0F44SYWJiHlj1oFOrMdtM4oYKQEU=,tag:Kk8Y8aFSKMyGmY/uRVvyLw==,type:str]
-        optional: ENC[AES256_GCM,data:JdlpGQ==,iv:xaoqonC9cGHXizHuAFrjhC4ZEtZ2IICeg2hxvGjyFM4=,tag:JYmlIXgIMON7z4++FrBGKQ==,type:bool]
+        secretName: ENC[AES256_GCM,data:vc6kDDdxbluL/BmJb4w9TKs=,iv:FLsFMqUQWs3vzuH6fO64qikNpSx/RGneZyow8WYXlo0=,tag:TVsfs/pUmiA6mYYwHgxDLw==,type:str]
+        optional: ENC[AES256_GCM,data:I1ftGg==,iv:P/KwiMPHM+YYUPJ+M5GBcgZGRTrIskbCir4fQH1XUug=,tag:hbqOTv6BrmkkQ/kE3bCx+A==,type:bool]
+    - name: wildcard-vhaudiquet-fr-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:KSaPirEmnfOHqtwNr3SoK1IsCZ6HalzH2tw=,iv:TL9/VqSq2fW+2se9GK+bopfbcHu/lgpjlD4dHLKf7s0=,tag:SKgvfnPvca9o3bXxILLX9A==,type:str]
+        optional: ENC[AES256_GCM,data:65Ht9Q==,iv:EM0rH3i8MVVDXXrARxL6djISin8ScCEdZ/J43WL7A0I=,tag:rOcLiIOaDAqW4C5j6Zv+tA==,type:bool]
+    # semery.fr certs from manual secret (until OVH DNS API is configured)
+    - name: semery-fr-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:kDiP6Hg4nLMM4FY6/C21YnFn,iv:bFgsIMkgHfSy8ZsK3NLc9cZ/5TRV3B2WzWkCFBGl5uc=,tag:atz2qInNTSX3u9b5N4fPnQ==,type:str]
+        optional: ENC[AES256_GCM,data:vfjgpQ==,iv:XZBZyekKMQQzrFE05vG2w6Pwd2ZQ+RerjF/T8FKbuc4=,tag:SVRfxbOLG7z8fWyxclrvzQ==,type:bool]
+        items:
+            - key: ENC[AES256_GCM,data:UumzQqzt/iy7oS7P+Q==,iv:3zV2rTEpHclFVRYRACzrs4+IXLOIw8HMSgWLyQ6fLp0=,tag:rOlhuN2qIN0vtwgahtvKvQ==,type:str]
+              path: ENC[AES256_GCM,data:QfXoPe/t8Q==,iv:Cj/4ngLtDha5fd5d7gn6OONGNdAjoEwq1zJc+xxYJTM=,tag:9q1DbomT9p4DonVsu3OBEw==,type:str]
+            - key: ENC[AES256_GCM,data:m72H1Se5snCNyNpe9w==,iv:ybvgDs1PNalk3i50mkIbph5KWEUefaDyoVUvKjqoJP0=,tag:+0c/3vDxjbOp6qn5VXvPxg==,type:str]
+              path: ENC[AES256_GCM,data:DJT6fW8uZQ==,iv:ImJQ19fJ2PBwil64M/vUu2TAhVjTYK14rfiTojK2E7A=,tag:2OkaIF6u7hCqsS2Bkp9v9w==,type:str]
+    - name: wildcard-semery-fr-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:AZVY6PS2tzVnU5mSVlbH621e,iv:HToh6ymWjFGK+xw1+MKAP2RGKJd+PuFC4My7erFeAOc=,tag:W2pksdZFrEFKzPrGwJ+d8g==,type:str]
+        optional: ENC[AES256_GCM,data:LbarYQ==,iv:FUiIoSlbc/5Tj1t2LIxEPC6Ey7DgSaezrr2+lTr8roY=,tag:dlqb5SFpm1JDwn9qwaTP8A==,type:bool]
+        items:
+            - key: ENC[AES256_GCM,data:8xY5dDL5KSNDAk1mTB58WtriIRNeFw==,iv:Ng7twP5cr/TfKpENug7kgZ1Pa24vhV0/wFtxCelRLZU=,tag:powPtyjVogU/NO4LSyT2pA==,type:str]
+              path: ENC[AES256_GCM,data:AIvmIcXtDQ==,iv:JshIK8HzTkMlZsDcdX0AIsrkyLST3qUdtLkEP29E/O8=,tag:njYcODU/bWN7XXDwsHV9Uw==,type:str]
+            - key: ENC[AES256_GCM,data:NqW+4UFJx3AjfS9BFoG3dhOsbHoy4g==,iv:TMMd96OebuBwBT80BzXDYHD/38l+cSDQ9q067/Dqkk0=,tag:IOL89DD3vDjbNm/qYbSUig==,type:str]
+              path: ENC[AES256_GCM,data:f5PVx/WfxQ==,iv:4aFgPWiyp0lnQFboQCprI9lAGCkSfrO03TlD/Pvx0do=,tag:aIvncQKaqtNu15jnpVSSww==,type:str]
+    - name: buildpath-win-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:nUF53gg1cNg5fEWLsXmEh1Q=,iv:XUxXBDMrddGey7eoIebW/myOD0P/UDhY6bX4QSzT3X0=,tag:foE8OG/JcknTRzsxiKKzuA==,type:str]
+        optional: ENC[AES256_GCM,data:tCGcgw==,iv:LxIjr/EsHifL36wFkc1rb1irfk9fyWAoBxGaf+ksu1U=,tag:A96i+w6cTAk7NTxumcXzGw==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
-# Extra volume mounts
+# Extra volume mounts - each secret mounted as a directory with tls.crt/tls.key
 volumeMounts:
-    - name: certificates
-      mountPath: /etc/caddy/certs
+    - name: vhaudiquet-fr-tls
+      mountPath: /etc/caddy/certs/vhaudiquet-fr
+      readOnly: true
+    - name: wildcard-vhaudiquet-fr-tls
+      mountPath: /etc/caddy/certs/wildcard-vhaudiquet-fr
+      readOnly: true
+    - name: semery-fr-tls
+      mountPath: /etc/caddy/certs/semery-fr
+      readOnly: true
+    - name: wildcard-semery-fr-tls
+      mountPath: /etc/caddy/certs/wildcard-semery-fr
+      readOnly: true
+    - name: buildpath-win-tls
+      mountPath: /etc/caddy/certs/buildpath-win
       readOnly: true
     - name: routes
       mountPath: /etc/caddy/routes
@@ -72,27 +111,27 @@ affinity:
                         app.kubernetes.io/name: caddy
                 topologyKey: kubernetes.io/hostname
 sops:
-    lastmodified: "2026-05-08T11:43:14Z"
-    mac: ENC[AES256_GCM,data:K0HWw8yTPKy6e3aQV4SdiVwrCjiyCFlFbeycAiyJq4IdlKX9v4wFvjVFLR8VziH8oXJXdUUhr+LOiqNI5HwghXkVn2dOP2ij9jvXZtMic4P0AUN16PfWoedu9ozA+xsGHZ1OTUv+sxvKEUo5Z5Wp+u761w/Xqdn5hHmU2Komatk=,iv:ICwn/LvizIjXVfgiMje50dQ11JAH37wSla29bGAnjuA=,tag:mV7rtahUy4ODZaA7baM12w==,type:str]
+    lastmodified: "2026-06-16T10:08:07Z"
+    mac: ENC[AES256_GCM,data:HeWRLHO8x7tJ3fGpSW0Pz6tkuYgQh6QJHF3q9KZD8EgCyuxxrnRh74sEOF9e/KjtmaNKF2ak6QkR2Taa9qD3yblMJp9Zjc3ivC2aMEKxtdJN8B3bxRr1Ln1Na2kSny3+X/c1nC1swWyNNgeQJvKQlvhXjK5S56Y5NG/n/PBT3Q4=,iv:HyiLtk4ueORKezmpmY/I4vXPBwEudqkwNpk4fgDheeY=,tag:2W46a3geF4Fi8jDsSCPNjA==,type:str]
     pgp:
-        - created_at: "2026-05-08T11:43:13Z"
+        - created_at: "2026-06-16T10:08:07Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//aGnCSLLWTkhToTh833OJ1GwgN82F8R+RgsfpKIW+XNvI
-            YdTCgaFrYdCGXsaLHijb7vVwCU0VRf/ufZfQp2+GupqRHCbMLSmlkoiyr9ImGlYX
-            VWQDajv74H/3CcyCQNjqfFRdUHLE+rfNuYaH/p3+/Ee2bgJi52f3uRdJ4lXSCWIf
-            KW9lLbwjlfGnOnsnDkaPwcZW9QL353Mi82yXOu7OihobUaVgr83nESXbAS/k4mx1
-            whOXAoEDeLQZfZrITEewOQ0PHjWJwKc0x2YCiQ0If33GSfDjzWPoDuXmQo/xhk98
-            Nt3aNTMDvjriGNOIcZyUlEjq1HqCmd3pQSD5h8soR9Do/NsTocyK1da49iz91dha
-            jwoEga2iFis9Zd9rr7Caf3pWtmKENUGFJl15tpaelvk13jUebSyDubw0OIYbbILr
-            dVZAeiOHrRMD5crxG05zvOeLMASuL/IrK97RLBAonZLEkRrfgAwZHK2U0rq2HXpI
-            wlp4yDlF/eILvmMgAruP7lW0q/m5+DfxQtcZdamtm3FWj9m0iUAthvw02fplmFci
-            xJ82rkfkPAZSm7/yPJ9yiea+tKgX8yk1uArRtf8rsG6SED2lCRKmux8ElcZc5DYV
-            hyLivTN7X5Nr05mvaPIptCVm1iYoWaiQNZcPDax/LBZJhNaJgPUz1ue1Ppf422PS
-            XgE4dh3x1ulcUhXm4nK/0FzKmJUOjcygPeGWmia0ZOEHub/ju+z8LgRAkBasqRXP
-            4aepPm5xVY0g/Z0xksxIWpYUnLRzs0uUKd+zz1MvmWlZckxUO5wWJUWRcwCBDz4=
-            =Ql2K
+            hQIMA7uy4qQr71wiARAAhoTczAWaCpuZbHq+NrssLQG4Ys0yYNYM9nflFEOkD1Sa
+            rTEAhJACKNFYKJ6P2V4rBQtKHRdqMdVfrtaumgSvuKBX4wJW+nG/LUSXENJV/UD9
+            VqxiujfWKgps4XfNfuM/a7w9IbU7rk+mh+LBwwRpQeqEs7j1eZnJjQCBW4zGFeav
+            XWYx2VmqfwQ/XhVaiSCvJjeJJk/U54Dot9W2ZoKCX+5zyZ+dWsX2ggXQWsoQCfOK
+            uSTjjVKw80VvrDMX/TfbvNQDHNsljOSSeScA+lx6HElbDcAyUHxE99UAi6RVQazm
+            EjEHsVHvyR0Y/7hvVlo8FY7XS/81pXGLN22AcWbd1fIZlitRa9YbHZH1YWzWRzr5
+            JB2S+UMEOigw8WPg/1BAiFj3bCRn8aDyAMdUEKlbcXCYwoLynG6zVbgeuntYq0Zl
+            Y4zAi4+G+fHvdAqQz44p+AyP9hgS/qMBQwsUnAxGfltfVBEew2I/Vz5OugtDyLIW
+            UYrk+5LR+7cfJNCyCHQEyJL/YPsL1GDR1SP5YCrsDnuXPCEgwyRRLHFW8j2KCtLu
+            YX59FbVLqo2xzT5nEaIYbLLhEq3+5KaVIBqzGWAwSBbu7bXru6jIG6prVwofJQxx
+            HCz2leboRZ3ZrC4Y4itHHuMfmSCtiildRhgPtVnvUdiQz0dS+RLNesH4hRvvxBPS
+            XgF9gp+9JE/5XMxUmNNf0yUC1mlQuUHbC7JqLLpLBNAtQwljDLMIgPG0y5n2r0C3
+            zokdaebVj2XV9r7X25SQMyLzTdoXYqgGsoPBFnqQNpycg2HpmBX9isvqjbZ6x/g=
+            =AqxW
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

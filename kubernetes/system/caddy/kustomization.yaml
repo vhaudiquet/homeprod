@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+  - certificates.yaml
   - certificates-secret.yaml
   - caddyfile.yaml
 secretGenerator:
