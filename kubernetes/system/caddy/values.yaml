@@ -10,7 +10,7 @@ image:
     repository: caddy
     pullPolicy: IfNotPresent
     tagSuffix: ""
-    tag: 2.11.2
+    tag: 2.11.4
 service:
     type: LoadBalancer
     externalTrafficPolicy: Local
