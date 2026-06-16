@@ -2,11 +2,11 @@
 # Explicitly lists all components to exclude:
 # - cert-manager: managed by separate Flux Kustomization (CRD dependency)
 # - cert-manager-issuer: managed by separate Flux Kustomization (depends on cert-manager)
-# - cilium: managed by Terraform (not Flux)
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   # System components
+  - system/cilium # cilium IP pool is managed here
   - system/blocky
   - system/caddy
   - system/coredns
