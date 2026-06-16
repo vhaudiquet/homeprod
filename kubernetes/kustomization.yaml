@@ -1,0 +1,34 @@
+# Root Kustomization for Flux
+# Explicitly lists all components to exclude:
+# - cert-manager: managed by separate Flux Kustomization (CRD dependency)
+# - cert-manager-issuer: managed by separate Flux Kustomization (depends on cert-manager)
+# - cilium: managed by Terraform (not Flux)
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # System components
+  - system/blocky
+  - system/caddy
+  - system/coredns
+  - system/csi-driver-nfs
+  - system/external-dns
+  - system/flux
+  - system/traefik
+  # Code
+  - code/gitea
+  - code/harbor
+  # Home
+  - home/home-assisant
+  - home/zigbee2mqtt
+  # Infrastructure
+  - infrastructure/authentik
+  # Personal
+  - personal/linkwarden
+  - personal/notesnook
+  - personal/photoprism
+  # Production
+  - production/umami
+  - production/vhaudiquet-fr
+  # Tools
+  - tools/dashy
+  - tools/glance

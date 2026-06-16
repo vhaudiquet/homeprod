@@ -6,7 +6,6 @@ resources:
   - repository.yaml
   - release.yaml
   - cloudflare-api-token-secret.yaml
-  - clusterissuer.yaml
 secretGenerator:
   - name: cert-manager-values
     files:
