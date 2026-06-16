@@ -8,6 +8,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
+  prune: true
   sourceRef:
     kind: GitRepository
     name: homeprod
