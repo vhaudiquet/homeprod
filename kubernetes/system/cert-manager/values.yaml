@@ -1,0 +1,66 @@
+# Cert-Manager Values
+# Install CRDs as part of the Helm release
+crds:
+    enabled: true
+    keep: true
+# Enable DNS01 challenge providers
+extraArgs:
+    - ENC[AES256_GCM,data:yzuTi9Hu7Dx95MQN+H/6gul381m64KYv5ZsHwg92BE/aUZyJzYArniIC+Nio+SygUXXb,iv:eBizFSW1T2/VvN3k8VRsEIpllHs5MA6Nr+jh9fCzZCs=,tag:sz9WBU687eTgnDXWoE02Nw==,type:str]
+# Resource settings
+resources:
+    requests:
+        cpu: 10m
+        memory: 32Mi
+    limits:
+        cpu: 100m
+        memory: 128Mi
+webhook:
+    resources:
+        requests:
+            cpu: 10m
+            memory: 32Mi
+        limits:
+            cpu: 100m
+            memory: 128Mi
+cainjector:
+    resources:
+        requests:
+            cpu: 10m
+            memory: 32Mi
+        limits:
+            cpu: 100m
+            memory: 128Mi
+startupapicheck:
+    resources:
+        requests:
+            cpu: 10m
+            memory: 32Mi
+        limits:
+            cpu: 100m
+            memory: 128Mi
+sops:
+    lastmodified: "2026-06-16T08:15:29Z"
+    mac: ENC[AES256_GCM,data:ZB7igt7ciH6X0DmvDi2gzg1eA8EYXqq/VRBSbaLT9x2SUi+9ax9w0V+fcTwOTWlwCvHOtSAZ2RYgX/wKFmbnKgrwoSpskGFsRlY947oLkRTk4HbTRP5HbciAQsRw3AVB4pgkR7maVZ9n15gzNHTTkd9x1akAeGHJg9lzg9+N6rE=,iv:jqyi/ZGLjKFBe9XSj2WBBOUbn9xvV9Wf4wrYxSs4t/M=,tag:2u84qHa69IsYFtSwJ6yFqQ==,type:str]
+    pgp:
+        - created_at: "2026-06-16T08:15:28Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAiNHNEJjBOd6AK/moP1Xw7nvOidkRtIqw+QJRmfhPDG7B
+            CQy3y2armtFYzaWhDcMfiy1SkcD91kadbfxAifb5/Oit48VTv03bXZDvyrEdRwcI
+            n81rt3GQuyNDCj9aSUVi1nT5GHETrvdnyJp3u1dzfc/0i7GK+FiCbGAGzSnGdN77
+            +/caT5Jib+hIVskiOjhE85K3rTrh+aJMFKC6NG7Vw8GXh7N4r3EcazcX9KuJXxsn
+            NRT7XyYA8y15PlZQFkhRs1QCVvqH31WDwCEt0cE4r6Qn2aGy+v8ygJkum2sYPH7g
+            WZfC548mZrMrI9UNo10UfPCqGew/XpEla1/bgVByMHMdM9n961KRzCPtR349xXI4
+            1APX4WClQjbL/cXR2zMs19Y+GDjL7XF6rdSRDpEgTzQXb4f1ctswutcYxftvKI3c
+            EdfCGiRpVJx/wIuh82mL3SWqdi05Lekvt1zdLcG8Tx2+nF+52dWoyxNy1YMVyk0m
+            RXZFMZLHKumyDooairf1P11DOXcsa8FjZrqjvn6QI2LfmEGm3PQQQUXT8Wp/10e2
+            78Hr1rTGqQEzvSJu0FfDuundPws97ftPiuGcUD5hUj3rS6iGxdEp4trAPi0DCCd3
+            g7m6fNX41O8n39EU0Kp2G9kfICMghGEVL5czzRA4EsLH35K8XqP0ig6ay5kVXWrS
+            XgFic5jk5GdxzUL7TFjtr9AFFaWhIZkyyXwvEod3Ur3gB64Pi/ktet6OZSWU/7Wn
+            eRKn9yEm+W5Xzn9eiN6TYDsCWQBY5nP80YVuj53AMSu3KbR7UGy+AbJF3T+V6lo=
+            =GscV
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
