@@ -16,3 +16,8 @@ repos:
         entry: generate-docker-swarmcd.sh
         language: script
         pass_filenames: false
+      - id: validate-kustomize
+        name: validate kustomize build
+        entry: bash -c 'kubectl kustomize kubernetes/ > /dev/null'
+        language: system
+        pass_filenames: false
