@@ -12,18 +12,33 @@ redis-cluster:
     enabled: false
 redis:
     enabled: true
+    master:
+        resources:
+            requests:
+                cpu: 100m
+                memory: 128Mi
+            limits:
+                cpu: 500m
+                memory: 256Mi
 postgresql:
     enabled: true
     global:
         postgresql:
             auth:
-                postgressPassword: ENC[AES256_GCM,data:iS1hZgegYcjUYA==,iv:sQopZNgQvktuVPTcSHGIXe8Vcx0QRrkOBmvCU+lXeYo=,tag:EzQXgSj6Mw8Sj342P6qoKQ==,type:str]
-                password: ENC[AES256_GCM,data:D9ajgAcbx6XJwQ==,iv:JXipoz3yEj85jvyfgTkt8UmACO1R94vrpTCUdQPhS/s=,tag:nJrhXFdtdlrE7CrgrsFHUQ==,type:str]
+                postgressPassword: ENC[AES256_GCM,data:vluPzU5r0wgR1Q==,iv:o7gh99/CndIHikAIuoZ9IM2HUxdxCknc62Qieb+Do8s=,tag:JIOc/PfS0IRTU/cZlDP8pw==,type:str]
+                password: ENC[AES256_GCM,data:R0HR9fWO0gMLhg==,iv:abe4swqs7JAHMliw0xxs+yvp/1mwDJPXFP1v9XzOpN4=,tag:AifSLNUrMCgbngaON9NMaw==,type:str]
                 database: gitea
-                username: ENC[AES256_GCM,data:ynRejXA=,iv:XxPBPLUywl4rDKo6RMJT1rOzAeK9lkUsYT5DlL+vqyY=,tag:lJFJGebHtj7nC+PFL1f6jw==,type:str]
+                username: ENC[AES256_GCM,data:l6oTjsQ=,iv:jduUmLzqMVLJTeeQoDH/eALOtUCG2hYDhw5MLIa1PXI=,tag:zpY8sz2s0Iz/V9Hc4K7Dzg==,type:str]
     volumePermissions:
         enabled: true
     primary:
+        resources:
+            requests:
+                cpu: 250m
+                memory: 256Mi
+            limits:
+                cpu: 1000m
+                memory: 1Gi
         livenessProbe:
             enabled: true
             initialDelaySeconds: 30
@@ -56,8 +71,8 @@ gitea:
     oauth:
         - name: Authentik
           provider: openidConnect
-          key: ENC[AES256_GCM,data:aU+rNnGTT4pji75ZJtBDmAkE0bX1alWTzUG0+DywCjQ66nSCqCa8DQ==,iv:DUxx8EFFBgnIivyf9CPpFx3sDeiu2NkIFDcoj6lVDeo=,tag:Zm6rEsXaCBuFmChgzdb2zA==,type:str]
-          secret: ENC[AES256_GCM,data:mkh0p931YVQ/kqpHdeZHEndQpxNYk+t4LqTkZFLyEFVOuy5ZdxyT/PbhiW4Uw2L9XGO6JyAaJaO89K77HdEjpLU9TntkuU4ETBW3V3vzM+42EysMqmeud8hQSUdtGa4UsRd3dDb354CM7S7i7Gr22CT5/a8ujO9HIXDTuf+UXkU=,iv:QnPOyVft4vvtaOrrhoXQXXXbH1DbdSA0mAu2IextLxs=,tag:0dxGssjnv4DoXylPZsvYrw==,type:str]
+          key: ENC[AES256_GCM,data:qYnP0MCD1eVziAUL0SU6e3RZ/T74/KL92hs3Dq+A9VKjJ1f9eXlWxg==,iv:WXH8kM7qo7Z7S0uM+b//wvlZp9Vl9B8AVX4VVr+TEDY=,tag:yNJ0AmXjCHRJ66hIHrg8RQ==,type:str]
+          secret: ENC[AES256_GCM,data:2tPsKMshDQBT9bt8DZeuMmec4DMtSNirwnOCkggZZ9jLvQ0yxn5yjuxo5JjdZqRx9vVT0wF3cSnl8JqOEsHmVd8RtmGy6TNZfaT2VzA9b/H2xz5sGOCkMHCJW/5cdqKWQKgN16vcS3RBrGivizfynRmNwZcaLsKyIxaGuZ4vZfE=,iv:Gbkb7Gj3H/VPyDn/oDNBPFec2LwPXqxq8lM/mQxO1sk=,tag:HFt0G2V3bPWZdPNj1G0YvA==,type:str]
           autoDiscoverUrl: https://authentik.vhaudiquet.fr/application/o/gitea/.well-known/openid-configuration
     config:
         APP_NAME: Gitea
@@ -83,28 +98,38 @@ gitea:
         indexer:
             ISSUE_INDEXER_TYPE: bleve
             REPO_INDEXER_ENABLED: true
+# Resource limits for Gitea container
+resources:
+    requests:
+        cpu: 250m
+        memory: 512Mi
+    limits:
+        cpu: 1000m
+        memory: 1Gi
+# Increase replica count is not useful for 1-node cluster
+replicaCount: 1
 sops:
-    lastmodified: "2026-06-05T20:21:53Z"
-    mac: ENC[AES256_GCM,data:CySJzul7ciMGGQqt33RUG7sVp0xOt1ylK/uV0hibYDYk/s8JudcAO5bEDRfkeEaQuiURALAgCpg0ooA4wFlhklcfNYP5g2JqEtcwfR1e7DUW3KHmUTA3ViaLo3M7EtP9ALvZlE/L6cPqolIae4tjawIXnUSlZQ3d7O4m50VFHC0=,iv:DxvxcAE1N/J14S+j9N6YkF0885hi1CZoFB6dk1IqNxM=,tag:tbqHPJocfGlRJFDIuoW8VQ==,type:str]
+    lastmodified: "2026-06-27T10:09:03Z"
+    mac: ENC[AES256_GCM,data:qX9swFKIwpjtvFSt1RVlq/RE/29R3YrQCb8BaE9BV6iZ/0S7N8fsxIUSfyHsQm4a4VCkvaP39gAxIYuX4Rj0yHUof/6iezOoJH0xEKB8wQXBb4zgHW8yJfqlNR0zYsumFyaOw2tcPhCFD1TH3eb998O0J3IYa9ErJUcZHwZeQxg=,iv:8wPDRikZpQNcgsZt4lkjRmaaf4dkwFxcfIjIJi9T4UI=,tag:tsKWvNtsGwgdpFyeRNT1pw==,type:str]
     pgp:
-        - created_at: "2026-06-05T20:21:52Z"
+        - created_at: "2026-06-27T10:09:03Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//VC/fnusp5oupWvPbCJCRl46OfetfXIsY/J8JP3Npp2XB
-            Yz2u3gxwPLDZxLnBsR/jafym1/1wi42SV3eka16j8dKjm4cICA27ycAmU4zSC2/O
-            Os3s5wo4e7ajNHnRZ+SyXzBPeg6LEbv9O/mx2tiQZBHIs5bhQ1ZxQ7lTwiKYP8Es
-            kFf8oVO5rEEpMAd0RpiSlzsTWVWuOEfw0uQXjQOP+ZFAqcf9lPnQp273MbxUe0jL
-            e58OLp3wO+LWRlRnixrx9vLuUsFou+JcSfKoTFbcBXzDs0SSUiAOwz5nELNtlENT
-            dHGzaplWMnHFWPd3Ef7AUGwUlb23mxJNv/yuM6CNgkTec6qYdr3Arc84kGT9qdz3
-            pktw94Wiw3uPLpiGVkFMdBynzVUBbbiWPGByVF0NBRnp8+NABsiekAjFrV2I1wdr
-            rGmNtTS66jf2yEBMP5w64BbVH8zQ/FA4wSEQxFGm02Cp0dv/HSy07aPDUBWZZzr/
-            b9j6EUBZ7DKDLDY4uC05GJqeZFWf3M9disXnUbHQifMNIaRveoKPvBOg58ZpyUrA
-            rffDkBJmy5Cvwll3+8uomsYrU9sWVCs1dHOG3xfbHNmh4XB0J3G59S1+PRBgsQi9
-            zHTDuh9tF+ehCdMQjje+Cq9f6Aajv/S9HDaKxLfVkAVgdzP/Tu5ARZPIoYxyhR3S
-            XgGfZASrRdk9XjmjrBRt5wBl0MjVr9vXEVxNqEGcpcDM5Q9MznRRhGKtAQ4BcC84
-            bajKkGp9+6vas0tKR+Mp2wq4T+GMqLQVa3KedBuwXVdk3gE3jxhzd7rdT8chZbQ=
-            =kMPK
+            hQIMA7uy4qQr71wiAQ//efSk6zmVJ46hJ7Gv21z9Wxh/yfW8KPCiYx5bpONjLVCr
+            c11t/iTGafQUb3CQtxwmQaEXhKEkm0HdfR/J2jWOgrAJBMK7QSsQDL5wkkUe5ox3
+            0b2Ni02DtxV9O1DcbQPkbhUVrek0hGgYH2/FIa7G2OV4L8/sLmVTTC82firVxIQj
+            Ho/oPLHm28Ipa7OlGsb5daFIAZjgsZJ3VXqnbUqvoWRkS+OTuXwDWpiAwRWLVgM7
+            UqV6v0slwqwK6KF4TfkRSGMI6S6Qdgivt0OidfLFm7IGiJfMga9L9MgDmOtXRR3H
+            Ju849l+tahdZRUvC3fl2tISSFcKShlMzIo/gtd4JVfo8V4n4bAXvoayq5DaY7Z1q
+            RoimNqXolP97HFnKlaUp1pIMRDPor1QokNgdBpzRlU6tkmQIS8ivOPv49/OZR2z3
+            Tz1IM1KrGGqkgM/pt83BKqTon52cYaRSC/dCC5KDU6zyQ0GE/sZMlQfpF4Cd0R7L
+            YR6frInIhtv8nOhJuA3+1sZv0qj4qYz1C+D9KqBSTQl5KGfgMpA73d+Yvp0Ca5LA
+            xHELSZ0j/+A5/G9KiHNRr7DyY62QSuL64PNPvHTg1cYgtqjZZbMaPS239ayix4EG
+            gqvBOLZfzCZEBWrr4pyfEwOoAji0k2OSetG7FdB2BQMl4Q/U1NBO/MVYiZPbG9DS
+            XgFhYbO34xGNryC5QLYbzOsllvUh7W8i4N7bktj55cUA+elDdMJJR6eejgIgA+Kk
+            v3BdopyZjzDHjE4377hh2JMnYKjQylxAJI46kBSsShySIgaV89AgGjmaKOQrh+I=
+            =4QJo
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
