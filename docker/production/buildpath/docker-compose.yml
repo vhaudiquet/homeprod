@@ -4,13 +4,20 @@ services:
     image: mongo:8.2.11
     restart: always
     user: root:root
+    command: mongod --wiredTigerCacheSizeGB 2
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 3G
     volumes:
       - bpmongo_data:/data/db:Z
       - bpmongo_config:/data/configdb:Z
     env_file: .env
 
   match_collector:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:f2827f85eb71942bbe905b5d83fefaddc3df8e7d
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-match_collector:d878af6d1a5cb633175515259e27a12c76c4609b
     build: ./match_collector
     volumes:
       - bpcdragon_cache:/cdragon
@@ -23,7 +30,7 @@ services:
     env_file: .env
 
   frontend:
-    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:f2827f85eb71942bbe905b5d83fefaddc3df8e7d
+    image: git.vhaudiquet.fr/vhaudiquet/lolstats-frontend:d878af6d1a5cb633175515259e27a12c76c4609b
     build: ./frontend
     restart: always
     volumes:
