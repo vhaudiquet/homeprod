@@ -22,6 +22,7 @@ resources:
   - home/zigbee2mqtt
   # Infrastructure
   - infrastructure/authentik
+  - infrastructure/mail/stalwart
   # Personal
   - personal/linkwarden
   - personal/notesnook

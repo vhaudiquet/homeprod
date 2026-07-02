@@ -1,0 +1,138 @@
+# Stalwart Mail Server - Helm values
+#
+# TLS for the mail listeners is sourced from cert-manager: the
+# mail-vhaudiquet-fr-tls Secret (see certificate.yaml) is mounted into the pod
+# and pushed to Stalwart by the chart's tls-sync sidecar over JMAP, which also
+# calls ReloadTlsCertificates on every cert-manager renewal.
+# Container image
+image:
+    repository: stalwartlabs/stalwart
+    tag: v0.16.11
+    pullPolicy: IfNotPresent
+# Single-node RocksDB deployment.
+replicaCount: 1
+role: ""
+pushShard: ""
+# Recovery / bootstrap administrator.
+# The Secret (stalwart-recovery-admin) is required for the lifetime of the
+# deployment because the tls-sync sidecar authenticates to Stalwart's JMAP API
+# with these credentials on every cert-manager renewal.
+recoveryAdmin:
+    enabled: true
+    username: ENC[AES256_GCM,data:N8MwV7g=,iv:ipHgAWJ6J1C7TrugLLeJrV/IVk9xfC8DvCMBfIDyJMk=,tag:OwbcThuQhS/aBLH0tyewnA==,type:str]
+    password: ""
+    existingSecret: ENC[AES256_GCM,data:tGvczUq1+EDNR8CAFgLTMd+/N3v7Vig=,iv:XYrfBXYGexxUXskRJDSYx02D+nIYUmNtSCScplBenZM=,tag:/MZ5H6yuJlD7D6TN8CwVuQ==,type:str]
+    usernameKey: username
+    passwordKey: password
+# Recovery mode suspends mail services and exposes only the management listener.
+# Ship production values with this OFF.
+recoveryMode:
+    enabled: true
+    port: 8080
+    logLevel: info
+extraEnv: {}
+extraSecretEnv: {}
+# The bootstrap hook Job provisions a *fresh* domain/accounts/OIDC directory.
+bootstrap:
+    enabled: false
+# cert-manager TLS integration for the mail (SMTP/IMAP/POP3 STARTTLS + implicit
+# TLS) listeners. The Secret below is produced by the Certificate in
+# certificate.yaml (letsencrypt-production, Cloudflare DNS-01).
+mailTls:
+    enabled: true
+    existingSecret: ENC[AES256_GCM,data:HkvfPP3KuHm5O81LrSA6Slq0iH88rg==,iv:nHnYsJ9uaRa+rKE20bVuxyruM7kepPX21Hhbl2uvuwo=,tag:YUxgSPhFyecT3ls2sEqEVA==,type:str]
+    certKey: tls.crt
+    privateKeyKey: tls.key
+    mountPath: /etc/stalwart/tls/ingress
+    hostname: mail.vhaudiquet.fr
+    domain: vhaudiquet.fr
+    # How often the sidecar re-checks the mounted cert for changes.
+    reloadIntervalSeconds: 300
+# config.json contents - ONLY the DataStore object. All other settings
+# (listeners, storage backends, domains, accounts, certs) live in the database
+# and are managed via JMAP/WebUI.
+config:
+    '@type': RocksDb
+    path: /var/lib/stalwart
+# Main Service: ClusterIP. Used by the Ingress for the management WebUI (mgmt)
+# and for in-cluster access. Mail L4 ports are exposed separately via mailService.
+service:
+    type: ClusterIP
+    ports:
+        smtp: 25
+        smtps: 465
+        submission: 587
+        imap: 143
+        imaps: 993
+        pop3: 110
+        pop3s: 995
+        sieve: 4190
+        http: 80
+        https: 443
+        mgmt: 8080
+# Dedicated LoadBalancer for SMTP/IMAP/POP3/Sieve (L4). HTTP/HTTPS/mgmt are NOT
+# exposed here - the WebUI is reached via the Ingress (Traefik) below.
+# The WAN router NAT for 25/465/587/993/995/4190 must be repointed to this IP.
+mailService:
+    enabled: true
+    name: stalwart-mail
+    type: LoadBalancer
+    loadBalancerIP: 10.1.2.143
+    annotations: {}
+# WebUI ingress. TLS is terminated by Caddy at the edge (wildcard cert), so the
+# path is: public -> Caddy (TLS) -> Traefik (HTTP) -> this Ingress -> mgmt:8080.
+# No TLS block here.
+ingress:
+    enabled: true
+    className: traefik
+    annotations: {}
+    hosts:
+        - host: mail.vhaudiquet.fr
+          paths:
+            - path: /
+              pathType: Prefix
+              portName: mgmt
+    tls: []
+# Persistent volume for the RocksDB data directory.
+persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    storageClass: ""
+    size: 50Gi
+resources:
+    requests:
+        cpu: 250m
+        memory: 256Mi
+    limits:
+        cpu: "1"
+        memory: 1Gi
+# Inherit the chart's secure defaults (UID/GID 2000, non-root, RuntimeDefault
+# seccomp, drop ALL caps + add NET_BIND_SERVICE for privileged mail ports).
+podSecurityContext: {}
+containerSecurityContext: {}
+sops:
+    lastmodified: "2026-07-02T20:57:39Z"
+    mac: ENC[AES256_GCM,data:8xnZW0A6hsysCDpfhfXnQ+NMc+VTSRwkMj4u2p2ERG8lj132dg5ErYG106jkQLXB3IkzxiAY9uyoquTpssVCOMemLRP9HgZmzqadI6kfpE2HZBHktgeY6MysF14RE4ep3naci0wVvpFiKv+sgr9QIbBmMnnN0pYwx5tASVFSgJc=,iv:KccW9I3LmxEmVfAnXjKz66FO1LgIO86zCFqp2/ulp4Q=,tag:xCNcgbHlttioSCvoZamwWw==,type:str]
+    pgp:
+        - created_at: "2026-07-02T20:57:39Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//fdCucpqT55/e76AABnVcBvwM3s34HK33n+6bvEwE2jTr
+            IPU6UXEZZzMCuGnSWSSy07hSX/0rhw6ETLIJmEPQkqOnxk6T3rcz9+8fLPapfLjI
+            sxFayU+Dw/s2rycErhrPTxgwLp3FBlnyEf/Zk22emUYiXnxZPoh4oXA8bjrMzSXj
+            tD5SVhvbHAT4WqTgG1cYgZ6XaDJ1eODqPXExJf6EekPlLAC/ohzgtPV44WTFj2YU
+            nVKouOGsc6ZUXkEwOm0HZcfJ5PuEOtCQsvD7BSKuTMbP5CUA9iuuBIhC8PmbCqxa
+            630fP2rDyVyaRucrjUgO7/N0AfaymYysSoRlqGPR/fgt0iJ/jeOu8POQMvK51IQL
+            Gtvp663bJpooCh3ALfvQsGmkpsdQX6QttNYUFyO8yRNDhbYKfT5Ha27a/xUdOEFA
+            Z/imx8fjjH/Anj1n30cy5w/9sZY4lmmxmf/zQMhJMGsTy5efWxbg8DYVOan/bgP3
+            1ZMLYNwLxg0CPRPrJuZbI2Iz2d7GertI22acyAF7OCGljwg4lL/SYPIs02cKYuKO
+            x2M0fpTo7kWlb5CWwDkEfwU14ZmLw8buAvYeG7KblG11kZtgvbWB1LqoXU5TMv4y
+            gZA82VdTEUepOYavRMOaPScnyhCImdC/1xLH6gQCrk5qWZYVAy7GEvLRM19pWtHS
+            XgHxDIdiNeTVD5OuVsxpke02osFrfT8q4ybGJF8KH0ykebuegGtKZuCdncTc5Hnk
+            wnJjZaHHqWGei7pGHWeN6FPQ0jSj8nMosQEpxs1X1UZhUG03t141nCgduTiQZhE=
+            =63dW
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

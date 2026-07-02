@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: stalwart
+  namespace: stalwart
+  annotations:
+    homeprod.io/essential: "true"
+spec:
+  interval: 1m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: stalwart-helm
+        namespace: stalwart
+      chart: stalwart
+      version: "0.7.5"
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: stalwart-values

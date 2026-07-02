@@ -62,11 +62,10 @@ data:
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
 
-        # Docker VM services (via Traefik)
+        # Docker VM services (via Docker Traefik)
         @alexscript     host alexscript.vhaudiquet.fr
         @clips          host clips.vhaudiquet.fr
         @jellyfin       host flix.vhaudiquet.fr
-        @mail           host mail.vhaudiquet.fr
 
         handle @alexscript {
             reverse_proxy 10.1.2.212:80
@@ -77,8 +76,11 @@ data:
         handle @jellyfin {
             reverse_proxy 10.1.2.212:80
         }
+
+        # Stalwart WebUI (now in Kubernetes, via k8s Traefik)
+        @mail           host mail.vhaudiquet.fr
         handle @mail {
-            reverse_proxy 10.1.2.212:80
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
     }
 

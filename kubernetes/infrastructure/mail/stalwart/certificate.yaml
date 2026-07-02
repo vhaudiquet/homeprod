@@ -1,0 +1,24 @@
+# TLS certificate for the Stalwart mail listeners (SMTP/IMAP/POP3 STARTTLS + implicit TLS)
+# and the management WebUI hostname.
+#
+# Issued by cert-manager via the letsencrypt-production ClusterIssuer (Cloudflare DNS-01).
+# The resulting Secret (mail-vhaudiquet-fr-tls) is consumed in two places:
+#   1. The Stalwart HelmRelease mailTls block -> mounted into the pod + pushed to
+#      Stalwart by the tls-sync sidecar (JMAP) so SMTP/IMAP/POP3 present this cert.
+#   2. The chart ingress (TLS termination is handled by Caddy in this cluster, so the
+#      ingress is TLS-less and only routes HTTP to the mgmt port).
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mail-vhaudiquet-fr
+  namespace: stalwart
+spec:
+  secretName: mail-vhaudiquet-fr-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: mail.vhaudiquet.fr
+  dnsNames:
+    - mail.vhaudiquet.fr
+  duration: 2160h      # 90 days
+  renewBefore: 360h    # 15 days before expiry
