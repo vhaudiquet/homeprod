@@ -77,70 +77,14 @@ _25._tcp:
   ttl: 300
   type: TLSA
   values:
-  - certificate_association_data: 5dfdb3cf31b26f23d87c09f3a0cef642f64069a9fb7cfe29270bb5dc0f1e16bb
-    certificate_usage: 2
-    matching_type: 1
-    selector: 0
-  - certificate_association_data: 76e9e288aafc0e37f4390cbf946aad997d5c1c901b3ce513d3d8fadbabe2ab85
-    certificate_usage: 2
-    matching_type: 1
-    selector: 0
-  - certificate_association_data: 4e32b7ee52c9bd2a15b2df3cae5e3b060d737d71faaaac25336c5f193cbdb52ed2fdf38b29aea9fb97f59c8f86e75b5c364309a232623a99e638116ed66063fd
-    certificate_usage: 2
-    matching_type: 2
-    selector: 0
-  - certificate_association_data: afab698cbbbf892ebb555e09175056c1d4630fe7c350f44dcc6e71843d3b290df00d30ab4e356b630c69169d7633788338922fb637cf5b9f7be20a413eeaa518
-    certificate_usage: 2
-    matching_type: 2
-    selector: 0
-  - certificate_association_data: 3586d4ecf070578cbd27aedce20b964e48bc149faeb9dad72f46b857869172b8
-    certificate_usage: 2
-    matching_type: 1
-    selector: 1
-  - certificate_association_data: d016e1fe311948aca64f2de44ce86c9a51ca041df6103bb52a88eb3f761f57d7
-    certificate_usage: 2
-    matching_type: 1
-    selector: 1
-  - certificate_association_data: a1ef14fea3ca15a552d42665d2fe685672cfdd903de4b370b0d7d87c6d31b5df07142483f36e0e15e16b58f9ba1cbdeeebd4bcb8d74ab7ea32a087db2105f402
-    certificate_usage: 2
-    matching_type: 2
-    selector: 1
-  - certificate_association_data: f8a2b4e23e82a4494e9998fcc4242bef1277656a118beede55ddfadcb82e20c5dc036dcb3b6c48d2ce04e362a9f477c82ad5a557b06b6f33b45ca6662b37c1c9
-    certificate_usage: 2
-    matching_type: 2
-    selector: 1
-  - certificate_association_data: a69ec216999308f0ee575cdef98d6edabed8a6b4d2328e050ac9c7fa06404ad9
-    certificate_usage: 3
-    matching_type: 1
-    selector: 0
-  - certificate_association_data: ccae2719a01f7a6d17d939d8ec13324b7bdb0921ea55d5bfc2f226e54b8c15dd
-    certificate_usage: 3
-    matching_type: 1
-    selector: 0
-  - certificate_association_data: 7cd33aa6bafc850cc89d008fbd0a5cea942c6a573d605984f174fbe7360abbf71fc157ffe0324e380a8dfea62047b9aa140d5899188402ac677c29f96cc1118e
-    certificate_usage: 3
-    matching_type: 2
-    selector: 0
-  - certificate_association_data: 8149784990ba7e448295f9c4eb22abcaa4ecefa1b44f1a71ea13d6827d7068c6469cf5fb08a8ae772c1ef59cddbcfd84d744713c48e985136a234b494511fd03
-    certificate_usage: 3
-    matching_type: 2
-    selector: 0
-  - certificate_association_data: 08f3ffd1b6027093c136f6bb5bc1645a8db31cf2a4392b779c2a2045e152b8b8
-    certificate_usage: 3
-    matching_type: 1
-    selector: 1
-  - certificate_association_data: 12b3946513281ab20ebee4d38d2e139cac1688420015db90ee8e932fe153bc89
-    certificate_usage: 3
-    matching_type: 1
-    selector: 1
-  - certificate_association_data: 7b60aee1a230de2c32c0252540c606897ad66cbabc7331c2d40b7dd0e3249e0cc53e145605e610d8dc2f41dd16e12f51dca4641d13e748553bd0f596455dae77
-    certificate_usage: 3
-    matching_type: 2
-    selector: 1
-  - certificate_association_data: 8cee22274c3f828eda9d18c9954ed0a3ad5172e71b7852c780384bf3828ff1bb26fca899395e99e4d191c2d1e0a55404f97e76bb7d4ad8dff71c6c271d34de49
-    certificate_usage: 3
-    matching_type: 2
-    selector: 1
+    - certificate_association_data: CC6230E3A88A173D11C7F614ACFB4FE7B57A01F649ED1ADEE5F953213D4C6607
+      certificate_usage: 3
+      matching_type: 1
+      selector: 1
+    - certificate_association_data: 731B7CD6FA08C4A56060172BF8E30563919139F16265A38EC35B2A1F41CE2B6B
+      certificate_usage: 3
+      matching_type: 1
+      selector: 0
 _caldavs._tcp:
   octodns:
     cloudflare:
