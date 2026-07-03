@@ -19,9 +19,9 @@ pushShard: ""
 # with these credentials on every cert-manager renewal.
 recoveryAdmin:
     enabled: true
-    username: ENC[AES256_GCM,data:pt9Orrg=,iv:eA8wDN4PenpCsEkYtWmPAHcpqrJsUTMxwhl3hllUIuw=,tag:EsOMXJc1efrXdFQaeFgaWw==,type:str]
+    username: ENC[AES256_GCM,data:83oORcE=,iv:X07gQXkAx2wdqEcOPi5mGTVoFkJjDHBKMCYUjpg3qv4=,tag:qvspLaPSsrld4UV/qXb0cw==,type:str]
     password: ""
-    existingSecret: ENC[AES256_GCM,data:1Pc+vo6aRRMkpr9KpHxVF6OJhZP82ec=,iv:mZ56xZhvyNkHDXtYEPZBHG3D+krUstM6dDylxgFF9x8=,tag:LFHlvXUcvzbjBqsj6LT8AA==,type:str]
+    existingSecret: ENC[AES256_GCM,data:KuZYrQk+YQhciNRTHqOlZdqZWJ3o15I=,iv:x/cm4USFZqWE5xuuF7tUPm593NqX1kbmeKv0x2wzk8s=,tag:G9FRYYaJhWovN+LB/gLaoQ==,type:str]
     usernameKey: username
     passwordKey: password
 # Recovery mode suspends mail services and exposes only the management listener.
@@ -40,7 +40,7 @@ bootstrap:
 # certificate.yaml (letsencrypt-production, Cloudflare DNS-01).
 mailTls:
     enabled: true
-    existingSecret: ENC[AES256_GCM,data:H/X/h6GSm/ji5pCyQFyCBlnwAtEKbQ==,iv:MWKRgmsGVK5UjV8rqVF/WarLICSgKlT/vXXuU76mQ6U=,tag:aUZ5tERNYVqsGPepAL6UkA==,type:str]
+    existingSecret: ENC[AES256_GCM,data:Y+LfFx7nuCSMGqo2o3QoHG1Br+MYlQ==,iv:dLJDYmK2gEmNq5VnbpEJWFM1xLLT5jXqxB2WQQ4dr3E=,tag:Ya2cTf/ZpJdzFnwH53iZZQ==,type:str]
     certKey: tls.crt
     privateKeyKey: tls.key
     mountPath: /etc/stalwart/tls/ingress
@@ -84,7 +84,6 @@ mailService:
 # No TLS block here.
 ingress:
     enabled: true
-    className: traefik
     annotations: {}
     hosts:
         - host: mail.vhaudiquet.fr
@@ -106,32 +105,42 @@ resources:
     limits:
         cpu: "1"
         memory: 1Gi
-# Inherit the chart's secure defaults (UID/GID 2000, non-root, RuntimeDefault
-# seccomp, drop ALL caps + add NET_BIND_SERVICE for privileged mail ports).
-podSecurityContext: {}
+# Override chart defaults to add fsGroupChangePolicy: OnRootMismatch.
+# Without this, kubelet recursively chowns every file in the NFS-backed PVC
+# on every pod start (15k+ RocksDB files), causing multi-minute delays.
+# OnRootMismatch skips the recursive chown if the volume root already
+# has the correct owner (UID 2000).
+podSecurityContext:
+    fsGroup: 2000
+    fsGroupChangePolicy: OnRootMismatch
+    runAsUser: 2000
+    runAsGroup: 2000
+    runAsNonRoot: true
+    seccompProfile:
+        type: RuntimeDefault
 containerSecurityContext: {}
 sops:
-    lastmodified: "2026-07-02T22:38:44Z"
-    mac: ENC[AES256_GCM,data:sARZquoUODSo3t9sMkONz5WX/Pzq87Nv9NQHhAsOseAgEHnBE9ZN4OvCyNGQazM5I7Qqf7DBgOjHN1/Sh4KOWMWof4NzRmMzhHFnb1Lodg42Y+p29Xvx7K233GMUWD/+FeUNlIaNzmKn/ryEweCpmijCmRqqgEf750QFX9uCAeY=,iv:AYif9HwQN7d7w90XCjWCGkRsMEXwIavkRlw8bI4jMxY=,tag:+jBKnuzWTsUZc0j7J6isoA==,type:str]
+    lastmodified: "2026-07-03T13:00:45Z"
+    mac: ENC[AES256_GCM,data:qoGDDt03xtJbPH+I3edSsFJagZSlCcMk4XoFc/I2QZEm+45DjsCWe9Q7e9zhn5kF3HBNBwNCgEzJmq2Fn/vemMWHwI4+QZW6nkk5cYTb3r8+WysSeUyt2+Y7EjyQGwI6+2LrCBlJIqmKfpPtT7Y8ZbwRBedoVqFtnNVH5441FMY=,iv:fvfnedCEGXyPw4yRLCtKoAnzz8h3jyJOwpqA33NNJOI=,tag:fPd7RJAMMounXVkIoKrptQ==,type:str]
     pgp:
-        - created_at: "2026-07-02T22:38:44Z"
+        - created_at: "2026-07-03T13:00:45Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//WT28d0Sf2Kq1CPgXVC4XEChZe7tjXYwJTDJghj8bMfSa
-            xmS+5k+lEle1ZK5rbJWxuUHXbm7QXl3O76nkMNhPHa6AB/Z+wk+8+GwybN51G71r
-            9Lau13PmGRtX1gwLPqzbmrumfwa8U21+xo5BEKqvhz2D1hH88p66kEgoeaHjOKm5
-            9SFKeVpMDNPkaiiv2adX3BithXWtTCVQOJ2Fnq/f2P8ptPfv7HWk4sP3ldWk08M9
-            tElgt5RYSHEYnM/E3fc7Ionf27b71x/cdD4wc0YfGvY0lj4zWUSxd5KSbW5AG91K
-            1e7VrmnE20xRl3Dcs+/PhPJenyOaYWXm8fNIljsBcXCgLfNM/2kfta+ppr1ZE7lX
-            uUyYY0zyuz2/ZA9BpkGIeUIf+flmIhSON6HqurlTFCGV19+Qu2sRYFp7UOFM9Zwq
-            8f92eyovDPVd1NXtdkuL+HrbbQpFXFTIm1fp8bnFRD0nxZNjRT9Xd8N+Iz4U5oDv
-            0hgrrcUMX7FBtujMHVM8VM901Y5DZsnL6IM4cTmB2hgcaE3MvSydk7XCqtTydlX6
-            a/HkO03otKKRdXd0SwpJVKU5QhHU7dTs7zD7r5tUpjcaQTJd7xnsB5DIk5gZXYVg
-            59aEp/QlJo4UJ1ULA9AgcfwP1/NTySXiUMf9FsV4l0fwpXGQsXgc77MaOlH9/EPS
-            XgH0umvQpW4+eCqyOgQBfQV/Zj1JXb7AgoYy6ukhLTfBrMkJVlpxJNFHylCcQ/cI
-            yJHs91R1fwGjroluQhRyl94mI1HE5r4VhPIr/BYY9SslnqLsr05Nh2YhZpmBZIE=
-            =qjwv
+            hQIMA7uy4qQr71wiAQ//WA7P2WeKV6QFKotw5UP1MXcdI9THypFFly4sweJ5MC+e
+            Lzy/zCidGCM3Cu+dJaaPJNKtfPfagQJ9FzHrnvRcHoCbKS7sTAqugdwt4uyplem9
+            l03kQWZfDj8R8MHQnAKWNmJDiJkjCoqHdR5f2JtS+n7MngI53SecY2fsFOXRbYJI
+            hfH1BR+agLjIHc+gOF340GJp4UT+Q6BZOKg8K5O4PYk1Xwj3pi6YFuhiedKHSybF
+            Ij9OWdTqpofeG3fhwd3jHLW+0WYiFNrVlchfClEDWMMc0UfS6Bfo96IL0JIoYlHD
+            4Zt8EEyjvAJ5478RTKTobMlsSUC5U51Wn6paapZ5zicCHDzdP2yTtwtSKK0Mdp3W
+            qt/pZoR4EyM+I2XCKp+z7N5FtH8cahtfZiUOBwQ4NK9Fz+2UBxtP2QzGj8YpJmWu
+            OkbGoSgwn+8bcNnRwnADTzdiTWf/a56WErp1NvuqF8VqdGzsJR9EgyYwENl+m+U8
+            fbTY58iAJDDpY5ipPL5v+lo0Fw5DrnQ0NPAm1ORi+rMJy0KUjgAzdS6lL5oWGfAC
+            rzbzThGpRt0E7O296pht8TCBFHqiKbiOdGEBXO3+w9NrvOgULno4+s88vu6KMvFL
+            s3MHz7oIgfwel7V6bVc/ZQvHYS3YHjG41fwn00cpKI/WRN8z5MnSwwkegD2Wv8fS
+            XgEqL6kQPgk97779c0jo9CJA8O6QaSvGyd1j680tN1NN9V64rJOaj/818SgwFLrA
+            XWaqrOnz8FIspqO836t6OaLq5WwzOtOR6zs7cUk6h1RHgwlFQ+0n1o6qYf6Q+CA=
+            =HnWo
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
