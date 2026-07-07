@@ -33,11 +33,6 @@ roundcube:
   branch: main
   compose_file: docker/infrastructure/mail/roundcube/docker-compose.yml
 
-stalwart:
-  repo: homeprod
-  branch: main
-  compose_file: docker/infrastructure/mail/stalwart/docker-compose.yml
-
 traefik:
   repo: homeprod
   branch: main

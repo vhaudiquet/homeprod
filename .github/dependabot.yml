@@ -12,7 +12,6 @@ updates:
       - "/docker/home/node-red"
       - "/docker/home/zigbee2mqtt"
       - "/docker/infrastructure/mail/roundcube"
-      - "/docker/infrastructure/mail/stalwart"
       - "/docker/infrastructure/network/traefik"
       - "/docker/infrastructure/squid"
       - "/docker/infrastructure/sshportal"
