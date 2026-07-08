@@ -31,7 +31,7 @@ services:
       - archivist-redis
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.tubearchivist.rule=Host(`tubearchivist.local`)"
+      - "traefik.http.routers.tubearchivist.rule=Host(`tubearchivist.lan`)"
       - "traefik.http.routers.tubearchivist.middlewares=tubearchivist-headers"
       - "traefik.http.middlewares.tubearchivist-headers.headers.accesscontrolalloworiginlist=*"
       - "traefik.http.middlewares.tubearchivist-headers.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
