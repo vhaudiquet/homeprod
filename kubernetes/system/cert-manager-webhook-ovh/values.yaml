@@ -7,38 +7,38 @@ groupName: acme.aureq.com
 certManager:
     namespace: cert-manager
     serviceAccountName: cert-manager
-# Replicas
-replicaCount: 1
-# Resource settings
-resources:
-    requests:
-        cpu: 10m
-        memory: 32Mi
-    limits:
-        cpu: 100m
-        memory: 128Mi
+# Pod configuration
+pod:
+    replicas: 1
+    resources:
+        requests:
+            cpu: 10m
+            memory: 32Mi
+        limits:
+            cpu: 100m
+            memory: 128Mi
 sops:
-    lastmodified: "2026-07-09T22:21:08Z"
-    mac: ENC[AES256_GCM,data:+aCnXp1u61O28hfFnQ7o1Cc1c8KGsp+mqraMpkEKHeRZCzBnBhbxCK0Nyezd06fPQAvFnRL3VdTb9I4E7uNs+9SGGwCtDcFz6+6kdP3VvM83Kd8CXBytrz82yuYrrKS2GKrFhzwg6P2Y0Vx1zr1FnvVMDUWwuyTvsjP8LZETyY4=,iv:Qfio7SbDdx4E5VXc/6avOk++FvRfwuRV4PXkFtoCor4=,tag:RbNx47LZJeMTFO6eWib2yg==,type:str]
+    lastmodified: "2026-07-09T22:31:08Z"
+    mac: ENC[AES256_GCM,data:QjrNj355tJVZRsYQdkM73Ld7X8EvMM7O/1vF3QnTYJ9vWbh78irLocbtnyBeaR9o3g0mxO6Ugjlukj+S0HhIX/WS1XHEfs/3n3rE0zS/fxGJ0D3Alam/n/WPOsYHUiCBD86JtU83AjgncISY4yp/VheV3kRgSdl+ye4AGAjhq7A=,iv:p8yqNCcskTfDfEGbM5Qyb60C4pFv4BOuLpEApEzHLFY=,tag:KntExeQwJbBREaz2nY+1uQ==,type:str]
     pgp:
-        - created_at: "2026-07-09T22:21:08Z"
+        - created_at: "2026-07-09T22:31:08Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAuoBSIDiTImtFsKQRRYE26ClYc/O5QQPp3aTnRtFepl7q
-            1maRykfBUNIDVphhEw1IyG3VJdnQ/97Q+7K7xDO9l4V6R/jH/84ByoEvA/M01JRc
-            jZn5Z1TweXklO0H9RjKBwAXuJSQ7pH3knowF/vVf3tj3tuIBCFVDjjFtzDj/3wHl
-            AnrNqgofDMaLEObRrddhAD+cr85TBM58sFBM+8hN8+b7XkxJYPatYNLcY+f3XJ37
-            wNMgqCwwK8OU0+LBB52acPtyymY591aO2CR0Ui3IUZGCgO/gXQkh/m98cwOfoE3D
-            a/wIZxGmiUF/Fs6nwYl/ip1utMN2MY8LBMak7EXpGgidBipjhTJvXbDMjhHhesql
-            MpDrfKuHm6XBfedGo3OasvHR3S8QQN4IpdTugOw+S5nJX6uO6HyhA5f10xtQIr6f
-            LjCm1oBzMLm+CH1FYD2iBaz5Y+fFypg34FvblrR/JcYg1n8Q3zOM9oLLRHe5pNYZ
-            Mt2+TrWvnZYfzW1BIX+w+Wi5p2EBpo6NJ729DxsA++zWbk8uPQIOsF2FDmNIvw3Y
-            /Bz77VXKIDjvBiUBNWkOUVAu1SA180TaGyEE0Uv0MaFrlxTh5+1ZhJS5xLQRRias
-            N8sldC3ukw8OcJYoInqjZsfhr1zyDZsvUw5NeP5Kj3RI62sFZYidGbRYyEnYqVTS
-            XgHIcMhfj+fkWTm9V38CQiZ+nLTJu04KarkstJ6PtabIopqXYtqT2TO/elBswfLd
-            Oq2OhNufSkd5/0lCM+A/3F9WmWh32Uhai/GS/DfMszw6/7w2li7DC1V9Hzdv/DU=
-            =6dE5
+            hQIMA7uy4qQr71wiAQ/8Dn4nEIbQXuETxE6RUBkNTO/eN5pHh47lqSwBBbYDSi8C
+            8rcJmdq8P+v00geLdMlM35OcjHFb9UCVeHFsAEYt6Q2jL4QNa2aOEDOqGnhKP+zx
+            KKtW2Ngx76Ow9N2C5JN9DXk9n+PC/qWdPLNJY+GiW/KbPmVxAulJpmYlJHfs1EOh
+            0mSRSS+7sgGLHWmgU362zC508lkKxh8HKxmq1+1lf+fWIe8N7Sl0fx55kq168hae
+            NcdogRpoVT555hRils7eqzj0C/KTVOi7CR4pS7VJyiNy2fu2OASmmcM6UEqCyJfV
+            NTUdMpnjb05UwfbuUnIg6j/FoqS49ufGxKPrM9t7JrFSuyGqduF7P/ifv5zwMuIZ
+            SNeR/X8xUksK6R4/uTmUx5sgF+Jv7tCRvcp+DhsDe1mMmO8czXC5Mt3cR+uwYoms
+            hN+9/oYEZr13qn5Ek0dy9NESkZIzYPCXYXZrx8GLqaHCJEQbpIZCAN+llOyQaQzU
+            jcvPAYbTewBw4ewKUS0KcvLd1pfzvYyvtzwHuMIVJwrf7x5bzhzxAgVOGkEVlVq/
+            7pGO9TYXGl3kD7tf25oCGzAerVC+EVcL11sq4zawvL4PovEZFP9mzhR7EfY3t/3C
+            vGVu6vPmCJOwdis9+Kdr3PKubnMqWGn5KCCX1x13qhsHc239N7cVKkyx3dTBaArS
+            XAG6KxKe/cQicIVC8/N1Cna9uQnTF5ZnFVfJNW1nkYyF1E+ofW6kKDr3ITotKLDP
+            hXXPT+vsB2fL3faBG4xb6owrMuQ1S0DmB3mqjSCXtpS7q0FDg22Tq9BtaEni
+            =x1th
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
