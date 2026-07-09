@@ -1,9 +1,9 @@
 resource "proxmox_virtual_environment_download_file" "talos-cloudimg" {
   content_type = "iso"
   datastore_id = "local"
-  file_name = "talos-v1.11.1-nocloud-amd64.iso"
+  file_name = "talos-v1.13.6-nocloud-amd64.iso"
   node_name = var.proxmox_node_name
-  url = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.11.5/nocloud-amd64.iso"
+  url = "https://factory.talos.dev/image/5a697fd6e91537a2c9c45929d004d82af180bb5d4e989dd8494e25fedca005bd/v1.13.6/nocloud-amd64.iso"
 }
 
 resource "proxmox_virtual_environment_vm" "kube" {
