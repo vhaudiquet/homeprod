@@ -55,6 +55,7 @@ updates:
       - "/kubernetes/system/blocky"
       - "/kubernetes/system/caddy"
       - "/kubernetes/system/cert-manager"
+      - "/kubernetes/system/cert-manager-webhook-ovh"
       - "/kubernetes/system/coredns"
       - "/kubernetes/system/csi-driver-nfs"
       - "/kubernetes/system/external-dns"

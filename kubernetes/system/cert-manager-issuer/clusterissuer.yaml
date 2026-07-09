@@ -22,19 +22,22 @@ spec:
           dnsZones:
             - vhaudiquet.fr
             - buildpath.win
-      # OVH solver for semery.fr
+      # OVH solver for semery.fr (via cert-manager-webhook-ovh)
       - dns01:
-          ovh:
-            endpoint: ovh-eu
-            applicationKeyRef:
-              name: ovh-credentials
-              key: applicationKey
-            applicationSecretRef:
-              name: ovh-credentials
-              key: applicationSecret
-            consumerKeyRef:
-              name: ovh-credentials
-              key: consumerKey
+          webhook:
+            groupName: acme.aureq.com
+            solverName: ovh
+            config:
+              endpoint: ovh-eu
+              applicationKeyRef:
+                name: ovh-credentials
+                key: applicationKey
+              applicationSecretRef:
+                name: ovh-credentials
+                key: applicationSecret
+              consumerKeyRef:
+                name: ovh-credentials
+                key: consumerKey
         selector:
           dnsZones:
             - semery.fr
