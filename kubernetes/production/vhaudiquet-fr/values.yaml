@@ -39,28 +39,30 @@ nfs:
     storageSize: 10Gi
     # Storage class name (leave empty for default)
     storageClassName: ""
+    # Allow the pod to start even when NFS is unreachable (uses emptyDir + initContainer)
+    softFail: true
 sops:
-    lastmodified: "2026-05-14T09:33:46Z"
-    mac: ENC[AES256_GCM,data:R5ular4bAyV0cFPGUGYg4NWCGI64rWTax6ObBnCadORwSTh5/VQN3bsDDPFC3dep/7nKzY71d2X4qAcVU3RkWa9eMP+e9dhaGV9/8gvY/qDXZiNEuAXsmpaSATgUo6mUwqrwl5tn4ono4ID8gr7FRVpneTbYX/HpiWDbBa9l1Xk=,iv:wQ552gswkX5aOy/Cht1zY56camnb8EhEwy711osyf4c=,tag:t+U/1wRD7/z39KY9zjNcMQ==,type:str]
+    lastmodified: "2026-07-09T14:38:39Z"
+    mac: ENC[AES256_GCM,data:CTnqJl6YPYCt3E0A4QAyt5guqgqiNfFk1xJPAvNM1/kv4HbEVeQxG349AaRSc8bQXcMBIVMf022L4+r0DnTEnyy71vMJwWAJTpnEKBQNaDZNCBraGcznSpOP3t7xibjsQ+pqx6d8xXUm9mDfIJU8Nmqvq+iGEUM1PYsKYfDwhQc=,iv:yBZlb8SujF8nv796elcBMQWbyBg+CQ388UzjVqUUyt4=,tag:P9rW9vl5vkuVFv/RM3gGcA==,type:str]
     pgp:
-        - created_at: "2026-05-14T09:33:46Z"
+        - created_at: "2026-07-09T14:38:39Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+JAzu9u2Dgn+lA58pIhRbM1064juEOvebtBK0FdJCi7AG
-            /Up2oooBmLMxybk16q0800kZHgOAcqTWkRcDq3QhC7nK+xcs03plTLLAlqfnh2x0
-            XyqQVk4du9caRdgvgN96tG+oWUJcuUJ/uFunXAzRvPnNysS5sGXVKJmbVVKfTjqk
-            UPyA5sBbCIxW10kPZJjprR1HaRl2dkgz7jZI/q2RXhFjCOhthMErBFr4f6xD3LnN
-            H5XVtixNcVmIinsGUIgvPW+qknjrf17ammgEtOqjtuu4PUevQFt4zkVyjU0Y/ASj
-            HAyYgSNIAXanb3u9ulL6CCg/CXJSofTrexw5RPM9eTQQ7S1KqHm/Ns6jjl/jXtEW
-            cIQZ5bQJPTJu7W9gxGpgaLmWwGfoDWvmT2rIFYC9tf+61F4EbRvY6KepKET9NYTJ
-            EnyDoxRsfVgxwQjyqpIpmNewWpgWwcLbD8INoJUVx/Yr284F9pBCgKqKRmeNH/Sy
-            kEt3QD1ElohuwTx7XLkYf6LuDFy8kA5wFUPKUgxmoFsGZhMhmi8ysUkUxtYPPMD8
-            YLVOK8UX3sYUDdY7tQjlgz6nhMqGL7ekqxyA5PSCGlhg5siKIhltz1CzadNOrsqF
-            jHkiUCrDNu1ToRPllOw4WMwSzII/sf2oP3FJyE+/Rsl49rVjELLfC8eWPhG0yhXS
-            XgGHbmvrm1QPl70dF+896QE/XtSydiqLUynCeIAvh61//ipS9lSZXpdDKEP5Q7ZD
-            /lTbPRH7Y7EZUgarjBtc2wYg3iaBkELtS5lnQeJawHQ8/M3TxdWmgEeBim/qr+A=
-            =K+50
+            hQIMA7uy4qQr71wiAQ/+PV8hvPHvkmAg1BLaMWbpkMD0Y5/+uQbnnEfIaJdiE4VG
+            bxtqfBeB/f5kfLDoeVZOCO64tuLtljiZhGjFMA7qESLw0qAvRaDJhXZ9qD1cWSgG
+            DgVhp/4lb+yo37lLUYaqfeRDD5GTXOpKSZOf5WFPr5tsiL9YcfWVVWaf6uSjUl7I
+            OZkDwi3sDfypuen12I9BM580QRamQzsp6gCynQdE/4PjzND9vAvhEBtftZPLmd2/
+            5O4XgjaiJXo2PstAD3VD7c7vGbtEUfvn0vmd79yHz1YBtHRYtDfmnWwHJjeOpxP5
+            ooFW3uJuwL3N9/IaFTmgGHynjhQAqVdC79PL4XSVkSMoqdW8YDHBgErH9WI4Lsbz
+            vl2Wp9eIeopiyIzGXHsUvv/nP3ayp9pS16fV9xJGVczSi5c5YqFRYGtX7QIyXtqA
+            syQlnzoVr4MeT2A2MNdJEWKtfBRQoQR1Qc7ZX/XwfR4b5/58ci9HwBL2eLu0GzRg
+            e8LDnZsGQCozI7h7x332+Wu/9Mbs0wJ1TslQbXt2vRhbve0IvPjNSi54RKI4r8uV
+            /iFnRqPp2ow030nvW+LYt5jcqyKK9poC9nVoytUU57Pc3VmyppOJxc8/AfIezo95
+            LFFWj2CjWr47UspHcqgk84cBP13LmUhK7IeHNBzoWl6LPztuVCczoy7wxn8fGCfS
+            XgFm8RoiId9S5XLhCZ7qV70HhWOZemd0PksBP054xuWvlDMe/HqxvxUmqDbH/vGv
+            49o6a/FJyF2ncU01j72KMyn/ZbYevniX+QG+U7vWuhVRH9tRYYQUrgC0QnPqFKc=
+            =duXn
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
