@@ -32,8 +32,37 @@ spec:
   duration: 2160h # 90 days
   renewBefore: 360h # 15 days before expiry
 ---
-# semery.fr certificates are managed manually in certificates-secret.yaml
-# until OVH DNS API credentials are added for DNS-01 challenges
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: semery-fr
+  namespace: caddy
+spec:
+  secretName: semery-fr-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: semery.fr
+  dnsNames:
+    - semery.fr
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-semery-fr
+  namespace: caddy
+spec:
+  secretName: wildcard-semery-fr-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.semery.fr"
+  dnsNames:
+    - "*.semery.fr"
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate

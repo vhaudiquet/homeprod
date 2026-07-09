@@ -6,7 +6,6 @@ resources:
   - repository.yaml
   - release.yaml
   - certificates.yaml
-  - certificates-secret.yaml
   - caddyfile.yaml
 secretGenerator:
   - name: caddy-values
