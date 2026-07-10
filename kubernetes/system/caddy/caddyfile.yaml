@@ -2,7 +2,7 @@
 # This file contains all route definitions, imported by the main Caddyfile.
 # Edit this file to add/modify routes.
 #
-# Certificate files are mounted from the caddy-certificates Secret
+# Certificate files are mounted from cert-manager-managed TLS Secrets
 # at /etc/caddy/certs/
 
 apiVersion: v1
