@@ -1,0 +1,83 @@
+# Longhorn Helm Values
+# Single-node R740 cluster, backup target on TrueNAS NFS
+defaultSettings:
+    # Single node — only 1 replica needed
+    defaultReplicaCount: 1
+    # NFS backup target on TrueNAS
+    backupTarget: nfs://truenas.lan:/mnt/fast_app_data/longhorn-backup
+    # Allow full disk usage on single-node
+    storageOverProvisioningPercentage: 100
+    storageMinimalAvailablePercentage: 10
+    # Auto-salvage on node reboot (single-node)
+    autoSalvage: true
+    # Disable strict flushing for better single-node performance
+    strictSyncReplicas: false
+persistence:
+    # Not default yet — nfs-csi stays default until migration begins
+    defaultClass: false
+    defaultClassReplicaCount: 1
+    # Retain volumes on PVC delete — safer during migration
+    reclaimPolicy: Retain
+    # Mount options for ext4
+    fstype: ext4
+longhorn-ui:
+    replicas: 1
+longhorn-manager:
+    tolerations:
+        - key: ENC[AES256_GCM,data:c2J2DGZmaM/ix/q/qEh6GP9Uvq+e9ZLTqkfcslLfFgurUiMXpg==,iv:b2X+xaoFsUM7OTIarVVridMUTRRecDXGWHDKc0C7WjM=,tag:AerEyuAxoP2iIM2rcS2TPg==,type:str]
+          operator: Exists
+          effect: NoSchedule
+longhorn-driver-deployer:
+    tolerations:
+        - key: ENC[AES256_GCM,data:RVYMPUMyRKXBPqJdPy3X48uT4CVxRhpNcmEHEAEesuu2+SBREQ==,iv:zt6aCBfSwAKOnRtwI2Fwm8nJmzyTT5QOV+CSNHAq8nE=,tag:oKnu/3yBjz3EO77DsD8WiQ==,type:str]
+          operator: Exists
+          effect: NoSchedule
+# Disable ingress for now
+ingress:
+    enabled: false
+# Recurring backup and snapshot schedules
+# - Daily snapshots: fast local recovery from accidental deletes
+# - Daily NFS backups: DR if node is lost
+recurringJobs:
+    enable: true
+    jobs:
+        - name: daily-snapshot
+          task: snapshot
+          cron: 0 2 * * *
+          retain: 7
+          concurrency: 2
+          labels:
+            type: snapshot
+        - name: daily-backup
+          task: backup
+          cron: 0 3 * * *
+          retain: 7
+          concurrency: 2
+          labels:
+            type: backup
+sops:
+    lastmodified: "2026-07-10T22:54:09Z"
+    mac: ENC[AES256_GCM,data:G2EsREFL55kWR/J2iDyj4ri0W6Yj1hwlg9LOr6Z6GMV3iaXXf1TwN9yJqPsWRXhwxeg3b2XBfmrRFEA4HXntTRdGmh+9odLJh0C6EEuVUj+vZcwOsgppQ/xI3f7vZ1zCmSzOMUTpLKxWV3um+/uvathICUfWvjxpQuA7+SJbZ/0=,iv:dbcV7A/VU6Le8cTeUEuFcOSBvj74X3pPZH/i3Df4rAg=,tag:czw/g1Xk+qxUM7b4PQerFw==,type:str]
+    pgp:
+        - created_at: "2026-07-10T22:54:09Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//bfvnH8G5BtfRtcAvEDR8I/7c7mnKgPJaI5ZfulgVJOfT
+            6wApzIoLCBEfNLAwCDEWWRPeFicQHv7Aq5BDK9EJ3EioupfERPbDNKNiBfWPNlNU
+            dYqFR7jaxp+uPLm5PaydsoNL4TxtGS8pw12JJJCTaEz9ybOi40aOr4TRdLtRqUAP
+            XU/BHArIKoORiEKhYunfgfgZjAHI6732v1KnAYRcSVv5vccRpSn3hTMS3oPgcEu+
+            VHHpoiOrJaFVtbIxwNEx1TVS9K0denx9m/VEZjE5BaFJ1b45v3aUAlwMYjj0+//R
+            MFNoMaCQQ+D8WYOG8Hu5/bCVtvVr7xu0q6jrno42LgPiPt5MVgTbu8+Sp9hUzgbS
+            D1p2ajy+i9/kMPC9qQDbZT/MbudvaVKStsfmCuefDz29epaClXyNygyNA5P57hur
+            4h9/tQX5pylLOoCSH/pDN9bXy/RhTkWemJllXjPX4K5BgWnG+YpyWRAizBi47nV5
+            VzzWL/wLLhB38VrK2d0c5WQPsRzd7PQrqEwNBy9IGM5E8k1oJ33dCyIL9b6TnN51
+            5rm00D3k8AFKWqu2kJ51mXEAA9tUv2dq3w9r0XSwSnccRRwnSbSOvgZhp8qjqVNB
+            BG858obUUSCO45JFMKlhrHc8UWbSTAvYHi5vv/lKj5/jc9w2zEA+vNxEfEXPquzS
+            XAF5BKlXDxPPxw5aTsRIekZSj1irS2THDzeQqpZS+dASOP/S+a0KxlWsMCUBE2ai
+            3rIi6kBQtAFRKBjr8wF5w0DdRPqM0jx7nOEdZNm80VGKdbkI/q+y/ChxLp2X
+            =dVVu
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

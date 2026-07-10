@@ -11,6 +11,7 @@ resources:
   - system/caddy
   - system/coredns
   - system/csi-driver-nfs
+  - system/longhorn
   - system/external-dns
   - system/flux
   - system/traefik
