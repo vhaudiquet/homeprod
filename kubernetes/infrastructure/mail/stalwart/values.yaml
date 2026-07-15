@@ -7,7 +7,7 @@
 # Container image
 image:
     repository: stalwartlabs/stalwart
-    tag: v0.16.11
+    tag: 0.16.13
     pullPolicy: IfNotPresent
 # Single-node RocksDB deployment.
 replicaCount: 1
