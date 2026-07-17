@@ -54,6 +54,7 @@ spec:
     - metadata:
         name: etcd-data
       spec:
+        storageClassName: longhorn
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
