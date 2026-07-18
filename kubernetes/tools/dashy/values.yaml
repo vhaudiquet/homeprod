@@ -1,11 +1,38 @@
 ingress:
-  main:
-    enabled: true
-    hosts:
-        - host: dashy.lan
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
+    main:
+        enabled: true
+        hosts:
+            - host: dashy.lan
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
 persistence:
-  data:
-    enabled: true
+    data:
+        enabled: true
+        storageClass: longhorn
+sops:
+    lastmodified: "2026-07-18T14:22:16Z"
+    mac: ENC[AES256_GCM,data:Svz0vne+sbEj5wlL4FHUrTPMHlprWnZqR/X3tEmpDIxKBD0C/C9G1LgPYBiHviHEiiD/XbxxgH9nGcJIo4blbWc6xRNyUjnhGoLPIPJlG9LclXVh7dm4w4bETq4VfQZjLpY6bhv0q2d5GgxI6i+Hp16FSk8Y4kReErmQdg/Vh9I=,iv:zt3Rjt9KapI7LMMlpA/MPWK8EgGVFRpLJ4d2r4P74eY=,tag:fo2CgvaoT6bz1xmYA9DvGg==,type:str]
+    pgp:
+        - created_at: "2026-07-18T14:22:16Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//RB59ULu3tagTsLKGU+2azz+yTgnRKUsauEhC2trzbpRO
+            Au0RYwQMyDmYwTAvIIRM5gWUGlIFpsiftpK6rZbvJiwb8npYVSF7/shqKzlqYiSi
+            +BHJCSqfk+emN9ULivxmq3i+t4YZ97Ap7uo+pUyBmpz4jis0vdiIDIszLwtJ3U0J
+            t6s2gVl4KE2STyVH+ShERG3yjSBuzvFpJVwSdAfGKeA8K6Umr1LQH/2JSlq8/2fV
+            Zubfu6aGXg564rsbZNs+P9/b5M4FmpSlSOlp6OLWnIosl9CfRVDynnRyLImvQ/8p
+            2Asf6vrAQZJVXHraGMfePNNA9sRxhMa8f1qgHDWGfHh8D8/7JwK5xoFWrNoO7Gb6
+            aex15qielE0N4jpiEC3t+jjRUQLdjMuSlRET/0RVrZRhZ4lUTOOINnw8eUic0vRz
+            OjPj/ffVI4+zqfq7GnopISWBtfMdc23Y+7IhL/8LWRJGLRSqB0fNQxWeS7dtze2o
+            2BWk+DsHiG/1bz2hdezuR+KTRoj7qPDI/eKPc1BpyHfVm8k1y3pFmwWY3rwGAGA0
+            6bB1VSBriE3pcvUiJw4N+Ja/C7gLcUVAtNKGLqxuWr+2bm/ExWItAbnZ/3cZzKtC
+            bULu5ic/zN3O3rRWCS5nFU+nD37pq1Iq3eHXOWygwNOJJcGGHl9+3j01y2iXUl3S
+            XgGKWMKthF+9AD1bASp8tZ1lfNuqyxjbdVyWb7xqRGa2jzWgAcVUaCWWaJU6yASF
+            LdXY6xVKr1DgBs666nv4xAESsgvZ9xP6e+YaxAr3piRuDhzoNFeveOD99tsgZOg=
+            =zi2x
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

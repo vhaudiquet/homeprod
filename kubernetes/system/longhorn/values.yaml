@@ -13,8 +13,7 @@ defaultSettings:
     # Disable strict flushing for better single-node performance
     strictSyncReplicas: false
 persistence:
-    # Not default yet — nfs-csi stays default until migration begins
-    defaultClass: false
+    defaultClass: true
     defaultClassReplicaCount: 1
     # Retain volumes on PVC delete — safer during migration
     reclaimPolicy: Retain
@@ -24,12 +23,12 @@ longhorn-ui:
     replicas: 1
 longhorn-manager:
     tolerations:
-        - key: ENC[AES256_GCM,data:c2J2DGZmaM/ix/q/qEh6GP9Uvq+e9ZLTqkfcslLfFgurUiMXpg==,iv:b2X+xaoFsUM7OTIarVVridMUTRRecDXGWHDKc0C7WjM=,tag:AerEyuAxoP2iIM2rcS2TPg==,type:str]
+        - key: ENC[AES256_GCM,data:HXcRGwnZkabc9hqnCNMYN05JYriiMQx7A7qTWXFvSvrHrBNP/A==,iv:obaOkaDCXPf1krWzs2XX3K2tKNQmDIAjCI7axto4q4o=,tag:2PQeZIy6E4UyEyDGjqqmpg==,type:str]
           operator: Exists
           effect: NoSchedule
 longhorn-driver-deployer:
     tolerations:
-        - key: ENC[AES256_GCM,data:RVYMPUMyRKXBPqJdPy3X48uT4CVxRhpNcmEHEAEesuu2+SBREQ==,iv:zt6aCBfSwAKOnRtwI2Fwm8nJmzyTT5QOV+CSNHAq8nE=,tag:oKnu/3yBjz3EO77DsD8WiQ==,type:str]
+        - key: ENC[AES256_GCM,data:NOHqzVl7VyrhnoS7UzdYuFDRReXnfb7gZKyEHwJkYJtVUbaZaA==,iv:P9v9AV2mKt6uPiKUU/2RW8Ncpefn9fbz1bmcVgUg2zQ=,tag:Qfy2EpKVyKWGlK/OgkY4Hw==,type:str]
           operator: Exists
           effect: NoSchedule
 # Disable ingress for now
@@ -56,27 +55,27 @@ recurringJobs:
           labels:
             type: backup
 sops:
-    lastmodified: "2026-07-10T22:54:09Z"
-    mac: ENC[AES256_GCM,data:G2EsREFL55kWR/J2iDyj4ri0W6Yj1hwlg9LOr6Z6GMV3iaXXf1TwN9yJqPsWRXhwxeg3b2XBfmrRFEA4HXntTRdGmh+9odLJh0C6EEuVUj+vZcwOsgppQ/xI3f7vZ1zCmSzOMUTpLKxWV3um+/uvathICUfWvjxpQuA7+SJbZ/0=,iv:dbcV7A/VU6Le8cTeUEuFcOSBvj74X3pPZH/i3Df4rAg=,tag:czw/g1Xk+qxUM7b4PQerFw==,type:str]
+    lastmodified: "2026-07-18T14:22:17Z"
+    mac: ENC[AES256_GCM,data:cFl45hiUDL47h0V61Sk9L1ZOb3NsXwePA2IROgOCYa7xnxe4iPM+wGS+rDQWhrmMY8HkDTEyKK1s4ylXXqhMSeyvMTPzib58OC+N10UbcmztPDSQEYzfGrDQ2o6MCcSWTapW1pHersPjMEZjc+j629TYriSIjZZM6k9ufUnMMos=,iv:fU/F4ZOjuT0TFIagLUejrxXV6x9Q9P5mrIxy8cQBR7o=,tag:VfSH7cDZD754ma6SaT9/sA==,type:str]
     pgp:
-        - created_at: "2026-07-10T22:54:09Z"
+        - created_at: "2026-07-18T14:22:17Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//bfvnH8G5BtfRtcAvEDR8I/7c7mnKgPJaI5ZfulgVJOfT
-            6wApzIoLCBEfNLAwCDEWWRPeFicQHv7Aq5BDK9EJ3EioupfERPbDNKNiBfWPNlNU
-            dYqFR7jaxp+uPLm5PaydsoNL4TxtGS8pw12JJJCTaEz9ybOi40aOr4TRdLtRqUAP
-            XU/BHArIKoORiEKhYunfgfgZjAHI6732v1KnAYRcSVv5vccRpSn3hTMS3oPgcEu+
-            VHHpoiOrJaFVtbIxwNEx1TVS9K0denx9m/VEZjE5BaFJ1b45v3aUAlwMYjj0+//R
-            MFNoMaCQQ+D8WYOG8Hu5/bCVtvVr7xu0q6jrno42LgPiPt5MVgTbu8+Sp9hUzgbS
-            D1p2ajy+i9/kMPC9qQDbZT/MbudvaVKStsfmCuefDz29epaClXyNygyNA5P57hur
-            4h9/tQX5pylLOoCSH/pDN9bXy/RhTkWemJllXjPX4K5BgWnG+YpyWRAizBi47nV5
-            VzzWL/wLLhB38VrK2d0c5WQPsRzd7PQrqEwNBy9IGM5E8k1oJ33dCyIL9b6TnN51
-            5rm00D3k8AFKWqu2kJ51mXEAA9tUv2dq3w9r0XSwSnccRRwnSbSOvgZhp8qjqVNB
-            BG858obUUSCO45JFMKlhrHc8UWbSTAvYHi5vv/lKj5/jc9w2zEA+vNxEfEXPquzS
-            XAF5BKlXDxPPxw5aTsRIekZSj1irS2THDzeQqpZS+dASOP/S+a0KxlWsMCUBE2ai
-            3rIi6kBQtAFRKBjr8wF5w0DdRPqM0jx7nOEdZNm80VGKdbkI/q+y/ChxLp2X
-            =dVVu
+            hQIMA7uy4qQr71wiARAAmfVmgR9JYZ7qkBty+kYxe/4c0pHq2kab8ORYKfCrADeb
+            oVJvIt/WO6PbE4RKJLOQzQnlRvdqAKukKYhOP6yiBgZpvxY6W6knJWNv+zad0uzH
+            wppTMDHFo3RW/DFUmeqGjBLGi1V4FTlnURGdYzMMuVWDaBp6B4F6ZmtV05Td2Ije
+            JHrBw+LuR01wooaL65rNkiAZbaIu+fFWMlSKME3kie3U3/mWRvJyPUmB07JjO+6Z
+            Ew2JTB94fhgnVfhP0gK3DYZLu4ZlqKC3bndRNoODFr+eut5OEzABh6b5eJRWjaGw
+            8uJ0ymml1swba3DbhpxJeWPRUlnyVIJK2pWzKXm4R4jFLxk+7gpA/2EwhbGvdA8Z
+            gNEH35ng5Ej6t2XWXTOBZ0Fn7TrX2ED0WjL7M86pTargAjVZiEfTK4zJwUh+nmo1
+            HQU6EXBEtF4ZfAlwb1xuXLCBiJlLciyjjD6WcvWP3ql6JW6JzULIMPBLNPo8J6fp
+            YvqKNzjCG1kf/DmsF7tfC0LpNlbn+2/QlZ/PYtWXK5fUtD1JIdjBjxQ1qeNNPplA
+            tfOEkCMhzj6zah/xDvfa8dearZPJAfJexpn8UFVg1BsLyfkoFWRfssj7oDCGCr9x
+            yj2jIn3ELq09vvGjyu/n1+XGDwPTSK9SXGvVrXEaj1N/e9pjDVzeXgvh55mkC7nS
+            XgF/f+adllB8hz3k0BrQMCSGBHyZo4QDH8QTO3E3jN0t0qzEif9bQ82mOCvh4XJj
+            w1cvZEUL3+b9/0tVaBpHNCebRagRAaIay0Y1Fs3GqsdJ1GkI93pumLbL10OYs6M=
+            =5Sp8
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
