@@ -30,6 +30,9 @@ data:
     docker-r740     IN  A   10.1.2.212
     truenas         IN  A   10.1.2.139
 
+    ; P330
+    p330            IN  A   10.1.2.132
+
     ; PVE
     pve             IN  A   10.1.2.10
     docker-homeprod IN  A   10.1.2.12

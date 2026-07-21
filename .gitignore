@@ -9,3 +9,6 @@ terraform.tfstate.backup
 kubeconfig
 talosconfig
 
+# Ignore rendered Talos machine configs (may contain cluster secrets)
+p330.yaml
+

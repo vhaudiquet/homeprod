@@ -40,7 +40,9 @@ data "talos_machine_configuration" "kube" {
     yamlencode({
       machine = {
         install = {
-          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.11.5"
+          # Image Factory image with iSCSI extension for Longhorn.
+          # Generated at https://factory.talos.dev — siderolabs/iscsi-tools + qemu-guest-agent
+          image = "factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.13.6"
         }
         network = {
           nameservers = [
@@ -53,6 +55,28 @@ data "talos_machine_configuration" "kube" {
         certSANs = [
           "${var.kube_host}", "${var.kube_hostname}"
         ]
+        # Kernel modules required by Longhorn (iSCSI + ext4)
+        kernel = {
+          modules = [
+            {
+              name = "iscsi_tcp"
+            },
+            {
+              name = "libiscsi"
+            },
+            {
+              name = "scsi_transport_iscsi"
+            },
+            {
+              name = "ext4"
+            },
+          ]
+        }
+        # Sysctls for Longhorn
+        sysctls = {
+          "fs.inotify.max_user_instances"  = "1024"
+          "fs.inotify.max_user_watches"    = "1048576"
+        }
       }
       cluster = {
         clusterName = "kube-${var.physical_hostname}"
@@ -104,6 +128,33 @@ resource "talos_cluster_kubeconfig" "kube" {
 output "kubeconfig" {
   sensitive = true
   value = talos_cluster_kubeconfig.kube.kubeconfig_raw
+}
+
+output "client_configuration" {
+  description = "Talos client configuration (sensitive) used to manage nodes."
+  sensitive   = true
+  value       = talos_machine_secrets.kube.client_configuration
+}
+
+output "machine_secrets" {
+  description = "Talos machine secrets (sensitive) used to generate node configs."
+  sensitive   = true
+  value       = talos_machine_secrets.kube.machine_secrets
+}
+
+output "cluster_name" {
+  description = "Name of the Talos cluster the worker joins."
+  value       = "kube-${var.physical_hostname}"
+}
+
+output "cluster_endpoint" {
+  description = "Endpoint (host:port) of the Talos/Kubernetes API on the cluster."
+  value       = "https://${var.kube_host}:6443"
+}
+
+output "kube_host" {
+  description = "Reachable IP/hostname of the control-plane node."
+  value       = var.kube_host
 }
 
 resource "local_file" "kubeconfig" {
