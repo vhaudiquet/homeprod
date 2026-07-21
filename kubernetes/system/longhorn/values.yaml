@@ -23,13 +23,30 @@ longhorn-ui:
     replicas: 1
 longhorn-manager:
     tolerations:
-        - key: ENC[AES256_GCM,data:HXcRGwnZkabc9hqnCNMYN05JYriiMQx7A7qTWXFvSvrHrBNP/A==,iv:obaOkaDCXPf1krWzs2XX3K2tKNQmDIAjCI7axto4q4o=,tag:2PQeZIy6E4UyEyDGjqqmpg==,type:str]
+        - key: ENC[AES256_GCM,data:yWX0dGIIpvCVOeZbvY7Jjbr/t8mcyLiLmzHrCz0bwXIBRgG0Ig==,iv:m1wOItluKgql41BzKoBvgyjBaG7Fplz1c4ScONjZ/c8=,tag:g+7730DA8KzK/7ApgumDcQ==,type:str]
           operator: Exists
+          effect: NoSchedule
+        # Tolerate failover nodes so longhorn-manager runs there
+        - key: ENC[AES256_GCM,data:PksAIja6KV8+,iv:oDJ47xFoCKysl8yf9EQVJp9PGLKJQMWUOsIAcirjzJM=,tag:n9HVtUsERVmlQqeXpObvWQ==,type:str]
+          value: ENC[AES256_GCM,data:JDsyDMHMh0k=,iv:D3oVkD3tsxVE1hvcMcCYogoD7IVetrAbMzp6VCTOF6s=,tag:/cx/tQuGf1ImsVTZkwwt6A==,type:str]
+          operator: Equal
           effect: NoSchedule
 longhorn-driver-deployer:
     tolerations:
-        - key: ENC[AES256_GCM,data:NOHqzVl7VyrhnoS7UzdYuFDRReXnfb7gZKyEHwJkYJtVUbaZaA==,iv:P9v9AV2mKt6uPiKUU/2RW8Ncpefn9fbz1bmcVgUg2zQ=,tag:Qfy2EpKVyKWGlK/OgkY4Hw==,type:str]
+        - key: ENC[AES256_GCM,data:lv255SLl898RJh8gx569wM+lL/YF8AUXhKuwEY5RUmw84z96Vg==,iv:3gY3OSeoVitIZd4rMgZK18bI9xtcsk1T0U0PphLZSZw=,tag:TMZLWxRTZB9fwNIThytnxw==,type:str]
           operator: Exists
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:dI3C6OPdnAW0,iv:G5vU4nypD3s/vffdQneasxHzUUXHsgUThjUtYKRfk7U=,tag:SD08w8Gz1WDaee/cM89hZA==,type:str]
+          value: ENC[AES256_GCM,data:GsbeabJMKjQ=,iv:qA+wC10BjpzMprPgoLeiBKAU1RcSef/yMfDzWbgAJ/s=,tag:9qS5tquOU7EkZ7hrd+VZhw==,type:str]
+          operator: Equal
+          effect: NoSchedule
+# instance-manager is a DaemonSet that places engine/replica pods on storage
+# nodes — it must tolerate the failover taint
+longhorn-instance-manager:
+    tolerations:
+        - key: ENC[AES256_GCM,data:3EHDHYKTaDyk,iv:D6z907ohAGqkoytBZ7s1aWJI6tRPsF7N798MwF9um+Q=,tag:zvEM2dzoWx4kLbIrbVW45Q==,type:str]
+          value: ENC[AES256_GCM,data:D9mG3tOtQas=,iv:JpbQDYKMZvNQSkoxw+1zwTeIrdrIr09oa7v8tZupSb0=,tag:5ypuOjneHKzSsJEXE4enxA==,type:str]
+          operator: Equal
           effect: NoSchedule
 # Disable ingress for now
 ingress:
@@ -55,27 +72,27 @@ recurringJobs:
           labels:
             type: backup
 sops:
-    lastmodified: "2026-07-18T14:22:17Z"
-    mac: ENC[AES256_GCM,data:cFl45hiUDL47h0V61Sk9L1ZOb3NsXwePA2IROgOCYa7xnxe4iPM+wGS+rDQWhrmMY8HkDTEyKK1s4ylXXqhMSeyvMTPzib58OC+N10UbcmztPDSQEYzfGrDQ2o6MCcSWTapW1pHersPjMEZjc+j629TYriSIjZZM6k9ufUnMMos=,iv:fU/F4ZOjuT0TFIagLUejrxXV6x9Q9P5mrIxy8cQBR7o=,tag:VfSH7cDZD754ma6SaT9/sA==,type:str]
+    lastmodified: "2026-07-21T20:19:40Z"
+    mac: ENC[AES256_GCM,data:AxrJFHyOjoP5c/1uFhlSIwe0E/oIesu52EU7zIxwLVQ8p5r4Fa7/NpSbeK+K3lAuYTrUiXvjWdbmVO5IQhvd+PNj6nXPDxBO92eoxzMtit9m8mnAiEGGYayeJMU9DaKPlGEs3CUaYzAizP1Ub0n9g2iq8CRcHVO9zOQ/DfUk/tA=,iv:bQN9v/n0/Z1Sm/2Im1SGskjqnxJhAbBT19IC6HDSufA=,tag:qLxMS7HovkykXHqsvinLDQ==,type:str]
     pgp:
-        - created_at: "2026-07-18T14:22:17Z"
+        - created_at: "2026-07-21T20:19:40Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAmfVmgR9JYZ7qkBty+kYxe/4c0pHq2kab8ORYKfCrADeb
-            oVJvIt/WO6PbE4RKJLOQzQnlRvdqAKukKYhOP6yiBgZpvxY6W6knJWNv+zad0uzH
-            wppTMDHFo3RW/DFUmeqGjBLGi1V4FTlnURGdYzMMuVWDaBp6B4F6ZmtV05Td2Ije
-            JHrBw+LuR01wooaL65rNkiAZbaIu+fFWMlSKME3kie3U3/mWRvJyPUmB07JjO+6Z
-            Ew2JTB94fhgnVfhP0gK3DYZLu4ZlqKC3bndRNoODFr+eut5OEzABh6b5eJRWjaGw
-            8uJ0ymml1swba3DbhpxJeWPRUlnyVIJK2pWzKXm4R4jFLxk+7gpA/2EwhbGvdA8Z
-            gNEH35ng5Ej6t2XWXTOBZ0Fn7TrX2ED0WjL7M86pTargAjVZiEfTK4zJwUh+nmo1
-            HQU6EXBEtF4ZfAlwb1xuXLCBiJlLciyjjD6WcvWP3ql6JW6JzULIMPBLNPo8J6fp
-            YvqKNzjCG1kf/DmsF7tfC0LpNlbn+2/QlZ/PYtWXK5fUtD1JIdjBjxQ1qeNNPplA
-            tfOEkCMhzj6zah/xDvfa8dearZPJAfJexpn8UFVg1BsLyfkoFWRfssj7oDCGCr9x
-            yj2jIn3ELq09vvGjyu/n1+XGDwPTSK9SXGvVrXEaj1N/e9pjDVzeXgvh55mkC7nS
-            XgF/f+adllB8hz3k0BrQMCSGBHyZo4QDH8QTO3E3jN0t0qzEif9bQ82mOCvh4XJj
-            w1cvZEUL3+b9/0tVaBpHNCebRagRAaIay0Y1Fs3GqsdJ1GkI93pumLbL10OYs6M=
-            =5Sp8
+            hQIMA7uy4qQr71wiARAAoYpVy7elPl0SzogH1900DzVQsGV0SylAh4h40+YOmezu
+            k4y501ZRIRv/r0RiPp7pJ7o9zynVQdcsRos0h0GBy7BbzIXMJpjRrpqXIvSeqtgt
+            S5FJIUTkVraKo8kKtDvtbiN6rz7qwXkBsppF1euZRVVj33hCX8vqL6EvhP9FBOBO
+            354Q9h92F+D94+JQt3K8n3hW/qaQIcDhJ4AgC7I9NPrA+rb6alUWQPKfFDSlYUkb
+            mxrLz4DE5GOVwMhaE/PrKLYeV5+KLRdsK0zzQadxG4AUSwpK7ZwLIIcQ1L0zQ7ST
+            SxruIi5EahUsDxNKTZvv5NnUFZpncqKCFfnxF69xIlXTAXujdOfY/21HZ+mmCmKJ
+            kTmsNtlKE1ltDwzHiowdLFqzHlME83bdRtYPuMcvhAFSv7yuVd9zfXIjQNjPFmYc
+            55EedJBrvFbxWU9QP1dEUpcELGXroiOowjGM4cushYgeBZzXJkTMg7JmoB+HNiWY
+            Ld9XaJOOiJ87BI1zbhkMPo+L9NSF5zbtYkBiulSyb58gTuixTESnYxPxWC71EZLV
+            BxFEkapXY0Y89h6uFH7FKz0MiniojA4zvNFt2LQYICWXdUAJqqpeIRv88iUJkKDv
+            THVf7+wltQ4EHTuu4E0rCsg+3GeOIIYkBrLESjEsaSvQ/B+Iz9JgUFRkRr7lVvzS
+            XgFL/2+26cLT81wCUson9XW5X2GZV8SgfWTFAXCbaaTxluJU1l1jIyWUoWnTFF2S
+            tKqNQBSsUmYlXIyize8d+ueVQcldN91bwpOXVmVIbghFX2Cp3H+4R5qfJxpH6yA=
+            =03zX
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
