@@ -20,7 +20,7 @@ postgresql:
         password: ENC[AES256_GCM,data:9PI//cgxRlmjNw==,iv:q0SLpmaTIC3OUulPDxiDWie0+oI7w17V2fPmJ52o8ao=,tag:2lwG95Remzqt1dj8H4CG0w==,type:str]
     image:
         repository: bitnamilegacy/postgresql
-        tag: 15.9.0
+        tag: 17.5.0
     primary:
         args: []
         livenessProbe:
