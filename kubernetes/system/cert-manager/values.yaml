@@ -5,7 +5,7 @@ crds:
     keep: true
 # Enable DNS01 challenge providers
 extraArgs:
-    - ENC[AES256_GCM,data:yzuTi9Hu7Dx95MQN+H/6gul381m64KYv5ZsHwg92BE/aUZyJzYArniIC+Nio+SygUXXb,iv:eBizFSW1T2/VvN3k8VRsEIpllHs5MA6Nr+jh9fCzZCs=,tag:sz9WBU687eTgnDXWoE02Nw==,type:str]
+    - ENC[AES256_GCM,data:RcKzGzDSFXAw32vBKyvMTzMx5u0AmXKpXEY9/YRxUI0SNVy68/uUSpFhdmcB0RvmzG7y,iv:AraIcgoVYO1IVAmN3dd6pXr3v2BXaizbK8HefwsDRqE=,tag:QlOBuyxbddyk++nYLhMl6Q==,type:str]
 # Resource settings
 resources:
     requests:
@@ -14,6 +14,15 @@ resources:
     limits:
         cpu: 100m
         memory: 128Mi
+# Tolerate failover nodes
+tolerations:
+    - key: ENC[AES256_GCM,data:WXIPFO1nBe+6,iv:t8RP3KL6niOVe84Qqu9+JKp2qNR87qnMzJOh7pUsudg=,tag:uT7gWSdOz86PPi2NZIxZeA==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:N1IHrGvrobA=,iv:QiKeIiSBFThw05b5gkU41koci4CDZ0ZxdLX1r1DD7Dc=,tag:QGWcNIYqUdEy0f0bEYC91Q==,type:str]
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:QMtUDj9EDXWbsUBLlQJ5yFEsQ3fksIRUqIk7tKyts1aHqNQ56A==,iv:GVEl1AcWNLAqdXqyJTMoYBPRqqvhSHGBN7fuMLWtjoY=,tag:bmCK8yCiVCXci2JJFvw/GA==,type:str]
+      operator: Exists
+      effect: NoSchedule
 webhook:
     resources:
         requests:
@@ -22,6 +31,14 @@ webhook:
         limits:
             cpu: 100m
             memory: 128Mi
+    tolerations:
+        - key: ENC[AES256_GCM,data:QZjbo0u9rqht,iv:H3mZnC4a2abmOiW0RhoFAiAvVfaRFpGU2+XKYy8uBUQ=,tag:xwp+rkiYrSo1q+CsLdup7Q==,type:str]
+          operator: Equal
+          value: ENC[AES256_GCM,data:UsVMCFtyl0c=,iv:ImpKIQtC1jX2NLNTSDhq4a9nq3I2HlpSr7QLUOw5gd0=,tag:xM/vf2MhasBNWbLqxkUrQg==,type:str]
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:31pC3NOA0AH2d0V/N10xX1U8E1OD4YL/27+xFLxElfYb1xWSDA==,iv:aaaci0Eu3Mb9og3Za0beB9js3wSjcNE7BOS5iAko3aU=,tag:h40mrm+gPTf9jCP7ax1ihQ==,type:str]
+          operator: Exists
+          effect: NoSchedule
 cainjector:
     resources:
         requests:
@@ -30,6 +47,14 @@ cainjector:
         limits:
             cpu: 100m
             memory: 128Mi
+    tolerations:
+        - key: ENC[AES256_GCM,data:rqZTE8j9xDAy,iv:EvztWg01VbvJhdhkrVz7M0mA0EUhVW2Ty/de0D3pgmw=,tag:rGUZky1bUhewhKDp3Vo8Eg==,type:str]
+          operator: Equal
+          value: ENC[AES256_GCM,data:fPt+n+ftbGI=,iv:xHy9IUIBgkHDQcVZ4MyA3tXPvMAy14gHhkxe2AYthR0=,tag:szam+dyODZSjfX6oxsFdSg==,type:str]
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:As98cp+6SvVwxRtdxx7TT+HGzejgWiacf0TYm2JU9kPqEA7ljA==,iv:dd+TS9T57NrpgyZjYgPi/aCiInfnVxh3VbO7gddkw8k=,tag:KQMA0Kn0YgE/HpAJk83pTw==,type:str]
+          operator: Exists
+          effect: NoSchedule
 startupapicheck:
     resources:
         requests:
@@ -39,27 +64,27 @@ startupapicheck:
             cpu: 100m
             memory: 128Mi
 sops:
-    lastmodified: "2026-06-16T08:15:29Z"
-    mac: ENC[AES256_GCM,data:ZB7igt7ciH6X0DmvDi2gzg1eA8EYXqq/VRBSbaLT9x2SUi+9ax9w0V+fcTwOTWlwCvHOtSAZ2RYgX/wKFmbnKgrwoSpskGFsRlY947oLkRTk4HbTRP5HbciAQsRw3AVB4pgkR7maVZ9n15gzNHTTkd9x1akAeGHJg9lzg9+N6rE=,iv:jqyi/ZGLjKFBe9XSj2WBBOUbn9xvV9Wf4wrYxSs4t/M=,tag:2u84qHa69IsYFtSwJ6yFqQ==,type:str]
+    lastmodified: "2026-07-25T08:12:52Z"
+    mac: ENC[AES256_GCM,data:yFXZxbhJi5PPVXl4j73FfOO5hurvD7ZXgWr5eZS8poE7IEg6IgZKBjwq1ITMUP5DyS6K2onR/mgZVzgj5X5I7hEwj13DAPW7wWthZql+De7oGxe5Nv74fDFEwCoqh2sTbdrQS2KyPY+rrb0ZMZD5qpdZzyw1AVGzVKeJJj9DdBY=,iv:SW7sb6mmJulekZn1Eh2pfYml1PwJ5v6z/PBdV3TL29A=,tag:5HzpRnH2G8J//J2fZhrxrQ==,type:str]
     pgp:
-        - created_at: "2026-06-16T08:15:28Z"
+        - created_at: "2026-07-25T08:12:52Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAiNHNEJjBOd6AK/moP1Xw7nvOidkRtIqw+QJRmfhPDG7B
-            CQy3y2armtFYzaWhDcMfiy1SkcD91kadbfxAifb5/Oit48VTv03bXZDvyrEdRwcI
-            n81rt3GQuyNDCj9aSUVi1nT5GHETrvdnyJp3u1dzfc/0i7GK+FiCbGAGzSnGdN77
-            +/caT5Jib+hIVskiOjhE85K3rTrh+aJMFKC6NG7Vw8GXh7N4r3EcazcX9KuJXxsn
-            NRT7XyYA8y15PlZQFkhRs1QCVvqH31WDwCEt0cE4r6Qn2aGy+v8ygJkum2sYPH7g
-            WZfC548mZrMrI9UNo10UfPCqGew/XpEla1/bgVByMHMdM9n961KRzCPtR349xXI4
-            1APX4WClQjbL/cXR2zMs19Y+GDjL7XF6rdSRDpEgTzQXb4f1ctswutcYxftvKI3c
-            EdfCGiRpVJx/wIuh82mL3SWqdi05Lekvt1zdLcG8Tx2+nF+52dWoyxNy1YMVyk0m
-            RXZFMZLHKumyDooairf1P11DOXcsa8FjZrqjvn6QI2LfmEGm3PQQQUXT8Wp/10e2
-            78Hr1rTGqQEzvSJu0FfDuundPws97ftPiuGcUD5hUj3rS6iGxdEp4trAPi0DCCd3
-            g7m6fNX41O8n39EU0Kp2G9kfICMghGEVL5czzRA4EsLH35K8XqP0ig6ay5kVXWrS
-            XgFic5jk5GdxzUL7TFjtr9AFFaWhIZkyyXwvEod3Ur3gB64Pi/ktet6OZSWU/7Wn
-            eRKn9yEm+W5Xzn9eiN6TYDsCWQBY5nP80YVuj53AMSu3KbR7UGy+AbJF3T+V6lo=
-            =GscV
+            hQIMA7uy4qQr71wiARAArV5QxST5xu2jG+X9Fo6F4o3uxMS/Kw56ey1MMTfgkTlM
+            HdV1n6lityMGXB278GiYhmZYRdZl0kAT+Dj9Y0RdaiI8BszocD7IbBKmE1tVseCr
+            Xa4y7nWE58xz2Ca26KVf/I64QPHsKKus4wECGOgZrh7Hzb+KdeTJBpuMMIgnJe3l
+            1C6VdfTgNlYPW+zAmX3i39ZwYO7wcz5UZ1aXozAtoOjWyjdcArEdoCH9iD2GXTOe
+            0EsvgdUD1U2n4ffy+Z8mga6V8URkJQ86XTuFD6PhFF1bhBwa36MCUXAdlD9ONB6d
+            jaKSAPAeia4C+0vCXTv9OYEHizSe11iwsUyPq+bmMrYCUslaiOCC+QfGtJEcCJj/
+            ZeAjXMoyi5Fnmwj+y5ED+O1DKp/sDyUdvix83L1UWVfTrgNVfXFCGzHJUkcZhfUk
+            Ye9KcbH+7+mj3p/lAgbQjBjVemnW6GFzGJYcL/rWwRBxw2ElLxKPnR9NQK9VY5w/
+            wCmWzG4Cjr2gfLlR05A72/i68fRM9eAy4CFL5y4xTN1eYe+MCz2ZedZDd3uYTKUC
+            TMPGXfjhy64W/cV8MWa/aYCyNguVlKbmUl7kZwb+8DAxrSyPqQal11DJtcsv3zFO
+            BUf8GQFn4jXXYqd1LojLM7bUjAkXWZUIUbg1+jWfPGsgsTGn4R0tshtY9JOfQpfS
+            XAGL6+0+DQf8wY7yzbds4DSDMNTlOH7iWoX77okayY3L5Jqc3jB0glMJbRwdmgnj
+            d5JzAoqDhi1F+MQdTYGu7RQpawKr6ndWqwkT5ef5BQ86TQq3/+jZ5uuC3qnE
+            =uS2O
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

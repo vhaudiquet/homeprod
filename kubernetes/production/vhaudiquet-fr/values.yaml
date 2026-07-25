@@ -41,28 +41,48 @@ nfs:
     storageClassName: ""
     # Allow the pod to start even when NFS is unreachable (uses emptyDir + initContainer)
     softFail: true
+# Tolerate failover nodes
+tolerations:
+    - key: ENC[AES256_GCM,data:whCOkQ/xDUyG,iv:MU1iyLWTp21dUA0Ukn7L4Kdmp4DcD2946/1lHrgNJJg=,tag:VdVgjP831+lV9IdabEYvOQ==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:IXlCv4VONI8=,iv:/7uiSYGVY85/8nGgnQjeO+hClQPqWEJWOMwEZs1VuzI=,tag:gZI49sfALmsfaxjF4mP4WQ==,type:str]
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:7MK/rNoqAhDUJh3O4r0b47PVfT3ItjnnCOKJWZCThzHNIrw0bw==,iv:hUCE6+NwucVw5lwktzOpXRqjG51w4g/AQceyBiduu+E=,tag:DWGdD++4ZptIsSmLpwZAsg==,type:str]
+      operator: Exists
+      effect: NoSchedule
+# Prefer (non-failover nodes) in normal operation
+affinity:
+    nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                    - key: ENC[AES256_GCM,data:EDr52ZzUZjtJe+oxleIJZZCYCl8=,iv:ZafjjEMMaWYP7JKAhnRkMB9kFghd5LB593mUELzDLwQ=,tag:4EChdzHuvLSxY+fEum1Gzw==,type:str]
+                      operator: NotIn
+                      values:
+                        - "true"
 sops:
-    lastmodified: "2026-07-09T14:38:39Z"
-    mac: ENC[AES256_GCM,data:CTnqJl6YPYCt3E0A4QAyt5guqgqiNfFk1xJPAvNM1/kv4HbEVeQxG349AaRSc8bQXcMBIVMf022L4+r0DnTEnyy71vMJwWAJTpnEKBQNaDZNCBraGcznSpOP3t7xibjsQ+pqx6d8xXUm9mDfIJU8Nmqvq+iGEUM1PYsKYfDwhQc=,iv:yBZlb8SujF8nv796elcBMQWbyBg+CQ388UzjVqUUyt4=,tag:P9rW9vl5vkuVFv/RM3gGcA==,type:str]
+    lastmodified: "2026-07-25T08:12:52Z"
+    mac: ENC[AES256_GCM,data:i7rQRSLbo97jjEksr0NlQzaW27RmYpHwupe+KSAk5Y9yCSN389EKDWGiOlnCbIDAFuvAeIwZOtZah39g1F0f6EW4UWhxP2URqhFtcc9UeDExEi15lbI0/6cgWsv3mHIZb6WPp8dHrfF0JszEPinb154TB3PpUmhyLkY6gghTYBY=,iv:d/pCDDw8itNu9NCkwTxPbr8w+unmSFrjbvaw6KYlrEA=,tag:x+0Us26vvNcvDyn45ilEQQ==,type:str]
     pgp:
-        - created_at: "2026-07-09T14:38:39Z"
+        - created_at: "2026-07-25T08:12:52Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+PV8hvPHvkmAg1BLaMWbpkMD0Y5/+uQbnnEfIaJdiE4VG
-            bxtqfBeB/f5kfLDoeVZOCO64tuLtljiZhGjFMA7qESLw0qAvRaDJhXZ9qD1cWSgG
-            DgVhp/4lb+yo37lLUYaqfeRDD5GTXOpKSZOf5WFPr5tsiL9YcfWVVWaf6uSjUl7I
-            OZkDwi3sDfypuen12I9BM580QRamQzsp6gCynQdE/4PjzND9vAvhEBtftZPLmd2/
-            5O4XgjaiJXo2PstAD3VD7c7vGbtEUfvn0vmd79yHz1YBtHRYtDfmnWwHJjeOpxP5
-            ooFW3uJuwL3N9/IaFTmgGHynjhQAqVdC79PL4XSVkSMoqdW8YDHBgErH9WI4Lsbz
-            vl2Wp9eIeopiyIzGXHsUvv/nP3ayp9pS16fV9xJGVczSi5c5YqFRYGtX7QIyXtqA
-            syQlnzoVr4MeT2A2MNdJEWKtfBRQoQR1Qc7ZX/XwfR4b5/58ci9HwBL2eLu0GzRg
-            e8LDnZsGQCozI7h7x332+Wu/9Mbs0wJ1TslQbXt2vRhbve0IvPjNSi54RKI4r8uV
-            /iFnRqPp2ow030nvW+LYt5jcqyKK9poC9nVoytUU57Pc3VmyppOJxc8/AfIezo95
-            LFFWj2CjWr47UspHcqgk84cBP13LmUhK7IeHNBzoWl6LPztuVCczoy7wxn8fGCfS
-            XgFm8RoiId9S5XLhCZ7qV70HhWOZemd0PksBP054xuWvlDMe/HqxvxUmqDbH/vGv
-            49o6a/FJyF2ncU01j72KMyn/ZbYevniX+QG+U7vWuhVRH9tRYYQUrgC0QnPqFKc=
-            =duXn
+            hQIMA7uy4qQr71wiARAAr6IcISfUd787wl46NW/mDOEv+sQCBCvFUSgVUETIVB2W
+            lryFntO+jxYjHYTDoevCimyJpFWai6YzkBvSVb50xXObpyHgjLl3IgQx6B3LZxk7
+            mwIgpa/mEyvlP06GzU4NZy3ac0X9bKpQo5IcU0nwfs5ZedCZ0i8FN76PUp/nIfFJ
+            6AzjxVzcJTDDEPu1ckn1g3sRvLsGsQVzagrLtyEFbYxKxugSE2sswYCMjbnxwMpW
+            NTWGal/6eW7W+oR5iJseYnkFz643ZbkI8BLyEuJtCql14kw5W245FZwbffJQpGpU
+            NbEuRjbVCF0tDwH9zEPNlBOsrmw0FM2HB6sBCMHA9xexuhP3OdIjWuyNHf6oMwS5
+            d2FCOT8xrYBWNOwcoe+xgLam94L2jPcL3SizP7AUEQU1CjXO5q49RvYjPrrgH5zb
+            PvE8yiB1zDPcTqnBf4O+lIUkdEQ0IxkVWuYKljsaJN35yNgFkCoROaGsZD4IcdD6
+            EgtYAllK+NXdzd2/iLHf63J4mJsvRHzLsWcdHZwvJxi3RN5Gi18EB1boCEhFM3Bg
+            KkaNDNwZtWtLl5QLkfO6zTEBx1E49hGRlE1nuDpSbqer7cL5n5Ca5TRAm0BqAC5Z
+            VIjt5CqNcojTVsZLUsYMwq/yI2Lij8/OdM1datuNM8RD33mE+tDB3n8WdNFgN8TS
+            UQG0emw3jDSkHQHVWGc2iPZ033NobqICdv3xvjyjdjngDWEtPj4OoLmriqxi0y7Z
+            LhlZa4RWyBc8TWe9Q8paBUh/NzFGC4v1zt8mfUMSjYfyFA==
+            =ePQy
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

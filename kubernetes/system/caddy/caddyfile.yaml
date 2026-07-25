@@ -17,7 +17,7 @@ data:
   Caddyfile: |
     vhaudiquet.fr {
       tls /etc/caddy/certs/vhaudiquet-fr/tls.crt /etc/caddy/certs/vhaudiquet-fr/tls.key
-      reverse_proxy 10.1.2.171:80
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
     }
 
     *.vhaudiquet.fr {

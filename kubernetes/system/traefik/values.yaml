@@ -11,28 +11,37 @@ ports:
                 # caddy
                 - 10.1.2.152/32
                 - 10.0.0.0/8
+# Tolerate failover nodes
+tolerations:
+    - key: ENC[AES256_GCM,data:XBzgW0lqiHV/,iv:aA66IUT1Y+UoRG63ELwWkEIZuE2ZDFlpEuC6S/2JER0=,tag:W24D75Nr/rmCRO9RhdRsyA==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:s51W72AApTA=,iv:Jn0bbcGgRWcD59uee7jN9pukOeHkaWECjLJ60dLxjWE=,tag:6PTa0Po8vlINl9R3dXu8kw==,type:str]
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:fMBfUygMTeoL0uuPduaDcXSh7rlyNYE1O+OntQGRcM2AFpS/2w==,iv:wQT+tKmDUNQq3l/9FEWJoDsEJnVNIfOM2wJzxoz/sqQ=,tag:Tp8ru1ja7MW2bAVMkxzSnA==,type:str]
+      operator: Exists
+      effect: NoSchedule
 sops:
-    lastmodified: "2026-05-26T11:18:08Z"
-    mac: ENC[AES256_GCM,data:mA5hLNB0rwSiGhnyi24AhZIPJsLpZ6PpbXDyoxZ0q6YjitrClxBEnn2dHtEl2MD6dSLmNMVxnnGyGtl7j4ahfqhuct+oPSepeWT1QX8Xj/mJ2Yrt8UZfGQ1R0Ye+rKGFybluMguCRufioGQpU3TLs2TxB6RxUAiGMI1GyT3JBDY=,iv:Pf617ZQBgYbGEsF7AOtyZBCPUycQ7U/D+Sdl+MCF4y0=,tag:tleTblRukBO0V+zfL05fQw==,type:str]
+    lastmodified: "2026-07-25T08:12:52Z"
+    mac: ENC[AES256_GCM,data:LQhAxwv5QTKL1GvJMSEMd7q1/UwM5XkAg8h2k34er995VYFujVW4/K1sA/6PKHs4sFAeZ+XL4lLVnaCmjjKoUcOQjJpU8n5N+0RfpjV08khOpz+mz9Ze+LQaklMGgPZRUbX6TESzn4EAX78htyGuIHCZGmlet/P1o3rBSd52cxQ=,iv:XPangrjD9BUM0jz3De14yox3ReKvdaNXFzSeGpyHumw=,tag:RrWqIGnUMZF5U6PMcLzZhg==,type:str]
     pgp:
-        - created_at: "2026-05-26T11:18:08Z"
+        - created_at: "2026-07-25T08:12:52Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+PJv3xyn1nqVN4ENsKv1GgMaCrmD+F1bpyCEM6quoOe1V
-            Q3jnfTrHNKQySQFS+56KdWkpvf54jUtl2N+v+mAT+02FkdH+fkFQc0rSfqfpwE7H
-            8peu9wY5+nVRp3sUEacJjCgu44dzzIu0MzO9aHZw/JMr1Z+OF3mMeZ1vVEp43i6E
-            ZwCd3HYBQVJ8DaSdkrT/a3r69dJZKYq3mL9XLYzc/6C4JFAF3oOO5Xzkx4BAQKrM
-            CDyVCJ6RihOyysiexRFGu72wIbiE1gSVqLAYzl8XDJyCcVOX8ZRuMh2ImGyuCXtI
-            8dANf39gf57Z3qM9ljNHgtUkFqcpeE66SdNCSeLK7pDl/02k6dPJr98+e0VtZPfv
-            xt/sFUnAppi5dI4I4AZ1upqFWH3zpud+3G+5CYnfn0yqSgysuJyqzSYv7rjJVStY
-            oMdKprkLGcdLc9FJm3yaPluCnTGpPCaBpvx1bUlQSCIHcrbNj98kHjnuSDcUjgBc
-            xpcWmknbsZ0SFnU8fhe/p80Ud7h2Ya5Hp+GY+FPV2YDeQf03YKLGXujsVhm0scpo
-            KtAALuJo8uP3vniAaY6E1eQVZ09psqR3lFHgaRIyLVbOGkvOoE/sMVcS/odcKhgw
-            Gr6bb2iQ9b0seITxk09HV84uRirzgR+R2A2bxD38ASRzbYwDyA0UnJMSJK+ZttfS
-            XgERXIWVWlTL77IVifpdu+7EU+ElyCzlTLHIb0uqywVS2o/LzE+OgR+1tSj0SVl0
-            +NvGYouZlrecytaBj8MG9thv9kK/vNShrl0QeAWNch3Qza7Xb8eLOhumqZVFI9U=
-            =JbZl
+            hQIMA7uy4qQr71wiARAAi7huBzAAuXjAmwizoqYnwVZ9hlvg0B2Sv/Z1P6argnaV
+            UU/iIis34xUq+N8aa9HazzqlJIJO0xc+zqTh6VtFpKcU/CT23oeJzK/z+FRu48MY
+            +kc/kJnLuQipQsBXW2S4JVcOdSXnSy3oIzL10mxgVVzmR0pLmmi0eSdM1rnHjhlW
+            yyJBvrxlxsSv95naffkiOWmSPxPitlTxPHwqiUcqyHAMP9VDIO85tSQfZvrbG+pF
+            DNG0sSQprRQoOtp0sxAofQPG2TzqkX4NPgV+mtX4itGDjVf+72l4ObH02oXIhW8g
+            qTrAqhNkaIkhq2KwORUteUTBOG5fEg6R/hQgM0DS3Y6Ipdg2EVvoHg7zeMkECG5w
+            lACZKAxxMWvjU7J9n8HNMDvwHfmw4/A9GPLIsMXVafwsOj93z8QMYbnPX2ufAyGr
+            ohz9BBtSGOapqLmmAHONFJYOMP9zAsUuFeoFezSlM2KhbRCRGxNuH2JujAC5FRU/
+            5qcKpAhKu+UaOA7sEH3Hx8AM2KQTSm/1zd+5BUUgAYE6bhnAKMHua1JhyMaUzmNO
+            OcLPqKyhnOe+Vem3ygEPD6X5pnpDK0Cv9IAlWMMyAdQDXRDcNkMiqLkG7WnbJ7Jt
+            z1d0f1+MIFn87xBIHMtjQOnfKSzTxzKit5vMco72/R67yS8W8kProTTzIx6kIrXS
+            XgEAwpUXFtJQg/wl5SIzfRHkHBKVhqmxOF9CiHWRR68+ZdZMDv3vNY0BdirV47pg
+            qHBdEwODV/tiZ0pkFYkJgspYKRyMpmIf+iavS9pSjEIKR9gAx1CRtG1Xfq5ML3E=
+            =nKR+
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

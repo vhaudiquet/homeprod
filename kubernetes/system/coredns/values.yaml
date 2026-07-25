@@ -80,28 +80,37 @@ extraVolumes:
     - name: zone-config
       configMap:
         name: coredns-lan-zone
+# Tolerate failover nodes
+tolerations:
+    - key: ENC[AES256_GCM,data:jLsxKqX8HEo8NbwtjeGf+8TdVzTgpba8myb09z1FOIoBsplZ9g==,iv:c+rAeZRAL8ZmQwpHDF5xv/l0ZqbWsnsdDlpFDSDfZrA=,tag:u9TfeXzHJ6W0ifaAEoPYFw==,type:str]
+      operator: Exists
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:hPb/xXAmQrH6,iv:xo935JWcl3a3LyQ8YNIgNrjQkdqlP5aN4ZnjTnp4RM4=,tag:/rkpqOI/pHqXP47OGULnOg==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:nblSYUAjuMk=,iv:yu/IToMo3DC9kfI5DcBPvreJE3dkxdFA5x2fy6dUpjE=,tag:NGVTMBXa/STsOCD+g00yaA==,type:str]
+      effect: NoSchedule
 sops:
-    lastmodified: "2026-05-02T16:59:44Z"
-    mac: ENC[AES256_GCM,data:H4uRid1Fqx4JzsF43TSGa7QcGjpXLAHiM0N3Kf4z7ab4eMlTy1+RXMV7xVT9BinjZzH6P+ENxo0yVOsdt0Yu467KJhGznNWlb2MC2TElPxZ9/yItJ+hdVGHGWbVGFWUL5NOUQ9fY2NPGw0CGr8qyftLr5Qkx0LO/VUgKWkq6RWM=,iv:9+V/sCBhfWAsIvr4DsWQgkeqQZQyT4Ti3Y+qCEZqU5c=,tag:JCRONb54BpXQzYhhPs7VGA==,type:str]
+    lastmodified: "2026-07-25T08:12:52Z"
+    mac: ENC[AES256_GCM,data:fyuCFq0hIVP0P8e8vqF/OKjBway2EzDo8HJhLpTQqhIOhOP6PsMszovi7BzG4FuqT0Hbcqo7YrjcVKY2WPGIlxoMVBuuXcUSvNB8Tdu6jv1jgq9KOoB0HNbnqX/l3TzN9ckC6Hr+QrwzLIpTYNefDlNovMCz+zBP6ALfMwADCYM=,iv:EiXUFcWr9iL1qdfzcTiL6LYLLrsShzwNNhE0eyLVYrU=,tag:JyN9WrQWSE/3wFksooRRFA==,type:str]
     pgp:
-        - created_at: "2026-05-02T16:59:43Z"
+        - created_at: "2026-07-25T08:12:52Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/9HzeTVqelbvPtluYa5xGvoYNeEEXg43CwrwZ1/z5yFWvx
-            DoOCeyro5wFsNC6td7n2HVhtK0ULkfrMHH8OC+7L3bXbnlEnQzITmDggAUvfegCv
-            b/7ohPkOdLvi6qXbr8bgqCZYFnPq+gUs3UOPh5Tl6wgzRSFXw2Hsb4YmQkvZJUNb
-            PhPpLIUe/ECE4hmEjO5v9o3X0o7qZ3bahf9mZZlnJnvXT7R/DM8eeWTis/q0WSHE
-            XnclhOX4GlMwXxa65sRrShuPcsV3qqX3VWOSWJFBhGx/FDtZTkhlHGQ9YhF2TzbB
-            xxCrn87mH2W13NH6jQOQYPh1JTTJbgZZMZXgyPNmPDSYZE1kxTdrz4l4mcmCDND0
-            hY3T8iR8ap2b3HhSNCqC1C0QN/bK217hTs8cJHWRRfa6jfh12imwk2XhJkB3zZxV
-            O1oSb6eiP0ba0CgXu31shmfXuTAeVbTm6E50heYorjQKR5djjnOVwQUdmis1Awae
-            AQTiWtBBbOgfX5WA5b6wInFr0WEsshG+YuqfB7FhJpo2SHyeFhgk47ssHWSeBpPv
-            wa4OAGaMkdGoePQhApZFrBCZHslEhPE+XQlDdyOtXCmxBOcLwe59ikWLV75j0DzS
-            NRUNOBYQ8Q1Y6Su/sJWW7TykQkmDirU+oIYxAngZyIyJSWvARPd6fJJvkqqg013S
-            XgH1+LQJWNEJzIaLKCWbkZXnMstsOYrs4ynV4f/QZKU+Md5CgVbjy9KIC/trfNhj
-            1t9kkyVVOEO7UmRhMyl8pK2gQDiOBrkhUJ5tSNFEfxM1llZ4GZRV+SUuMC3UzVA=
-            =l7Wo
+            hQIMA7uy4qQr71wiAQ//efLh++Dcra+LFtcgz/BRXdLyE+RhWXpQjABE2PzgOJpQ
+            xubJJDmIV7BtUFyJS2lEjuZ2Be8uYxs2WtWILDktz2IwNQ882NVCWNCQTPuzEpoK
+            DWqwi7/L6iQldx1aeE/VUocyIxYsqS8ZUHqOM8Z95xlQ0/fmhB7reTCXvuEOiRy6
+            Aapvb2yW9nm7PwBVhJiWQQLGVGUkgPE7HIK1ar3ODl+b4T0FCYqjUzeB78mG2D5i
+            RI0SRt56w+g9XVWk1tijKL9wx11U9KOBbmbdBuE9fkHuenns5omAzKIK0iwdHQkV
+            cl3rr6m79OAqJglDYLFf8LOgHxuVcnlVxOYgmiHXjG4hlJlt7rGE96+UlRHCemhD
+            bgyc7kDR3h4XMagI0OcLzjyvwsymCtZFiE5PLRVLkSCQuyrp5B3QL7Z5hbRZFiKF
+            UlOziOw8sPOcvjOOJpPYF2IqWAGLSYwo5S0nI0O0bwOiM+T+ehZ5q8p47NzFp04q
+            l6JpHtWdjsxVS38nDb9AWqvoHyf8EtFbJYmKeowmbN1/toPQ1q80at/NtUZIzn/3
+            +VhxDP9u38u+lAAuhaBdIolitOi9CWwHqrnRXFa3V4fpQfJqXUc9You5bw/+EABV
+            jTjMpcN7cPWE7SC9R1ZZjvxrMKK0qxdKO5cvXtP/hBd4zOnBqhsQBzr/QB3DycPS
+            XAExosGRaKVumsUVYqEnh7ACVtMHGDLvupj1mqSa8oxRJLVDXNFLpEllFqLpoxjD
+            qbCMib+JeL9/Aq83Apk3HQ48WX+4hvtkKIJ7gzeIPC/IvIVJHk0shd49kxBN
+            =Xsas
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
