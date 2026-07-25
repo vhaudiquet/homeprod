@@ -5,7 +5,7 @@
 # service endpoints. Without this policy, L2 announcements are disabled even
 # though enable-l2-announcements=true in the Cilium config — the CRD policy is
 # the gate that controls which services get announced and on which interfaces.
-apiVersion: cilium.io/v2
+apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
 metadata:
   name: default-l2-announcement
