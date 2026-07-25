@@ -1,8 +1,7 @@
 # Longhorn Helm Values
-# Single-node R740 cluster, backup target on TrueNAS NFS
 defaultSettings:
-    # Single node — only 1 replica needed
-    defaultReplicaCount: 1
+    # 2 replicas so volumes survive single-node loss
+    defaultReplicaCount: 2
     # NFS backup target on TrueNAS
     backupTarget: nfs://truenas.lan:/mnt/fast_app_data/longhorn-backup
     # Allow full disk usage on single-node
@@ -26,7 +25,7 @@ defaultSettings:
     taintToleration: dedicated=failover:NoSchedule;node-role.kubernetes.io/control-plane:NoSchedule
 persistence:
     defaultClass: true
-    defaultClassReplicaCount: 1
+    defaultClassReplicaCount: 2
     # Retain volumes on PVC delete — safer during migration
     reclaimPolicy: Retain
     # Mount options for ext4
@@ -37,23 +36,23 @@ persistence:
 # R740, but keeps things correct if that ever changes).
 longhornManager:
     tolerations:
-        - key: ENC[AES256_GCM,data:ZvL4q5WzJQbz/+jBCaH4Gpp5PdCqwrqcIDCXwPq1oVintCYXxg==,iv:SASkDRml7AG+wJTWe/CRaAm7kv7tJ/IRXfpWzeewHuo=,tag:ToVKgaQeLVav7Qt2bdlpnw==,type:str]
+        - key: ENC[AES256_GCM,data:72tSl2wrzA+rNFPSi6y1sXNdzFd2QI9/DIoLPYv600yIWre9Jg==,iv:6FJCiqSNlTTKb0qp7Zupq6RTcwA5de8uxrFM9o8XdAw=,tag:I1gnHYR0XNgq60tOnXYFGA==,type:str]
           operator: Exists
           effect: NoSchedule
         # Tolerate the failover taint so longhorn-manager runs on the P330
-        - key: ENC[AES256_GCM,data:B+Y/ckOHz6xq,iv:27M/gUOPZ09BNZP2OwyjNsK8Ld0opec9l2FjiRiN0Wg=,tag:3UGdvzOsXgSAs7KwBJ5oKQ==,type:str]
-          value: ENC[AES256_GCM,data:YT/EL6wwlYI=,iv:H8CCtKbzmWRahFxtZguzghVLK3/qvHFaE8IQPALL0Oo=,tag:HIMsMtxutYh3HVASeIrxtw==,type:str]
+        - key: ENC[AES256_GCM,data:Tru89mna++TT,iv:8gH3VLU6CCCC42SB6LfEaPY2MFHaD4cLwCWFkSHQV4A=,tag:H8gUvT97+GTgSJu7buUOjw==,type:str]
+          value: ENC[AES256_GCM,data:QYHvXr+rR44=,iv:jJrfJST2MG4pC71Qr2p4WAheDHcd49DbwrBVlLFqyk0=,tag:GJHrXSKfK6/N0IWmKemZxg==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-driver (CSI provisioner/attacher deployer) — tolerate the same
 # taints so CSI operations work from the failover node.
 longhornDriver:
     tolerations:
-        - key: ENC[AES256_GCM,data:ks2denq5PQL6UjGUe5JFahXJqLDY8jQgAPjQkn3fhryTCsd1Tg==,iv:gR8QtaRW5+4GptIa92hh2v+pk41ve1FmCMC+qlitdOs=,tag:NDGn8o5btPbfqDWg1nS6wQ==,type:str]
+        - key: ENC[AES256_GCM,data:dQhIOMVadhzSbeJqzVBbikkKzk11GLxOHjSA1hdZkKRuKUONJA==,iv:nuurPvU/YbVdFxO+iPbWchqVNOWO+tssuF5ZhIHo8+Y=,tag:mbSWnxT6kP6ehZu1+kaAIA==,type:str]
           operator: Exists
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:nRPej7F1wIQr,iv:fRF9YaiqpPCAEGSXCHJublN7OYoikb3xK1RacxMKDcw=,tag:+leZjB1PGhWvxhrEBHxImg==,type:str]
-          value: ENC[AES256_GCM,data:QdMlIx5PYgU=,iv:TJ+i5qwY6G2j+87HdmOZwDWPzJOd9bDeJUmkC3yl9oA=,tag:niNS/IwVVaw+83e4jJrgag==,type:str]
+        - key: ENC[AES256_GCM,data:9dhWE/kEwWr/,iv:pXHuR05UNdJlBaCMo0T4FHPN+8qGRXFGYQglP/P/VLc=,tag:KTbwQ4KW9zsSsftXQF4DRg==,type:str]
+          value: ENC[AES256_GCM,data:H6vDw998h28=,iv:IHNNLysSnMuqrmdPsCaXYFPUtGrxBFZdDFG+iOMBnvw=,tag:r1BZTI2PQ0wjhWaIi1yJZA==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-ui — tolerate the same taints so the UI is reachable even if it
@@ -61,18 +60,13 @@ longhornDriver:
 longhornUI:
     replicas: 1
     tolerations:
-        - key: ENC[AES256_GCM,data:mYYdyvTvfbP57Tr7zEUgAYZmtSmTougPSbou75YNqD93LvQEuw==,iv:vcKiaYE2ikIAornOIs7LB4iIp6XczB8VmW1FgeUO2ho=,tag:i1yOrLaUX1+AzviTLYQFUw==,type:str]
+        - key: ENC[AES256_GCM,data:deSbcZL4q+7tZaTg2pE1Ssq/WG0aS29EYAW+y1/Vl4Uq3E4tDQ==,iv:mE3AYFNrs7aAdKG1eRMJ21AwVdspJq42zWqytehn9z0=,tag:DsC7ehN8NhANSzWBQ3rMjQ==,type:str]
           operator: Exists
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:rqykd/I0zsFq,iv:lixb2ezSpU2GjXsi8li4z0d1TjNpCRiPXrSMiOASH64=,tag:rMg3tE4fw7jFpidBRZBkIQ==,type:str]
-          value: ENC[AES256_GCM,data:S7G6SgmWjA0=,iv:Wwo3U/bFkch+dNlLZLDNCiaUVID8bIVxhPtizIUt/rE=,tag:7R8s/D6IX4SfZgT/PCkbVw==,type:str]
+        - key: ENC[AES256_GCM,data:4UJN0oQsnPgz,iv:bnCs9OQzRNYxZS4LMVcI5Zgel4MES745e47/Wc+72Ps=,tag:+WD085TKD5CfFYJ3B0RotA==,type:str]
+          value: ENC[AES256_GCM,data:preRO+Om90c=,iv:Q6VF0hDh5Jz3ghB+VqUB/KO5i2wwxq68WWLq2ptnwOQ=,tag:ug333G7gCkSn60g/Lo5S7A==,type:str]
           operator: Equal
           effect: NoSchedule
-# NOTE: There is no `longhorn-instance-manager` Helm key. The instance-manager,
-# engine and replica pods are system-managed and created dynamically by
-# longhorn-manager; their tolerations come from `defaultSettings.taintToleration`
-# above. Do not add a `longhorn-instance-manager` block here — it would be
-# silently ignored.
 # Disable ingress for now
 ingress:
     enabled: false
@@ -97,27 +91,27 @@ recurringJobs:
           labels:
             type: backup
 sops:
-    lastmodified: "2026-07-22T09:25:21Z"
-    mac: ENC[AES256_GCM,data:H61nccieTaqp4w6cySS8EG6VZvplmUdSSo2MFi+mGzZohJFjTfdHxIaJgfKuN7/+/dMoacgozl73CmwSnelzgKMm9CZNf0ucWXRPG/8EiM5IeDXBhRChP+Y8BHX6h7FNS6la6Jzdqy8/jKUPw5sdDQaHT6KnQ37ie+D3JjZAwic=,iv:qb/Cr0upi9qQfYVDAwFyLqnVHSlktkVVbsmhTaFsZu0=,tag:q0jPEGtNl4BmBJpdghgRJg==,type:str]
+    lastmodified: "2026-07-25T12:52:04Z"
+    mac: ENC[AES256_GCM,data:iYSrt+E3ZBR/x85S4A/Y4GalkJ5Y0NDwjSvh6Pfa8d5Qz+uFdGofnNISS7QgqmsGpLbLKMFHRxLV6L3R85V/o293SfNA/+iM8DXOoZTb8zQTLsPxjqxr8Hfl0cxBgV8LgZJzzG8pkeONDfqqtF6pGMgAz0SHfdAR2qdbCKTztis=,iv:YdWgVo9/YlusV1mqBWpVQVVdEQGSD7ytPVNJYjppmTw=,tag:XOxeIx5GWJcZD19zZTe5YQ==,type:str]
     pgp:
-        - created_at: "2026-07-22T09:25:21Z"
+        - created_at: "2026-07-25T12:52:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAwf/RSzNAtZ+BY13bYXQstWAs+7HYZLm1fNKcqNKevSHT
-            +LKy+YkfXgDk67PZNz2H5v3N3GJi/cDEo1MhfXeutYLioZ7WFVaeXsvd3hxisbzi
-            noliuQtu9b63l5UwZPbWvfFDKLJqVKG2JTfXSp+G0Nv11VYCYKftRNd/KH+xEP89
-            hGWGuL+AhbPW9dFimiAICLk/sGyVXNq1SAKu3rL9o/mtRDh+igSg5YohhYhiA7TC
-            PMp/7SRY6swfZ0xfyw9PKlbR5Gm7i5Wtml6MP5myZ90cjzMAkjOL8NavxGogvfib
-            ajjdN5AqdoSU5Kr+rKx8I3Eq9V0Fs/oXfmLeHYYdNoqNOqpqtupXKnMVEdHyUdeq
-            shBuDUE4dvZWyYKfZKzQz2WASN1GDiVm89IvhQ2MP1nEhRE92UyixKHQmLgNolpm
-            LTkuGzWU3dNzHO1c3JLgjF/lWve5KV01Wa/HrAZFH5rSG3qLN8rkmhB+q4C2jjkN
-            4aXyPY8/vRLbIwQgSnxBKYzD6yNFNj76W8kmdEe7c1sMcJZZdjC2pqmEzlfoP9sl
-            vzLkHQeFe2IGYMVna0KVCuEk+5pTvnU7KaoMjfbGFPvDwv3heRUzSTBAF3furx03
-            QHi9bOVCrhrt3QLb7cQSrhGMwtV+XiphfQVAJqKSS3la0XjIoJzm297hNgXv0OTS
-            XAGMF0oFo/1bytZZY0+BSe10y4g+G8q47cqWq0/bnvG4fP95/U3/tH8njIFeNg0U
-            yqm9O+1fQ6I2b6hRlGyv6RjovRc32J+RVPgEkK5a5dlvSTQf97tw9Bo3tKc6
-            =SxRv
+            hQIMA7uy4qQr71wiARAAgDIE7tPjU9uheakXKYvn6IyNKkZjXTnV2sBPdoo4l0SW
+            ZYAu+L9SKnVKpmuQxz3HKqk/9Cib7Q/g9HdrXsrLkQ0xS6BC+4z+4JynxWHN3CII
+            0w7SNKVFV4RIXWwMQe0Hg+2OtzXyF1g8ZmNZu/L+/kusEnl7WX9BoYOB5i5wssM/
+            Nfb7LTlMGqmyQoWxbTzkdNuMbw2oVjD6pgL/VEpfCmvVzMpXScmTT9tFdJRYDuj6
+            r9a8wkFzCHNUWy3z7+00cQVnyDBA/UY/9pskeR58QH4keXp5xeBIYKxUe28L9JRg
+            YkVJjy1XFmmdY6VWmMo/Sx89YUQ9kMpf9KI/D0WkgGLqTihzsX4v7xxvWJfYXiPd
+            RmkRR4f19HfUapLzosO65rtYAG3BptdRPBpvx77evLkPwps34+dxUrVESYxY/I01
+            0BNNLDthEhBzfmh/yz3BcYOigZp1ziiXq201pn+qiDbLSDeoidm0IrN+g3Kib25g
+            dBTpRD3iEoBXeW2kbwltoUwsNkv59Gf/fj3DUQFAclP56b7UzRLDCQKiKIL17l2O
+            nU6yvz9iARPYvT3gzqOw8yaB780RQejR+8qiZca0WetNcVn7b+DMGpKgQXnchc1g
+            WzI3MdpNtajQGwBtHic3BG4xYAoN6sNmVrz+aGBIkBxFK3nMBzeWQJBSm6iiEwzS
+            XgFcb1jlb7dC/g8ltmAIOyjwnFHkfVI2/v+u+E1mW2VWBQqtABAHobh6uEf1jFzj
+            DZubFTVfrI4ssrvsjhm84mVJND9taaLPU4qbVYJ8G4kmP8UyKdHd1fJifNdp9+o=
+            =qY6k
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
