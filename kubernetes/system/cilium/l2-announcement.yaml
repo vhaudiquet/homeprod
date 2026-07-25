@@ -11,10 +11,8 @@ metadata:
   name: default-l2-announcement
   namespace: kube-system
 spec:
-  # Announce IPs for LoadBalancer services and pod IPs (for external reachability).
+  # Announce IPs for LoadBalancer services.
   loadBalancerIPs: true
-  # Also announce the node's own IPs (optional, useful for node-local services).
-  nodeIPs: false
   # Announce externalIPs assigned to services.
   externalIPs: true
   # Which interfaces to announce on. empty = all interfaces.
