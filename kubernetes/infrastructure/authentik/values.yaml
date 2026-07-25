@@ -1,14 +1,14 @@
 authentik:
-    secret_key: ENC[AES256_GCM,data:wnDvn9EdX2SYDoWn9tTrbKvBx11fGfGlTk+9MSz8cBzwMDaY5W1bCwjtH7TmAnwYhbUQxXdVIxgPpj7k0FVqM5fuMHZwcb2AgtDMGbxRXtM=,iv:jwUq7dbl+V1t+Ek7vyBEfwX1B/fVmE0TIFMVGj40kVI=,tag:G1bDdR9OUqOtZQmvUcAfRA==,type:str]
+    secret_key: ENC[AES256_GCM,data:jSWI2kCndcIZVhU0CqH/l1Gsoeec1GkE2G3ZVoDHUGtvfhsNJOGdr4i8EGDX+2vER4bT0Fm1QboS+jzsCQpAwhLy1R1+8Bt5PsAzTb1QitU=,iv:01q0kIYKUNPigQ54ufVJ/RC96Oa+EmK3zSuzU7aOgFA=,tag:0rdAEbBmioDgKgBjhObzvQ==,type:str]
     postgresql:
-        password: ENC[AES256_GCM,data:G0KPHz7zZ5ivtA==,iv:w4m21LqGEtvEGAp7NlsoV9bwRkE/Mga4Nxp5mqBIJHs=,tag:kKHC3yXqJKZX9jiYuYXt9Q==,type:str]
+        password: ENC[AES256_GCM,data:EVq2/Kh++C4Lbw==,iv:7RI/kDQbRQT4IlYfGB+6Me7eCrcOwa5JjvYUp/TFqqc=,tag:VtbyKGOvChfarkH7W6jl3A==,type:str]
     email:
         from: webbot@vhaudiquet.fr
         host: mail.vhaudiquet.fr
         port: 587
-        username: ENC[AES256_GCM,data:s0L1fCp8aObv5j6jlBiGDfj0aIM=,iv:cbvXxI3DIjnhnfHmUpeDF5KKRxUC2+YdvwU5FPcEe0s=,tag:rR8HpXUEabNZ36xabVkSIA==,type:str]
+        username: ENC[AES256_GCM,data:K4OGfVrjdFOOQC6yycSvDYzed14=,iv:Gb+VCDbD8k13iz8GZ6NJO7C6GdT3pHp2P0pwaV4DsS4=,tag:PuVgudDPMQaPn7vLwFskzA==,type:str]
         use_tls: true
-        password: ENC[AES256_GCM,data:rb6o5MGQWK7LIT7gass=,iv:NjI0iqRk2usrqcH6kSo72T337y6avHz5whg9bLfAYDA=,tag:DnRJaixjmNY31V1h9Et5PA==,type:str]
+        password: ENC[AES256_GCM,data:48RFR9gl50OSTwTYXVA=,iv:naCBGgUtoJsvtj2IB2L0fZFvCG3xq0GWxcOKy6fXQqY=,tag:5zYlTsd1vW4IvWahPT0oog==,type:str]
 postgresql:
     enabled: true
     volumePermissions:
@@ -17,12 +17,30 @@ postgresql:
             repository: bitnamilegacy/os-shell
             tag: 12-debian-12-r51
     auth:
-        password: ENC[AES256_GCM,data:9PI//cgxRlmjNw==,iv:q0SLpmaTIC3OUulPDxiDWie0+oI7w17V2fPmJ52o8ao=,tag:2lwG95Remzqt1dj8H4CG0w==,type:str]
+        password: ENC[AES256_GCM,data:IP+dvufKG63iYQ==,iv:IHgt2kZURk5HswfR2X7axcHRTAUD5U7EHD98HISOs5A=,tag:9jyMuImdzhLK4W+VJALHfg==,type:str]
     image:
         repository: bitnamilegacy/postgresql
         tag: 15.9.0
     primary:
         args: []
+        tolerations:
+            - key: ENC[AES256_GCM,data:ygEHLXnG+j0n,iv:4v3hfYLoBpoIJKsO7yeFNdje+AGQLYs7lz+rk0gLBY8=,tag:0li5/WTWYb40QWFDDcZm9Q==,type:str]
+              operator: Equal
+              value: ENC[AES256_GCM,data:GNwXSZCmLFQ=,iv:hZ7NbCZ8cxZEU1JG+BB3ny9WiBZBCTygBHdUEmBhkR8=,tag:5CS8fgBbAuP+2d2MfB2dyA==,type:str]
+              effect: NoSchedule
+            - key: ENC[AES256_GCM,data:9b+GqCYVJdES0yju9wHGGWQJ+3E1ic8UVrFdvL5dzyBN0Tc1xw==,iv:ykCqmML463Uvz9CpVzZ8TvE7Jd6tvBYHaajCwEvRwLQ=,tag:rjQOiBpclJl8c/LiIsVPMw==,type:str]
+              operator: Exists
+              effect: NoSchedule
+        affinity:
+            nodeAffinity:
+                preferredDuringSchedulingIgnoredDuringExecution:
+                    - weight: 100
+                      preference:
+                        matchExpressions:
+                            - key: ENC[AES256_GCM,data:x2Ht92rjwcr2u79BYs/uVNiNbcI=,iv:iUQWjZLQ8B7Jk1DcovsDE29YXk7S6PQQNyAr2Ncxov8=,tag:WgpcfsYz498jboBHe6lV9Q==,type:str]
+                              operator: NotIn
+                              values:
+                                - "true"
         livenessProbe:
             enabled: true
             initialDelaySeconds: 30
@@ -44,28 +62,49 @@ server:
         enabled: true
         hosts:
             - authentik.vhaudiquet.fr
+# Failover tolerations + affinity — allow scheduling on p330 during r740 outage
+# Applied to both server and worker deployments
+tolerations:
+    - key: ENC[AES256_GCM,data:tsGiwDVDE81o,iv:bi6QCnWxfMQLWxK9wu/BQ83QWxHLeEK78FTOOeQjpjw=,tag:mUqoFXmMUif5er9gWI2GMQ==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:+E3R4/1ql4U=,iv:Cl5foY7erSqCqa/0Pm21zZ6xTkKqoisXvhFhfTvVZ8Q=,tag:Xyr7ZjbRwRtgMQ17J8i4rQ==,type:str]
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:gEBAJArMSyvmwrn5W64Ym/FEqFxP1dcJhOe/r+0KDZGQ5Ow7JQ==,iv:PkeYsg3kiYcgtkoHeY9k7WNevbm/3wVyDvPLttsfYF8=,tag:OUH7xTYKrUwWoQZLgcbjIQ==,type:str]
+      operator: Exists
+      effect: NoSchedule
+affinity:
+    nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                    - key: ENC[AES256_GCM,data:yjIISLuamGGnRMCR7aVfdKNhxHs=,iv:AEqH9gL/rJUQnF6r3yiqu4gnpJmg1oQrMP6MiE3SKDg=,tag:SeUVkc1dMXU/GFxyXQu67A==,type:str]
+                      operator: NotIn
+                      values:
+                        - "true"
+# (postgresql tolerations are set in the postgresql block above)
 sops:
-    lastmodified: "2026-06-05T20:13:55Z"
-    mac: ENC[AES256_GCM,data:rtrnY4XXaovFr/oXuZWJQa17Ihlgb9W7WMKYeN10qqx8REf6a3zqlUUGGSndYhjAZwpUjo3qixqAjW6kItBDgeF3DLpQ2T6acyOgXmbYNN+dWK4zb7jE0yZz69XIkUirabBWTkLqDACvw3iW5x4EAjg6/VYRVt4g5eugET5F/IU=,iv:eM+Z4SEJ6/y6gHzlYjLxcbqRn4dP4gbkaQqN2EGL4BY=,tag:EXklnS8lNeQErKcdP0XD6Q==,type:str]
+    lastmodified: "2026-07-25T12:44:32Z"
+    mac: ENC[AES256_GCM,data:pm8/xGCybCIMBXhP3/7XQDwaFzuv9Ay7L4yaq8RXB35Dkj1hzUe+vGnlZwzxa6cvOh0i2h29Y63Wl1LJQ33+9zjjbzd8+ezF9//GOm4rA2m34JKXMUadAKa7YZz+5N6DGG+48ZfmoV9CFVo/JG/ApHIQMmHNNySb9IsgV9ef9Fo=,iv:4rwii6OKxskFtMrnJJ5LPlEwPPz2DudyKGIdjizbJrk=,tag:JvpjQjp4nK7Zbr71sHZJWA==,type:str]
     pgp:
-        - created_at: "2026-06-05T20:13:55Z"
+        - created_at: "2026-07-25T12:44:32Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAsreeLsc0Qhc/RDFP3GmusT0PCFq0XTnin9THWE+7YC/5
-            +kPcfKfyQGQGImzkl6niBxzl4jjxiyOyhdDWzwFw34Ets+1wXLlur9mo0v8GLfZG
-            DEO+1VEzFheZzjM6pVNOWCJdGKR8WEuadjmMMCsux463JiEPtatRJgcAim3ux6uV
-            TbtDNNF9yc9yp7GN8p0/kF3tnD40zaszM8+UznrWbDIFJOrixyVTZ3O9tKcjl55S
-            m5upCrrbc4rcp+uRiYrsiMZoEg3KvlqtxUw9mHoeVce83l7bziobixzBhnGRtAar
-            zYUKsuu5PPpljV+ghDSIkcTrwLGQnInhlbOxKwDNVb0LiL/1c6dP4zPfZNh+Nvne
-            XhUDx90WnGCFOI2t5tXelAymCBDgak2qCX4IxkxddBhL9lONwYIM8zmszjPQf7r1
-            Gx4vFrUTqceEXI+JLiPog4/+gGHX1qzifdHBZR0ZtTi/XJfnhdH3fkJndLA65Pkg
-            K4vY6KfomQLEmHurMVzEkoeXH95qSWmfmai4SJmKWqm33VFPZRFoVonnx4dP27SM
-            vZGmfgjOl5eeRk/jdrApJNTkCi/dkGUfNRDffwcYQgjCJaWOs1agchBSC/RLZVWN
-            3FPmohgmGa/MBOX3qS1r/5G3XBdKuUxd/NJ2Bw8L0wodteGSEClEiMEXGGZLkOzS
-            XAFSk/qmO3tJGViwOVtnb0ZXyTRritW9uR13N+LcaKJhC0PB/m/lXR6IlrfLJXnu
-            AMD7w42wKMeBgGuQQ/Xm/iOVlS2H0kvbm1b1WEZMQUJlEleKSyQKbmQPujoi
-            =KjtC
+            hQIMA7uy4qQr71wiARAAqvgReqd8cH8t7ApfkQk8OsKTTHCYSkw5nEE+5N/psOsU
+            RVW7TYHRAFKd48JdgLCaWAfmVEfjDSs+nAdZhWGJ9Wamj7HITTMZH/TbHeKtiQ+u
+            g18AsSdKCMmZ9TnEerzIWWFmulxaH/GSva0lJeMO+TCU+RZYdJwlDT5ZVGywrRQz
+            LvLdWV4fRKQm7S7nrFEFIIvYdq0XDe39fea91Zj7V/g/SD9lkw/BBnAuv91J+DiX
+            yUhhWP4Lo2ecMtqbYL16q4BJDd96smLQ1Yp+XDbzvgrGBF1suEfqaGYeNhwO8XS/
+            Z58RmG4H2unXJMgsrDaOn1hEc8Ap42ihuqCrOZU0gB5EW4qTfWFN9kw6fic+5rVe
+            Rnrpk976+YA7507YZ3S4SabY1WgGe9NcvAvvM+ZuT4aO3E4098Sfbx9p5uG7PuxB
+            XSsSn6gqI+CmgWbdbiF7ZJg4ByCtTX7lOedO014WziTAELljzOxX/Or7EeYjuxGp
+            xF7yZajQ626SEx90nZjMDHjRaryo77m9g78Ji4/wMtHNTif18tVRP/hY+EhEucN4
+            Nte/Dg2o4iBCT6yAwHWKnLfs4e8BwZAt6qPpLtEQbhurZDZD2bxaAAK/qC7DWS7u
+            kheSqi4cax5TRV4mP7XqN2m0UfX3bQN/8SGiPyubDvXGbshxMUEe24ppU8DmD1TS
+            XAHnGzxIrQ18psN3PZBU/i9d5eiZ4qIGKY7sN9qbD144pWy1kOU7AFuvGAMxPJUs
+            kbpapaydCJwuUA8aV706ijA5/zvpvJJqS+zf1EAU24znMfZJ13VZBYp1d6aT
+            =KtCa
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

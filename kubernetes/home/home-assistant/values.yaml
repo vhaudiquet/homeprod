@@ -1,0 +1,61 @@
+persistence:
+    enabled: true
+ingress:
+    enabled: true
+    external: false
+    hosts:
+        - host: homeassistant.lan
+          paths:
+            - path: /
+              pathType: Prefix
+configurations:
+    trusted_proxies:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+        - 127.0.0.0/8
+# Failover tolerations + affinity — allow scheduling on p330 during r740 outage
+tolerations:
+    - key: ENC[AES256_GCM,data:SMOTaAtzpNtv,iv:rsMiAMaugnRKQjtp67nU0pW+MWXgolluiE5qoIWJkRA=,tag:RLUTotQG3XUQfDiA7CE7vA==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:DhbXHMsUJ7E=,iv:lQQTpWpDGi7JEQV24jdICHMnC8yV0EsNQ/nauBsqk/8=,tag:RKripNRdBwqnt1sCY72eYA==,type:str]
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:YApCSh00O5YoRqzHUNSoPbYWOsNVwFKOlln0C2+mYpDfKqLU5g==,iv:eOv/Yri400RHpm6Bnxqw4IYp2IiYAKXTd06sduW3Ku0=,tag:9GR1Q8lWHG7Uplevd1hbYg==,type:str]
+      operator: Exists
+      effect: NoSchedule
+affinity:
+    nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                    - key: ENC[AES256_GCM,data:0rESi0B+l5uEwmPQPuFzMylc6JE=,iv:dGx39YEojvQ/J2y6SlP54I5L7Zr+yecwJwNQQ53RV9k=,tag:icAw2r/q4+UcHzYClfOBSg==,type:str]
+                      operator: NotIn
+                      values:
+                        - "true"
+sops:
+    lastmodified: "2026-07-25T12:44:32Z"
+    mac: ENC[AES256_GCM,data:cNqULRYPz0Es3az9v9HWlEf1pvPFWfZ67OofRWaDgFx3KVKVj6VUY6HQgN589xbbCoBKLSKXUoag2zOku1P3yBkb39WrdUtfSJw2t7BvZIo0l9VG0bRAYZgJYgnQA1NrjxixzgZZ7AHst1ljB+ZC6qq5DgEJcuCiue9zkfySTMY=,iv:rNDmiWS1U01xgRHty/sp/RJ5iz78sOdBGP0mdjUX7TA=,tag:BVKsb/HQchTaLo+2Tlrn+A==,type:str]
+    pgp:
+        - created_at: "2026-07-25T12:44:32Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAgxstgt71NySIfZBgF0Nb78qkkFV7xOEfv+VWO3EaSp7Q
+            8jhARPxkAVMwl1MQIdCxB6UuUeQi8fOrLwjYzTN1tWG/VV1P3KV3klm6jNcZ4Zxv
+            OdYt6kRLNfI4J7KWFhZg8A7/FfXSOtZEWLjD60hb4ie02ALEC9o2rUcdxWH2ZdHU
+            69GhP3VU9uiChOxEk6eLyQr22IF9IfQ7BVUckVzU13neZ2PEYXCV3QaHMBrvutMz
+            IFUGpi+drrXxXq9KmJQ4Yr4L0+mHwXYrFVi5rHK/ibgRDNT7T9nK56WCsgRd0MiK
+            7+1vK/q73p5ZdozmalYB2lKuehRapf/xdXbn1SrWGXbsHubdrE2AQgRxBHVy3k8I
+            spN2ZTPzl29mUsVIWKE/CdF1GsUGYrKwKL7S6aHZBtRXncbKBEFLbrloAjs+j83+
+            aU5ybyQWnZxh7f4+nQyDerSJXZJ17eEJRjqMDhJ6VmA8iOBWxgudM57d4Umt53cf
+            s4vOikRSO0cd+/OMvQQBW1IPMkwRSi4/jD8BZTXisWVUQ3/98NQPXQE5EYk2w7aM
+            5T1orWWWMz5EdQNptqz5GL6qPoH4UpVSGCNuCf/oyLR6MCt24JDR9KobOgXKUrfM
+            Qig6/+4WbvxBJ9zevi14FL+K00MeWd3pQT2Bsg8l3fWPIRe+p9lSB6yrsf6xHu/S
+            XgFWycRMj+U+y7B1kyXT5W6WshFHHTOlyAVgk9lnB+kKEVno4pAQBNuNlW4gwOvr
+            iuc9EaiuHat+CW+WdxLdH3i/jcNmvXfXRXdE3449aXv+haNBjxz93nRo1vbAFuw=
+            =O+AO
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

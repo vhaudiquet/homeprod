@@ -43,7 +43,7 @@ updates:
     directories:
       - "/kubernetes/code/gitea"
       - "/kubernetes/code/harbor"
-      - "/kubernetes/home/home-assisant"
+      - "/kubernetes/home/home-assistant"
       - "/kubernetes/home/zigbee2mqtt"
       - "/kubernetes/infrastructure/authentik"
       - "/kubernetes/infrastructure/mail/stalwart"

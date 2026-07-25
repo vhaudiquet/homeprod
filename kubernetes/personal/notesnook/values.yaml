@@ -1,7 +1,7 @@
 instance:
     name: vhaudiquet-notesnook
 api:
-    secret: ENC[AES256_GCM,data:C3mpoEG6y6IShpX1+o9eNn8NACaKy8s1xw5tY1/ncBzqaKrK3YiE7K0rl4d6Bq6q,iv:rGWxSmV98ef8Qx1jkVbQEKPkFmGEaCOXXFFZ4I1US7s=,tag:VBDOhPRTRRhFu5cU024Sqg==,type:str]
+    secret: ENC[AES256_GCM,data:R3pAcgHfCeBrgNJ8Fc1lvNU3sUcWicIglZDtInaOzw11s43GaPPiR6t3lGiiN5oA,iv:xUqXD7tMrjxzBwIk051d5DeVOGh57O19ogt5RPHQppY=,tag:sZ+HgFbWv5jpia+D/tKqnw==,type:str]
     knownProxies: 10.0.0.0/8
     disableSignups: true
 publicUrls:
@@ -10,8 +10,8 @@ publicUrls:
     monograph: https://n.vhaudiquet.fr
     attachments: http://localhost:9000
 smtp:
-    username: ENC[AES256_GCM,data:C4dTnVaJCwxqTdevLJ+a9eJOWPk=,iv:9iHoQzZjHjmOuaoOWdedPHuv06MqtXZXJhWGiTdzhwE=,tag:xDL+WInm/Ms/LuZi53JuHA==,type:str]
-    password: ENC[AES256_GCM,data:tIkKqwVBy94oqFJH0V8=,iv:cOKiwDhngz6mnZlD+XSfWFg1KZa+UCkhXKBgjK7IdnE=,tag:91d/aUlfeHbJqtRWPmTskQ==,type:str]
+    username: ENC[AES256_GCM,data:FXfsyRX1PD7rG8TKGtQD5yj33BY=,iv:rb++wIa9mr0i9OJ5JMv27aETxuyUfCDOKGwp2u0wUUA=,tag:ZYg/1vHTGypdw597lU4Itw==,type:str]
+    password: ENC[AES256_GCM,data:3lYaORGHK988XBnwY64=,iv:Tc307c0DS6kTXGySSgJMhaceDqps+pyNlKqcab9UHho=,tag:h7e4pMLi5sVyqIgNVg8tZg==,type:str]
     host: mail.vhaudiquet.fr
     port: 465
 ingress:
@@ -37,28 +37,68 @@ ingress:
               paths:
                 - path: /
                   pathType: ImplementationSpecific
+# Failover tolerations + affinity — allow scheduling on p330 during r740 outage
+# Applied to all notesnook components (identity, notesnook, sse, monograph, minio)
+tolerations:
+    - key: ENC[AES256_GCM,data:VxDGa/LUCm1t,iv:6MU3sqjnkm0Gxdqt8tD01Fqxcg9oK42f8K9aHDQMDY4=,tag:9liOuvSqHNdfVcRfephFpA==,type:str]
+      operator: Equal
+      value: ENC[AES256_GCM,data:3HkYc/Zk+50=,iv:P5+YjonnfjVkMmO+6/HqxEO/AyLxNlIIOyqi3gyYXRs=,tag:3XtUzwXJ3vQiMEe+3R7lAw==,type:str]
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:JqPxmvAU1+nMu4YBnp1deCH/y6byaGc4hrfKbVFVvqGdr1XgQA==,iv:/YKU8LhYfzp3gUOojTTfPCKqLgL5qSncDYTKlLmyrqk=,tag:wFPEWson8XZPNPV3kXnGPw==,type:str]
+      operator: Exists
+      effect: NoSchedule
+affinity:
+    nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                    - key: ENC[AES256_GCM,data:dk8VoO7VNzvfdQhZyP+WnhO46ak=,iv:tkH2ElerO8BIALsvUNJIl/qnlGVdOS76DPXRi2J+ovg=,tag:XYMz3w8GthdOV3x6+Ybkxw==,type:str]
+                      operator: NotIn
+                      values:
+                        - "true"
+# Subchart tolerations — mongodb must also tolerate p330
+mongodb:
+    tolerations:
+        - key: ENC[AES256_GCM,data:1TnuKgSBqYCU,iv:nSK4pFqVnVxioaZSp9rwKFyEyIbyxeEs/2luzKjnwLw=,tag:jgA6oDj0foG2YjAieJLE8Q==,type:str]
+          operator: Equal
+          value: ENC[AES256_GCM,data:9sKq4+CgI5k=,iv:3jA01Zaohix3HBe8FnI9VzlLXli1ZThWw6JU5hhysYQ=,tag:8qdivZP7PwGC4gnVNuUupw==,type:str]
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:8PbTBL+v3LluefFLYxXUmgQw/ROlIL4nLJVDqrVLvFvrtUqWbw==,iv:khQcqyoBLgsDk3hndnqKGmSdO9e++5o0M0PTNq6jf9g=,tag:8A4f/zp7DimjAKGjdPbvuw==,type:str]
+          operator: Exists
+          effect: NoSchedule
+    affinity:
+        nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                        - key: ENC[AES256_GCM,data:Q4SFghGuAo8RjD6OYqUxt9sYlfU=,iv:TbR9TmGAmzSZg9+/ZDzsGmt4yA+KQBIDPnUQbQOogTw=,tag:FbEPi3gxlpJuxuerAruTmw==,type:str]
+                          operator: NotIn
+                          values:
+                            - "true"
 sops:
-    lastmodified: "2025-12-26T18:18:01Z"
-    mac: ENC[AES256_GCM,data:Xy9P+Ifuz18apN7GoYdehc2bzTjUKMJAT7f8HZNTnvV/wkZEt4EUGJL2WGex12nYQyj6Ut+I9pwFwwX5m0oLO82s1zS2DK3BiaxFa6LFJ2VDUthKt8h9ZTNeT+2P5S5cOvEMvS6tljX8y8/HCUwVMCXGMNCIl8RtWo1Q9CgLjrw=,iv:6MdJwJh3xVrXX6sKCQMAEIpdOD8E0V6+305xcaQnnMI=,tag:5JE9M09u6ukPoQBzT9g0sA==,type:str]
+    lastmodified: "2026-07-25T12:44:32Z"
+    mac: ENC[AES256_GCM,data:+vnDAlFBB7zP4YnxE9fqNa9dawgeuCB2vTet4yh5Cgqp36p1uPxg68uaBeZPrBFBj2fjNs3g/C22ny0/ui2wb5+pGorzXKxVpjWX40hMXyiCQwJXejlZCiXKAFLmOQMiv1oJQQ0PqhAeOckhI5dEc0D2PAUynXHAXh49xNrzcVQ=,iv:St70rkrQpCA81MpPpxyUtXQyvGccy8pgEJUOrdF7ihs=,tag:l0YZdLDkfu1miVMpDJD4FQ==,type:str]
     pgp:
-        - created_at: "2025-12-26T18:18:01Z"
+        - created_at: "2026-07-25T12:44:32Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+KZ6WDFaDTZVt6n+pu1hwxhNC9ShCSSLkiHlZjtX9DW8O
-            eizwH6GAG8LQeKYr61aXXVwxsqDdM9gx/i0ynDO4fflqEQniEjlFzBeVhsqOf3CX
-            rL5WImv0LSe9KjFNAZvfBhtUVENfN/Tu6RGagNb98ChOoH10MvmrzQ5t754AKPVM
-            hB2f5kmOn0evFQQftYyXkQqzLvhlqdGGfBnCutXDoLz67RQwB37npzXx/c+GtlOX
-            Msmp4wiYqlX9v97vjLHUX/ZeBtzm38DzUw+OTcnDPbsdZpeUMqYnpkIl8GIgSd2D
-            2jZUJU4wYyOCYCnfw0+zXu3O5/1bzZ9fdc5FH6A+OlJUFbMLPXx7n9uhVOztxQ1g
-            5ajZKkszSWk58IvaTueDL2QjxhJLop1y4JITgzOhiSPserXrizGn765bVEAtY8kR
-            zgULAG5f41zeoJzzdMyuCFUlIJec4DFigbe7fRul4sJEjeeHtDdyINWuUXCnS4ZX
-            e8/ZZ0+z98IMm7Lstb75rUezTUdlIxfJ+EtAX3L1Bdb4yJZ3i3E1VTQKWxaZWrcc
-            zF5nOIZsHgD22Um8fA4mDlhX5/ygiKMHxZe2pdwps4F7H0rRzVLlM5n4g+71WeMe
-            0eT4atgKPICzMNkyRJ/KWrtk4c6Kq7sSqpQKlcFsRLMga1ZBt0LQwFW+G7PU30vS
-            XAFljxtoFrbdc8Yl37cQh9XCBqXMqUXSNd9t1hsgv+Vsrmv6ntPVStep8Fod/n16
-            nCACAKTOe//z0OmwUXxdUCIqT/N+XEA8tOrHS+HsbB5MCfnexLDul/yUfviZ
-            =yK0X
+            hQIMA7uy4qQr71wiARAAkDKwwK82i30IyWe3/35JGxQJ1NoFc6bbKnFBW30JFR2o
+            7vVl1e7eBfWwIZ/yD+fHkyiskYe+UWT/ZDph526JKXJxuiZ1XPzCBQ2iD8hhABNi
+            /8YrlLd/R3kjGebXTAZ6/+/DijuAeiVxyaiMDkmo2YXz8x2+nWXV7I5mxMqDdTwh
+            fIldLmX9IJKDJrAp5RpFn+g5PIwspQJmA3s86FbMAolLAHAUJ3zNCy1D17LFK+kw
+            X34yHZPwPcbP7udIhGMTZvpUawPkxXBBJfTj6ElBWhR+8OHP6zgEYTZyY/evMQJO
+            fr7n0rWv0gtlNymfX/xyRo8JuVAW8Qh2bOkFh7+fmlMAtdrg6MXVLyGIiQBh1NIN
+            8hQz++ZrOMLx1hoxqehZ/lKUq6ZJTzqXcfMZHipFUxlFVVA9zD+qM0TUxiliTdiy
+            GJlq61xwmvRafbUrpmNcon202jJCYJ5g/K/PFmSx8yTa7cIp0FOpNbZIrTmnFffI
+            bJv0gYk/3f0EiTEjKAnl915IUj7KSRGWS5nH5RRuVLw575+glnDwhB9gax/uZN39
+            gUuRiMm3MeQJ0FX6lYOpu1+3dnEZlaCMhJw4Lif571bOEi4KBcMAuHbLBfMmoL5N
+            dfuwNq3s+kWfu4lAYwxrX3ThvoRa7UABdmvJHqo+raAlqShjKjNxLs9IAL41+m7S
+            XgF83/ecTRqQ2f4gio7drRr6K5QIPrG/UVuuzghqfDTdzgNXRbTObjDxiifBjcGd
+            MBxTQvtvxjLObgO5s7RWZe78/1/4T8hOKYW4qGGG7iO/lggqPljHMVKyLHUzadE=
+            =UGsX
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

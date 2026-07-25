@@ -19,7 +19,7 @@ resources:
   - code/gitea
   - code/harbor
   # Home
-  - home/home-assisant
+  - home/home-assistant
   - home/zigbee2mqtt
   # Infrastructure
   - infrastructure/authentik
