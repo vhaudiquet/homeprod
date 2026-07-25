@@ -21,6 +21,9 @@ service:
         enabled: true
         type: LoadBalancer
         loadBalancerIP: 10.1.2.148
+        # Cluster (not Local) so any node can forward to pods on any other node.
+        # Required for Cilium L2 announcement failover
+        externalTrafficPolicy: Cluster
         ports:
             dns:
                 port: 53

@@ -13,7 +13,8 @@ image:
     tag: 2.11.2
 service:
     type: LoadBalancer
-    externalTrafficPolicy: Local
+    # Cluster (not Local) so any node can forward to pods on any other node.
+    externalTrafficPolicy: Cluster
 # Disable ingress - Caddy IS the edge proxy
 ingress:
     enabled: false
@@ -35,25 +36,25 @@ health:
 volumes:
     - name: vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:rcgSDJ+EX9hd3A3iDgMK81o=,iv:DKDz7STKJt8SsStOWggd85qMJTRLO6/5xeUu/0fkGF0=,tag:eHDV/OIxbsTcfNs8f7wAoQ==,type:str]
-        optional: ENC[AES256_GCM,data:kCy1+w==,iv:9oFPPgCEq5t3iFrEzBM6wLlRcanyNY5Pk+/8jV8wj78=,tag:sFdgEa1LBcjpTzWD2QdTUg==,type:bool]
+        secretName: ENC[AES256_GCM,data:91g6xGYke1FlteHJX17r6w4=,iv:uquY66VZIAPnFse/maIQUcdRVFXUfb/M9tFvNqdgSfE=,tag:P4/D7jpUgEhcOnoxk+QO9A==,type:str]
+        optional: ENC[AES256_GCM,data:KgTxuQ==,iv:KIxXxFGKVA07qMVYZIcBE2BnYTtLl9tFrOZE57xIHXk=,tag:lCyA/TXsxTUZSZDveQSDdg==,type:bool]
     - name: wildcard-vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:b03gkJ43guNYdcbu6nxWCL0uROV2MPgv1z4=,iv:MUzHsrfyoAHvc46MG/24Z3ZD6HokySwJRmeAA3UuRoc=,tag:y1Gp32TYP0XiwBpvmbyydg==,type:str]
-        optional: ENC[AES256_GCM,data:ys5mYQ==,iv:b79KRokcoRcGANWcOaoP3scVilnDgxTXSanfWV956l0=,tag:jOyJgrKo+oNb4iDS5aKjXA==,type:bool]
+        secretName: ENC[AES256_GCM,data:cZlwLn0jjz4GGX2z/w4ooeWBbyOAMZ9UHgc=,iv:Yh4wuMcyDekHzGUxCLldnAOaqLPS45YvybwhdZd5kGo=,tag:Z/jti3YF0/wdsrC9PxHVgw==,type:str]
+        optional: ENC[AES256_GCM,data:ZULOMg==,iv:qjb4nvvineVsTEp35JxPcMRDS5Ij4zIsc7PI+d6/M60=,tag:LcOjEqypcQLrBpXBrpRvOw==,type:bool]
     # semery.fr certs from cert-manager (OVH DNS-01)
     - name: semery-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:9PNhCQYMAZqJf0z5ig==,iv:3ccqLo3n80t1rCxQ3gympxWpKBbTWLSf/tnuXybZgnk=,tag:0aIWetuABijQkfcMFO3sfw==,type:str]
-        optional: ENC[AES256_GCM,data:Rtf7pw==,iv:oce12WWAkp3MSvzxcaXbDjr7SbCqqoZRAbaza1H3kS8=,tag:JT4TEsutsG6mhVNNVue+EA==,type:bool]
+        secretName: ENC[AES256_GCM,data:rxGGzrGRZPfzNjFIIQ==,iv:wvgWZIbAoBeJ/7/F4WeBuCHi1I4xHxwLtJZD7/SwV4Y=,tag:n8Zr+hwkD/Vm0LI/Se2TvQ==,type:str]
+        optional: ENC[AES256_GCM,data:5M+93g==,iv:KEMghZxEKvH+3vM/mtuVCIvzb2X19quX8Kd+oVJp+y4=,tag:mRqR+Fj86AWfGnvlTzRh2w==,type:bool]
     - name: wildcard-semery-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:XewtG6zwJ2K/pk20sXkFQ2bpAf9/lw==,iv:Tsm/H4vfnroytVzNDSm8MBkOxE44OIZfQ7aNA8THZUw=,tag:UmXqYGbxZCe3sm2vCJJnqw==,type:str]
-        optional: ENC[AES256_GCM,data:bV0FLw==,iv:IBg34NAfXfXIo0CYoCI9gmmQjdTtj/wBwZwbXeb613o=,tag:5dCD5tZJLmZ2SM0PIzsz3Q==,type:bool]
+        secretName: ENC[AES256_GCM,data:L6rjVVVtpOne6oog+Ru07ryaS2aVzg==,iv:Qg8wv1LUeaKKGzHpe2HHGR5GzJXYYog9HPJrcPhrMq4=,tag:8Z2yVeFv0mLZlQ9Yn3oRVg==,type:str]
+        optional: ENC[AES256_GCM,data:Na+sDg==,iv:3r1+mX+APihx5w5sU3/Rnyl4/ZjO8lO3jAcaBuG4B/8=,tag:WKYxuFraq8+659StfI79FA==,type:bool]
     - name: buildpath-win-tls
       secret:
-        secretName: ENC[AES256_GCM,data:+P7wWLfGk4SxdSBa2xCvzKk=,iv:wnpvM9hd+gz89jj2yI96x/eij0aOt6rBLWZIlaOWUKQ=,tag:Ao7218HksIJuP1N2/AmPEA==,type:str]
-        optional: ENC[AES256_GCM,data:M7JWXg==,iv:eGXjv+2BfbbGXS9pX5Z2+d0YzmBS50GbTBAfE6lhh9g=,tag:qEbbjBVUTjDEIpRAdWHQdg==,type:bool]
+        secretName: ENC[AES256_GCM,data:cHgBMV3iWihTRS2h4Gu9CZY=,iv:IttOh8Ra68dwxlkT8hZ4vhg8uEwDvByjFv/pT5ae9jM=,tag:+7xH89jLUMfJB/mJzyuE3Q==,type:str]
+        optional: ENC[AES256_GCM,data:QVSy/Q==,iv:25ldKY94OaF5IMSHtCzNacsBKA3MHTOHQtGVe0fY9g4=,tag:3fl1RCkfEjF86fMsYv8W4g==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
@@ -98,7 +99,7 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:4FH6bjD3Foh1eMKjK7u9SYKBVes=,iv:as1luIBK4tAMLlPbSrba5gP39ENPFnWy5Z2SPaoMS8k=,tag:HFJfUKnjVnYH0qjTNhF6Kg==,type:str]
+                    - key: ENC[AES256_GCM,data:U5edeFnG3Eu+7hhCmkUZXTf1wrU=,iv:hczbYIbQAq1XSCughZdVa9ChQ7nv62elsMtrUzCVV6Y=,tag:/Uh3rsO43oSfyX4fFCEujQ==,type:str]
                       operator: NotIn
                       values:
                         - "true"
@@ -112,35 +113,35 @@ affinity:
                 topologyKey: kubernetes.io/hostname
 tolerations:
     # Tolerate the failover taint so caddy CAN schedule on p330 (small-node-1).
-    - key: ENC[AES256_GCM,data:ySkUzenN2JKy,iv:vjMMs+bqAt8RU4/ONcamXYzPEtzN5up6I/4dyQcczS8=,tag:3Pbg1NE6wrCxPbghmIbOtA==,type:str]
+    - key: ENC[AES256_GCM,data:wGARNk8BSuSn,iv:K1uKmlmQYv0/Y2lXP6JvIi1kbx1VwIb2m3XK1o+OHSI=,tag:PETfq6sO58vkFZmJBWJvDA==,type:str]
       operator: Equal
-      value: ENC[AES256_GCM,data:tPKG1cGFQ1g=,iv:oWqAoALXyCqsVe06B2ZE2Nbw32qk8Uipp4OMbBeYnkQ=,tag:WQ43ga2Vim6RkByg/aXciQ==,type:str]
+      value: ENC[AES256_GCM,data:2Z/x7/cf6CQ=,iv:yuFeoo3LvfTL2yDpCbOEb994lGao7B/mQnFKrdxEtlk=,tag:xN7t4jD6wZV8e92959BFoQ==,type:str]
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:BTMlEem0728QJIYhfLFqcw+67CiszZZ4KaaOceoB0T9AFg42BQ==,iv:yIfcwyD597hc871n7gVJWPFhDEeCl4p71lgkJLJ9dhw=,tag:S471ZJdUmkv1x05fpWOwkg==,type:str]
+    - key: ENC[AES256_GCM,data:4mk1b0YQAmUOZ+0k7PsilvYd/oXlCjS4HT8QzfyZpUNSjla5vA==,iv:GhJGcDRX25UsKH3B8ZKPLUJOoo4+EqnzlNuBfy8ggeU=,tag:pzY8xT1m++02YD8YRPFpog==,type:str]
       operator: Exists
       effect: NoSchedule
 sops:
-    lastmodified: "2026-07-25T08:22:16Z"
-    mac: ENC[AES256_GCM,data:Fso99yltP0D5EUI5QdJrUlDnapLvBjYTCDwggi0Ugp4bhpzBDuSBTq/illntZd+OGZhxhq3AhQuYQUS9w6qhRuSZx9H8VQZyJqaiuRVuyTPm2+qaC0KQmr8htJe2Qy2GQOsOAixEk4Ap5qhOtD24afcysQOjLQjw1jNCpaivw4U=,iv:1ZSbPqkKJkItQcsPIBZ1ss+EcRG8sVWXsbt8CUHEVxQ=,tag:Aikj6PMIoXcOZYkN9p4zyg==,type:str]
+    lastmodified: "2026-07-25T12:06:27Z"
+    mac: ENC[AES256_GCM,data:uIOoHpLdiuIOF82w84PsziKyAglkY02OrGU0sigjnhyt+6S9ryy74oiJivzxtniTevsv2PKecN0uXABKzabp+ysY7/uDix/lE0KzoUs6sYA5kVfUj1JPoDQ6bQxoi0y8zKeOqMoqHwIAs+2N2VEriqtRxn+4L3kbTrbe9CFtxIg=,iv:5ZIt9yXKJo5pF9ghi+uVs7zxsdLtQ+pTlc37FKVz2iU=,tag:sTOq1pJh0KQ06soBcmcWRA==,type:str]
     pgp:
-        - created_at: "2026-07-25T08:22:16Z"
+        - created_at: "2026-07-25T12:06:27Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+PMP6p/zNkq2KLigchf4V3FvkKxGD+tpl4CL0RRliyweO
-            dxvH2xZS+SSgA1vaOmdstD9xD+5POLsceAKWN9SUa/xUyJEyQovtFoxRQa54K0/G
-            mcM4mZ7qvsEetWZzRLpjJ33x6neLPj1i6AgW3eNYGHtH6W+MRpgmPshFMOFrlgg3
-            inu/MRYyG1gcOovnhOFc9tJSZtpGF7dv4R8eDzM5QDXxr1FdpNNJgMRKZyotNPLX
-            erOEe8+78V8zxLixCIo4qQgvUnCocJfKrA/jHF3ZdyW9t7LOqJI9KRFwiawWZ5E/
-            UsB8p7uG2zCCR4mRA5GBWqST8pW8joCxuw3dB2xYLqLxUM2t7yuEIKUo4SXm9Jhe
-            pCNVBmsjI9DZk+COAZzC3DKtBDK1Tr998JYDQ+Qq5heXQj14mi6EaeIaQTqdOnEj
-            Wyn6Rpd90b+GjSpnLIWoCS0M8Vp6Mal6OY+2NWeMuw5CNAOty8wWkPAFXz4Iupin
-            JLyZedWQpkIfiw7Q9Gs4fY4hRYMXFo3vvkT46JFUO7WFBrLz6phaa3JBhih03qsZ
-            56ZWHpC8Ag7glOwQOLDeclsQ3wT58QiPJCK7BpzpkNdkGxv5qJj5r/zW6aTuDvB5
-            zJtHNjbI2cL11vnC0/4xI4EdfSe0LSphoGBgg7RpedpCfro6NU0Wr5vlIxFrLjLS
-            XgHppBeR7vnfI+NNtswqzZd04GvddzzcesUaud3LqyXGwOKgtBoWkdvfccEcmt71
-            nC+TezwV2Aq0R+FTBDxRy529cr8FXArk0wtDUr2e/XLr61160FOqGiw+bn5/q7g=
-            =Yhwg
+            hQIMA7uy4qQr71wiARAAvv+DByIWPPLBdqAB39jdZPkrWzVN/7TJ3DU8q380NNMI
+            2w2I28Ee3iXl4e/Qj66fx8U8NGwdYo/j+mUjIddBjiJB5xzu97k+nT4toDocutGT
+            bOI4KZP/J7vh+spb6TMJvH39IGLOYH6N2NagRD6r15kd37ddoRbV8OFTZXvXf524
+            d3+PbqQz9FoulLy+Yt8tWWXD1MpqRbIHL65dAhLF0vZRxUVcnRmg77ZX2Q1yD7Wq
+            i8c0Pe1dhqg6ig+njshiC7HkWOQoINYzk012hz+Cid5JZAIyxsqxkdoFUWHeWI0h
+            u3XUpjjxj+eg0YlnAqrnK16B6+pscZWjEgHJEmrGQo8AGFMdALoubv+8nGiywNZP
+            tqM9oT1ePa0pIJNzhNgFWGkwwuyH4jPXrRji9fpLASAihsM1WQIh3smd373C0Z/W
+            sQYFTS9B6FUCCdDPA/St0Rd/RHFW+eJPC6Jh4728Pqa67FjnuIVB5VJ33Dgpl8OE
+            kEyY3WvtoYOaw+6VqWetg79sCruibmlenDWSrT8VQ8ksk/YIj+iicPnI/BY5S2Wz
+            j2s1Lpvvhr/gZvF7z+vfhX1Fn28xIg5/gkcoYSKgFhqxG69IlPbZsr/D2oWyeygd
+            tIp/D1yHGFJ1Cb56qr400t9xF5BD605rf/Aczg8mdvI41jGvmECQrSKHsxI25xLS
+            XgEVhCAm6HDAKEhjnm1wAZG8DJRhcrSLqLq7SPKJaTPJpjeQwXOb6OIs9ugQx9ON
+            w96InR1VMsEUlh1EWBXUqBgQgyDIIEAa+wHBnY7U06fkazN6lcLkAp17yTitTEk=
+            =gULt
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
