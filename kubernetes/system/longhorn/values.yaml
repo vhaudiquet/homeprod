@@ -2,8 +2,6 @@
 defaultSettings:
     # 2 replicas so volumes survive single-node loss
     defaultReplicaCount: 2
-    # NFS backup target on TrueNAS
-    backupTarget: nfs://truenas.lan:/mnt/fast_app_data/longhorn-backup
     # Allow full disk usage on single-node
     storageOverProvisioningPercentage: 100
     storageMinimalAvailablePercentage: 10
@@ -36,23 +34,23 @@ persistence:
 # R740, but keeps things correct if that ever changes).
 longhornManager:
     tolerations:
-        - key: ENC[AES256_GCM,data:72tSl2wrzA+rNFPSi6y1sXNdzFd2QI9/DIoLPYv600yIWre9Jg==,iv:6FJCiqSNlTTKb0qp7Zupq6RTcwA5de8uxrFM9o8XdAw=,tag:I1gnHYR0XNgq60tOnXYFGA==,type:str]
+        - key: ENC[AES256_GCM,data:DDNTXJiwP2LQiOmqgf/L6tLIZiFgqh42dLDXj8xomGv7rlUP9A==,iv:eu6vnl3EiLu1DWWDWlxkQNcN6/uEhSkpufw7L9Ikr14=,tag:DJOMo8LDGmzkqvIEkfCTHg==,type:str]
           operator: Exists
           effect: NoSchedule
         # Tolerate the failover taint so longhorn-manager runs on the P330
-        - key: ENC[AES256_GCM,data:Tru89mna++TT,iv:8gH3VLU6CCCC42SB6LfEaPY2MFHaD4cLwCWFkSHQV4A=,tag:H8gUvT97+GTgSJu7buUOjw==,type:str]
-          value: ENC[AES256_GCM,data:QYHvXr+rR44=,iv:jJrfJST2MG4pC71Qr2p4WAheDHcd49DbwrBVlLFqyk0=,tag:GJHrXSKfK6/N0IWmKemZxg==,type:str]
+        - key: ENC[AES256_GCM,data:rbWq0sruC6zC,iv:Eq5izQ4LXZ90Bhf1BJ7V9/Xo7HVMULeDHZ6NgItZfGQ=,tag:ixJt7YD4cBy+SrG2WVn0ng==,type:str]
+          value: ENC[AES256_GCM,data:wxGNkS97rg8=,iv:bBGGqcwibhXE0zkH+ZJEVgr20ogu7JwQxxDXqJcMdsQ=,tag:VLBQh8vRl1SiYB9S/vwLeg==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-driver (CSI provisioner/attacher deployer) — tolerate the same
 # taints so CSI operations work from the failover node.
 longhornDriver:
     tolerations:
-        - key: ENC[AES256_GCM,data:dQhIOMVadhzSbeJqzVBbikkKzk11GLxOHjSA1hdZkKRuKUONJA==,iv:nuurPvU/YbVdFxO+iPbWchqVNOWO+tssuF5ZhIHo8+Y=,tag:mbSWnxT6kP6ehZu1+kaAIA==,type:str]
+        - key: ENC[AES256_GCM,data:1EBSG4hL4heCnLFJYzTNaQWtFU3v6xwTlG+Y9/H4p5d0TZdFog==,iv:9ILcNXXzxzG5CYA4Ny7bKHBI581B1qJC3OBUObScxbQ=,tag:4B4JaFO0tfyVA6w7ypCY6g==,type:str]
           operator: Exists
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:9dhWE/kEwWr/,iv:pXHuR05UNdJlBaCMo0T4FHPN+8qGRXFGYQglP/P/VLc=,tag:KTbwQ4KW9zsSsftXQF4DRg==,type:str]
-          value: ENC[AES256_GCM,data:H6vDw998h28=,iv:IHNNLysSnMuqrmdPsCaXYFPUtGrxBFZdDFG+iOMBnvw=,tag:r1BZTI2PQ0wjhWaIi1yJZA==,type:str]
+        - key: ENC[AES256_GCM,data:ZSC5qg+ChOkI,iv:rIq8j7L7F641kWDzcSV9lrYxhHggT1FTZ8WF53vxvV0=,tag:Hj4RlF3usdIQi0G6Ecmdbg==,type:str]
+          value: ENC[AES256_GCM,data:YfiuCv2EKec=,iv:+6i5CT1ToCKy1gFtVVIFv5FLQaJaKHx4vQk8b0IBy3U=,tag:zHgzNuijbwI1QbvuLnZNvw==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-ui — tolerate the same taints so the UI is reachable even if it
@@ -60,58 +58,46 @@ longhornDriver:
 longhornUI:
     replicas: 1
     tolerations:
-        - key: ENC[AES256_GCM,data:deSbcZL4q+7tZaTg2pE1Ssq/WG0aS29EYAW+y1/Vl4Uq3E4tDQ==,iv:mE3AYFNrs7aAdKG1eRMJ21AwVdspJq42zWqytehn9z0=,tag:DsC7ehN8NhANSzWBQ3rMjQ==,type:str]
+        - key: ENC[AES256_GCM,data:n4UdwssGYhHQgDTpCpu+WgIPsdNc8uAaZtnURZt0/C3VfeLR4w==,iv:mqy0GqHN0KxtkETS7psu61Mr1oGmtPDhg2vQhVDas6c=,tag:uUd+NY90XK3i0aigc5ndCg==,type:str]
           operator: Exists
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:4UJN0oQsnPgz,iv:bnCs9OQzRNYxZS4LMVcI5Zgel4MES745e47/Wc+72Ps=,tag:+WD085TKD5CfFYJ3B0RotA==,type:str]
-          value: ENC[AES256_GCM,data:preRO+Om90c=,iv:Q6VF0hDh5Jz3ghB+VqUB/KO5i2wwxq68WWLq2ptnwOQ=,tag:ug333G7gCkSn60g/Lo5S7A==,type:str]
+        - key: ENC[AES256_GCM,data:isSkUNqax+AU,iv:jWgZyZL9VMmzYqoLCUkIiUuy1iBeOm2RE5CjZGCcXxQ=,tag:714V0YGb7jqebC4IRX/phw==,type:str]
+          value: ENC[AES256_GCM,data:Qbtu1wgV1oI=,iv:RihD43IA1+C3m9OkXACGgd5lY9lDWCyzIcw/MCoSMvg=,tag:WzQtC4rT+uovS6s36DJWUw==,type:str]
           operator: Equal
           effect: NoSchedule
 # Disable ingress for now
 ingress:
     enabled: false
-# Recurring backup and snapshot schedules
-# - Daily snapshots: fast local recovery from accidental deletes
-# - Daily NFS backups: DR if node is lost
-recurringJobs:
-    enable: true
-    jobs:
-        - name: daily-snapshot
-          task: snapshot
-          cron: 0 2 * * *
-          retain: 7
-          concurrency: 2
-          labels:
-            type: snapshot
-        - name: daily-backup
-          task: backup
-          cron: 0 3 * * *
-          retain: 7
-          concurrency: 2
-          labels:
-            type: backup
+# Default backup store (NFS target on TrueNAS).
+defaultBackupStore:
+    # NFS endpoint exposing the TrueNAS dataset as a backup target.
+    backupTarget: nfs://truenas.lan:/mnt/fast_app_data/longhorn-backup
+    # No credentials required for an anonymously-readable NFS export.
+    backupTargetCredentialSecret: ""
+    # Poll the backup target every 5 minutes for new/removed backups.
+    pollInterval: 300
 sops:
-    lastmodified: "2026-07-25T12:52:04Z"
-    mac: ENC[AES256_GCM,data:iYSrt+E3ZBR/x85S4A/Y4GalkJ5Y0NDwjSvh6Pfa8d5Qz+uFdGofnNISS7QgqmsGpLbLKMFHRxLV6L3R85V/o293SfNA/+iM8DXOoZTb8zQTLsPxjqxr8Hfl0cxBgV8LgZJzzG8pkeONDfqqtF6pGMgAz0SHfdAR2qdbCKTztis=,iv:YdWgVo9/YlusV1mqBWpVQVVdEQGSD7ytPVNJYjppmTw=,tag:XOxeIx5GWJcZD19zZTe5YQ==,type:str]
+    lastmodified: "2026-07-26T08:44:08Z"
+    mac: ENC[AES256_GCM,data:4shHlVWcVol/Z8b+5+tz6shT8x6gCZz2xhYv1VT7dHlgcYWWgq2V5mbGUtsVmWFzkGPC5rYvU3dUEiEkl0zb6Q1rP/fD6xQmlyIgH/ioHrfCvjorY5Rv8t4OFH/TyBK9hMwC+iFdAUJOdE9vYQoDmUMTGz6XwWiDY3PxRv1X9D4=,iv:DDDiStImg5qH2QP9lcSyW5+b+1P1mk6F0TWkt9p2syo=,tag:zJnZ455gsXPkE4Lfup2Rcg==,type:str]
     pgp:
-        - created_at: "2026-07-25T12:52:04Z"
+        - created_at: "2026-07-26T08:44:08Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAgDIE7tPjU9uheakXKYvn6IyNKkZjXTnV2sBPdoo4l0SW
-            ZYAu+L9SKnVKpmuQxz3HKqk/9Cib7Q/g9HdrXsrLkQ0xS6BC+4z+4JynxWHN3CII
-            0w7SNKVFV4RIXWwMQe0Hg+2OtzXyF1g8ZmNZu/L+/kusEnl7WX9BoYOB5i5wssM/
-            Nfb7LTlMGqmyQoWxbTzkdNuMbw2oVjD6pgL/VEpfCmvVzMpXScmTT9tFdJRYDuj6
-            r9a8wkFzCHNUWy3z7+00cQVnyDBA/UY/9pskeR58QH4keXp5xeBIYKxUe28L9JRg
-            YkVJjy1XFmmdY6VWmMo/Sx89YUQ9kMpf9KI/D0WkgGLqTihzsX4v7xxvWJfYXiPd
-            RmkRR4f19HfUapLzosO65rtYAG3BptdRPBpvx77evLkPwps34+dxUrVESYxY/I01
-            0BNNLDthEhBzfmh/yz3BcYOigZp1ziiXq201pn+qiDbLSDeoidm0IrN+g3Kib25g
-            dBTpRD3iEoBXeW2kbwltoUwsNkv59Gf/fj3DUQFAclP56b7UzRLDCQKiKIL17l2O
-            nU6yvz9iARPYvT3gzqOw8yaB780RQejR+8qiZca0WetNcVn7b+DMGpKgQXnchc1g
-            WzI3MdpNtajQGwBtHic3BG4xYAoN6sNmVrz+aGBIkBxFK3nMBzeWQJBSm6iiEwzS
-            XgFcb1jlb7dC/g8ltmAIOyjwnFHkfVI2/v+u+E1mW2VWBQqtABAHobh6uEf1jFzj
-            DZubFTVfrI4ssrvsjhm84mVJND9taaLPU4qbVYJ8G4kmP8UyKdHd1fJifNdp9+o=
-            =qY6k
+            hQIMA7uy4qQr71wiAQ/9FsBtkggrKwHfh5FFRUFkyqCU596d/R7ZEvsMP7zzCH9H
+            VAAYJxl8D6/KY5EavpeZH4s2ZnlzZjlb/qS2CKpSzXuN7ADPnK10cBxxAOQLp6KF
+            pqdkv6x5MyWbfv87IzM8cI0D/jlG2/iZPfBZy/YU4Rg8cefIl82vNgNADW2O68bK
+            w1VS75AYKmUfXZ2vqz+wX46YcjdXkrvRwzM9lzfIm2Q2dKMqBKSYzxMICZ/hWGRj
+            t33KbZLKC1Kg0NmYOY4GCt8hi6Ck4TjKvzxktsEpXYFDhWzXe9nr+axtrfypLrAn
+            fcLCQV1FSovMK+P4JxB/dd0u+F3RR500F3tBJPQ1xs1Rc1f8Cd2Ynr/3LWtTstkq
+            JyOfLFAj4/LG8o7ub/FSvLZZI052iRLZqlIIe0cFTqCz31yVEJOnLJWmME36hDEm
+            rfd3X9IvixfwWVTa3K0TxZta7u0Q0DsqHIt3eLdeTJC3wY4J+A/vUvPFv137YEqp
+            O+/ALTbwK7ViSQIupjr4kEcklBtiu9myNi3u8JNg67/XHwahCh0tfGk4jCevve5S
+            dDk4Ud7469LuDwYSZw0RdwuU89jQivvsp8/mZpQIoSVzl//iEQ2EOAff1gMfiPoj
+            1MrwGtrrMAo+2Uoxacd7LfFn/l1zRNiGw1rX21NzswmzIU84US4Grv9LGealQ8TS
+            XgH+datMRHIAPKcYY0u/B/PfyoKArlPUzQsIQOm02+s1zuvK/dArKxgObKTAr/u4
+            uNuVH3ObUVMb6VX4iwlxfS+VKpjotTbgY2TJfV46kGC3JJ0w1LdjEyJbpYlIz/k=
+            =HWEp
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

@@ -1,0 +1,34 @@
+# Recurring backup and snapshot schedules for Longhorn.
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: daily-snapshot
+  namespace: longhorn-system
+spec:
+  # Fast local recovery from accidental deletes.
+  name: daily-snapshot
+  task: snapshot
+  cron: "0 2 * * *"
+  retain: 7
+  concurrency: 2
+  labels:
+    type: snapshot
+  groups:
+    - default
+---
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: daily-backup
+  namespace: longhorn-system
+spec:
+  # Daily NFS backup for DR if a node is lost.
+  name: daily-backup
+  task: backup
+  cron: "0 3 * * *"
+  retain: 7
+  concurrency: 2
+  labels:
+    type: backup
+  groups:
+    - default
