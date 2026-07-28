@@ -12,82 +12,57 @@ data:
     // Grafana Alloy — log collection only (metrics cluster+host collection is
     // handled by vmagent/node-exporter/cAdvisor elsewhere).
     // Forwards pod logs to the in-cluster Loki single-binary.
+    // River config produced by `alloy convert -f promtail` from an equivalent
+    // Promtail YAML (so component names and argument shapes are guaranteed
+    // correct for Alloy v1.18).
     // -----------------------------------------------------------------------------
 
-    logging {
-      level = "info"
-      format = "logfmt"
-    }
-
-    // Tail every pod's log files written under /var/log/pods/* on the host.
-    local.file_match "pods" {
-      path_targets = [{
-        __path__ = "/var/log/pods/*/*/*.log",
-      }]
-    }
-
-    // Discover Kubernetes metadata for the tailed files (pod_name, namespace,
-    // container_name, uid).
-    discovery.kubernetes "pods" {
+    discovery.kubernetes "kubernetes_pods" {
       role = "pod"
-    }
 
-    // Stream-stage relabel: read the filename to extract namespace/pod/container
-    // metadata in line with Loki/Promtail's expectations.
-    lrelabel "pods" {
-      targets = local.file_match.pods.targets
-      rule {
-        source_labels = ["__path__"]
-        regex        = "/var/log/pods/(?P<namespace>[^/]+)/(?P<pod>[^/]+)/(?P<container>[^/]+)/(?P<uid>[^/]+)/.*"
-        target_label  = "namespace"
-        replacement   = "$namespace"
-      }
-      rule {
-        source_labels = ["__path__"]
-        regex        = "/var/log/pods/([^/]+)/([^/]+)/([^/]+)/[^/]+/.*"
-        target_label  = "pod"
-        replacement   = "$pod"
-      }
-      rule {
-        source_labels = ["__path__"]
-        regex        = "/var/log/pods/([^/]+)/([^/]+)/([^/]+)/[^/]+/.*"
-        target_label  = "container"
-        replacement   = "$container"
+      selectors {
+        role  = "pod"
+        field = "spec.nodeName=" + coalesce(sys.env("HOSTNAME"), constants.hostname)
       }
     }
 
-    // Tail the actual log files.
-    local.file "pods_logs" {
-      targets    = lrelabel.pods.output
-      read_from  = "beginning"
-      tail_from_end = false
-    }
-
-    // Parse CRI-style lines ({"log":"...","stream":"stdout","time":"..."}).
-    loki.process "pods" {
+    loki.process "kubernetes_pods" {
       forward_to = [loki.write.default.receiver]
 
-      stage.json {
-        expressions = {
-          log    = "log",
-          stream = "stream",
-          time   = "time",
-        }
+      // CRI-style log lines on the host: {"log":"...","stream":"stdout","time":"..."}
+      stage.cri { }
+    }
+
+    discovery.relabel "kubernetes_pods" {
+      targets = discovery.kubernetes.kubernetes_pods.targets
+
+      rule {
+        source_labels = ["__meta_kubernetes_namespace"]
+        target_label  = "namespace"
       }
-      stage.labels {
-        values = {
-          stream = "stream",
-        }
+      rule {
+        source_labels = ["__meta_kubernetes_pod_name"]
+        target_label  = "pod"
       }
-      stage.timestamp {
-        source = "time"
-        format = "RFC3339Nano"
+      rule {
+        source_labels = ["__meta_kubernetes_pod_container_name"]
+        target_label  = "container"
       }
     }
 
-    // Push to Loki in-cluster (no auth on .lan).
+    loki.source.file "kubernetes_pods" {
+      targets    = discovery.relabel.kubernetes_pods.output
+      forward_to = [loki.process.kubernetes_pods.receiver]
+
+      file_match {
+        enabled = true
+      }
+      legacy_positions_file = "/tmp/positions.yaml"
+    }
+
     loki.write "default" {
       endpoint {
         url = "http://loki.observability.svc.cluster.local:3100/loki/api/v1/push"
       }
+      external_labels = {}
     }
