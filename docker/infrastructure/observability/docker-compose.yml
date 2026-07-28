@@ -22,7 +22,7 @@ services:
       - "traefik.enable=false"
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    image: gcr.io/cadvisor/cadvisor:v0.55.1
     container_name: obs-cadvisor
     ports:
       - "8080"
