@@ -38,6 +38,11 @@ traefik:
   branch: main
   compose_file: docker/infrastructure/network/traefik/docker-compose.yml
 
+observability:
+  repo: homeprod
+  branch: main
+  compose_file: docker/infrastructure/observability/docker-compose.yml
+
 squid:
   repo: homeprod
   branch: main

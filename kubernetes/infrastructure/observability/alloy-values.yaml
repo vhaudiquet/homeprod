@@ -1,0 +1,57 @@
+# Grafana Alloy
+# Runs as a DaemonSet on every node (tolerates the failover taint).
+# Tails pod logs from /var/log/pods, attaches K8s labels (pod, namespace,
+# service, container, image), and pushes them to Loki at
+# http://loki.observability.svc.cluster.local:3100 (in-cluster, no auth).
+# Use the externally provisioned ConfigMap (alloy-config) carrying config.river.
+alloy:
+    configMap:
+        create: false
+        name: alloy-config
+        key: ENC[AES256_GCM,data:aevkZsfe4c4H34BJ,iv:4vrNZWwYWaxJUKGbNlnZfk0NM182nBQZuwvqUPslKNA=,tag:lh1iILM3uQAt0An6kN6EHg==,type:str]
+    # Mount host log paths so the DaemonSet can tail pod/container logs.
+    mounts:
+        varlog: true
+        dockercontainers: false
+    stabilityLevel: generally-available
+    tolerations:
+        - key: ENC[AES256_GCM,data:zOMWiA9dG+8o,iv:yHp9aBczV8nVRGlJmsBaKs9WdmE3+ii8gWOaj5Xok6M=,tag:8c5ZqBT+vvC0WCW8mi0c9g==,type:str]
+          value: ENC[AES256_GCM,data:2Q04VR9xLbQ=,iv:6+tQXx3IGUIcrse+poG4X/4pS5dN2dKvhb79sCy+nfA=,tag:jb/TZmGpvdsWnKoC5NdCow==,type:str]
+          operator: Equal
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:aVq8GU1ZDg5m9XDEI3PoVbbykU36SnKpEgrohvZ0IBmH47qDKg==,iv:eMcHRO5mGp9hhY4KnuBmdPTjd/9lqtesjA/RRSu4QMw=,tag:2jaGuogkLcIuye2meJQMDQ==,type:str]
+          operator: Exists
+          effect: NoSchedule
+    resources:
+        requests:
+            cpu: 50m
+            memory: 64Mi
+        limits:
+            cpu: 200m
+            memory: 256Mi
+sops:
+    lastmodified: "2026-07-28T13:46:53Z"
+    mac: ENC[AES256_GCM,data:u6J/EIP5aFtOi8ZtT8BPn978wJAEL1E3r0WcmG5WIsWKJBZMMQHUYRmHgkS6n0/UMtczWoCdXlxObS73ZQMSSkdtagQHE/HPh69dDdGkjxyM4mlP+YMwcnIQkxpJBAQTERXA+SVoWCZb7ztKbiJS+zPjOCfA95ixQINmBCdUgEc=,iv:WOXngWu3uNWYp18/xWghGJyONBrq3SSnPDwbjHBDozU=,tag:1fasTfuLBGXBCo9JPytsJw==,type:str]
+    pgp:
+        - created_at: "2026-07-28T13:46:53Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/8DSD0jEn3YE7XHTm4DWdfLHPs1IVg9hyiWSHe5/xH0siD
+            zWonfjcuytw8EHDzv6pQMNYmIpyAmJ92Al4ROJmBV8gZ59+U9goHmw5HgaQAupBJ
+            /gy8iFBteGOHJT+XJPoVb/bu449f7Vle4L3DrOAl6mwxE0WT/7ERoQBeSxL+2OTZ
+            iDPdq24Zy+crDHpoM0GcSnFRLX5UpmL2QXGB8PHyctwSQoDW+sbAY2ME6buOw8HI
+            AremKTRtFm6Pu1Ksdh6ZicaHpLSvLyByPPt2zYhlBQsG3s/SjJDlnakUZHhm7T4o
+            oHzSpKqV7NQbE09ZMyGJrEkl+rfCPeu6jHplW2EX3xjqLWNUF8GHcsDWljogZxXF
+            irBPkyKASEDdkHZgiZobU6BmvQlxILj104xNtUYTTChcKu3s0d5BrkIOGe+Y7rJd
+            fNvMfkmO8/URBgtsXy2xPKo0Jzu/0pZsPEp2lxNeyElwxQqo1CFwhKZPkeQ2eLpu
+            4X7/CMN8KJr6jLX8HhX9AivlCj+2CoT8SB5GAPw4p00eD0GIMWSNyOXjyW/qQZi3
+            82EyX9KIpHjALoOI4/3YgFpUO12AEsjirYKWkUM+IoDp5l+YX59QdM7zUVVyzsTG
+            2EXEdQqYVA7DIcMJb0tHqxDGMGxNayaUsikV7e/kcRVUyDSH+xOfaSUrDTqqv+XS
+            XAFro6848HF5uMIP4pfM+dxzkc9rFF4il0CuGWlscbz5q+Aw9LImGbpNzrWk3Lpi
+            beuwWKFTZ8zab5TH9UF/xqsQeg/nyzQnb3fFPk+owvY7fH6XiYbN5WjKjXGW
+            =kBpp
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

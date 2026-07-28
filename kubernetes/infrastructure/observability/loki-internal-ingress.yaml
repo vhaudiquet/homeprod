@@ -1,0 +1,23 @@
+# Ingress exposing the Loki push API (loki:3100) through Traefik as
+# loki-internal.lan — used by the docker-host promtail to push container logs
+# into the central Loki.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: loki-internal
+  namespace: observability
+  annotations:
+    external-dns.alpha.kubernetes.io/enabled: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: loki-internal.lan
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: loki
+                port:
+                  number: 3100

@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: observability
+resources:
+  - namespace.yaml
+  - vmstack-repository.yaml
+  - grafana-repository.yaml
+  - loki-repository.yaml
+  - vmstack-release.yaml
+  - loki-release.yaml
+  - alloy-release.yaml
+  - vmalert-rules.yaml
+  - alloy-config.yaml
+  - alertmanager-config.yaml
+  - vm-internal-ingress.yaml
+  - loki-internal-ingress.yaml
+secretGenerator:
+  - name: vmstack-values
+    files:
+      - values.yaml=vmstack-values.yaml
+  - name: loki-values
+    files:
+      - values.yaml=loki-values.yaml
+  - name: alloy-values
+    files:
+      - values.yaml=alloy-values.yaml
+configurations:
+  - kustomizeconfig.yaml

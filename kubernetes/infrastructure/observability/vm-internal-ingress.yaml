@@ -1,0 +1,26 @@
+# Ingress exposing the VictoriaMetrics vminsert endpoint (vmsingle:8428)
+# through Traefik as vm-internal.lan — used by the docker-host vmagent to
+# remote_write metrics into the central VictoriaMetrics.
+# external-dns auto-creates the vm-internal.lan A record pointing at the
+# Traefik LoadBalancer (see kubernetes/system/external-dns).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vm-internal
+  namespace: observability
+  annotations:
+    external-dns.alpha.kubernetes.io/enabled: "true"
+    # No chart ingress is available for vmsingle, so declare it here.
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: vm-internal.lan
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vmsingle-vm-victoria-metrics-k8s-stack
+                port:
+                  number: 8428

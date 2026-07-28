@@ -13,6 +13,7 @@ updates:
       - "/docker/home/zigbee2mqtt"
       - "/docker/infrastructure/mail/roundcube"
       - "/docker/infrastructure/network/traefik"
+      - "/docker/infrastructure/observability"
       - "/docker/infrastructure/squid"
       - "/docker/infrastructure/sshportal"
       - "/docker/personal/fireshare"

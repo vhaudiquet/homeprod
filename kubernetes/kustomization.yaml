@@ -24,6 +24,7 @@ resources:
   # Infrastructure
   - infrastructure/authentik
   - infrastructure/mail/stalwart
+  - infrastructure/observability
   # Personal
   - personal/linkwarden
   - personal/notesnook

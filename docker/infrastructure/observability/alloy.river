@@ -1,0 +1,83 @@
+// Grafana Alloy config for the docker host
+// Tails Docker container logs via the docker_sd discovery +
+// file streaming, applies container_name/image labels, and pushes them to
+// the in-cluster Loki at loki-internal.lan (LAN-only Traefik Ingress).
+
+logging {
+  level  = "info"
+  format = "logfmt"
+}
+
+// Discover running Docker containers via the host socket.
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+// Relabel rules: strip the leading slash from __meta_docker_container_name and
+// expose useful labels (container name, compose service, image).
+discovery.relabel "containers" {
+  targets = discovery.docker.containers.targets
+
+  // Strip leading / from container name.
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container_name"
+    replacement   = "$1"
+  }
+
+  // Compose service name (if label is set).
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+    target_label  = "compose_service"
+  }
+
+  // Log stream (stdout/stderr).
+  rule {
+    source_labels = ["__meta_docker_container_log_stream"]
+    target_label  = "stream"
+  }
+
+  // Mark the source so dashboards/alerts can distinguish the docker host.
+  rule {
+    target_label = "source"
+    replacement  = "docker-host"
+  }
+}
+
+// Tail the container log files based on the docker_sd discovery. Each target
+// exposes a `__path__`idders pointing at /var/lib/docker/containers/<id>/<id>-json.log
+// (the default docker json-file driver path; we mount that host path read-only).
+local.file "container_logs" {
+  targets       = discovery.relabel.containers.output
+  tail_from_end = true
+}
+
+// Parse docker json-file logs ({"log":"...","stream":"stdout","time":"..."}).
+loki.process "containers" {
+  forward_to = [loki.write.default.receiver]
+
+  stage.json {
+    expressions = {
+      log    = "log",
+      stream = "stream",
+      time   = "time",
+    }
+  }
+  stage.labels {
+    values = {
+      stream = "stream",
+    }
+  }
+  stage.timestamp {
+    source = "time"
+    format = "RFC3339Nano"
+  }
+}
+
+// Push to Loki in-cluster via the LAN-only Traefik Ingress (port 80).
+loki.write "default" {
+  endpoint {
+    url = "http://loki-internal.lan/loki/api/v1/push"
+  }
+}

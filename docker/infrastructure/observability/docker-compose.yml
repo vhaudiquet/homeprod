@@ -1,0 +1,82 @@
+# Docker-host collectors for the central observability stack on Kubernetes.
+# Managed by swarm-cd (see .swarmcd/stacks.yaml).
+#
+# node-exporter + cAdvisor run locally (scraped by vmagent below).
+# vmagent remote_writes metrics to vm-internal.lan (LAN-only Traefik Ingress) ->
+#   vmsingle-vm-victoria-metrics-k8s-stack.observability.svc.cluster.local:8428
+# alloy tails /var/lib/docker/containers + /var/log and pushes logs to
+#   loki-internal.lan -> loki.observability.svc.cluster.local:3100
+
+services:
+  node-exporter:
+    image: prom/node-exporter:v1.9.1
+    container_name: obs-node-exporter
+    network_mode: host
+    pid: host
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - /:/host:ro,rslave
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: obs-cadvisor
+    ports:
+      - "8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /dev/disk/:/dev/disk:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+
+  vmagent:
+    image: victoriametrics/vmagent:v1.131.0
+    container_name: obs-vmagent
+    # vmagent listens on 8429 (its own metrics), scrapes node-exporter:9100
+    # and cadvisor:8080, remote_writes to vm-internal.lan
+    command:
+      - "-promscrape.config=/etc/vmagent/vmagent.yml"
+      - "-remoteWrite.url=http://vm-internal.lan/api/v1/write"
+    volumes:
+      - type: bind
+        source: /root/homeprod/docker/infrastructure/observability/vmagent.yml
+        target: /etc/vmagent/vmagent.yml
+        read_only: true
+    depends_on:
+      - node-exporter
+      - cadvisor
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+
+  alloy:
+    image: grafana/alloy:v1.18.0
+    container_name: obs-alloy
+    command:
+      - "run"
+      - "/etc/alloy/config.river"
+      - "--server.http.listen.address=0.0.0.0"
+      - "--server.http.listen.port=12345"
+    volumes:
+      - type: bind
+        source: /root/homeprod/docker/infrastructure/observability/alloy.river
+        target: /etc/alloy/config.river
+        read_only: true
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log:/var/log:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+
+networks:
+  default:
+    name: proxy
+    external: true

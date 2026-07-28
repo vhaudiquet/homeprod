@@ -1,0 +1,151 @@
+# victoria-metrics-k8s-stack Helm values
+# SOPS-encrypted before commit (per .sops.yaml rules).
+# All values for this chart live here; vmagent, grafana, vmalert, alertmanager,
+# kube-state-metrics and node-exporter are sub-charts toggled on/off below.
+# ---------------------------------------------------------------------------
+# VictoriaMetrics single-binary (the metrics database)
+# ---------------------------------------------------------------------------
+vmsingle:
+    enabled: true
+    spec:
+        # Keep 7d of metrics; user can tune later.
+        retentionPeriod: 7d
+        storage:
+            storageClassName: longhorn
+            accessModes:
+                - ReadWriteOnce
+            resources:
+                requests:
+                    storage: 20Gi
+        resources:
+            requests:
+                cpu: 100m
+                memory: 256Mi
+            limits:
+                cpu: "1"
+                memory: 1Gi
+# vmagent scrapes the cluster (node-exporter, kube-state-metrics, cAdvisor).
+# That same vmagent is reused for the inner cluster; the docker host runs its
+# own vmagent that remote_writes through vm-internal.lan.
+vmagent:
+    enabled: true
+    # Tolerate the failover taint so the scrape DaemonSet covers all nodes.
+    tolerations:
+        - key: ENC[AES256_GCM,data:pERZJq2cU/V7,iv:eMeR91aKxAJmKpKLEL6pA9rcIHOrd+Mg+RmA3gt1xGw=,tag:l2igrTTHLclHPEO3bCq/dg==,type:str]
+          value: ENC[AES256_GCM,data:m0pJQf4RLt4=,iv:Au3k95QkD2wv3OP/yDyNQKDN5ZrDIuNAwhXaMCEEn+g=,tag:mEcqTG4e0aYwoHr4TtmgTg==,type:str]
+          operator: Equal
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:lDW9tKXBee7p5HjH/FWmzpwtnrazCuohAQm47B5htn++6QUYIA==,iv:yJJdF/XaFXghwBOwC2lByMRM+M5MNP51ho3qTfAKqq0=,tag:WFNE1PMRFss+M/I6j/8Nbg==,type:str]
+          operator: Exists
+          effect: NoSchedule
+# ---------------------------------------------------------------------------
+# kube-state-metrics + node-exporter (metrics sources)
+# ---------------------------------------------------------------------------
+kubeStateMetrics:
+    enabled: true
+nodeExporter:
+    enabled: true
+# ---------------------------------------------------------------------------
+# Grafana (UI) — served behind ingress at grafana.lan.
+# ---------------------------------------------------------------------------
+grafana:
+    enabled: true
+    persistence:
+        enabled: true
+        storageClassName: longhorn
+        accessModes:
+            - ReadWriteOnce
+        size: 5Gi
+    adminUser: admin
+    # SOPS encrypts this when the file is processed.
+    adminPassword: ENC[AES256_GCM,data:VXtozCJ6XZ7JqWuIrDTmZkfWDeglVXl9JZ9T0sY2OUDY9MM=,iv:PO4leV1zpTFZTB2/hWipitGec4zrHfW/gOkJBrGk24k=,tag:9GinyiqoA4qrbyeKJ33Iuw==,type:str]
+    # Provision both the chart's default VictoriaMetrics datasource AND a Loki
+    # datasource so metric/log correlation works in one UI.
+    additionalDataSources:
+        - name: Loki
+          type: loki
+          url: http://loki.observability.svc.cluster.local:3100
+          access: proxy
+          isDefault: false
+    ingress:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+            external-dns.alpha.kubernetes.io/enabled: "true"
+        hosts:
+            - grafana.lan
+        path: /
+        pathType: Prefix
+        tls: []
+# ---------------------------------------------------------------------------
+# vmalert — evaluates the node.rules ConfigMap (see vmalert-rules.yaml) against
+# VictoriaMetrics, forwards firing alerts to Alertmanager below.
+# ---------------------------------------------------------------------------
+vmalert:
+    enabled: true
+    spec:
+        rule:
+            configMap: vmalert-rules
+            configMapKeyRef:
+                key: ENC[AES256_GCM,data:7obbOvuMe8Cpdg==,iv:oIzOCzFFA0cptWQMPiIOi5b76dR3zp96Y8JrdKOkE8A=,tag:ArteBgOhdz/7N4wNpWE83g==,type:str]
+                name: vmalert-rules
+        notifier:
+            alertmanagerUrl: http://vm-victoria-metrics-k8s-stack-alertmanager.observability.svc.cluster.local:9093
+        resources:
+            requests:
+                cpu: 50m
+                memory: 64Mi
+            limits:
+                cpu: 200m
+                memory: 128Mi
+# ---------------------------------------------------------------------------
+# Alertmanager — 1 replica; reads its config from the alertmanager-config
+# Secret (see alertmanager-config.yaml), which has a single n8n webhook receiver.
+# ---------------------------------------------------------------------------
+alertmanager:
+    enabled: true
+    replicaCount: 1
+    storage:
+        storageClassName: longhorn
+        accessModes:
+            - ReadWriteOnce
+        size: 2Gi
+    configFromSecretRef: ENC[AES256_GCM,data:C6NDZCkX76QLaZLw/vY3B01+AA==,iv:RSpe3Zv1mPfo0nj73tWrf5IBd+Sfqo1NUrERvmVPBgs=,tag:4ZGHA2Kyj9zpGn6eylNbXw==,type:str]
+    configKey: alertmanager.yaml
+    resources:
+        requests:
+            cpu: 50m
+            memory: 64Mi
+        limits:
+            cpu: 200m
+            memory: 128Mi
+# ---------------------------------------------------------------------------
+# Storage class default
+# ---------------------------------------------------------------------------
+defaultStorageClass: longhorn
+sops:
+    lastmodified: "2026-07-28T13:46:53Z"
+    mac: ENC[AES256_GCM,data:ZyCYO9b3OMJo8Br9tzbK+bN3rZvlkk/scOEUSHwkAABeQxL7JDbcpjHL8WauSY57wLnl3sK9JQnUHS+/ghOiZu/QDuodbhpoRrE8jpdjo1+qZaqJBqjbG1NIYU/aLQnHr4bnIzh8oX0PYnsu2uSqkg1c0c1KCJmrvHtXlFwtWOs=,iv:zh8yVzExwT29JF+4jLcZgmuSPM6R/d/2IWTcYfK3Qn4=,tag:LYTYY6rJVEKJRsOp6G/T0g==,type:str]
+    pgp:
+        - created_at: "2026-07-28T13:46:53Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+KP62YdvAUJjxvFoWH1skMELYx9Lj/5TRXnrHOtqQrpXC
+            UzKNgS3XFmgeUcpA3wXvhTEPhICtdC9KDvxkF0jPTATqM2WFPcF7V2vjhTjuAMtU
+            /g4RR44j6U2WRZJFjs0tEpVGVrw+HXiaACdgqy1P6OmnmgvTSBvZvj3AsBpHOHeM
+            teaE11couXeYnrZ9NJeCvhbcvJfYAkdpqyCLJ9UWEro3QFm4z6tvs6D4rq+nAhBb
+            MntlvArijXunkwbHLZVPh8SyfxgGooy9PBSEX+ymyuxPYmjTlarYgO7oBQJUWjRk
+            BqkKns9KKNPyaUP/37tXJA8Gvgog/Z9JKDT28lq5noe6CAeHbBbUUo4hZZA14zcD
+            /Lmkc03KdOKf/eLnEFGtoWjQJ38FD5+uAh5Zkixm1WW0wV/PdqevJrG8mRjn8FuP
+            6GU+nWo+77BxDyKvA1O13iOtTnGZtg/Z+lXVUbpcM8F7QCGrabhLiWVe51iWjYfU
+            /Ub7HZHRDXmiz7Q6Kem5Wleoy3ME/lxFblx9v0LbO3Dc0lj/85EVNm9os8tt5PD0
+            cvGE/cGsZfUfgwbjEVpPnRN0SzlQKfEr9KVQP4DGNAqDOzEl2AD4Dg3l29oAgSda
+            ZRXdYbEN/ZIAGUg1wNVfZJf2KoJA+wm8c4uk7KAAI0+bIeaongovU4vnylVCHIbS
+            XgGDxEIDZGOueHms+xEMIW6QmdazFdkaLumY0XrEInHMwqhKM0NOyZL2zd/liZtE
+            wb8xm/V+eOWhjnE2RynNBCwMI6VeVYUPkin2MKQcq+nr7SVpWQsm2+Jbj5YtWCk=
+            =yKiR
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

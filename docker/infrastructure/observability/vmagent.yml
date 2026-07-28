@@ -1,0 +1,22 @@
+# vmagent scrape config for the docker host.
+# Scrapes the two local collectors, forwards everything to the central
+# VictoriaMetrics via the LAN-only Caddy route vm-internal.lan (Caddy proxies
+# it to vmsingle-vm-victoria-metrics-k8s-stack.observability.svc.cluster.local:8428).
+
+scrape_configs:
+  - job_name: docker-host-node
+    static_configs:
+      - targets:
+          - localhost:9100
+        labels:
+          # Distinguishes the docker host from K8s nodes in dashboards/alerts.
+          instance_source: docker-host
+          host: docker-r740
+
+  - job_name: docker-host-cadvisor
+    static_configs:
+      - targets:
+          - localhost:8080
+        labels:
+          instance_source: docker-host
+          host: docker-r740

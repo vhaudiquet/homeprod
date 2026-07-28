@@ -1,0 +1,65 @@
+# Loki single-binary Helm values
+# SOPS-encrypted before commit (per .sops.yaml rules).
+# Uses the new chart-v18 "Monolithic" deployment mode (SingleBinary mode is
+# deprecated in Loki 4 / chart >=18.x). Bundles storage on a Longhorn PVC —
+# no minio, no gateway. Resource-light; tuned for a 2-node home cluster.
+loki:
+    deploymentMode: Monolithic
+    monolithic:
+        persistence:
+            storageClassName: longhorn
+            accessModes:
+                - ReadWriteOnce
+            size: 10Gi
+        resources:
+            requests:
+                cpu: 100m
+                memory: 256Mi
+            limits:
+                cpu: "1"
+                memory: 1Gi
+# 7d log retention (user can tune later).
+limitsConfig:
+    retention_period: 7d
+# Disable subcharts we don't need in monolithic mode.
+test:
+    enabled: false
+# Single binary only — disable distributed components.
+backend:
+    replicas: 0
+read:
+    replicas: 0
+write:
+    replicas: 0
+singleBinary:
+    replicas: 0
+gateway:
+    enabled: false
+minio:
+    enabled: false
+sops:
+    lastmodified: "2026-07-28T13:46:53Z"
+    mac: ENC[AES256_GCM,data:bk1sxO2qIY/FT3+9dTCfpxKBbb9NlyEfTFuUihURUA/AmMJHV4XOx4EaBK6YFbSOVCLny5/aDbUDfF5DMudZTvKMNyU5sWq4X3+6BBZaL3vHSw2+UTA8pdpkNYpLl4uDq5aDFvAN2v/f/XwOpMIEte1L+yi7Rl96hq3Is9TYxjg=,iv:0Ayu7eiEVRAml+SycHWgmmP+rf4fZxhXAALor6d01rI=,tag:+aVf2mehHqak3K5xOHSJCA==,type:str]
+    pgp:
+        - created_at: "2026-07-28T13:46:53Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//cYdDJn/PZWg3nx7eNeHjByT8kpYiTgi28Hbx0MmaR5Dd
+            koqKVn47tSO8UkoIYkJ2uoImBJMmIqSLg5XjIhleUmSrZnrCLm0zhdgljMnkphME
+            N9NYHc2gd65inztRDoZi12zxeDdPLcSo1tKPBvIQi33tWODbT6E8TJ4YGKBEv1+X
+            NggSqgADxmYevrVYrzJtHCf7o369CUjHUedSkGPDEk7ZNKimb2kEdi4qKV+QFiX7
+            y4iyqgeEepTjmloXSF6diC1F4cak96MqsNeIpiJLU5L1vWGGvb5J9znijpgqL6eX
+            aompNyrpUrwrF2dbsfb32o/AW4FjdJsC+7RfLPWs9qBneoUtU7LPisZpN+xQ9kgt
+            cx0CVY966y/0WTPm3coIhzO90fzL1kAn7+Bl5W5WhMBFRGDq7K0oqYcgdQmcr45o
+            yegnYxV4uO6Vgf9NV9zEqCvq+UqRZUwJhQSdmaPkvWQDhx91y7lca0WP90xwYMhN
+            jUvhHVcpZ7b++sbxNnvbhmnBBkAlwesQHVc85WSvok4kb3KpM1wju/j0KmOP2/lb
+            YazrzeXu47diSttopRU+JphtUQyuOdTqQ+k5x/1gt7qd8R4IbfKAFMKWPC/KLBnH
+            d4UIwa+ln/lWhhuR+/PxaPZrXGlm5SidM3r2SlH+1iGJfRzq1USaeEn9Vfp6OVvS
+            XgFZngqHN4Wv9zdT71EUGeixMz142maTlcPBM1OnHgiIkf3gLoInizU1VrZz/f8s
+            OOB4rHLwFjqj//Lze896q0kaWtnvZOuKdvTRsE7ep8VqAG2pVKwzcpINqnyTZss=
+            =ww9K
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2
