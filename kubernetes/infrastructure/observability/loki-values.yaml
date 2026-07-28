@@ -1,10 +1,34 @@
-# Loki single-binary Helm values
-# SOPS-encrypted before commit (per .sops.yaml rules).
-# Uses the new chart-v18 "Monolithic" deployment mode (SingleBinary mode is
-# deprecated in Loki 4 / chart >=18.x). Bundles storage on a Longhorn PVC —
-# no minio, no gateway. Resource-light; tuned for a 2-node home cluster.
+# Loki Helm values
+# Uses Monolithic deployment mode with filesystem storage on a Longhorn PVC.
 loki:
     deploymentMode: Monolithic
+    # Filesystem storage — chunks + rules on the PVC. The chart v18 requires
+    # an explicit loki.storage block; without it the workload template errors
+    # with "Please define loki.storage.bucketNames.chunks".
+    storage:
+        type: filesystem
+        filesystem:
+            chunks_directory: /var/loki/chunks
+            rules_directory: /var/loki/rules
+    # Required schema config. tsdb store + filesystem object store, schema v13.
+    # See https://grafana.com/docs/loki/latest/operations/storage/schema/.
+    schemaConfig:
+        configs:
+            - from: 2024-04-01T00:00:00Z
+              store: tsdb
+              object_store: filesystem
+              schema: v13
+              index:
+                prefix: index_
+                period: 24h
+    # For monolithic mode, point tsdb_shipper at the local store (no index gateway).
+    storage_config:
+        tsdb_shipper:
+            active_index_directory: /var/loki/index
+            cache_location: /var/loki/index-cache
+        filesystem:
+            chunks_directory: /var/loki/chunks
+            rules_directory: /var/loki/rules
     monolithic:
         persistence:
             storageClassName: longhorn
@@ -21,10 +45,9 @@ loki:
 # 7d log retention (user can tune later).
 limitsConfig:
     retention_period: 7d
-# Disable subcharts we don't need in monolithic mode.
+# Disable distributed components + gateway + minio (monolithic only).
 test:
     enabled: false
-# Single binary only — disable distributed components.
 backend:
     replicas: 0
 read:
@@ -38,27 +61,27 @@ gateway:
 minio:
     enabled: false
 sops:
-    lastmodified: "2026-07-28T13:46:53Z"
-    mac: ENC[AES256_GCM,data:bk1sxO2qIY/FT3+9dTCfpxKBbb9NlyEfTFuUihURUA/AmMJHV4XOx4EaBK6YFbSOVCLny5/aDbUDfF5DMudZTvKMNyU5sWq4X3+6BBZaL3vHSw2+UTA8pdpkNYpLl4uDq5aDFvAN2v/f/XwOpMIEte1L+yi7Rl96hq3Is9TYxjg=,iv:0Ayu7eiEVRAml+SycHWgmmP+rf4fZxhXAALor6d01rI=,tag:+aVf2mehHqak3K5xOHSJCA==,type:str]
+    lastmodified: "2026-07-28T16:09:30Z"
+    mac: ENC[AES256_GCM,data:phQ6t8rBVG5rdOR3H4GEWJHiCU1rj0MOzjp2jn2nneOUbbclyn4L4ga7YHOuoce0HEEMWniWxchT2eB0BZM3gtOd3yyBq3z3vTQKI12TsTzQSXxm+AgM4DL855BhPrFJCNZYeXb6IAGVkcRK/N7ihuGWiZORBsPaIcYseW9kjf4=,iv:wNIkcPRr1d79odGsT+yJJ+zqlUVTtqj8c/YkbhqOQjA=,tag:LSXyM6QiCM9qoit++nUkBw==,type:str]
     pgp:
-        - created_at: "2026-07-28T13:46:53Z"
+        - created_at: "2026-07-28T16:09:30Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//cYdDJn/PZWg3nx7eNeHjByT8kpYiTgi28Hbx0MmaR5Dd
-            koqKVn47tSO8UkoIYkJ2uoImBJMmIqSLg5XjIhleUmSrZnrCLm0zhdgljMnkphME
-            N9NYHc2gd65inztRDoZi12zxeDdPLcSo1tKPBvIQi33tWODbT6E8TJ4YGKBEv1+X
-            NggSqgADxmYevrVYrzJtHCf7o369CUjHUedSkGPDEk7ZNKimb2kEdi4qKV+QFiX7
-            y4iyqgeEepTjmloXSF6diC1F4cak96MqsNeIpiJLU5L1vWGGvb5J9znijpgqL6eX
-            aompNyrpUrwrF2dbsfb32o/AW4FjdJsC+7RfLPWs9qBneoUtU7LPisZpN+xQ9kgt
-            cx0CVY966y/0WTPm3coIhzO90fzL1kAn7+Bl5W5WhMBFRGDq7K0oqYcgdQmcr45o
-            yegnYxV4uO6Vgf9NV9zEqCvq+UqRZUwJhQSdmaPkvWQDhx91y7lca0WP90xwYMhN
-            jUvhHVcpZ7b++sbxNnvbhmnBBkAlwesQHVc85WSvok4kb3KpM1wju/j0KmOP2/lb
-            YazrzeXu47diSttopRU+JphtUQyuOdTqQ+k5x/1gt7qd8R4IbfKAFMKWPC/KLBnH
-            d4UIwa+ln/lWhhuR+/PxaPZrXGlm5SidM3r2SlH+1iGJfRzq1USaeEn9Vfp6OVvS
-            XgFZngqHN4Wv9zdT71EUGeixMz142maTlcPBM1OnHgiIkf3gLoInizU1VrZz/f8s
-            OOB4rHLwFjqj//Lze896q0kaWtnvZOuKdvTRsE7ep8VqAG2pVKwzcpINqnyTZss=
-            =ww9K
+            hQILA7uy4qQr71wiAQ/3c4Q36xa3tNPub4HCEUmJwK7Nmhdrg+sihZYR/TOHuDuV
+            sY3GX+HwaRaMh4rOiJpCDa9E3qJY+qh9Wf+rgq+vaL9hmfNBlC+2q2xGv2u6FdiN
+            xXE501qBbZjyNm/9fVAnCxbTBZP2mkRgdzMHfK2dnhIcL0/5LK7NAu+PsMQ0J8uq
+            J5JYCqQTp/bfoRi8O4YXJD38u5d0UyEIy7HImKSn21za6CUErHEgdOTGUzw+UTH9
+            kYHQykiBVML6bpp3YkqIquBm1tDzNuPvKSynnswJS5DQnGwsWVmESA3Rgfes2doe
+            4d2f4Bso8+1+BRgbPkmp2c3/GdNFeUjjj6ViRar1bX2Bmt/ODLjoxAriRzS5ChRe
+            MBJkKcW1hWotQE1IZgYC8A2I4dvDAbjeTwWmyJW7T1NV0er2rDd8TC9aQfhOPSeh
+            mXdF18PXSmonmAdCj8Fu6Zfd6kcMQUQdI5L3BLRAQNs6+0r/tNjPH8vgYQtRWtxO
+            acguClDwTrMwGM33HiBAYpoZ4hpCk43PRDNf0o2JkDy8tr3uTeBkmHPIA80UsIi8
+            /YmrLzzaF0TaN7OvDLbw/5HUR1R2Wt2Mc3GnTdJIxMogqcw+jO86cNm2v7FJX5v1
+            wG4ocHbrbfH1lcte3ZW8E5z3evuUeXVgUTL7dRHdNWmfL3HUnBlX+H+z7qWoNdJc
+            AUhXpEvLTZ0LkA0ZMi749sUcL9cLsXkKJhAPbiF/3ytc7tLc40QsTY53uuqGPU/8
+            LVVX7jUjqBrmeUENYj3zSN3kxcI1OX/qzHdTQ0LFSPPUrCEPtE8hWJrLaUE=
+            =Nr2M
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

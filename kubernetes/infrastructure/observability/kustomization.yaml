@@ -11,7 +11,6 @@ resources:
   - alloy-release.yaml
   - vmalert-rules.yaml
   - alloy-config.yaml
-  - alertmanager-config.yaml
   - vm-internal-ingress.yaml
   - loki-internal-ingress.yaml
 secretGenerator:
