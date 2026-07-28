@@ -33,11 +33,11 @@ vmagent:
         selectAllByDefault: true
         scrapeInterval: 20s
         tolerations:
-            - key: ENC[AES256_GCM,data:5DBp0fPnVYyX,iv:BGtxkvDHxjVaRZbnH5esSpWs+krJlkXDoGPHZ3fmpSE=,tag:5tuw2/B7Sru3xxep/Rj1cw==,type:str]
-              value: ENC[AES256_GCM,data:6I45YT4WEts=,iv:u1kUaM/4v5Aw/RSjvffKJ3MWBrOvJ3GUnK2JWJaY6yM=,tag:WNvjO4QYm5uqTTLx905HEQ==,type:str]
+            - key: ENC[AES256_GCM,data:p5wXFYrKgl5m,iv:fLk95ZTQFGbEGqLHvbf28D/0y8xYXW54U6GovnGW6yE=,tag:OeKKhGkkdSmWk2dN+a4u8g==,type:str]
+              value: ENC[AES256_GCM,data:ZIfocZ/TDf0=,iv:cLDyrqcPMpB31YlilwATny/gSl0JTm+Y+JIz7zLom7k=,tag:3r4mEkloOUaFLYK5Fsh7fw==,type:str]
               operator: Equal
               effect: NoSchedule
-            - key: ENC[AES256_GCM,data:3oTjA4tZt+JSHQoP8Oa8zVjzL1Nt5TBqB6Lr2q4y4hxniGWvtg==,iv:3zCNYPib953OJ4vynI8kWb5wr8tTm2Jtq5GNsV+Xy3Y=,tag:ie4TmhQZA5M6x5wcxuiRTQ==,type:str]
+            - key: ENC[AES256_GCM,data:s3T0ERPTJrLu8LsPXvbZymaUQVFCWEKgUAO/EBM9oC0uYiQglg==,iv:rCvUYD4UGOxxs7/0OALejgJcQCIP33gwkoqzkh9gsZs=,tag:tf6HYI+gQjhlAn9uChxHuw==,type:str]
               operator: Exists
               effect: NoSchedule
 # ---------------------------------------------------------------------------
@@ -60,20 +60,20 @@ grafana:
         size: 5Gi
     adminUser: admin
     # SOPS encrypts this when the file is processed.
-    adminPassword: ENC[AES256_GCM,data:Uz3XzmG4sMyr3KeGab8mMzURfPSD+w==,iv:AqeXRhkLK9Ld599fyvXq6kkPxzFOGtWJIHCbWlqig0k=,tag:L48h8xb+iplaCa2e9yawfg==,type:str]
+    adminPassword: ENC[AES256_GCM,data:rjPnl/0NyMwC86rUwfpRG5wFtxrHWQ==,iv:LSRbGZjURvIMjmNKR28e9rfL3jo3ZsiW8Ozb84jWN8w=,tag:3YR7KETC1lO87eMyNn3HxQ==,type:str]
     # Provision a Loki datasource alongside the chart's default VictoriaMetrics
     # datasource so metric/log correlation works in one UI.
     datasources:
         datasources.yaml:
-            apiVersion: ENC[AES256_GCM,data:jA==,iv:rpFw7Sk5ThPCllX1feOQnLnHV7ZA4EKTO0Cm6azvVFc=,tag:jYPYL5FY8VLUv+cXl9N5Qg==,type:int]
+            apiVersion: ENC[AES256_GCM,data:dg==,iv:m6BuMFw4upbygkDeLvwI8NmYpYn+NatKh6lgxrS2UBs=,tag:f0ULmfZ93jovnjvaq7zKmQ==,type:int]
             datasources:
-                - name: ENC[AES256_GCM,data:0BZ7uw==,iv:ggpajZxObJrc3jSMLFVJO60/6sZjdduGT4R2IwojGuM=,tag:kIT1dgnfmQagEUqHzvv6qw==,type:str]
-                  type: ENC[AES256_GCM,data:7ozGiw==,iv:fAidTjPWFBnLzach+7Y3z0ftd4hXuE8uCg15Ggl3eJE=,tag:3alEggHcBOibye7FH3Rzcg==,type:str]
-                  url: ENC[AES256_GCM,data:zXAzdCQhS6J5LBuidX9hVS6l5sYoaPg2s5NxigJo5B4oZEY13DLTrQH2ywt8SVQl,iv:HebXL7GfMeK93oSzlUZvUZm4Sy9lfFqnSugfzzTLHwA=,tag:RQqF74Xa8eovP8YLl/Vjhg==,type:str]
-                  access: ENC[AES256_GCM,data:5NoiZFo=,iv:qGn8TMfhwpA2QV6E9BgiEOU+qierJlOm7oPXc8dea4A=,tag:pgXhCiX/7TrM8cnEhgN9YA==,type:str]
-                  isDefault: ENC[AES256_GCM,data:RPVCFe0=,iv:kDTdl9Th4vpdn6GH/N3+wdeV9hAxQg0hC8SLyj+mvyw=,tag:dw3ouN8HZ9yHNBsSdwPPvA==,type:bool]
+                - name: ENC[AES256_GCM,data:Wm/M5A==,iv:7SvYjrolqbLMpIQgfOHl4lkH4gTj7SAzZX+AuoNZe8w=,tag:SDuPA6OAgsf14QA7adRUrg==,type:str]
+                  type: ENC[AES256_GCM,data:yGr8tg==,iv:Twm/5k0nOIfxkzFcu+0x6cCmrqW9+fcCIngS3SBJwpY=,tag:xJmtgiNK9qZ4PjB9eInK3w==,type:str]
+                  url: ENC[AES256_GCM,data:RAXXmqxnh6fTBRhUckWqjfU0//R4HFe7ncX9IVxpcFCHRJBnFPQzpNOQ3so5eXLG,iv:DdeMsHUGeZn4OajvfkOvJu3ssXVS48VeuwsmuxC15Uw=,tag:u8LK4fzFLduEZOaLQu1ENA==,type:str]
+                  access: ENC[AES256_GCM,data:XYMbfTU=,iv:nJaI1lpKz8LQZZyUoviMDSCYz5kX2MScx8dQ3Rs1cFQ=,tag:IaGW2VjemZDDe8NtA2SxkA==,type:str]
+                  isDefault: ENC[AES256_GCM,data:qL0tZQY=,iv:zYhc1v5qjvhZki0mp1BzJHOhLirdWuGmwUm9U+kX5E0=,tag:4dMBF3cKylisTpsSZyJlrA==,type:bool]
                   jsonData:
-                    maxLines: ENC[AES256_GCM,data:DD1hcw==,iv:liPXxvyrNu8NR6e9GFHto8LDNqG03GjYZP2hY+90rTg=,tag:eW+iejjRuAxOltXN6cz/+g==,type:int]
+                    maxLines: ENC[AES256_GCM,data:ozoVNw==,iv:xgfS63l48wi/hWXqsCqoKh2QWveSZFkLvW717i5tEK4=,tag:HDfwHIFJ3HsCqPttMEzMUg==,type:int]
     ingress:
         enabled: true
         ingressClassName: traefik
@@ -138,28 +138,59 @@ alertmanager:
               webhook_configs:
                 - url: http://n8n.lan/webhook/observability-alert
                   send_resolved: true
+extraRules:
+    node-alerts:
+        groups:
+            - name: node
+              rules:
+                - alert: HighNodeCPU
+                  expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+                  for: 10m
+                  labels:
+                    severity: warning
+                  annotations:
+                    summary: High CPU on {{ $labels.instance }}
+                    description: CPU usage above 80% for 10 minutes.
+                - alert: HighNodeRAM
+                  expr: 100 - ((node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100) > 85
+                  for: 10m
+                  labels:
+                    severity: warning
+                  annotations:
+                    summary: High RAM on {{ $labels.instance }}
+                    description: RAM usage above 85% for 10 minutes.
+                - alert: LowDiskSpace
+                  expr: |
+                    100 - ((node_filesystem_avail_bytes{mountpoint!~"/run.*|/var/lib/docker.*"} /
+                            node_filesystem_size_bytes{mountpoint!~"/run.*|/var/lib/docker.*"}) * 100) > 85
+                  for: 10m
+                  labels:
+                    severity: warning
+                  annotations:
+                    summary: Low disk space on {{ $labels.instance }} {{ $labels.mountpoint }}
+                    description: Disk usage above 85% for 10 minutes.
 sops:
-    lastmodified: "2026-07-28T16:09:30Z"
-    mac: ENC[AES256_GCM,data:otB8gmzb52RyF8D3sk2OafpDBeoDCn3yd7gV/MpcD5Ib3vz0uyQxDgArfIfec75Ma+ttUBKnrIiIDjIiwqaufxZCFP8cQBQ+lFkmFYyQ2i1+2yVxwopevnBq/AAtE+gyf3Xlu3U8YMvTtJJgufETtoRq3BqCm72NBkaJP+abHUg=,iv:/pLrWw/+eqPpeJmdwVaMy51QTUilBFrZ+FFiSASxRok=,tag:mCcfhs1lQVf+oAm7KJmqrw==,type:str]
+    lastmodified: "2026-07-28T16:25:59Z"
+    mac: ENC[AES256_GCM,data:XpZur78AoXUOajGBAnlZQ/mB0qJXcMp9tCzvxCY7AGvVZxvpg943WPEfFqRCHtqHexUEaSONG/u0H2vXrB8kR4PvFjMPsKkgwH0/6dROMXpTAhXk/n5gpLYW8v/YZU+vJGMXyoN74k87zGi8G1A5jdHXOvM0ruJxH/IUFRiaZR8=,iv:EhMJICuwLI1LJIc21V43GDCYNVd3A6ARe0HHB6i4EY8=,tag:MnJIrylw8z7re4+jEr13wg==,type:str]
     pgp:
-        - created_at: "2026-07-28T16:09:30Z"
+        - created_at: "2026-07-28T16:25:59Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//bRxO8eMLjEWlkKtPuDTux1JXnnNudvjlteGRTTCxejq+
-            qAzpNX74stIvxPoZRGEWw5lpyGAsTnh+8blGhGO8G9OXJER5BG+P6jylz90cHZct
-            /ky+GDigqwuqA5aO0hw5KZW4IqQlJqV1UUlMuW6GZl6TXChfXwCHX60/FI0x7eKZ
-            8q93VXO+CEQh1In9W8roZ6cRUjSG1MvDM43assafm+/169T+XXsxXvqDBMEWJOQq
-            8Dn7MdSQPbxeZgCz8KHtXWL1YgSHYKF/sQ/6490qtezGdjonYSOt4ALoSUqQr34d
-            D05VuGxnjWMa7GfxgLAUmF5NFy20lLF/67G4dS7tlkhg5g8jhXjN7jqQ1V+8qedE
-            RwQ2jL1KiODaiRYFoA2f3KiupFlezNhpYm0Ulg8E+mbDJihWDPsmHCTvUvk95LM1
-            DCPy6XSS/GDiTZjgTuO1/S/lplLS+v+Zt0V68d5XrQiJuI8XDgExCcvLYtIG4Hk8
-            lJ5CdsGIPFvYdqPz1c9zF6qAasgF5jECAO+OmJzgYugUBLd78U6r3bkmAmrT3jLM
-            g+dpSZx6A3htCzC4zLPiE54vFDSVzKNzm1yhDxRlU/z9r+aU44ZZvGlPQwvWp5JU
-            RO7X0IKQ1fAV71bZW16lwxoxfIHpKoJqQJI2xhNyC7VuBvTI6gG4rAzte0v1/G7S
-            XgGisRgEY3EHnpC20OFo2nx/7YinZadXekjMcxo/qpP2u/T6nKVY3sEGz9wzzhsJ
-            7jRNdjWwrEOoZnsHVkeCz8hevoHf+kGaz+ji0ld1DisY8bCPNXSZPkGBuiA9VEQ=
-            =CWsw
+            hQIMA7uy4qQr71wiAQ/6A6VVvTWAXZTaF+x6sG6KTj+GlqMVKESwG7Zg7YKjr1g+
+            Fn8QGcknpy+DcIBwL7UXxLYoPA7U7PETsvE4VpWBgLdVpdWUI8YYJU+pulvJs5W1
+            tDelmM8C9Dc6LASoyoZbncfsXuCFFCcFj1z3M8IUr3Yq9BMMNucgEzG1X3bV5Cti
+            VJhHD8O3HEg9DQHa0pGPvm9hyCtYbktl8K2gWnBdnfA39u3JbpjTeUTiEzXxht8j
+            2tMQ2BW1KyJJdgH5kXqP/q6n+ULUmCNsgYSezDebIDV8+LET22LTmEerKSO/GO48
+            GgMbtOmEYnlaIJ7bUjJLoBBhYYFJBuHYTCvgs+FKTwQcZUenghWSQvvk2Vn+5Ycz
+            aeb5cWYG64qoi4qPoufBfQ65VeLWTJrqKFAGjPfPoGiulnEaWraSlnThOemsYjaS
+            Y+mheG2KkP75wZyzTuf0MtXie90uPd0w9gmsrzpEIB+z4hrrjX+SkrtehPOpq7jr
+            OXu/3BJKdY8wHxUGmlymBHMQQyV/EooGsegO+meHfZOHcIShtL0AN7x4EzK0/Ef7
+            m0sEHKbPrqgBd/A9lw9lG4Q/EYPK5/e44O0xccbruP+MHwWVSbwxPBovEhiEesil
+            SPHwjntaniNQy+sfLNaNeV3OOdOgiWd+KhWYaRHTHEfP6evaK6vTlTcG7iStM2LS
+            XgHTiGg7iODwnoNDX5lykgMWRI77Red4OWW6tq/8LOGSlw0I+beYIqPN6kU3UA3D
+            pdW4qan2jHJ3QJ0XEukz8u3CnntjLbG/saLsfB3XV0ylksC2eqe/t5yI0pvBi8c=
+            =Jhru
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

@@ -9,7 +9,6 @@ resources:
   - vmstack-release.yaml
   - loki-release.yaml
   - alloy-release.yaml
-  - vmalert-rules.yaml
   - alloy-config.yaml
   - vm-internal-ingress.yaml
   - loki-internal-ingress.yaml
