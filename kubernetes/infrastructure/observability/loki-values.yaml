@@ -2,9 +2,7 @@
 # Uses Monolithic deployment mode with filesystem storage on a Longhorn PVC.
 loki:
     deploymentMode: Monolithic
-    # Filesystem storage — chunks + rules on the PVC. The chart v18 requires
-    # an explicit loki.storage block; without it the workload template errors
-    # with "Please define loki.storage.bucketNames.chunks".
+    # Filesystem storage — chunks + rules on the PVC.
     storage:
         type: filesystem
         filesystem:
@@ -14,7 +12,7 @@ loki:
     # See https://grafana.com/docs/loki/latest/operations/storage/schema/.
     schemaConfig:
         configs:
-            - from: 2024-04-01T00:00:00Z
+            - from: "2024-04-01"
               store: tsdb
               object_store: filesystem
               schema: v13
@@ -61,27 +59,27 @@ gateway:
 minio:
     enabled: false
 sops:
-    lastmodified: "2026-07-28T16:09:30Z"
-    mac: ENC[AES256_GCM,data:phQ6t8rBVG5rdOR3H4GEWJHiCU1rj0MOzjp2jn2nneOUbbclyn4L4ga7YHOuoce0HEEMWniWxchT2eB0BZM3gtOd3yyBq3z3vTQKI12TsTzQSXxm+AgM4DL855BhPrFJCNZYeXb6IAGVkcRK/N7ihuGWiZORBsPaIcYseW9kjf4=,iv:wNIkcPRr1d79odGsT+yJJ+zqlUVTtqj8c/YkbhqOQjA=,tag:LSXyM6QiCM9qoit++nUkBw==,type:str]
+    lastmodified: "2026-07-31T09:02:04Z"
+    mac: ENC[AES256_GCM,data:adBJ8Mhbup41NWKu1j7HyIUNfIaoeGEObKwRjfpyUWwbcf6NWmgL0PXGKXABeJV3PpgCWJcrnliHCqSvXpRhOXzMpvYBchyQfEYVa+Qaw/TSGVSnbERs4dWB9Zdr8ODw2xCd6pxu55gy97n+TDAGsbIARvOBOyd3dRoA0re61+o=,iv:z4g+unN3hX2gdG/DbUfnLNW7qgUqKDBSLx8WqDnuw7M=,tag:4DftMiKWLTQxIROzirRhZA==,type:str]
     pgp:
-        - created_at: "2026-07-28T16:09:30Z"
+        - created_at: "2026-07-31T09:02:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQILA7uy4qQr71wiAQ/3c4Q36xa3tNPub4HCEUmJwK7Nmhdrg+sihZYR/TOHuDuV
-            sY3GX+HwaRaMh4rOiJpCDa9E3qJY+qh9Wf+rgq+vaL9hmfNBlC+2q2xGv2u6FdiN
-            xXE501qBbZjyNm/9fVAnCxbTBZP2mkRgdzMHfK2dnhIcL0/5LK7NAu+PsMQ0J8uq
-            J5JYCqQTp/bfoRi8O4YXJD38u5d0UyEIy7HImKSn21za6CUErHEgdOTGUzw+UTH9
-            kYHQykiBVML6bpp3YkqIquBm1tDzNuPvKSynnswJS5DQnGwsWVmESA3Rgfes2doe
-            4d2f4Bso8+1+BRgbPkmp2c3/GdNFeUjjj6ViRar1bX2Bmt/ODLjoxAriRzS5ChRe
-            MBJkKcW1hWotQE1IZgYC8A2I4dvDAbjeTwWmyJW7T1NV0er2rDd8TC9aQfhOPSeh
-            mXdF18PXSmonmAdCj8Fu6Zfd6kcMQUQdI5L3BLRAQNs6+0r/tNjPH8vgYQtRWtxO
-            acguClDwTrMwGM33HiBAYpoZ4hpCk43PRDNf0o2JkDy8tr3uTeBkmHPIA80UsIi8
-            /YmrLzzaF0TaN7OvDLbw/5HUR1R2Wt2Mc3GnTdJIxMogqcw+jO86cNm2v7FJX5v1
-            wG4ocHbrbfH1lcte3ZW8E5z3evuUeXVgUTL7dRHdNWmfL3HUnBlX+H+z7qWoNdJc
-            AUhXpEvLTZ0LkA0ZMi749sUcL9cLsXkKJhAPbiF/3ytc7tLc40QsTY53uuqGPU/8
-            LVVX7jUjqBrmeUENYj3zSN3kxcI1OX/qzHdTQ0LFSPPUrCEPtE8hWJrLaUE=
-            =Nr2M
+            hQIMA7uy4qQr71wiAQ//UoJ+l8GIYYUdUdpYzKuSSZMq6D2H9D0lar0j0fTPXE8N
+            yQqEKt9PgilSNQWvW/6MBn2TjlJSX4cPztb/LD1FdADZlHmQqlSt7gySx5Yibzcs
+            HAdXpWpYkju4nQvwySIS+rVENYntcs5pBQJHsQ9hvCHgZhS3ObAjCwTKAOtwnGa/
+            KW2V6YWzNqLnfzokgxw95kZmc7aUZ9w/tJPioZu8sd5crrkd4Nyz32e+OlIbTGIJ
+            p22g6oHAyQ8O0MRR9wGjg+JE+KpVqt4kZCcJzjD3aFO4DPHIEqgsLDHWBBCwVN9l
+            oINwPhJ3FG2ETGZAsz9aJl3ZVR74Y77ozle1VK3wR6sKdwxpvElHT3PVkfu12qGQ
+            FVqESR37eEihc25yR3aooxsSGfQ0sMYBlabbnmVja/Fz7ZHf/H/rp8ETthm7j8Dt
+            4IDOzDYvc24BoGhR+Zwph8EZqAUsB5bEad6wiV6Kry2Te/UhTpJsDNk8k0/HSjr/
+            T/LhKs7FX8s7+Bfd+lqqTuQBOuBkm+HD8FRCp7IGAxwXcNpO/EKHEhRcRWcpssz/
+            y0urGcMjuTMth3EVfUnefKEONGyUv7+nD7vNPKqIjuz1CAQlPV2OUGHJ2NHrtM0M
+            ra1gzKi+JN2+88NIPQe+32qX6AO53F1Gm05V8WVUctVNsL7FvqaTw4bQ5tnheqTS
+            XgHFLzuhrnZrjaNbZ2+ZNu5uCm/iUBaxfgA4jpQKW8iK8y0DWJl2mlbK2mmSDtTd
+            25fptd/h5VHxHoL+EvOHORrw7XWHlnVvrbgwIQKuXuRomliOfvfKoYyJCs5dXbE=
+            =Hxd8
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
