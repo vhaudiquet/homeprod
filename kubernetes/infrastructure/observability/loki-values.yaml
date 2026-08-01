@@ -24,9 +24,6 @@ loki:
         tsdb_shipper:
             active_index_directory: /var/loki/index
             cache_location: /var/loki/index-cache
-        filesystem:
-            chunks_directory: /var/loki/chunks
-            rules_directory: /var/loki/rules
     monolithic:
         persistence:
             storageClassName: longhorn
@@ -59,27 +56,27 @@ gateway:
 minio:
     enabled: false
 sops:
-    lastmodified: "2026-07-31T09:43:02Z"
-    mac: ENC[AES256_GCM,data:UpLILMOvXsgAcT4HkpYBYyYrLKPQeypQlJlGHzXU+7IE+Y1cWR17NPEwJZack17HMC/2c0IrlRBJtwreHULHqADrx34aQoTHN8cxRpr+XYfszx3o0CSm+Lwo2HupFmE1b6SA8KnV6C9Qqn/Wqvde7bFVaHYenvXxoLvnLOBIYQg=,iv:KBySVRbz5JpzO+8RN+YCR2UkpJ68bWhbRIL74kmMDNQ=,tag:hFW618Zc6oHVIcnkc/yqCw==,type:str]
+    lastmodified: "2026-08-01T20:19:42Z"
+    mac: ENC[AES256_GCM,data:KYZQGIimeeOlt2lltCrKttLXzk2b7DOT8KNOhpeVqF/VNNcVxP7Srz6nCR5J7dI6wFSePspof5gNJEZlzP3EGJFQaGBf34hOGhHBUtlcscX8vj2JYmmJ85B+pylHjQNPHaXqLP4tAwIFfhcJi368K+GEAu8tztkxJKk7dtOOyrg=,iv:V24R3eSzW0edwPnPSSwEQqqSfiNrK6+ZyQ368xpJKhg=,tag:LmaMhhGwRIIG+SxTUJf5gQ==,type:str]
     pgp:
-        - created_at: "2026-07-31T09:43:02Z"
+        - created_at: "2026-08-01T20:19:42Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//cVvg8AJiO7KGD1IyPVccefmfj4KHj7x0mc2W1BW1ZaLj
-            NSOef8ajJsRHrzY+DldPzqAOy0MyRYfCJzTEkcKe2OwZTIwCp52erFR5PQy8VLpX
-            85nNnKiWto9k1TdSNPidIPLNLwq24Rc4nkT5j2XcezjVNr9dV0+aWJMXd8MmZBmT
-            kyDct+W2rbiMSQMmM5R+apVbDNwGAqxNBS58G1pNcj/F2cC4sRQfLzdN6zdQaQa0
-            50S76I8HbR1ZM6JWX6OkM0saH8BKigfcuYF6xZbfqSrwGzGXDpWRW/2lBwUKFFVo
-            6abp205VFAzFvIIx2h7jaFOeuJMy1+mcJS9Uz/8gIbP507z7RxgGZEw2dIMII/Uu
-            OQyIIQArJAa6a/cv4kQ4bypYLlTl3mJDT54VJePsmLG9ZYrtLoyI8Q9weAPiWnvZ
-            yjp8XfImYyhJoTBPrvs5dY8q9l9lbGE1/jkbqWIaV+p3rrYl3SU5YypTt+Lvwdcl
-            7hB0UQISF4BlDgC+3jvptJLoAPgjFkPkW9DmY3XBMJvwRogIApOnJBmxL+RciuuK
-            nrTPZ1kYmXiZQqxCZJ3VBt77P2bgQneEaJf98khfDAJ/su3kvLoK6DPsLxT1p4oc
-            O8Eqaz4t0dZFBP753YnoKEv4hDf3ySCcuBF1vsPn63ITbi1cgUKvKb44/D3dk3bS
-            XgE1/X9jh7smSRPeo+kuvWBSDHg/aQEwobhuK1wOUx2UGDYT00S/3jYNRsoam6CS
-            LbG9x5v6bGOysfJNpZ1LfCWIz6sP/n6SVEYFCUYkoQsNutNYd9Yz/1MblO7hW84=
-            =jcSy
+            hQIMA7uy4qQr71wiAQ/+PDeQtUHMysWOkTjqU8vNAl1IQzDrwHskeBmLXLI99kdc
+            hU0afTjzUbomFdMRGvf0QZrcFbnD5OHskw5KRleDbYxOp4aXjzX0RsqSe9elTFAj
+            ml4XG0UrEV4Ygi4mTNOGzmINaIjobcn0tQd6nZFPUUA//udBcHsczs9x9Rrf+YTv
+            XrUdNAhveRlowvbvfNrDIh1OsOgyWyHJEJsKiLbt2b7e47PKhhRQzET+bNwhXzTb
+            GMY/w3rVYPddqx1wi5HPtYlhL3emYlmMYLLi1ITr1fKvAsgGKSJpaGS6yu+YkyiB
+            AJHou+2aCUy1TVk8U/Ne9TSrhsV1AJSIbtr8+iyKAtSsSuodam0Pyzn59uqL4nNd
+            1S4Nkvm1UDYv97hmSQdAzTGs+Aql6HyB/Wyi+rkMZQ0fl7+hdX5/eEDYZzijD0Nu
+            Mqk1iFbTn/rXir71VRWNttycIM1PfGAOUmLoyOR+TrL5Ecy0Sx9yx2DS9DecnqtS
+            39YI6UNqiEYdvW8Y+XELSFI/B5cjw7C1A5S9tecUxoOIBGZZSeRQa2WDSWb1dYky
+            Rzvncoeemgjkp8CHQhSqrylB+I4s0Y1HMUWR/q0wxew9juNEIP8ZUkfKcueuCYlm
+            5ui/RaeYatMFo8hg+DrxEtQIkbBZ/ILss/QzyHZZG3RMq0i9s/PIn5yipVhOgorS
+            XAFEeOrVaKpN06LfNP7/HTI+D/5HJL++Twuyz9fwC2Eb5saIIB6gpywiICH8HcD5
+            MRmmhl18x2YU+JdmkAcWNfH5+JHVnx8o+D/y9JqeCf6sle/9LyToazJv58Tc
+            =2u7h
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
