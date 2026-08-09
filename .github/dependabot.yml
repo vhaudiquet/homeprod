@@ -64,3 +64,4 @@ updates:
       - "/kubernetes/system/longhorn"
       - "/kubernetes/utilities/dashy"
       - "/kubernetes/utilities/glance"
+      - "/kubernetes/utilities/open-webui"

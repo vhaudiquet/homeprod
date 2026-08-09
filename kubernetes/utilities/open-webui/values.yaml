@@ -1,0 +1,56 @@
+# Open WebUI
+ollama:
+    enabled: false
+pipelines:
+    enabled: false
+# Single replica is safe with the in-memory websocket manager and the default
+# local ChromaDB (SQLite-backed) vector store.
+# To scale (replicaCount > 1) later you MUST:
+#   1. Enable Redis: websocket.manager: redis + websocket.redis.enabled: true
+#   2. Switch VECTOR_DB to an external store (PGVector/Qdrant/Milvus) via
+#      extraEnvVars, or run ChromaDB as an HTTP server (CHROMA_HTTP_HOST).
+#   3. During updates, scale down to 1 replica first (concurrent migrations
+#      corrupt the DB).
+# See https://docs.openwebui.com/getting-started/advanced-topics/scaling/
+replicaCount: 1
+websocket:
+    enabled: true
+    manager: ""
+    redis:
+        enabled: false
+# LAN-only ingress, no TLS, openwebui.lan resolves via in-cluster CoreDNS
+ingress:
+    enabled: true
+    host: openwebui.lan
+    tls: false
+# Persistent data (SQLite DB, uploads, RAG docs) on Longhorn
+persistence:
+    enabled: true
+    storageClass: longhorn
+    size: 5Gi
+sops:
+    lastmodified: "2026-08-09T19:23:15Z"
+    mac: ENC[AES256_GCM,data:BS74SS60MGeihujGUxn9SyiLftwQfqQ25wonJGy8r/ojV9uL5ICfHzwD0Z7ryjB5cALLgD2QIkEtT8w6pJsrGanRbPeHfAozhE0gGoh+Y3EPNZvBiadJPQaNQUYlIxfX/dZ8fXk0zyAclAsf/ScTDmgpPCZ1wtn7d7Cffz4TUtg=,iv:4UDFBjSwnDinRHb2O+8SCVMPnNjmgh4pJifnckugnFk=,tag:hHvh7z220GO9E9v540wKEg==,type:str]
+    pgp:
+        - created_at: "2026-08-09T19:23:15Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//ZbFtyc+ajynBfOcHWOx3I9glq/nuYJEHoXI7zlbwthMk
+            1BEjpn4bkowWf+B/HiRGMPjQoXixwvvsEXoU/EnYduTN7sMJQV8mTjXIvwQTGx55
+            S2f0Mcn2066hLQ4Bi+zSTOrZECxB46LUU57Ij5xo9u1blT5mSLnKoTORDUgmhSB8
+            OrR51Wk3vdaLPjljQTXBMNytNFpSkAotrswP5S5nBQCNvhmU9gmMBCW/Pg1NWXt8
+            S2FkAxJmopLAg7qkZP1aAmdbSs+CQjlNluK7J+umpXKT5Nf4/6oyz8fZCOFA50BQ
+            JI+wVEJBpHD1v+x3IpYEWPuEBZgBZD89j2i51hbR4AOQesxFIcpNKdCItftPgS7f
+            MeTDZylBUNO/3hsl8nq9/DwtMeck5CqS09V1ifbSiXZn55vCdv3mSQWrVvhoXXXU
+            Eu0eD2qVxNPVlZYWNyk51p/uV6gcP8lqimldEmao7Lk/Z8xcSWD0yDXZeTBxT1Fs
+            KBEGkGPptwkvh1JtVeV2DsOzwwhJmv+HomSdeZqeJWtRwDLMW+fuEczxuXdYfxYe
+            5VSKkjqMcZAdvvbpmTKyfmbm2dI7eOURdoFJx9nLieQ8+nUMNgSYLZvBGBvGil8w
+            hsmH68rbdowhZyAtH+XF+3llG8M+zk9IxlqbOR2CW3v1O6N9aMG2oUFS+shPNMnS
+            UQFxPD8cZj8HrkoG2zxtw+UhlIAC5qlm3XAGHFLggsVGmv7VS1NupI971W+CxS6L
+            wXHr5epll9/3J+Ch9XbMsh34YJS7SVJYDbOWyp0AR4npDw==
+            =mf5/
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

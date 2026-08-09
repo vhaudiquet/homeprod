@@ -35,6 +35,7 @@ resources:
   # Utilities (generic content-agnostic tools)
   - utilities/dashy
   - utilities/glance
+  - utilities/open-webui
   # Production (public-facing websites/apps)
   - production/umami
   - production/vhaudiquet-fr
