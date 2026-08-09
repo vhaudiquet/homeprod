@@ -5,33 +5,36 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # System components
+  # System components (kubernetes platform machinery)
   - system/cilium # cilium IP pool is managed here
-  - system/blocky
-  - system/caddy
   - system/coredns
   - system/csi-driver-nfs
   - system/longhorn
   - system/external-dns
   - system/flux
-  - system/traefik
-  # Code
-  - code/gitea
-  - code/harbor
-  # Home
-  - home/home-assistant
-  - home/zigbee2mqtt
-  # Infrastructure
+  # Infrastructure (backbone services apps depend on)
   - infrastructure/authentik
   - infrastructure/mail/stalwart
   - infrastructure/observability
-  # Personal
-  - personal/linkwarden
-  - personal/notesnook
-  - personal/photoprism
-  # Production
+  - infrastructure/traefik
+  - infrastructure/caddy
+  - infrastructure/cert-manager
+  - infrastructure/cert-manager-issuer
+  - infrastructure/cert-manager-webhook-ovh
+  - infrastructure/network/blocky
+  # Dev (developer platform)
+  - dev/gitea
+  - dev/harbor
+  # Home (home automation)
+  - home/home-assistant
+  - home/zigbee2mqtt
+  # Personal (apps storing my own content, grouped by content type)
+  - personal/media/photoprism
+  - personal/notes/notesnook
+  - personal/bookmarks/linkwarden
+  # Utilities (generic content-agnostic tools)
+  - utilities/dashy
+  - utilities/glance
+  # Production (public-facing websites/apps)
   - production/umami
   - production/vhaudiquet-fr
-  # Tools
-  - tools/dashy
-  - tools/glance

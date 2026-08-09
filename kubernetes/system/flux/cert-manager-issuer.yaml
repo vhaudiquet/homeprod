@@ -11,7 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: homeprod
-  path: ./kubernetes/system/cert-manager-issuer
+  path: ./kubernetes/infrastructure/cert-manager-issuer
   dependsOn:
     - name: cert-manager
     - name: cert-manager-webhook-ovh
