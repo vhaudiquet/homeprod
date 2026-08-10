@@ -29,7 +29,6 @@ resource "proxmox_virtual_environment_vm" "kube" {
 
   memory {
     dedicated = 32768
-    floating = 22222
   }
 
   boot_order = ["scsi0", "ide0"]
