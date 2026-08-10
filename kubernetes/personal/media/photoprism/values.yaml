@@ -13,7 +13,7 @@ ingress:
     main:
         enabled: true
         hosts:
-            - host: photoprism.lan
+            - host: photos.vhaudiquet.fr
               paths:
                 - path: /
 env:
@@ -22,6 +22,7 @@ env:
     PHOTOPRISM_STORAGE_PATH: /photoprism/storage
     PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
     PHOTOPRISM_ORIGINALS_LIMIT: 50000
+    PHOTOPRISM_SITE_URL: https://photos.vhaudiquet.fr
     TZ: Europe/Paris
 persistence:
     config:
@@ -43,27 +44,27 @@ mariadb:
         repository: bitnamilegacy/mariadb
         tag: 12.0.2-debian-12-r0
 sops:
-    lastmodified: "2026-08-10T20:52:47Z"
-    mac: ENC[AES256_GCM,data:XmAZDN8ejFDtXVbjdFMivKr/BrWlk9hj5h2RTjO1CVXnLx2pc30GK0d1g5f17967bW6Wn9hEtS202fBJjN2mhVdKs6nFOE6MFXk6Pv2b0oqJCX9eWor6j74mhTWJA8tFjp6DD++GMoRkMY4wQ2HF0a0SpxgchELDg20J0sJmNPQ=,iv:Mx7Yrks89v6ErkIXsFDWviS2j5Sy/QEg/tyiMoM7ku8=,tag:IBIrA4e+BGltAiAPzW8EaQ==,type:str]
+    lastmodified: "2026-08-10T21:40:34Z"
+    mac: ENC[AES256_GCM,data:9fLrU1YUBYHgMoIr9mfN9lQ0NyYuTBYfCpAQJ5nwmUiqHZK2HWFgSiacsjRaoCYBXDZh+Idr2JLkYJuZosvkdcZpVR29Nx9zOT+inJOtaKt0YYmuGJuHzB+PWEwFfAHzcckTxfG/40pgks73eo3/zaAivSllbm/C75O+EuW23tI=,iv:QPEBTTtfmLt1emlAiGVzLG4XdOn4BJ1fY+MXIrPzZnw=,tag:5GoVUdg14ocAntREM5PTHw==,type:str]
     pgp:
-        - created_at: "2026-08-10T20:52:47Z"
+        - created_at: "2026-08-10T21:40:34Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAqIPSpERoN/XXmXrwgOWywCdPIgU6n5wdM/x1FmpaxXDW
-            hH4LbOH2DW2G5ocYZ8XMsXtXXOnijS3mqcu6z2I5+gaPo4ZFX4pdVCD3txXY9vpF
-            XMai8GI3a47vn77rrBXMcuC1pU68NcnDqXdKKRCi2ZDhnO1s4cp9el/YO/zM82HI
-            nUmjaj9ZfvYM5pRmaay44OUw24yhyZ4nDr/cyvl0krHClSc3sNLHefoXtSiKAuGD
-            IK8P5QWTCzBMdtiIvjHdLVUE5u70r/D8IZH3xW+k38flSHMcJNHw8Co7WSaCZIo0
-            wyj6pZ6HuoQmqgksDdjZdraAoj616XH28qz7P8KdzyZHPdRMWFk2prm+wkxR31kv
-            7uw0YG+/M8uyFLR20LwB0ywktGjy4zXVE7XBpxsJdVnVUokhSeWHJdNDzFgFEu9J
-            N+2yqgE2oqcpLplsuYHa7rV1d92yHN4qlBfFEcodEflJlJVrY1zjttuDMxQCikf0
-            9mhki8GbHYfTw2yMoJQ2OQbmPASVQBzVVfw5iJJfnQ2K+7QFlf2KEuUcnDBBCKnu
-            rZd4CJuAoaC7Tef6+rdgXANaFBa2s9sL7Kcn2V8gq7LLXwhqyfL71UQqcNph5uub
-            WDxk7vE8qlk9PATDQay5hxWItZQD69PlGMUoQ+q4C+e6JtPV/bWRZybGcMBcrAHS
-            XgFptQ7SJPhL7duSfPqTJ3Ef4f35P5kU0sFNW/U5LSwkQKmC4iQDDdMXYKArsvY7
-            Db5RTRQutrXsioHICm9oEjGDPm8Wz/WVwYM0JbR6CSfwv0OGLco4s8kXGBDX74o=
-            =Y5CE
+            hQIMA7uy4qQr71wiAQ/+O4gdL6PIOHzvrg+cxNo/jX9wnAjn6hmfN9rHWBwOv5Nb
+            DwSAIU+N7snmSfkityJOoLFZ1M7HP/J+3GwLkAnQ9K8AY9S4iyFitokPgwPBvL2N
+            G8EFvvgXsS03jUWyfi9x99QXqvQ9F9D9x+vIWgvkWSWb+g/6Dv1gZsJnGCkEw2D2
+            ajzmhxrgJoyf0z6WGvP5rAyyWJ0mZmeCJ9Ow7Rg3Q94hQwlYe3z9/rLGhhX67dXn
+            dmqM/Cg07zUwp+wP+YeEtCjppdBHyN+soVz18kYvFhKhm+R/tVLjMNNPzF7d06S8
+            QQqBa7LqzlUUEC8aTTH2GBNkutWEfDGMhHoqI91LNTmhLoLjz9LpFAlUqYfxijuv
+            ZIjuCKxy6L+SjRoGn3uP5PamY89y0qz4FD9wBntn15IF/QrHQJoRt3ies6sAPbdw
+            83VJpFVozAXbkUjadz3CKiB5uUDn+TNLv+r9G4L6pGILVYmkazyBfHhfguQq09gU
+            YWP9b1AhshvU5g6oskNBHn/LH44D+UOeuU5pJ8aZZTrrOb5/YAuD3EHKzPM9R+bq
+            FMVa5LlOeEaYoF4KrfAzy+WEIEGR2V6xFZDLvFaI6wDL2dhIDZoy8kR2MD1F7Z8C
+            IrSbUCXFxc3YeGzZNgXurA1rOkSXF2gSrb41+UPBlGwF+58XIwLM7dOrbQaCdxDS
+            XAGUvrjLh0SkbHPdYW5Y9RS6M119CHVYXF4Znxrihh5ivv34ZaAHXr/asRHVLNPM
+            vQ6t/Fjhm/JMx0/a/SPa31Lxh0245sbUaqNtZwZDmtxX0Ow5UMDZTr/6i1rP
+            =Wtj1
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

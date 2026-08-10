@@ -35,6 +35,8 @@ data:
 
         @flux-wh     host flux-webhook.vhaudiquet.fr
 
+        @photos      host photos.vhaudiquet.fr
+
         @umami       host umami.vhaudiquet.fr
 
         handle @authentik {
@@ -56,6 +58,9 @@ data:
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @flux-wh {
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
+        }
+        handle @photos {
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @umami {
