@@ -3,11 +3,6 @@ esphome:
   branch: main
   compose_file: docker/home/esphome/docker-compose.yml
 
-matter-server:
-  repo: homeprod
-  branch: main
-  compose_file: docker/home/matter-server/docker-compose.yml
-
 mosquitto-mqtt:
   repo: homeprod
   branch: main

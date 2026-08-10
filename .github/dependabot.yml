@@ -6,7 +6,6 @@ updates:
       interval: weekly
     directories:
       - "/docker/home/esphome"
-      - "/docker/home/matter-server"
       - "/docker/home/mosquitto-mqtt"
       - "/docker/home/n8n"
       - "/docker/home/node-red"
