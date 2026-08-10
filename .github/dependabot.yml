@@ -14,7 +14,6 @@ updates:
       - "/docker/infrastructure/network/traefik"
       - "/docker/infrastructure/observability"
       - "/docker/infrastructure/squid"
-      - "/docker/infrastructure/sshportal"
       - "/docker/personal/fireshare"
       - "/docker/personal/gramps"
       - "/docker/personal/media/films-series/jackett"

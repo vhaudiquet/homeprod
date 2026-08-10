@@ -43,11 +43,6 @@ squid:
   branch: main
   compose_file: docker/infrastructure/squid/docker-compose.yml
 
-sshportal:
-  repo: homeprod
-  branch: main
-  compose_file: docker/infrastructure/sshportal/docker-compose.yml
-
 fireshare:
   repo: homeprod
   branch: main
