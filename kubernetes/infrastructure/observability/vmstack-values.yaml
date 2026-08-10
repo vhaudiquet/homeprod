@@ -33,11 +33,11 @@ vmagent:
         selectAllByDefault: true
         scrapeInterval: 20s
         tolerations:
-            - key: ENC[AES256_GCM,data:SyutB0y9QtqQ,iv:EKRXNGtUovQYsESHFQTGygP09O2UWtLuBEQQcYZm3Oc=,tag:zh7CYOZleSgbbQhYZvcT+w==,type:str]
-              value: ENC[AES256_GCM,data:So+8xmHYSxs=,iv:7sfUBAaMZd7imjVx14lusVn58cJQ4HpTkaPy5Eal2dY=,tag:hRBjT6wuEfG3Z+ZiPJhwQQ==,type:str]
+            - key: ENC[AES256_GCM,data:u/hZlRGlQsjm,iv:EIP1fb4hFx22j2pBmlmtLpUWcCqP1mZgLdgtG0UHnD0=,tag:ZDc67BaFIOzgobSOxzwoSg==,type:str]
+              value: ENC[AES256_GCM,data:37vtp0nJ+e0=,iv:v0Sch84ysia+ka9foooh+lqAQTc4mYhDxMRiiimIWy4=,tag:sNEHQI89QvMGj60dgoJy4g==,type:str]
               operator: Equal
               effect: NoSchedule
-            - key: ENC[AES256_GCM,data:lj9OurynU8pRt4/MhgyevjmV0b7Zq+WG/9+zRRvPeA+RYZsV+A==,iv:LjuhErDT0bDlLcpo/AlNykz8Xu89B+nx1ja+HkPNXwo=,tag:5xM6XHrCdEejE7ituQ8W4Q==,type:str]
+            - key: ENC[AES256_GCM,data:xBpooUuWDs5ji8gvswL9dBc4hOsqlGpfYtsjGj0t8k8ott/Hdg==,iv:vXQyiFjim3d6qUsgl+lyVaolpvkY0OC6S0JraGuyWaM=,tag:dM6H8evZAw9BTa5UmETmxA==,type:str]
               operator: Exists
               effect: NoSchedule
 # ---------------------------------------------------------------------------
@@ -45,13 +45,63 @@ vmagent:
 # ---------------------------------------------------------------------------
 kube-state-metrics:
     enabled: true
+    resources:
+        requests:
+            cpu: 50m
+            memory: 128Mi
+        limits:
+            cpu: 200m
+            memory: 256Mi
 prometheus-node-exporter:
     enabled: true
+    resources:
+        requests:
+            cpu: 50m
+            memory: 50Mi
+        limits:
+            cpu: 200m
+            memory: 128Mi
+# ---------------------------------------------------------------------------
+# VM operator (the Deployment created by this chart, not a CR). Without
+# requests, when the API server stalls and elects a new leader, the operator
+# pod gets killed by the kubelet on node pressure before it can re-acquire
+# the lease. Small request keeps it alive.
+# ---------------------------------------------------------------------------
+operator:
+    resources:
+        requests:
+            cpu: 50m
+            memory: 64Mi
+        limits:
+            cpu: 200m
+            memory: 256Mi
 # ---------------------------------------------------------------------------
 # Grafana (UI) — served behind ingress at grafana.lan.
 # ---------------------------------------------------------------------------
 grafana:
     enabled: true
+    resources:
+        requests:
+            cpu: 100m
+            memory: 256Mi
+        limits:
+            cpu: 500m
+            memory: 512Mi
+    sidecar:
+        dashboards:
+            env:
+                REQ_TIMEOUT: "120"
+                REQ_RETRY_CONNECT: "10"
+                REQ_RETRY_READ: "10"
+                REQ_RETRY_TOTAL: "20"
+                IGNORE_ALREADY_PROCESSED: "true"
+        datasources:
+            env:
+                REQ_TIMEOUT: "120"
+                REQ_RETRY_CONNECT: "10"
+                REQ_RETRY_READ: "10"
+                REQ_RETRY_TOTAL: "20"
+                IGNORE_ALREADY_PROCESSED: "true"
     persistence:
         enabled: true
         storageClassName: longhorn
@@ -60,20 +110,20 @@ grafana:
         size: 5Gi
     adminUser: admin
     # SOPS encrypts this when the file is processed.
-    adminPassword: ENC[AES256_GCM,data:vpPvJA/PktMnsg/IovYfsD4lDBndUw==,iv:b4eLMEcUMJj4BwyeYw1kw2sZuieyr2xL9et+R7ss0BU=,tag:u0RcTp6mkQNAGkblG4/xww==,type:str]
+    adminPassword: ENC[AES256_GCM,data:ufl2eX7Q7cyIhXUeZxWgVeHa+5Fj9g==,iv:FxaR2v2PhfF+zR7+ScAsEzPQhpVsGly55ByXw6/q2jc=,tag:5w2M3TjMkN7LUHcHezpGhw==,type:str]
     # Provision a Loki datasource alongside the chart's default VictoriaMetrics
     # datasource so metric/log correlation works in one UI.
     datasources:
         datasources.yaml:
-            apiVersion: ENC[AES256_GCM,data:Uw==,iv:KYTMBV53yMbojMaqNinYpm/Uj5ylV86jcdJTdxuy+G0=,tag:IbIpiSBQFw7YSTQg0WRGqg==,type:int]
+            apiVersion: ENC[AES256_GCM,data:1w==,iv:XkLdUqFlwufQBD7ThJ+kPlhsWcY+0cqWkK1Mk9XOK6o=,tag:xk+jVn82cmPqTBqYarzfZg==,type:int]
             datasources:
-                - name: ENC[AES256_GCM,data:BPfR8Q==,iv:MkMhH3IJfBZzbIcqQw7y6bfJB/4Ew4feZNugjovk5O0=,tag:jaa43tzIXkE8kWZp2R/kcg==,type:str]
-                  type: ENC[AES256_GCM,data:WWncww==,iv:hPqJE0KCidSBnf11wxFH+Je+YKztWmeToBqi39Qf4ZQ=,tag:c9enJ2VgQqDJVbasvgG+Dw==,type:str]
-                  url: ENC[AES256_GCM,data:YkS66tpWXpW62Dtful0KNCwoZ3rG3nQtDBUsNQUwdQ+eqtG38JTrAudQqnsRD51q,iv:Mu3Sc6T2xypdot9dA1DHc8nD7UI8372nqlveLITR82E=,tag:1VmmIg+xR9qjWcvPKVYsJQ==,type:str]
-                  access: ENC[AES256_GCM,data:af3GpjE=,iv:MAYKfklF+wCC/XN+4snebjPAnW4KpYzaMMGYds7rG18=,tag:X+oFiDAiCb1f7cfREqFT7A==,type:str]
-                  isDefault: ENC[AES256_GCM,data:Zgu4Hn8=,iv:nnVB/in75nPAQos0Dfl6abBrHwT8tCt5X7lcCYBZbLc=,tag:u1UvkSj6SjcMm06NzKMGDA==,type:bool]
+                - name: ENC[AES256_GCM,data:v8Ub8A==,iv:PETLfpJPxLv9UcYAqWb+gaJTIcNixXRd7rztjhNnH+o=,tag:sdNcDdf7/g0x1P0X7u7egw==,type:str]
+                  type: ENC[AES256_GCM,data:mYW4yQ==,iv:003u1YybknNt3pGVLtZNLfCWqi/gcq1cXjzgHa0wVnM=,tag:5B7Zo3KDgTmGrytpMll+Gg==,type:str]
+                  url: ENC[AES256_GCM,data:5+SeDxRQk6qTV3YZ6H5Lw7qgvjHNU2riXfnxXYkx/MVi3DBmm5ugL9PpEprYYt9S,iv:cD/G0SUhuwxX5pjWuyQ9eUdTLekRbzEVo/0AgtN99xs=,tag:0K2BS4IGBNHcTWLUFYaw2Q==,type:str]
+                  access: ENC[AES256_GCM,data:MrPS+4o=,iv:AZ0Jo0jhUhqETZnD1PhkZuQN/GqlHmI7nwv+ket5KOY=,tag:edCTNtS+fsjpN67fiAuoMA==,type:str]
+                  isDefault: ENC[AES256_GCM,data:tL41ZSg=,iv:FSfXJumXRrUJeOdupCRuii/aNY3bbb9tjkMA8JUcV8o=,tag:s/FOwc6s2C7X9KKJo+CKng==,type:bool]
                   jsonData:
-                    maxLines: ENC[AES256_GCM,data:88JJqA==,iv:lKsZa024I6223UEu0SHuZ3N9LZrzw0WBTfC+L2/3ljI=,tag:YvqieXK36xMmC/sSJ11NIg==,type:int]
+                    maxLines: ENC[AES256_GCM,data:NKwyqg==,iv:t2Rsefq9jsXpH92b/SiF4mh1Sy/bQ9SQBhg6xqc8nbU=,tag:w4o2v9s2BkK+T0PlEyBwBw==,type:int]
     ingress:
         enabled: true
         ingressClassName: traefik
@@ -172,27 +222,27 @@ extraRules:
                     summary: Low disk space on {{ $labels.instance }} {{ $labels.mountpoint }}
                     description: Disk usage above 85% for 10 minutes.
 sops:
-    lastmodified: "2026-07-28T16:39:09Z"
-    mac: ENC[AES256_GCM,data:Ymxmmkui0Nuv35Yq6v4BXM4xGhvjAufexW7fIm9fUIdTTXZ3e10PitNCZXKiaDwwCJfdEkNZri7jPAYzhTzKMIdcTKnOMImsMjdiJZwRwwbKcYVay0A6KSLJ8eFjDRRYhlCXbsAIRlQHpFh4UkssKdu40mIiudU0qIVm04ppbno=,iv:R8kpITPYSbQ1yZw5IK0fArssxUtIjNmvzknOrLJQcuk=,tag:/CRcr1VZAIKIPbcag05uTw==,type:str]
+    lastmodified: "2026-08-10T20:52:47Z"
+    mac: ENC[AES256_GCM,data:9R6bXpoKxowWpkoSOcjxkVI1EkKaoCiy7/c3/LYE81j50ThgPUXlcAnf024D0tXHv0LYCJm54qXNDwkg1Jzb3SYOt15Xbw9wPHyxtUFHKDb12BWGtyrE7TRw6VYdXs1P+TzZDJZPJJjSyTOW+hdB2WxNu7QG1M27Bg3DE28iOdg=,iv:OQisyRio+fqzdSU16whSJ26rvGibqP4FardJ0p3Ubeo=,tag:fHPd1TnzsmBWKLb6QTP7Fg==,type:str]
     pgp:
-        - created_at: "2026-07-28T16:39:08Z"
+        - created_at: "2026-08-10T20:52:47Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAmOxyx5eH5Jykp/GDL79REgf61iGujtPiUVy8CT3o7O5k
-            tTGma6rRXK5wZV/iGN3wOQehF19Oy2iYwMfxilRwpB69RFwyKPKdHDDWMWNXv5Th
-            wJnNjVjWZ0xiRautWPn/TjDOJZ6j6p7lQ3IcQ3vzuap1RVRIXv081DxJGR9JbeYl
-            khmrl1+zecwxS87JK+fLko9NIBb5JgFEtEf1RvLyFak8nZu5cNCu+PCykALvUaO7
-            V5NAaF1aV9cdz8G9TZWmHZsIlDDE9/oro2aLR7cr8uxnKQhWerttqvyDYNwYzNKW
-            qgsUplTxTmyuc9DdnLDfJ55Ncuv9qS5/4/p5GpsHrteD6oiPNjXaxR8cBVFLvGwp
-            kQb/VZgOGAnkYlMCUG8APiwRhbpAlyy51hKBqVh+a9iRlzZEWHKlxcvIrcFAQaHt
-            sDXyg36F0GCoHiMAqHKG0kRcbTV7Sq0JZVoLU/qxvaDfqvyCZO7X/U/YsSWNbWL0
-            emyBfeSvBX9h62NJx2aw8xKyiL+aeVfzSKAaXHMd/r4gKxBw/kVHAljKwRzbL85j
-            UHeLUvqVkXs1mtIqGgUnpCcAVuV83omgcOwF44FitG/f9GCx+UWTvScwaw5ywuG3
-            J/4fOaA3K0Z4e/mOejARd4jLSPktSRpA01k9kjYY8UBn7TzQ0LrMLj5dxh8BpWrS
-            XgECZapi+q6IjIses7+JqkWiP25hcglhqK3LAiUapA0c5UmAa5Vf7jfnkFm8eUdZ
-            bA7ZnhX8nxK9n7JdSxrZhrbPWMO8hF/XKi7KTZMvgXFlb4/qP96y7oeqzKYcnvE=
-            =pmSq
+            hQIMA7uy4qQr71wiAQ/+Kc8P/t7IZ4shbHhrh25wdm8mI27QZ/h3uujubjgoWooD
+            oh+6zF7sqP36hOxyFjGBnmyHCp1Qqk4lxt3mBT0f5TR/q8DkBTbUDm8PTouZTG8/
+            dbEt29r7dzVrH+O7vMf2QWGt7wpvv5iOJsOXBJXvdaiKJCM0noaLryHPnzTbt1BQ
+            tAN5vk1wlDMZ3lPekKBRQe8W5dWAcfo5WSf5dPH0cVcXtDvO86uCPN+hN9dSp0KZ
+            LeC1WPRrNCLoHYxF4uFl/DYlnDbS0mg9DJqRqSvLdMqTkAIZUHEv/5Qwg1nsNGjk
+            5K2OWdbBz2vU/8hoN/9Qmw3gfZHfA4NW+DFzW6bv+5siATSNTObkLCBOHhgWd1oY
+            hRRhJeD6o6KXZhwai5OnTH3VMH8+OYp9wxYVhVDQ4y3+JOtbgCuDI18q7dkU7mAy
+            9nJMn0IgmqkRw7v8hfzjV8T7Ktv/b+HlJq+PB6/UXGaUutgrPFa70RLLAkFfFKUj
+            2oV3yhRHvPTTDXx6bw5knBDRh/XvtX2JJVgp9x7hnKbHr905qithP+tABNAloX3V
+            zOeEBV4EnIZk/sMB5CQcR0A8gznGpskYtowEVVr9pouNaC8o8D2qfCRIYvcaDCFU
+            t5N4te0vg6uLbW9PNokO6rzhJ+7lweC4Ou2zRAxRhSgzmi81ylIdNMKGle+5sn7S
+            XAHRSz9TKJf061m2kk+Ku/yxnzN2CoH4z+x65VvuK4qpVy2dSC00xyXdR4HxGzVO
+            jpRlAuWFlMu32gTa9cCXQjVPkYE0NbniGtlZkdsCUhydnVtNqqdm0JXTNvPS
+            =U+mY
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$

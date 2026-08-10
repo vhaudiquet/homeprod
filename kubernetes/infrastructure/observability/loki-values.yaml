@@ -43,6 +43,21 @@ limitsConfig:
 # Disable distributed components + gateway + minio (monolithic only).
 test:
     enabled: false
+sidecar:
+    rules:
+        env:
+            REQ_TIMEOUT: "120"
+            REQ_RETRY_CONNECT: "10"
+            REQ_RETRY_READ: "10"
+            REQ_RETRY_TOTAL: "20"
+            IGNORE_ALREADY_PROCESSED: "true"
+        resources:
+            requests:
+                cpu: 10m
+                memory: 32Mi
+            limits:
+                cpu: 100m
+                memory: 64Mi
 backend:
     replicas: 0
 read:
@@ -56,27 +71,27 @@ gateway:
 minio:
     enabled: false
 sops:
-    lastmodified: "2026-08-01T20:19:42Z"
-    mac: ENC[AES256_GCM,data:KYZQGIimeeOlt2lltCrKttLXzk2b7DOT8KNOhpeVqF/VNNcVxP7Srz6nCR5J7dI6wFSePspof5gNJEZlzP3EGJFQaGBf34hOGhHBUtlcscX8vj2JYmmJ85B+pylHjQNPHaXqLP4tAwIFfhcJi368K+GEAu8tztkxJKk7dtOOyrg=,iv:V24R3eSzW0edwPnPSSwEQqqSfiNrK6+ZyQ368xpJKhg=,tag:LmaMhhGwRIIG+SxTUJf5gQ==,type:str]
+    lastmodified: "2026-08-10T20:52:47Z"
+    mac: ENC[AES256_GCM,data:sT6EiERjNR2hOgsogpkCM3cKRctkGbcxcIrrJB7jb8KJZ2HxGdRGP7+U6uNF3ugxzPcT0O4/80qlEFQ3b+Sf6N+vSAXaBsab+oh7uKt+9En7lgd5V9zkbQtQSS+cr+dlUhU6SOVMCJ2weGyfL59TvIPpxVLy2RRfauAA5W0fl/U=,iv:Bcx4gaBUKZ3GBEKCs4KQMaySuT+Fb7SC7URRrMWRRU8=,tag:byEDzUiP2zdTjPyBO2j1sQ==,type:str]
     pgp:
-        - created_at: "2026-08-01T20:19:42Z"
+        - created_at: "2026-08-10T20:52:47Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+PDeQtUHMysWOkTjqU8vNAl1IQzDrwHskeBmLXLI99kdc
-            hU0afTjzUbomFdMRGvf0QZrcFbnD5OHskw5KRleDbYxOp4aXjzX0RsqSe9elTFAj
-            ml4XG0UrEV4Ygi4mTNOGzmINaIjobcn0tQd6nZFPUUA//udBcHsczs9x9Rrf+YTv
-            XrUdNAhveRlowvbvfNrDIh1OsOgyWyHJEJsKiLbt2b7e47PKhhRQzET+bNwhXzTb
-            GMY/w3rVYPddqx1wi5HPtYlhL3emYlmMYLLi1ITr1fKvAsgGKSJpaGS6yu+YkyiB
-            AJHou+2aCUy1TVk8U/Ne9TSrhsV1AJSIbtr8+iyKAtSsSuodam0Pyzn59uqL4nNd
-            1S4Nkvm1UDYv97hmSQdAzTGs+Aql6HyB/Wyi+rkMZQ0fl7+hdX5/eEDYZzijD0Nu
-            Mqk1iFbTn/rXir71VRWNttycIM1PfGAOUmLoyOR+TrL5Ecy0Sx9yx2DS9DecnqtS
-            39YI6UNqiEYdvW8Y+XELSFI/B5cjw7C1A5S9tecUxoOIBGZZSeRQa2WDSWb1dYky
-            Rzvncoeemgjkp8CHQhSqrylB+I4s0Y1HMUWR/q0wxew9juNEIP8ZUkfKcueuCYlm
-            5ui/RaeYatMFo8hg+DrxEtQIkbBZ/ILss/QzyHZZG3RMq0i9s/PIn5yipVhOgorS
-            XAFEeOrVaKpN06LfNP7/HTI+D/5HJL++Twuyz9fwC2Eb5saIIB6gpywiICH8HcD5
-            MRmmhl18x2YU+JdmkAcWNfH5+JHVnx8o+D/y9JqeCf6sle/9LyToazJv58Tc
-            =2u7h
+            hQIMA7uy4qQr71wiAQ//YxPGeiBdLh1nQ6BiV8hWCne5bJA0PcvafsB3caBLcVu2
+            wg7mk+MlcHolXLOpS3DSsdYVlfXr1+qIDToXmFeuWMgeGiSUL5mQghIiZfHlBzwT
+            7aZUcKClYsWg5EGUN9kLkEpqcakrKN/GKE2uBS1Rh0fZUzDbrtugacWfNHmCymQ6
+            TkExLX0nylb4TJgQ77qLk0iAFKwyJ1xw6x/mcc1z8fbUKhyhs9e9pErhCH8f5myl
+            /mAxx3rRu/bEtfn9IRO+XVLLw3l4b0KK21koFi5ZVB05+sz91c4+UNLSHsHaymtP
+            IAcRnaMa1KyOZ9iZ9iVTbFgFfTZy+4N2dm4tYAyvR9Nphj0+XhVfjeoljEh4HdXY
+            SdtSXh/aC9H45Q6wwT7PvBHywRMLYLj0iAoY++SO6/cHF2HGtZJ3MzjrjcUyUZHL
+            oCK7Qmp64bHdYXJQIIprT+cB5CwUPOgW9lE/LbRwIEPbFzCn6q2LMrbZ1Cna9Dd1
+            +/AELxscykqatnuRYP+zNEl4y9Foxux4usXMDCl0piNnVWU1b2T4tBRitD65KUnG
+            yR64Dk9E9+OT/v6xaHKxIxBkfrhOj3K1Tb3tyEhgfvan3x6JRMN1bt4wrD0+Q1s6
+            nY1B/ya63Qo3JHm0461S5oK7Ncv2Op4y1yr//LJ8ueFEOB6zRYoPn4O11WV/29zS
+            XAHMOHZFr7tUXOV222SQ17jIFL/5vrJ0F5WAWrVla4hGRYFUe/Zt/9RABDcKZRWL
+            qzgLvXkfXAiNMqJd1CrOSXBG5MyHoVUYSZef4HXABf2sOxYsGqIgFqUciOa1
+            =OE2y
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
