@@ -54,6 +54,7 @@ updates:
       - "/kubernetes/personal/bookmarks/linkwarden"
       - "/kubernetes/personal/media/photoprism"
       - "/kubernetes/personal/notes/notesnook"
+      - "/kubernetes/production/buildpath"
       - "/kubernetes/production/umami"
       - "/kubernetes/production/vhaudiquet-fr"
       - "/kubernetes/system/coredns"
