@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: buildpath
         namespace: buildpath
       chart: buildpath
