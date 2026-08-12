@@ -96,5 +96,5 @@ data:
 
     buildpath.win {
       tls /etc/caddy/certs/buildpath-win/tls.crt /etc/caddy/certs/buildpath-win/tls.key
-      reverse_proxy 10.1.2.212:80
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
     }
