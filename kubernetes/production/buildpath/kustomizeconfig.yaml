@@ -1,0 +1,12 @@
+nameReference:
+  - kind: Secret
+    version: v1
+    fieldSpecs:
+      - path: spec/valuesFrom/name
+        kind: HelmRelease
+  - kind: GitRepository
+    version: v1
+    group: source.toolkit.fluxcd.io
+    fieldSpecs:
+      - path: spec/chart/spec/sourceRef/name
+        kind: HelmRelease

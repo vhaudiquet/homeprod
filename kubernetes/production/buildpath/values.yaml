@@ -1,0 +1,91 @@
+# BuildPath Helm values (SOPS auto-encrypts matching fields on commit)
+# --- MongoDB ---
+mongo:
+    auth:
+        rootUser: root
+        rootPassword: ENC[AES256_GCM,data:QSJnTSKezUc=,iv:HkpqbezUDQfEc/o8/xkFJZrHeNODgLuqp5qA6vwaig0=,tag:wHXfkdF2+gPlnW92Zz2pzQ==,type:str]
+    wiredTigerCacheSizeGB: "2"
+    resources:
+        limits:
+            memory: 6Gi
+        requests:
+            memory: 3Gi
+    # 30Gi Longhorn volume for the 20G live dataset
+    dataVolume:
+        storageClassName: longhorn
+        accessMode: ReadWriteOnce
+        size: 30Gi
+    configVolume:
+        storageClassName: longhorn
+        accessMode: ReadWriteOnce
+        size: 1Gi
+# --- CDRagon cache (RWX, shared between match_collector & frontend) ---
+cdragon:
+    enabled: true
+    volume:
+        storageClassName: longhorn
+        accessMode: ReadWriteMany
+        size: 5Gi
+# --- Frontend ---
+frontend:
+    image:
+        tag: latest
+        pullPolicy: Always
+    ingress:
+        enabled: true
+        className: ""
+        annotations: {}
+        host: buildpath.win
+        path: /
+        pathType: Prefix
+        tls:
+            enabled: false
+    resources:
+        limits:
+            memory: 512Mi
+        requests:
+            cpu: 100m
+            memory: 256Mi
+# --- Match Collector ---
+# Can use a lot of RAM at peak, give it headroom
+matchCollector:
+    image:
+        tag: latest
+        pullPolicy: Always
+    schedule: 0 */12 * * *
+    resources:
+        limits:
+            memory: 8Gi
+        requests:
+            cpu: 200m
+            memory: 512Mi
+# --- Secrets ---
+# mongoPass defaults to mongo.auth.rootPassword if empty (chart template)
+secrets:
+    riotApiKey: ENC[AES256_GCM,data:3JVv6Qbi64HmNfEfc2Yys+t/jpda23bSOiRDL4iNr63/eLZ07A0UEzWE,iv:stKsGXNo85osmbtNApxhVz1h1rIn0F4LqVgyLCWvCcE=,tag:v4BO+wozDPxE0hG5BOIdBA==,type:str]
+sops:
+    lastmodified: "2026-08-12T16:02:39Z"
+    mac: ENC[AES256_GCM,data:pz9FXVhIFunHqy9/6DaCq6QDFxHnjN2SW2TWtRtmho1Is00qIgtNWAXt33y3G9tEAOr1vNuaBgxBarsw5qG8ZD/Zg6dqw4lRTAn6HyrkeYtHwfSBN/kHcyuOQgCNGz1Sluafrlaqs4I50Ps85w/6ShC7bJCBIX+jgvU/I0Zq28g=,iv:hHdEx+cDZKd5eIRihjLSw3l9ZQn0WbTqFN88o/FdHX4=,tag:Dewo5NOUY1n6pqpbD9SttA==,type:str]
+    pgp:
+        - created_at: "2026-08-12T16:02:39Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAj2rISIsKB/4CConccy1kaT3OSVrZ45yKn3yibdggNsgr
+            nGX3duwavhNRwzmBroE8dztIsMylvvBprNLjny+JqCIFcFGt3tliuJujC3ZHQU4c
+            hbOuXyQng+b308qk5fmFMSa4p1AP6LFLEIHQuhNAs6j8ZklN3usYzv8eXr0P6N7P
+            ScZ6bqWBHizOvfHwyELfJOIFALRmvP88Ne3Q+4+ZBQDVuHXJohNhySNPKUdfKNIq
+            SLO4YhaL7v0eFFTtATPkPKiJFZtzZEqE0tkG3GeOQCOP7j3BniXp6nMx8Ilv8U+T
+            AXPWom8ezkSaD75b5XN03+bdEDQAA9/67v6KNPeliniRGUkIO2jP+tE93sih/cfL
+            CgaE5cd9PB5mci4ueWvjv7jBkM1SosEhVzDouLdsx3zPZzAfTgaBaOaEiBIJhwWl
+            XeoH+5BPJ6s4uK9m2389dHFJ4eRZMuX+Nnj6AHMYzcGvkHhB66um+98rxV9IbkoO
+            paVxB7uSofXKUtFREbShY58asTAG8f9ifJVT+sx6N6xtwjr+qTD2wyuN+/8l5wf8
+            tlsmev29AcXaeU+jhjtk3krgSIYvytTiBlOBirgvCkQBfscmxrXXK6Wrd+9H3TOv
+            VF9F2nqhWIuTvwDyEfZ+++PcUC8rHemRcf0spjo9s21CrxgUHkoRuXmvDTYG0vvS
+            XgHaVTjx2E/CbUa4WglNdLPqPG8MFqJA3QO3vFZVSIm+CCPo8eXPS37oVarLQuII
+            XAlXS8zezHiAnzieUJVYwl808bdVkLV4GyJRh8N6HEGzAk6skTWGNB5FZGE4gBk=
+            =xyKq
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    version: 3.10.2

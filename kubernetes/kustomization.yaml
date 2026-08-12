@@ -37,5 +37,6 @@ resources:
   - utilities/glance
   - utilities/open-webui
   # Production (public-facing websites/apps)
+  - production/buildpath
   - production/umami
   - production/vhaudiquet-fr
