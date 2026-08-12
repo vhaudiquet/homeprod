@@ -11,7 +11,7 @@ spec:
         kind: GitRepository
         name: buildpath
         namespace: buildpath
-      path: helm/buildpath
+      chart: buildpath
       interval: 1m
   valuesFrom:
     - kind: Secret
