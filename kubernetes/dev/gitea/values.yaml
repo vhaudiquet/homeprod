@@ -25,11 +25,11 @@ valkey:
                 cpu: 500m
                 memory: 256Mi
         tolerations:
-            - key: ENC[AES256_GCM,data:SFv3lpRbF8sX,iv:xozFtxGpodpZ9QG5gucoBxmJ8Cu4TkFXZywU1e/488U=,tag:idAeFTfPJH1wl2kKW4aLig==,type:str]
+            - key: ENC[AES256_GCM,data:Kh2EoXOtUD6x,iv:vx1gWKrAoDfwwFwt6dM8thBo4JnxaYBGtbKuBg5nqnk=,tag:LH4Dxi+XrJ4xpl96RMCKNA==,type:str]
               operator: Equal
-              value: ENC[AES256_GCM,data:3RXsp5auTeg=,iv:eQzkLeio1n4kmvXoimMT5YEJDYT1cMBU9NpR558Jiwc=,tag:BB1fUeY/qJViLdfh04CyMg==,type:str]
+              value: ENC[AES256_GCM,data:sY7H5QmDFcU=,iv:J6oTSUu+BZlaQLfCFlKuWx8hbHAwvyMOuZCRpfMh8jU=,tag:4RUPmoPilTeNLFq1olQOmQ==,type:str]
               effect: NoSchedule
-            - key: ENC[AES256_GCM,data:1pdkAgV1W9Y3Fae/U0Lhq3lJLh5j8avMNfp2emLrjvouHpru5Q==,iv:AtBbyceXKB3FPeDKmBEXUp9xbyyvxlGt/gdvxj5L/8Y=,tag:t6fAnHCBCAV9UtyiCARCyw==,type:str]
+            - key: ENC[AES256_GCM,data:kmpQDSATEJJZn81m+0VgbWAsng4x6yVCJhxj6tQLLTIbjLFabQ==,iv:HM+kujLIL7nC+34eXOtKvTNB9BkhAO1NK/TUimbOsFM=,tag:r+gEXue4TDorTv1FF6C6rA==,type:str]
               operator: Exists
               effect: NoSchedule
         affinity:
@@ -38,7 +38,7 @@ valkey:
                     - weight: 100
                       preference:
                         matchExpressions:
-                            - key: ENC[AES256_GCM,data:mZNTHOEDdvYI6hpOuYFi1QFB6GM=,iv:+Nz8tY24FnGtqaTBPs/J98Hn1L8lpffR9XvgP/J8R2U=,tag:RzGbwhYwnXHlVCyhuLFdsw==,type:str]
+                            - key: ENC[AES256_GCM,data:YSmBennGx6LJ6C8/YuNkxx43dzo=,iv:sQ865tZPjg9+k+bAz67DUamwm+bZ8X5+jnSonBCbCt4=,tag:KQbd5RSPO6tEYFyUF6ovFg==,type:str]
                               operator: NotIn
                               values:
                                 - "true"
@@ -47,10 +47,10 @@ postgresql:
     global:
         postgresql:
             auth:
-                postgressPassword: ENC[AES256_GCM,data:LafuIhcNlPAKXw==,iv:dDihjursPeP5mvvuZVAP1R0Hrrdnojz/8uy2dPz2IM4=,tag:Rdw4wKQpI+lz9fR0o7vmiw==,type:str]
-                password: ENC[AES256_GCM,data:nvqNIlrPsEzZPQ==,iv:ckzx6wH/OPC2Nekrma+WfzXC4T9Ug4C6Evb0XuRAt08=,tag:8sCkuUmFVYb9J9cNNahXQw==,type:str]
+                postgressPassword: ENC[AES256_GCM,data:ZpClPRs2cWuTnw==,iv:1qPxD6yJp9z9YCZM6UGIub+XiidnE6lCdP+z/SOWCgU=,tag:ORvNODCU5AXAqiCmpERhQg==,type:str]
+                password: ENC[AES256_GCM,data:T9Qmu/w7Y5Qehg==,iv:866ivIyr6sSDJCjnA9Q0rUtDscL8zOOy8L6/mCTT0Yg=,tag:8uCLBTuBKgnjBvFcrNgWTA==,type:str]
                 database: gitea
-                username: ENC[AES256_GCM,data:9jHp0/A=,iv:b6sWbWilGwYfijC/f4OXSwOWAyo/ruP9trzZAIIQlCA=,tag:UN+1WrCIZS7N6uBe5mzHAg==,type:str]
+                username: ENC[AES256_GCM,data:V5Afr+I=,iv:C32rMzB1XTzfPLdIQO48TNW9V6/Ymw/kpMy4qTfb8Go=,tag:7lxRD7esUeyMJ8ob18avag==,type:str]
     volumePermissions:
         enabled: true
     primary:
@@ -62,11 +62,11 @@ postgresql:
                 cpu: 1000m
                 memory: 1Gi
         tolerations:
-            - key: ENC[AES256_GCM,data:JxPW+KNLVUdC,iv:23k8zL4LKPvU6/EDmQbD/ThUx88y1A5zlqHASB7L9Gs=,tag:/ZmhUVoy0GEBr+JO8X4jAw==,type:str]
+            - key: ENC[AES256_GCM,data:P8I6g275rO09,iv:GrpyFGSWYZL03DEOeNap9lmfxzYMtgi2B7DrTimyuOU=,tag:POPHyJbJYyza3RfIbZ22Uw==,type:str]
               operator: Equal
-              value: ENC[AES256_GCM,data:WY8Eg4L16Ho=,iv:CUpovvAD8H/lhaxWHVNrknP1n+kjzk9Rez64Blr+3Wc=,tag:8/woLbZWK8JU0lbKUBohBw==,type:str]
+              value: ENC[AES256_GCM,data:HvQAP7xFuSw=,iv:8neUXtNVEY0A9J+3ut5KPKDp+L4ePNco2/yrrnlwFLk=,tag:gnRHW6GicRlLCNpdMULY5A==,type:str]
               effect: NoSchedule
-            - key: ENC[AES256_GCM,data:p8XpksWE9tkog9Yq5XhRkLEJ2ATl+wOCuNla96dat/X8Pugjdg==,iv:dP770WZMMP3bg0DYrOQIDBFNemNtvOPdgc5zrcoiyIY=,tag:oJzJEBGie7cYjrXASmELlw==,type:str]
+            - key: ENC[AES256_GCM,data:7an/Ugr3N4WLjmldD7MmNpDIX6M8MzwA+BNFyEXtnOxpZa1dOA==,iv:pDO0iIXVp52VNz1V+bYqEvS1QVN9wXN5DlOgmxgubAU=,tag:crfiLeG1tRNKjNT10Sc9+Q==,type:str]
               operator: Exists
               effect: NoSchedule
         affinity:
@@ -75,7 +75,7 @@ postgresql:
                     - weight: 100
                       preference:
                         matchExpressions:
-                            - key: ENC[AES256_GCM,data:Q19OYDlgAVAvt3W9O1tqIt54G/E=,iv:5bG3htMLsKkwKsz0UF7vhwkYsM6e2JeogSgw10PAZNY=,tag:jeaf3HemngVVXbn+6CYSvw==,type:str]
+                            - key: ENC[AES256_GCM,data:eiY67uSwrV28aTiTmBPhqNe/eKI=,iv:did6Rruc7T0NL/A6Rq3MB3pls+RX0NX0iHuQ3QUxUbU=,tag:JM3Yhqb2qL3eVndZRZ/SwQ==,type:str]
                               operator: NotIn
                               values:
                                 - "true"
@@ -107,12 +107,18 @@ extraContainerVolumeMounts:
     - name: git
       mountPath: /git
 clusterDomain: cluster.local
+# Fix: git resolves repo/hook paths relative to HOME when it can't stat the
+# requested repo.
+deployment:
+    env:
+        - name: HOME
+          value: ENC[AES256_GCM,data:IcvPZg==,iv:4KPjTS4uqiv41pMjXK0cFD3cBkqlvQqqP8Ee8IMvPX0=,tag:lbBoXmt2wN7AJSjwNS9pvQ==,type:str]
 gitea:
     oauth:
         - name: Authentik
           provider: openidConnect
-          key: ENC[AES256_GCM,data:mUThisHz3Br6MdyvZGNhUqLIJzbzcwSUq1CuQRlRWJw1b/ilxxpmOQ==,iv:gS+6jOTTF0EoIC4eCXQLryUZUaQ+4PqHbKGT/Ytdsqo=,tag:lNyTx4S5Z63HLd4vK9DxhA==,type:str]
-          secret: ENC[AES256_GCM,data:23fi2dZcNBmKHYnBbx46S+IBEXm73RqxGaA5GEmtpU6KvcfN7BLi+CVQd+pqsXtthXapxsl7RyT18vCDxnLbyRmz8zAMpEfdKP/XePL+T9uM/dykKoEokXCFsVQZ5GpAg12lWnngXp62zhRk3lCZCPT46dOSxilHxF6KjOrfj/M=,iv:cGzGudwz/kcvV/rfk1bZrm6oGgS+59d5r6y33eiiRPA=,tag:K5yf0Q6WVl16mVWwNLwiww==,type:str]
+          key: ENC[AES256_GCM,data:qG2Qrmok46/xeUcNep6wvp/CFFw1yf0lgp1Bpv0zuB9sbQRjMYKFCw==,iv:pcy08Wsd0IUxzeBG+ldWnA2a8Hf7XEgQ+ECkD6hMWGo=,tag:NvnXfGN16aVtxpVT7IgENw==,type:str]
+          secret: ENC[AES256_GCM,data:P8vXGIVD+T2rvcHTutfbocW9uZbWresMvvsS3vX7Yu2YSYeNmnOdX6Z8G3cxPUVvwbZERoPfCkLgF5+NvW+TFpnosscglKhzmG+pnY9b5bAF74vv1Qcpmu9/H47tLr/Mp1husSfCJJgQVQ/+e16VJ5lVG2DOJk8tnnQ6UYprzK4=,iv:KNlEmRXORSWSlCdrLOp+VZefKactdMkafnjgmeSpRaI=,tag:2I4GARFP4gPDb3FtffpHqQ==,type:str]
           autoDiscoverUrl: https://authentik.vhaudiquet.fr/application/o/gitea/.well-known/openid-configuration
     config:
         APP_NAME: Gitea
@@ -150,11 +156,11 @@ resources:
 replicaCount: 1
 # Failover tolerations + affinity — allow scheduling on p330 during r740 outage
 tolerations:
-    - key: ENC[AES256_GCM,data:SMRwovsyI8o2,iv:jjtzBiNCE+/zQP7dIuYjdSeIVpPuQfX1vAoFw79AUTY=,tag:hGT4g9/iDc7se3AmpB4U6Q==,type:str]
+    - key: ENC[AES256_GCM,data:PfH6D3U2HWiC,iv:LhkDbcIz0F6fgDYvCJcozVL5U8oriA2BD2tmqJ14lBw=,tag:R9v4hTWByC89Gn5WMCFJ+w==,type:str]
       operator: Equal
-      value: ENC[AES256_GCM,data:xhjxi4UiARg=,iv:Eoh+GFW/zC8CYNa7kM2L/1zDdZO1B3MhUR8Pousvg/4=,tag:1XCO2YmQtU8lER4jf5G1OA==,type:str]
+      value: ENC[AES256_GCM,data:I+MraE7WlxQ=,iv:aMBhxSmD4VMoLr9S3lUb2E5BF1P7/J3JyAOPZthzpsE=,tag:mFGoKi7ITT9JFdUp0lsGYQ==,type:str]
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:R43SkzLa1CcQmUsW0IaXOtvOxyBM6QAoA2Ww7ymCX3YwFJOiHg==,iv:fs1zpX1MSjhRFttgiCycApgWaHvP5VvSlYGw/VsfwAM=,tag:A9Q7FJ6/426HcUyJd2E6WA==,type:str]
+    - key: ENC[AES256_GCM,data:GB5K+PfBE6DjBiT7jNBStC9BOfDiicORtNPTxSKsXgXuG983uQ==,iv:cWBpXW1KVXtkyZP6U2ouKpC2nBGujTTTKGnPqhG9HxM=,tag:wvHdZ5+We3+1CEVeKpCHSg==,type:str]
       operator: Exists
       effect: NoSchedule
 affinity:
@@ -163,33 +169,33 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:4QLjAevjESSs8WB9EOIYn0RPXPE=,iv:yCAq6UoB/YxB4UVerhEdrIxxCdS1Yu7fh9zCYhBHbWA=,tag:l5nGLEqDanzTq7h9BPwZgA==,type:str]
+                    - key: ENC[AES256_GCM,data:IRoYV+ZQieF+nNMtqjQ1G5Ke+zM=,iv:iIBl8u/iSOuzpNMs7PJQN0d1L8cMQv6thVZUbOkkfLI=,tag:+LNvkymhwrvoEUI7BqZ77Q==,type:str]
                       operator: NotIn
                       values:
                         - "true"
 # (postgresql and valkey tolerations are set in their respective blocks above)
 sops:
-    lastmodified: "2026-08-12T16:22:39Z"
-    mac: ENC[AES256_GCM,data:BKNUAfPbcxLYtaEzAJYZGluZxrOT938KvofgaIslazpfnengIIu4Fiq9pZ3p6akPTVUfNGNZPA7b20rzmjpcbpDWDQIzivdlp3KIGxzLnx51B3G5RzgeyUp0HRExVcBWOlRWKz1MX4meyEP/kqlUWuYi4blVtQHs15/c3fN7PrQ=,iv:kVIkh4/YVXO0iryezqw9JzuGhNHJp/IlakLvM++oz08=,tag:lseN5ghDoG4vfi4BRLG5mA==,type:str]
+    lastmodified: "2026-08-12T20:59:54Z"
+    mac: ENC[AES256_GCM,data:Avu6vdd+EeQpD+xQdZWYyaxvzatwN0qAS9Vd6orXbGLcAlglJmHREeioCjPOaIsKmsl850mPj1FP5FNO7KEKtvJg5+DQ8r6OzgOHQS7T74Oeh0r7ISqvu4sbAX78UJlqrY0K/5ZaEFkwRNcZy2GzRyxf5CCpw8B6B+nLrLwGJS8=,iv:DTX4D4kSekeI00Cz7CYrUbsG63ASLEhGa+UJHShAp28=,tag:cQfiA5GCID4+dkMfsy6PqQ==,type:str]
     pgp:
-        - created_at: "2026-08-12T16:22:39Z"
+        - created_at: "2026-08-12T20:59:54Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//av9FpScNsTdzIEHdo8wpK16z27efc/ryzjdGg9KT4ig5
-            ESEfNiCpvvSAwucM32Vi6phZztssTr8F6mtg+Rj7CGICNIrUbrKB04IU13iFppjp
-            9adiRdtGJnVCpPyh2hWgH51QG/3TuOf5bwG0Y6bRttcX2K1EKkSeJFnCkEPXDtCK
-            E5H+eGU6TuCrrzWXYfPiER5j2FHz6fXbKyQl0I7yztD2wZMH9UH8zjk8OSrNzJz7
-            z6/1di0Z9pYwVA+UjqHTQ9a/JXiGbRtooWu2eksRC/WtMHEEDsPS5BScKY4fwIrO
-            mEhM6r+tpy0ME1kpnhMLblBX6e2M6+/Vp3rk6wwixz/L3eJFk20LKeGyNp5B/giP
-            nlTL735z0vVcF1hWBXmqHe2zUTJyJNk9TPOr1HKp9GzRacAJoNOAwrGL3ksMWk2y
-            XTXsbYh7ODEBSy7fzoNwZ0b8pGrYv8q11lHPk6kST9TyCLzaqgI+rJxaNyN4XubH
-            UTHddzYT40cgnISyyR1jMe7FzF681pzzvIo15FS8kKchoJAeRbW0EhWbCWtCQDoN
-            FKPj8778WyGwsDFSH2o9ffm9slHBMfUuNXKPfi7UJq3CpegcKn5qDSGR9SoYhNYE
-            a50qLRpnFvFwpadQ+vhxm8sZl1TP7LpvclTZe9u7cMbcNqApXZY406nBpv6gq6bS
-            XAGuMMHS/GboniA8VtZLy0tvF3WO7uZTR1seN5O2M0yzmfDzIMSpDGGtbytzl1jd
-            FcDYQItx3t9pA2Va1pWLWqbpDKcotxH8An60rtcl1mcQrRAujISApC3NPRal
-            =L3Jp
+            hQIMA7uy4qQr71wiARAAky4a7NkM4dhHtkDMKp/K0vtmWfQw4aPSb/GHrHiUorDL
+            gF+pczOUfGOPxFNRh3vdkqwsvBoQ6kW2khImoGIjwIW+XgVLUaUhFvIIk/10nuR0
+            fjo3MYBE0fiIWY38DxbbGTtRl1CPKgqabalaINAaJCocGd4bMdj8+pUWYSmzhDge
+            FY2rhcxTBiL3s99ebNz+vrK2wfxochQg5xm6Pi7CAQfTwALvwBjqsAEjdB/ag5rg
+            hjfnMtBDArmfJ5TwjTnkFTPYYHeiLAv+yoArNYo+MxrsH/NDNTI7bfQqsSkJf3ai
+            odkmWHpaFBtda3UfUgDvqN2e2BXuYqyK4R7nlT+gLhsyGnaiKP2rFTQu7NsL3RJa
+            SbLdr+WzC4zDsEXZXeotYVC9Cs18/WNBbz8DqbpHrb1doTSVETbcQWJbnqHy0dYV
+            O2Hbhz/f0KEcFNbMWzQDKJesMRt3deNQnAijE9gt4bArGNmUSzem9CX7B6k+cesO
+            EhKq8GAQ3964Un0KYFNEizD/hckrpO1yFItIzTYgRuOnzrEaSDRIs8EL7sezp5iM
+            XQPKTssRlh1KlnuzCRVj1UQF98Beq8s/S+JnXDg+cYpqF+pT3jdY/OA1K5jZxz79
+            kIHMQtm54SNR5kfe3xUbZB2699xMVqBIYA91Ttmeotfril1uuFjxrTWo1oeLwAvS
+            XgEAtW8y4QZ07AybyCalGcbrgcUoy7c8JRNdfo5xHWtiNYg759tQTOTX4nSpUwd2
+            9Oylu4Y717ZPwKGSj/g8oMtpufAUaF8Uz3rN1Bs07rdNI4xZRQY1mX8GkomN3Fk=
+            =A28Y
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
