@@ -12,6 +12,7 @@ spec:
         name: buildpath
         namespace: buildpath
       chart: buildpath
+      version: '>=0.1.0-0'
       interval: 1m
   valuesFrom:
     - kind: Secret
