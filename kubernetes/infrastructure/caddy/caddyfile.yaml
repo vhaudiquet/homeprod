@@ -30,6 +30,7 @@ data:
         @nook-mg     host n.vhaudiquet.fr
         @nook        host nook.vhaudiquet.fr
         @sse-nook    host sse-nook.vhaudiquet.fr
+        @inbox-nook  host inbox-nook.vhaudiquet.fr
 
         @gitea       host git.vhaudiquet.fr
 
@@ -52,6 +53,9 @@ data:
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @sse-nook {
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
+        }
+        handle @inbox-nook {
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @gitea {

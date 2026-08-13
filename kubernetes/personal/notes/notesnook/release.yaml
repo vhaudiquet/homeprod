@@ -12,7 +12,7 @@ spec:
         name: notesnook
         namespace: notesnook
       chart: notesnook
-      version: '1.0.5'
+      version: '1.0.32'
       interval: 1m
   valuesFrom:
     - kind: Secret
