@@ -94,6 +94,15 @@ ephemeral "talos_machine_configuration" "rpi4" {
       kind       = "HostnameConfig"
       hostname   = var.rpi4_node_name
       auto       = "off"
+    }),
+    yamlencode({
+      cluster = {
+        network = {
+          cni = {
+            name = "none"
+          }
+        }
+      }
     })
   ]
 }
