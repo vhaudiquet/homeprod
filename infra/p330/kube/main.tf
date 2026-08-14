@@ -99,6 +99,15 @@ data "talos_machine_configuration" "p330" {
   config_patches = [
     yamlencode({
       machine = local.machine_patch
+    }),
+    yamlencode({
+      cluster = {
+        network = {
+          cni = {
+            name = "none"
+          }
+        }
+      }
     })
   ]
 }
