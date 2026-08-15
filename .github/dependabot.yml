@@ -54,6 +54,7 @@ updates:
       - "/kubernetes/personal/media/photoprism"
       - "/kubernetes/personal/notes/notesnook"
       - "/kubernetes/production/buildpath"
+      - "/kubernetes/production/semery-fr"
       - "/kubernetes/production/umami"
       - "/kubernetes/production/vhaudiquet-fr"
       - "/kubernetes/system/coredns"
