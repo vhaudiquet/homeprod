@@ -131,11 +131,6 @@ alexscript:
   branch: main
   compose_file: docker/production/alexscript/docker-compose.yml
 
-semeryfr:
-  repo: homeprod
-  branch: main
-  compose_file: docker/production/semeryfr/docker-compose.yml
-
 excalidraw:
   repo: homeprod
   branch: main

@@ -30,7 +30,6 @@ updates:
       - "/docker/personal/syncthing"
       - "/docker/personal/tandoor"
       - "/docker/production/alexscript"
-      - "/docker/production/semeryfr"
       - "/docker/tools/excalidraw"
       - "/docker/tools/obsidian-livesync"
       - "/docker/tools/stirling-pdf"
