@@ -2,9 +2,11 @@
 # Single-node deployment with CORS configured for Obsidian plugin compatibility
 clusterSize: 1
 allowAdminParty: false
-createAdminSecret: ENC[AES256_GCM,data:D8gRRA==,iv:tXfG0XWa1sQmIn/FZgPzW71HPyI8616QRm+Gk5jvlFA=,tag:vIecvbSvfGg9NOzUCG3uBg==,type:bool]
+createAdminSecret: ENC[AES256_GCM,data:qCS2Aw==,iv:krKXRZ/w5sXAdb6LQqqKm2bABA68QGxV/x0zalpwFgs=,tag:j4apfBIYrPrgZGBp5vIH0g==,type:bool]
+autoSetup:
+    enabled: true
 adminUsername: obsidian
-adminPassword: ENC[AES256_GCM,data:GKfcIHrCqR+7AZI3QLg=,iv:SqjWWCuzWNnhHAkNsyOXzmyJcqD+yXAwgxLfeAliiBw=,tag:1oki6QKvLqTgyg1+IVaa0w==,type:str]
+adminPassword: ENC[AES256_GCM,data:jKwtIOt0yvxfoS7JhXs=,iv:j3KMCBjl4mtg+Tkbt4ooZnqvd8tGKkUf2psJlws31Ag=,tag:AjJkxLbOKx1kBlOfPRS68w==,type:str]
 image:
     repository: couchdb
     tag: 3.5.2
@@ -15,6 +17,8 @@ image:
 couchdbConfig:
     couchdb:
         uuid: b0a1c2d3-e4f5-6789-abcd-ef0123456789
+    cluster:
+        q: 1
     chttpd:
         bind_address: any
         require_valid_user: false
@@ -46,27 +50,27 @@ resources:
         cpu: 500m
         memory: 512Mi
 sops:
-    lastmodified: "2026-08-16T20:27:58Z"
-    mac: ENC[AES256_GCM,data:KDImaryg92Raz15vSIAXet7ZWncMiYU/jdMpR1BT1jwgd0qYIbfWo0oAo8v0iV3Sb1YK6utumUeDzOUikW2PQnkqVDzg1N+oSLKMbYKCkfYpiS81vFNljUtinbiEEgCv7djE+6d6iu0/ZsytMbyJRDr5D8iJrZldZ8o/o7DZTT4=,iv:asLBZWF5BqpeUMOWU36kB0rmd4xfolSzoxi3LTptRbc=,tag:GQcwiXn9P9/3Ror4cCmulw==,type:str]
+    lastmodified: "2026-08-16T21:48:44Z"
+    mac: ENC[AES256_GCM,data:he/K5j1OtA9jwaVkjI7fRMzBjsXpTAwtxlzfKObix9U5FT3eZR/BUFiugACufOLxzltY4HYlGK0mSKID+Jp9bMz1F/QmdGv5+HRRPRIGphNiG7aZWaJJTlJ4/0JjLJtONxLqASeoTap89Q/yuphb3+6ZNCcCsZQLMJbz7gEZ+cE=,iv:Pf0IlT9wdnwO/H2ABiTHsOc7DuBZjBy25y8SW9nC0wU=,tag:6ub3N8LDu6Y2lpsC/iLiaA==,type:str]
     pgp:
-        - created_at: "2026-08-16T20:27:58Z"
+        - created_at: "2026-08-16T21:48:44Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//Tz0xpFvIAzTKlXg0rb3o+ViNEh/iQFp2hoM7DTylMWP7
-            HlaCOZr2Cq+C7erTxU7PFYLdsziOyGzFwGAFK9ZQON0WfRzFkYbUHsT8Pp6fBRZo
-            u7z5Y0Rkr0BdXOv9tXWVpgrui/ZZrtRyXBa9TJjmn5IY6XHED7MiD1hFaLHasNr3
-            9L+jc7PKzQtpkj2wN9ebZrvwUewnUScNiHX4yFd08yBAMnRWsULBJ9kz0+n0Ncw3
-            6JIEmfpkflK7pupM+Am4/ov+Yd/ImeI83oZTvgLNirdH32CnV4vEUyMyK6hupEY1
-            u6p/PEDoG7cEpXDaXvRS23/2Dyhlyp3Kbp1+Pk/r46jh+OPtiRbi7u57PaEws/js
-            eL5TBdpTmY7GGNu28btS0qDZl29OsGIEg/+eCG9OAOQdWPropcIFTiaQBjOB/0Rw
-            HiASIJYpZbQR6d6b3FTAZ3iMmKGJIqM6rVAdgfPa28GIZXqD0DqNuiiv9MwuabtY
-            6UYzDLOMFulXU70p2SNBO9qZtyz6GTENB9oZ0yWUV1Gwq6ZSQJmMw/k5wYxQ8PwP
-            RLsiiXjVRnsiJ9lokvrB9IFpOBw2tz6v0eIpo5TutRZEef9qLt6wIq/kJ4rsXtU5
-            ewVzrf9lZOKdoFGhHB6NMqFXStJMyIInI5pi2yDyK/4O262+k+PZiCcjWwmKqy3S
-            XAEAMiI3SWK55m0lHcgKxboCKFMSiXPZXg3/XfyBdGeVxWue/T6Cr1RqknoUYTW5
-            l18eXlTSfTt/dtvtVFdF55k2AEpNndS4SOfHu7EDV8B03XYInIPP9eHoyo2v
-            =iwpx
+            hQIMA7uy4qQr71wiAQ/8Dc+KANhQYaPDLXEw5hJO0zHVfKjvh7KXH6s20b132DZh
+            7G5xRs1srollgxKPL4VYI0g1TQvIIP5+54wlCGxVow3ly93qV2FCTxxeGampb5VN
+            LiPaPam/6www/JCxuqEcWbib6T8qzdfrGeS0CiXxNEW0GMZsOj/1QGpIfEr2TdTN
+            O5Wf+qVHoUb51dTdO29BAREKCO953DAI+BmsvHsQgMtxmngrq6ufCyh0Els7U4HK
+            E1B03E7tEgsWPkZNJqULUF4Ux9nqK3xFbWFu6BJlSbB45mYjouWbT4XF+9HpL59V
+            55e0X7OWcMJ8YTL4cbAnXopDkFmVAkoDOKdQEcbc528hmcJOvv1acLG5wkeuiEjw
+            G7Cp8M5t76LCvfnetFs9C8GZIPjyP+PHfsxYNlZIK3Qt8QTvOtt95ZWK6ijCJzUN
+            CrLPXHRAvyWglzqT0s32JveNAfEr4CI8EcNSJ84S71FOhvmk5w6Kx9U19FHnMeHw
+            Yt2Rr1h8OXi4NMkzmBU/XUj400mpzU3vmmdAYLGbXO1w8DjM5Qibt5ZK7DkZTtm5
+            B2qVq1TVZEL0hg1nonTGt1LA/RzPvUs8wIfrzqW230qI+1DnKo/AOWZFt3z46aMu
+            FZx40RpVif3ckv+JoVV6SS6pYQNXbjNPl4NupTdC9bwcbRwsX5fU6uEqkdJAqpXS
+            XgE4u1kcJaDjlS+SX70HmjadjpCBgoiHIf9xU+oPBLh3t+fDiauzHl5iszGzayeV
+            B7fSbNDm54Paum0cXPUB+FOWzh8lwkbLkE65Ld+nMeJ9C7PbX2cmMKkPKBO/rzs=
+            =tlZW
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
