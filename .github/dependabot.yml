@@ -30,7 +30,6 @@ updates:
       - "/docker/personal/tandoor"
       - "/docker/production/alexscript"
       - "/docker/tools/excalidraw"
-      - "/docker/tools/obsidian-livesync"
       - "/docker/tools/stirling-pdf"
   - package-ecosystem: "helm"
     open-pull-requests-limit: 15
