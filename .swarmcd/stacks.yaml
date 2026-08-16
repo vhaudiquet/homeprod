@@ -102,13 +102,6 @@ tubearchivist:
   sops_files:
     - docker/personal/media/youtube/tubearchivist/.env
 
-paperless:
-  repo: homeprod
-  branch: main
-  compose_file: docker/personal/paperless/docker-compose.yml
-  sops_files:
-    - docker/personal/paperless/.env
-
 radicale:
   repo: homeprod
   branch: main
