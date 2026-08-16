@@ -29,6 +29,7 @@ resources:
   - home/home-assistant
   - home/zigbee2mqtt
   # Personal (apps storing my own content, grouped by content type)
+  - personal/paperless
   - personal/media/photoprism
   - personal/notes/notesnook
   - personal/bookmarks/linkwarden

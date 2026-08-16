@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: paperless
+resources:
+  - namespace.yaml
+  - repository.yaml
+  - cloudpirates-repository.yaml
+  - postgres-release.yaml
+  - redis-release.yaml
+  - release.yaml
+secretGenerator:
+  - name: paperless-values
+    files:
+      - values.yaml=values.yaml
+  - name: paperless-postgres-values
+    files:
+      - values.yaml=postgres-values.yaml
+  - name: paperless-redis-values
+    files:
+      - values.yaml=redis-values.yaml
+configurations:
+  - kustomizeconfig.yaml

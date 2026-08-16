@@ -52,6 +52,7 @@ updates:
       - "/kubernetes/personal/bookmarks/linkwarden"
       - "/kubernetes/personal/media/photoprism"
       - "/kubernetes/personal/notes/notesnook"
+      - "/kubernetes/personal/paperless"
       - "/kubernetes/production/buildpath"
       - "/kubernetes/production/semery-fr"
       - "/kubernetes/production/umami"

@@ -1,0 +1,42 @@
+# CloudPirates Redis values for Paperless
+architecture: standalone
+auth:
+    enabled: false
+persistence:
+    enabled: true
+    size: 1Gi
+    accessModes:
+        - ReadWriteOnce
+resources:
+    requests:
+        cpu: 50m
+        memory: 64Mi
+    limits:
+        cpu: 500m
+        memory: 256Mi
+sops:
+    lastmodified: "2026-08-16T09:07:01Z"
+    mac: ENC[AES256_GCM,data:BQ9z3o4+aCrAdQvWJEXRWWcQLggmyoVi3YfqwdZUkYNNcECTZtlQsgK4/g2+ktuzlvUmuBuV0m5gZJ/HqEflVDXbhQiCtnKSSqJ1V/PNVFFCXans92uxzEl6EY++Qm+X07ookJiYv4leqruCm+uNdYlTWESnLe07TZhiTbN+7Z8=,iv:yzq3+U3fjbU8XQejllBynYmb+kexgOEiSMaYRGxvOTw=,tag:Nwn4kpQQXYpw97VTI9NL9Q==,type:str]
+    pgp:
+        - created_at: "2026-08-16T09:07:01Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+JywlDn4kNsVcrVM+bNEImlKvu/leYNRbh+eTKVeBqTdo
+            H+vuBr7+a7EK01CWejH4z6vYrf6H7Q3ey+GjW1GYQGPBMFYVFK8eyNkwOlBej+0B
+            xbqZ17MwDi9ODh6rjtvZ7gz3bCPXM+LAXgaxBo1GBM+MJTmIJ+Wzwgq+h1/YBMBY
+            Q1ksGb2jzD9ZqpIo9uLfiTf2y2Go7n9DQyuvK3ddxL94lM7YAZGx+HHxM9xrKNfJ
+            ITUS9CGR8T/bckzDpGLWEJY2biK1p5bKU48kWItZf7kPQKpVp/d1XKY/I2kL+o8W
+            iBi6vq6nRKhdDP0G3Eml0weUattsQ/dELJPSOps0NXioGI8w4hK2SWASGTdChHwN
+            9ni0CWC41jhRIsmMZ5K25C2nAwyieVPN3gP6jWoUgovho2/CKr8lSJ0AWfapT7Sx
+            2jUXcSF8SUdQlDErDLeN1qTxS/6TWOw0E9baaPRJVc0FNpa5LZZ3uUc+kCih75vz
+            CoqrYX8AP5tiO4OELzfMcWhNkizHGPjcEwjus4f8gXu7iIi7pAD+MRoM04Cz1cFz
+            NQz3fFBT3acPLVyLqa0GEn7EdPNYeyMY0uCm7sOhbGGWlZB5oZ0Gfi2FmJR7birA
+            az8LVvwqUsgQtCf6AdzOoqp9oUugo5smHJZgF1MsQzMhZjLG0REkV2OCg0KqiZ/S
+            XgHul345KCekjoxm4egkjKW81F4FesW9ci5GcROWj1UHtgUq5Y6JwE7Qab31uvjt
+            bHmyW0DqH5daOzRzStCIpx89RAc1xQ6EAalD5Kvrxq7IUMGWkG0WGt1btfXudoM=
+            =Y4Aj
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    version: 3.10.2
