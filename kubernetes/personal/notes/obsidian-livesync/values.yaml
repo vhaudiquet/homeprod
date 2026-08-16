@@ -2,9 +2,9 @@
 # Single-node deployment with CORS configured for Obsidian plugin compatibility
 clusterSize: 1
 allowAdminParty: false
-createAdminSecret: ENC[AES256_GCM,data:SY7vyw==,iv:63Qwx6gLnJPUFtY/A0OGmombkeYdZl8MPtddDmuKRJs=,tag:RjJGusjAfP2gSpIhLtasgQ==,type:bool]
+createAdminSecret: ENC[AES256_GCM,data:D8gRRA==,iv:tXfG0XWa1sQmIn/FZgPzW71HPyI8616QRm+Gk5jvlFA=,tag:vIecvbSvfGg9NOzUCG3uBg==,type:bool]
 adminUsername: obsidian
-adminPassword: ENC[AES256_GCM,data:eVmayzZ0xm8+z1AJs+Y=,iv:DSQBtdhnA7BLI6JmFVvvPi/WOObGLEAAb4p83j7hpac=,tag:O1M7WFabc/zKLRFAw7iMUQ==,type:str]
+adminPassword: ENC[AES256_GCM,data:GKfcIHrCqR+7AZI3QLg=,iv:SqjWWCuzWNnhHAkNsyOXzmyJcqD+yXAwgxLfeAliiBw=,tag:1oki6QKvLqTgyg1+IVaa0w==,type:str]
 image:
     repository: couchdb
     tag: 3.5.2
@@ -35,8 +35,8 @@ ingress:
     enabled: true
     className: traefik
     hosts:
-        - host: obsidian-livesync.lan
-          path: /
+        - obsidian-livesync.lan
+    path: /
     annotations: {}
 resources:
     requests:
@@ -46,27 +46,27 @@ resources:
         cpu: 500m
         memory: 512Mi
 sops:
-    lastmodified: "2026-08-16T20:21:53Z"
-    mac: ENC[AES256_GCM,data:7XwkUwuYtVi+GLhj7zp3LaJA7Anx0+GZMJ2BjyyHnnuYsUN+E0kUCd7S1Y5horT5/gRgROROTya7CozV7q9VafVdQ8T6zLJ/4/YiWuC/KTv5eNOcLVwwTtmWPOwRNVsJH28q1mnOyCiN7Vv0gf6cTRxOpLzKT5Cw+DJJAb0qFGc=,iv:7Kardeb7H08frx0GMlblhFE+/i32zFRoTD78GUpTF1U=,tag:zr0GqUf2TIOl5cHUMMJw3A==,type:str]
+    lastmodified: "2026-08-16T20:27:58Z"
+    mac: ENC[AES256_GCM,data:KDImaryg92Raz15vSIAXet7ZWncMiYU/jdMpR1BT1jwgd0qYIbfWo0oAo8v0iV3Sb1YK6utumUeDzOUikW2PQnkqVDzg1N+oSLKMbYKCkfYpiS81vFNljUtinbiEEgCv7djE+6d6iu0/ZsytMbyJRDr5D8iJrZldZ8o/o7DZTT4=,iv:asLBZWF5BqpeUMOWU36kB0rmd4xfolSzoxi3LTptRbc=,tag:GQcwiXn9P9/3Ror4cCmulw==,type:str]
     pgp:
-        - created_at: "2026-08-16T20:21:53Z"
+        - created_at: "2026-08-16T20:27:58Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/8Dw+HT9C6XfaAFScgEHLFcowkL0sdg7z7FAVq3lvnwSG5
-            YfkKOZy4ad9MJmJZEeUfssXooQ45GyD/9rlBtSjg777hOtdfjs9WKw5gDCbtyd3i
-            54Ibdwi98tncfkQFGDD8bswarOWdY7eOpAC3RtSL4Juyd2gYz+DpmaVZ8KYb3sro
-            Ws/mEIr2SwAtML3BPijYgqJBwdTI/aMKdw+q9TriHDjgJVV5g8CIaywdPCHJr1jr
-            Wk9fl9NxokZsO5bT9fWM1WEw8BVy5+ZR9Px71TVegyPw8WU1dj0qsnQgKTFhE1so
-            Jm/iB8HTtd/r8RGkL3thQKoEopYV9eYU+QgBfvI404VupLPUQ5LvzUnYJuPyHQGy
-            WCPF9KRnn3mISJtFeZ5NgJjVIEWVy0ii+1zOnnLDSeSR7Q2PcjLthDAXle9cPVqG
-            LAYwGY2jD8IhG5MKTiyTyzDREzp2Mtu+rSzj3rG6CEI3dai3ozk7SY4PjBfQlOcu
-            p5acPOktYB5VBNFaSwWKVXDbD/gGyPeNCfwhSUGW78gA7fT2StaUIJmZ0FZTg4jb
-            rVcn4V5/m1Sh70W4S86GqPIccepuTXu2lO2ZT8NZMrmpQl6/2M/uA70YjLlB/4jb
-            uy7PpgRsACcefgRf1beoPMFLIQdAti8s2hUk3C1DL8xOF3E7Ex/0RA6v074D6TfS
-            XgGiv+VCN3d0tU3kCSlAU2zud++xU39Xf5P3WUZhEy+oOkcD0+ljJlO/eug/X0RF
-            PDXUeAyGMrTp+1apy/CSFKPOErNIQYo9/E9Mo2NkVPNVEGj0H9njsuk/J81J1vw=
-            =NIus
+            hQIMA7uy4qQr71wiAQ//Tz0xpFvIAzTKlXg0rb3o+ViNEh/iQFp2hoM7DTylMWP7
+            HlaCOZr2Cq+C7erTxU7PFYLdsziOyGzFwGAFK9ZQON0WfRzFkYbUHsT8Pp6fBRZo
+            u7z5Y0Rkr0BdXOv9tXWVpgrui/ZZrtRyXBa9TJjmn5IY6XHED7MiD1hFaLHasNr3
+            9L+jc7PKzQtpkj2wN9ebZrvwUewnUScNiHX4yFd08yBAMnRWsULBJ9kz0+n0Ncw3
+            6JIEmfpkflK7pupM+Am4/ov+Yd/ImeI83oZTvgLNirdH32CnV4vEUyMyK6hupEY1
+            u6p/PEDoG7cEpXDaXvRS23/2Dyhlyp3Kbp1+Pk/r46jh+OPtiRbi7u57PaEws/js
+            eL5TBdpTmY7GGNu28btS0qDZl29OsGIEg/+eCG9OAOQdWPropcIFTiaQBjOB/0Rw
+            HiASIJYpZbQR6d6b3FTAZ3iMmKGJIqM6rVAdgfPa28GIZXqD0DqNuiiv9MwuabtY
+            6UYzDLOMFulXU70p2SNBO9qZtyz6GTENB9oZ0yWUV1Gwq6ZSQJmMw/k5wYxQ8PwP
+            RLsiiXjVRnsiJ9lokvrB9IFpOBw2tz6v0eIpo5TutRZEef9qLt6wIq/kJ4rsXtU5
+            ewVzrf9lZOKdoFGhHB6NMqFXStJMyIInI5pi2yDyK/4O262+k+PZiCcjWwmKqy3S
+            XAEAMiI3SWK55m0lHcgKxboCKFMSiXPZXg3/XfyBdGeVxWue/T6Cr1RqknoUYTW5
+            l18eXlTSfTt/dtvtVFdF55k2AEpNndS4SOfHu7EDV8B03XYInIPP9eHoyo2v
+            =iwpx
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
