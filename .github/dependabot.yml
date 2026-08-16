@@ -51,6 +51,7 @@ updates:
       - "/kubernetes/personal/bookmarks/linkwarden"
       - "/kubernetes/personal/media/photoprism"
       - "/kubernetes/personal/notes/notesnook"
+      - "/kubernetes/personal/notes/obsidian-livesync"
       - "/kubernetes/personal/paperless"
       - "/kubernetes/production/buildpath"
       - "/kubernetes/production/semery-fr"

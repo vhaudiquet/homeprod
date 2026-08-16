@@ -32,6 +32,7 @@ resources:
   - personal/paperless
   - personal/media/photoprism
   - personal/notes/notesnook
+  - personal/notes/obsidian-livesync
   - personal/bookmarks/linkwarden
   # Utilities (generic content-agnostic tools)
   - utilities/dashy

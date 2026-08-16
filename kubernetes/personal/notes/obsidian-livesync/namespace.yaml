@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: obsidian-livesync
+  labels:
+    app.kubernetes.io/name: obsidian-livesync
+    app.kubernetes.io/component: couchdb

@@ -1,0 +1,71 @@
+# CouchDB for Obsidian LiveSync
+# Single-node deployment with CORS configured for Obsidian plugin compatibility
+clusterSize: 1
+allowAdminParty: false
+createAdminSecret: ENC[AES256_GCM,data:lWidwA==,iv:l31gazOZLrbCGCVg8ruT/nsNskSFPqJ8ZPmoZVGCSVU=,tag:dCAQhNlKQfl6SUTMyK+Dag==,type:bool]
+adminUsername: obsidian
+adminPassword: ENC[AES256_GCM,data:eGewMnDabPeSOBeIA5U=,iv:JpED4MpIRNfG5NdWAYW4pixwl9IoxZja3wz/zPbOgZs=,tag:FsO6A9WR4D+UdBfVd+UViw==,type:str]
+image:
+    repository: couchdb
+    tag: 3.5.2
+    pullPolicy: IfNotPresent
+# Enable CORS for Obsidian LiveSync plugin
+# Equivalent to the Traefik CORS middleware in the Docker setup,
+# but handled natively by CouchDB (cleaner and more reliable)
+couchdbConfig:
+    chttpd:
+        bind_address: any
+        require_valid_user: false
+    httpd:
+        enable_cors: "true"
+    cors:
+        credentials: "true"
+        origins: app://obsidian.md,capacitor://localhost,http://localhost
+        headers: accept,authorization,content-type,origin,referer
+        methods: GET,PUT,POST,HEAD,DELETE
+persistentVolume:
+    enabled: true
+    accessModes:
+        - ReadWriteOnce
+    size: 5Gi
+    storageClass: longhorn
+ingress:
+    enabled: true
+    className: traefik
+    hosts:
+        - host: obsidian-livesync.lan
+          path: /
+    annotations: {}
+resources:
+    requests:
+        cpu: 100m
+        memory: 256Mi
+    limits:
+        cpu: 500m
+        memory: 512Mi
+sops:
+    lastmodified: "2026-08-16T20:13:44Z"
+    mac: ENC[AES256_GCM,data:JSyVuN5cDYDBeG8bwbh638OmWtRnxq6Bhv56H0zm89YltsDawNCdJCl4n6fsbwRINpvciwBzq8meKMBWzT7AyxzbmW+MVGVWN0tngndaykbcdLmd1Q0zXrCQZ2DHOAntHuamqpOAgqsdFRdHq/X27vz4hDxUf6cldFYKbbbIdo8=,iv:Tu7+WVI7bdpvav7X5KH7Uy2/Jeowp5InNFq/7LNgvm0=,tag:LnoV9jJV+ObR6RwWLf75Tw==,type:str]
+    pgp:
+        - created_at: "2026-08-16T20:13:44Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/9Ev+q8m2Tnrb1Htu4H40erWgPazfhHYPb3X1uh3fmKz5R
+            GprOjYCdRi9vRrb0Sgph5kXPaikxMBtmyTUqg4nXUowR+JL0yXZHHqLQX3n5MsHm
+            s7jETzGIcsJFr7JusBeAkkU/ygpydedfXlQmPy4Fu1kzAyae8DoDRL1TH1czYhMY
+            bdb+lE0HvuRDCrUKxRjsXs4U01+aRry/wTEpJE+YPFcIKxF87EZpYi77eRBurxbY
+            oiuF0A+Foe+vvQNsWUW9PoGAVzKM1gQsmjdCZPv0h30C/EB+g1zOJkY6Y1XZHzqu
+            JI1HXwyglwdK7wmIZmN042+pgQV7Gf0e9RKK6XdzkyVHvtPERDRCB95orLf5XGW8
+            BAxjQ8V7jAnLQe+rgpI+Y0dWjTWKdk8osta0KDxKGOdETKe5QgipS0WHkrlUK/J2
+            Ce4yDP0nhxzNY+FJLyBK9azI1WO7h41yXAcMGg1oPThwj/aoWbUGgeZc+X0kSXON
+            dPH4IAu/NpSfj2ivSEXmZ1+nx9LcmZEUkLh0tMeFsYJVxzhqlsM4FnA8o8i/buGe
+            Ey9Ltw+HLMnt8lbpoKl8BLEqdPShWSmxT178xXYtAoHAupBDukN766wOhTxHy8kc
+            70+g9tTEWu23A8qtByeqeQXP07Ya8SlcD+cR7aozcB6oWFXavm0Ayg6tvuyPL83S
+            XgHNnji+qpYfuhVocvQXYB8S7IBCiSXNFFU9sjU8HpXgmRgSXv4eymyzJKXeJN82
+            yJumYHpAMjtTqa4jb2etV04hrVZz73NPxJ3oTHVoaH+cRr+0hDFXAfBqhmgikaI=
+            =5B2o
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    version: 3.10.2
