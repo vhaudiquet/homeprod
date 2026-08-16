@@ -94,25 +94,3 @@ variable "nameservers" {
   default     = ["10.1.2.148", "1.1.1.1"]
 }
 
-variable "failover_taint_key" {
-  description = "Taint key applied to the node to reserve it for failover workloads."
-  type        = string
-  default     = "dedicated"
-}
-
-variable "failover_taint_value" {
-  description = "Taint value applied to the node."
-  type        = string
-  default     = "failover"
-}
-
-variable "failover_taint_effect" {
-  description = "Taint effect applied to the node (NoSchedule / NoExecute)."
-  type        = string
-  default     = "NoSchedule"
-
-  validation {
-    condition     = contains(["NoSchedule", "PreferNoSchedule", "NoExecute"], var.failover_taint_effect)
-    error_message = "failover_taint_effect must be NoSchedule, PreferNoSchedule or NoExecute."
-  }
-}

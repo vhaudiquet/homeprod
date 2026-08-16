@@ -30,10 +30,10 @@ locals {
   client_config    = data.terraform_remote_state.r740_kube.outputs.client_configuration
 
   # kubeconfig produced by the r740 kube module — used to wait for the node and
-  # apply labels/taints. There is no in-tree kubernetes provider here on
+  # apply labels. There is no in-tree kubernetes provider here on
   # purpose: managing a `kubernetes_node` resource conflicts with the node
   # object that kubelet itself creates, so we use a null_resource with kubectl
-  # to wait + label + taint idempotently.
+  # to wait + label idempotently.
   kubeconfig_path = "${var.r740_state_path}/kubeconfig"
 
   # Network config: static if node_subnet is provided, otherwise Talos DHCPs.
@@ -58,7 +58,7 @@ locals {
     network = merge(local.network_patch_merged, {
       # Pin the Kubernetes node name. Talos otherwise auto-generates a hostname
       # (e.g. "talos-8ec-vd1"), so the node registers with that random name
-      # instead of var.p330_node_name — and our label/taint null_resource waits
+      # instead of var.p330_node_name — and our label null_resource waits
       # for the wrong node. Setting machine.network.hostname fixes the node name.
       hostname = var.p330_node_name
     })
@@ -75,14 +75,6 @@ locals {
     sysctls = {
       "fs.inotify.max_user_instances" = "1024"
       "fs.inotify.max_user_watches"   = "1048576"
-    }
-    kubelet = {
-      # Keep the failover node from accumulating non-essential DaemonSet pods
-      # via the regular scheduler; the taint does the heavy lifting, this is
-      # belt-and-braces.
-      extraArgs = {
-        "register-with-taints" = "${var.failover_taint_key}=${var.failover_taint_value}:${var.failover_taint_effect}"
-      }
     }
   }
 }
@@ -147,21 +139,16 @@ resource "local_file" "talosconfig" {
 }
 
 # Wait for the node to register with Kubernetes (kubelet creates the Node
-# object after Talos installs and reboots), then label it and (re)apply the
-# failover taint. This is idempotent: kubectl exits 0 if the label/taint already
-# exists. The taint is also set via kubelet `register-with-taints`, so this
-# null_resource is a safety net for manual edits / drift.
-resource "null_resource" "p330_node_label_and_taint" {
+# object after Talos installs and reboots), then label it. This is idempotent:
+# kubectl exits 0 if the label already exists.
+resource "null_resource" "p330_node_label" {
   triggers = {
     node       = var.p330_node_name
-    key        = var.failover_taint_key
-    value      = var.failover_taint_value
-    effect     = var.failover_taint_effect
     kubeconfig = local.kubeconfig_path
   }
 
   provisioner "local-exec" {
-    # Wait for the node to show up, then label + taint. The wait loop is bounded
+    # Wait for the node to show up, then label. The wait loop is bounded
     # by kubectl --timeout; tune it via TF_LOG / re-run if the node is slow to
     # join (a controlplane node must first complete the etcd join handshake).
     command = <<-EOT
@@ -189,14 +176,10 @@ resource "null_resource" "p330_node_label_and_taint" {
       kubectl wait --for=condition=Ready "node/$NODE" --timeout=20m || \
         kubectl wait --for=jsonpath='{.status.conditions[?(@.reason=="KubeletReady")].status}'=True "node/$NODE" --timeout=20m
 
-      # Failover marker + taint (applied to both controlplane and worker nodes).
+      # Failover marker label (applied to both controlplane and worker nodes).
       kubectl label --overwrite node "$NODE" homeprod.io/failover=true
 
-      # Apply the taint idempotently (kubectl taint --overwrite is a no-op if it exists).
-      kubectl taint --overwrite node "$NODE" \
-        "${var.failover_taint_key}=${var.failover_taint_value}:${var.failover_taint_effect}"
-
-      echo "Node $NODE ready, labeled and tainted for failover-only scheduling."
+      echo "Node $NODE ready and labeled for failover scheduling."
     EOT
   }
 
