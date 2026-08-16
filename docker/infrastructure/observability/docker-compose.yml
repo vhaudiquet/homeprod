@@ -57,7 +57,7 @@ services:
       - "traefik.enable=false"
 
   alloy:
-    image: grafana/alloy:v1.18.0
+    image: grafana/alloy:v1.18.1
     container_name: obs-alloy
     command:
       - "run"
