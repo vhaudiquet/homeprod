@@ -2,9 +2,9 @@
 # Single-node deployment with CORS configured for Obsidian plugin compatibility
 clusterSize: 1
 allowAdminParty: false
-createAdminSecret: ENC[AES256_GCM,data:lWidwA==,iv:l31gazOZLrbCGCVg8ruT/nsNskSFPqJ8ZPmoZVGCSVU=,tag:dCAQhNlKQfl6SUTMyK+Dag==,type:bool]
+createAdminSecret: ENC[AES256_GCM,data:SY7vyw==,iv:63Qwx6gLnJPUFtY/A0OGmombkeYdZl8MPtddDmuKRJs=,tag:RjJGusjAfP2gSpIhLtasgQ==,type:bool]
 adminUsername: obsidian
-adminPassword: ENC[AES256_GCM,data:eGewMnDabPeSOBeIA5U=,iv:JpED4MpIRNfG5NdWAYW4pixwl9IoxZja3wz/zPbOgZs=,tag:FsO6A9WR4D+UdBfVd+UViw==,type:str]
+adminPassword: ENC[AES256_GCM,data:eVmayzZ0xm8+z1AJs+Y=,iv:DSQBtdhnA7BLI6JmFVvvPi/WOObGLEAAb4p83j7hpac=,tag:O1M7WFabc/zKLRFAw7iMUQ==,type:str]
 image:
     repository: couchdb
     tag: 3.5.2
@@ -13,6 +13,8 @@ image:
 # Equivalent to the Traefik CORS middleware in the Docker setup,
 # but handled natively by CouchDB (cleaner and more reliable)
 couchdbConfig:
+    couchdb:
+        uuid: b0a1c2d3-e4f5-6789-abcd-ef0123456789
     chttpd:
         bind_address: any
         require_valid_user: false
@@ -44,27 +46,27 @@ resources:
         cpu: 500m
         memory: 512Mi
 sops:
-    lastmodified: "2026-08-16T20:13:44Z"
-    mac: ENC[AES256_GCM,data:JSyVuN5cDYDBeG8bwbh638OmWtRnxq6Bhv56H0zm89YltsDawNCdJCl4n6fsbwRINpvciwBzq8meKMBWzT7AyxzbmW+MVGVWN0tngndaykbcdLmd1Q0zXrCQZ2DHOAntHuamqpOAgqsdFRdHq/X27vz4hDxUf6cldFYKbbbIdo8=,iv:Tu7+WVI7bdpvav7X5KH7Uy2/Jeowp5InNFq/7LNgvm0=,tag:LnoV9jJV+ObR6RwWLf75Tw==,type:str]
+    lastmodified: "2026-08-16T20:21:53Z"
+    mac: ENC[AES256_GCM,data:7XwkUwuYtVi+GLhj7zp3LaJA7Anx0+GZMJ2BjyyHnnuYsUN+E0kUCd7S1Y5horT5/gRgROROTya7CozV7q9VafVdQ8T6zLJ/4/YiWuC/KTv5eNOcLVwwTtmWPOwRNVsJH28q1mnOyCiN7Vv0gf6cTRxOpLzKT5Cw+DJJAb0qFGc=,iv:7Kardeb7H08frx0GMlblhFE+/i32zFRoTD78GUpTF1U=,tag:zr0GqUf2TIOl5cHUMMJw3A==,type:str]
     pgp:
-        - created_at: "2026-08-16T20:13:44Z"
+        - created_at: "2026-08-16T20:21:53Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/9Ev+q8m2Tnrb1Htu4H40erWgPazfhHYPb3X1uh3fmKz5R
-            GprOjYCdRi9vRrb0Sgph5kXPaikxMBtmyTUqg4nXUowR+JL0yXZHHqLQX3n5MsHm
-            s7jETzGIcsJFr7JusBeAkkU/ygpydedfXlQmPy4Fu1kzAyae8DoDRL1TH1czYhMY
-            bdb+lE0HvuRDCrUKxRjsXs4U01+aRry/wTEpJE+YPFcIKxF87EZpYi77eRBurxbY
-            oiuF0A+Foe+vvQNsWUW9PoGAVzKM1gQsmjdCZPv0h30C/EB+g1zOJkY6Y1XZHzqu
-            JI1HXwyglwdK7wmIZmN042+pgQV7Gf0e9RKK6XdzkyVHvtPERDRCB95orLf5XGW8
-            BAxjQ8V7jAnLQe+rgpI+Y0dWjTWKdk8osta0KDxKGOdETKe5QgipS0WHkrlUK/J2
-            Ce4yDP0nhxzNY+FJLyBK9azI1WO7h41yXAcMGg1oPThwj/aoWbUGgeZc+X0kSXON
-            dPH4IAu/NpSfj2ivSEXmZ1+nx9LcmZEUkLh0tMeFsYJVxzhqlsM4FnA8o8i/buGe
-            Ey9Ltw+HLMnt8lbpoKl8BLEqdPShWSmxT178xXYtAoHAupBDukN766wOhTxHy8kc
-            70+g9tTEWu23A8qtByeqeQXP07Ya8SlcD+cR7aozcB6oWFXavm0Ayg6tvuyPL83S
-            XgHNnji+qpYfuhVocvQXYB8S7IBCiSXNFFU9sjU8HpXgmRgSXv4eymyzJKXeJN82
-            yJumYHpAMjtTqa4jb2etV04hrVZz73NPxJ3oTHVoaH+cRr+0hDFXAfBqhmgikaI=
-            =5B2o
+            hQIMA7uy4qQr71wiAQ/8Dw+HT9C6XfaAFScgEHLFcowkL0sdg7z7FAVq3lvnwSG5
+            YfkKOZy4ad9MJmJZEeUfssXooQ45GyD/9rlBtSjg777hOtdfjs9WKw5gDCbtyd3i
+            54Ibdwi98tncfkQFGDD8bswarOWdY7eOpAC3RtSL4Juyd2gYz+DpmaVZ8KYb3sro
+            Ws/mEIr2SwAtML3BPijYgqJBwdTI/aMKdw+q9TriHDjgJVV5g8CIaywdPCHJr1jr
+            Wk9fl9NxokZsO5bT9fWM1WEw8BVy5+ZR9Px71TVegyPw8WU1dj0qsnQgKTFhE1so
+            Jm/iB8HTtd/r8RGkL3thQKoEopYV9eYU+QgBfvI404VupLPUQ5LvzUnYJuPyHQGy
+            WCPF9KRnn3mISJtFeZ5NgJjVIEWVy0ii+1zOnnLDSeSR7Q2PcjLthDAXle9cPVqG
+            LAYwGY2jD8IhG5MKTiyTyzDREzp2Mtu+rSzj3rG6CEI3dai3ozk7SY4PjBfQlOcu
+            p5acPOktYB5VBNFaSwWKVXDbD/gGyPeNCfwhSUGW78gA7fT2StaUIJmZ0FZTg4jb
+            rVcn4V5/m1Sh70W4S86GqPIccepuTXu2lO2ZT8NZMrmpQl6/2M/uA70YjLlB/4jb
+            uy7PpgRsACcefgRf1beoPMFLIQdAti8s2hUk3C1DL8xOF3E7Ex/0RA6v074D6TfS
+            XgGiv+VCN3d0tU3kCSlAU2zud++xU39Xf5P3WUZhEy+oOkcD0+ljJlO/eug/X0RF
+            PDXUeAyGMrTp+1apy/CSFKPOErNIQYo9/E9Mo2NkVPNVEGj0H9njsuk/J81J1vw=
+            =NIus
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
