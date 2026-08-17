@@ -31,7 +31,7 @@ data:
     truenas         IN  A   10.1.2.139
 
     ; P330
-    p330            IN  A   10.5.2.1
+    p330            IN  A   10.2.1.149
 
     ; PVE
     pve             IN  A   10.1.2.10
