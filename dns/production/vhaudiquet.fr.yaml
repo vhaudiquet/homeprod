@@ -5,7 +5,7 @@
         auto-ttl: true
     ttl: 300
     type: A
-    value: 83.113.30.49
+    value: 82.64.154.58
   - octodns:
       cloudflare:
         auto-ttl: true
@@ -257,27 +257,20 @@ _submissions._tcp:
     priority: 0
     target: vhaudiquet.fr.
     weight: 1
-alexscript:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
 auth-nook:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 authentik:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 autoconfig:
   octodns:
     cloudflare:
@@ -292,13 +285,6 @@ autodiscover:
   ttl: 300
   type: CNAME
   value: mail.vhaudiquet.fr.
-canada:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 192.99.6.159
 clips:
   octodns:
     cloudflare:
@@ -319,36 +305,21 @@ flux-webhook:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 git:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 inbox-nook:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
-jupyter:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
-kasm:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-      proxied: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 ligory:
 - octodns:
     cloudflare:
@@ -364,33 +335,19 @@ ligory:
   value:
     exchange: ligory.vhaudiquet.fr.
     preference: 20
-lol:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
 mail:
 - octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 - octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: TXT
   value: v=spf1 a ra=postmaster -all
-md:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
 mta-sts:
   octodns:
     cloudflare:
@@ -404,53 +361,46 @@ n:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 nook:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 notesnook:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
-overleaf:
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 photos:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 sse-nook:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 umami:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
 www:
   octodns:
     cloudflare:
       auto-ttl: true
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58

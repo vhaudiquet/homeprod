@@ -6,7 +6,7 @@
         proxied: false
     ttl: 300
     type: A
-    value: 83.113.30.49
+    value: 82.64.154.58
   - type: TXT
     value: google-site-verification=BvFkK7orKeezgxGcdPiGa67PUm9RPI6ZjyyykhSJ24A
 _acme-challenge:
@@ -25,4 +25,4 @@ www:
       proxied: false
   ttl: 300
   type: A
-  value: 83.113.30.49
+  value: 82.64.154.58
