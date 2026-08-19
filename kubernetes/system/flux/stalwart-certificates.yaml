@@ -1,0 +1,21 @@
+# Flux Kustomization for Stalwart mail TLS certificate
+# Depends on cert-manager-issuer (CRDs + ClusterIssuer) and homeprod (stalwart namespace)
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: stalwart-certificates
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: homeprod
+  path: ./kubernetes/infrastructure/stalwart-certificates
+  dependsOn:
+    - name: homeprod
+    - name: cert-manager-issuer
+  decryption:
+    provider: sops
+    secretRef:
+      name: flux-sops

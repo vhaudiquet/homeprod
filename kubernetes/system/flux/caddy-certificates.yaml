@@ -1,0 +1,21 @@
+# Flux Kustomization for Caddy TLS certificates
+# Depends on cert-manager-issuer (CRDs + ClusterIssuer) and homeprod (caddy namespace)
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: caddy-certificates
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: homeprod
+  path: ./kubernetes/infrastructure/caddy-certificates
+  dependsOn:
+    - name: homeprod
+    - name: cert-manager-issuer
+  decryption:
+    provider: sops
+    secretRef:
+      name: flux-sops

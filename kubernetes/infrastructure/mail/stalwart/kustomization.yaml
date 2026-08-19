@@ -4,7 +4,6 @@ namespace: stalwart
 resources:
   - namespace.yaml
   - repository.yaml
-  - certificate.yaml
   - recovery-admin-secret.yaml
   - release.yaml
 secretGenerator:

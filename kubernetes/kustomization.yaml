@@ -1,7 +1,10 @@
 # Root Kustomization for Flux
-# Explicitly lists all components to exclude:
-# - cert-manager: managed by separate Flux Kustomization (CRD dependency)
-# - cert-manager-issuer: managed by separate Flux Kustomization (depends on cert-manager)
+# Components managed by separate Flux Kustomizations (CRD dependency ordering):
+# - cert-manager: managed by Flux Kustomization (CRDs must be installed first)
+# - cert-manager-webhook-ovh: managed by Flux Kustomization (depends on cert-manager)
+# - cert-manager-issuer: managed by Flux Kustomization (depends on cert-manager + webhook)
+# - caddy-certificates: managed by Flux Kustomization (Certificate CRDs need cert-manager)
+# - stalwart-certificates: managed by Flux Kustomization (Certificate CRDs need cert-manager)
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -18,9 +21,6 @@ resources:
   - infrastructure/observability
   - infrastructure/traefik
   - infrastructure/caddy
-  - infrastructure/cert-manager
-  - infrastructure/cert-manager-issuer
-  - infrastructure/cert-manager-webhook-ovh
   - infrastructure/network/blocky
   # Dev (developer platform)
   - dev/gitea
