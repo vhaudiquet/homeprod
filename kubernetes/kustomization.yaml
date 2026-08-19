@@ -1,5 +1,7 @@
 # Root Kustomization for Flux
 # Components managed by separate Flux Kustomizations (CRD dependency ordering):
+# - longhorn: managed by Flux Kustomization (CRDs must be installed first)
+# - longhorn-jobs: managed by Flux Kustomization (RecurringJob CRDs need longhorn)
 # - cert-manager: managed by Flux Kustomization (CRDs must be installed first)
 # - cert-manager-webhook-ovh: managed by Flux Kustomization (depends on cert-manager)
 # - cert-manager-issuer: managed by Flux Kustomization (depends on cert-manager + webhook)
@@ -12,7 +14,6 @@ resources:
   - system/cilium # cilium IP pool is managed here
   - system/coredns
   - system/csi-driver-nfs
-  - system/longhorn
   - system/external-dns
   - system/flux
   # Infrastructure (backbone services apps depend on)

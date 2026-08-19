@@ -9,3 +9,5 @@ resources:
   - cert-manager-issuer.yaml
   - caddy-certificates.yaml
   - stalwart-certificates.yaml
+  - longhorn.yaml
+  - longhorn-jobs.yaml

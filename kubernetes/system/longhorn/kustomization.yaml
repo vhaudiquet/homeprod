@@ -5,7 +5,6 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - recurring-jobs.yaml
 secretGenerator:
   - name: longhorn-values
     files:

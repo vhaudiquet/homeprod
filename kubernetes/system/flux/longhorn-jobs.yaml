@@ -1,0 +1,20 @@
+# Flux Kustomization for Longhorn recurring jobs
+# Depends on Longhorn being fully operational (CRDs installed)
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: longhorn-jobs
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: homeprod
+  path: ./kubernetes/system/longhorn-jobs
+  dependsOn:
+    - name: longhorn
+  decryption:
+    provider: sops
+    secretRef:
+      name: flux-sops
