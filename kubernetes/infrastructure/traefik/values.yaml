@@ -1,23 +1,21 @@
 ingressClass:
     enabled: true
     isDefaultClass: true
+service:
+    loadBalancerIP: 10.2.2.6
 ports:
     web:
         forwardedHeaders:
             trustedIPs:
                 - 127.0.0.1/32
-                # nginx-proxy
-                - 10.1.2.11/32
-                # caddy
-                - 10.1.2.152/32
                 - 10.0.0.0/8
 # Tolerate failover node
 tolerations:
-    - key: ENC[AES256_GCM,data:730ZJScF+2rP,iv:n1QgsKA3w6rv1d2tQddG8FkmADp6tI1gj+p7FnD1uA8=,tag:wtlI+476AdFHSp8I68Qs4Q==,type:str]
+    - key: ENC[AES256_GCM,data:w8yu1KXjy/RS,iv:qRmAOxd8jHYZ37VpJ6krTnq66ts6dJkUqHBq1vI8yQk=,tag:BvkZNScyZ+DKm8kTD+xtug==,type:str]
       operator: Equal
-      value: ENC[AES256_GCM,data:uSBDyP1NASA=,iv:wFwuuUWxQKqmb8HMVvbBmMEwuWfxrCVE+soDvM0co6s=,tag:1OZ1KaTKMfMhSZhA1+/zXg==,type:str]
+      value: ENC[AES256_GCM,data:sHIzXSsWolY=,iv:xOUgObHD9mAOMDo+4Fr+tP7m/6YW/C0j9EXE4uBoIDA=,tag:OKLki2KMl6Udh9bSFvCxJw==,type:str]
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:eWiYi/AytLLefqvh2WeoC557WVtWH7c5wYFZYHH0oaIPHd/UyQ==,iv:zreUmSRjGCYywVO1w7+axPmt1E6WON9k63EWhzN6L5c=,tag:zS/rA1dTwp8QMzdi8g8uLg==,type:str]
+    - key: ENC[AES256_GCM,data:3OzBuyLCWw7oFhTab5NVbQFMm0UwxjT+4jT07WtSB3TRD4Wpjg==,iv:w9xLvn+bVXSvJFF5EWe25TmYd6Yd+FneT/VRWbfljbc=,tag:Ehdk3FQ4cWwNzCUvZw9KGA==,type:str]
       operator: Exists
       effect: NoSchedule
 # Prefer non-failover nodes in normal operation
@@ -27,33 +25,33 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:1eMq19wPgLa5uYzYlrrN783Ps5U=,iv:WU2PcuCN9YsT3k86TN9347iErqH7s5JiOKlPfiBK2oU=,tag:BWEdA34tVe8FYUjaztPTqw==,type:str]
+                    - key: ENC[AES256_GCM,data:lwunCYcoIshDdjXlLFhCHeKR+CQ=,iv:b/J9Hd8Nl82TrIu1WyShHfNSZCIvsVXhQ2QHrMT3Lto=,tag:fGHxhXjTJ2oGpwH+dkEr2Q==,type:str]
                       operator: NotIn
                       values:
                         - "true"
 sops:
-    lastmodified: "2026-07-25T08:22:16Z"
-    mac: ENC[AES256_GCM,data:3L2sGcpCY1DbFib+13cTJ382EB3DgDJyT5nrE6Pz2gJEqDoF867vDYFvl7qxmT0VXaX6a9g/Q0j97EBbq+oiko0t+sYU0dCRRvcnmgbZaY6TA6WhwMzB6STqZW0XhUc6o5mgvIh7YCgCpPl1yFI4Oeffkrd7EQnx66FPxZYtNzg=,iv:PBZSXeYx8ywDR3wsahldquUfUDTNgC+znYdVcV9SDuw=,tag:d48/XYEaIC5I6cZXCRW/kg==,type:str]
+    lastmodified: "2026-08-20T21:32:23Z"
+    mac: ENC[AES256_GCM,data:9IRRRPEZoUcfS4Ot6III4+lnsbYqWI/pIrK7BoUnocTWu9ALk+3z32k6euC1AJ+DgIUgQa2fnh2JnRy5L6JHSstQlyTVCiVPEtRy9MyDQi5E0o0GcSzS1ZyJ93nZ9L0SnZ8pal75H7/zvVMiRfhGalcCrGvi4JX92TJ1Z9I24V0=,iv:V6aKblubxqyPlZnHvLvSduKWj7qLZ4D+9W7f8AVSjrE=,tag:Y77HJXq0+sRBIuHB/YvJ1Q==,type:str]
     pgp:
-        - created_at: "2026-07-25T08:22:16Z"
+        - created_at: "2026-08-20T21:32:23Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAxFUgi7EmKbvClLsuCBT3H40QeXdnEoTYmpVJHhoUp9ex
-            vw8K49rg1UueJ7E3jenOhsFw7XiuH3JfCu/CjRW4kMdhBm9G7vGQLdoUub0gvW6Q
-            OgJLJcpoYaIkTowZLHxyQOVYv23FFHCfoEWHUEidHnDswy6ngtljS9U3aQFq67oR
-            REbqMcaotkAUg921ZA60BrctJFvm5DKt33LbgrI6NQ7ku4cDHnRsJLxW0X5F0srl
-            vuHfez7wTk/az7H07aPGlNcBc3MiXmpC9EpRj3ZCgi8RsWm58MFO4ErNAF1DGd1A
-            flfpDRyoDxichpKGnNs1vrWOI3ceXj5241HsQne7dqBPO2sn0QhY0tN9imjKteab
-            bn3C3QSh/jePSJYoBE1tIr0b3+7NIUKeEHBZuS250KL3nZGAGHmYRGZubvrLag9u
-            pnEWZw1yGI2glR/aXFgOk4eHqGfNkBSCQTN/7vErYe1FmUbsaiiJBLpzmNDPrWGy
-            d77Zv/GVCQ5Tod0sD714IyEj5j2ZH9nBGXW60VY/indmMoFpWlUzvii5x3g8Ig6G
-            R0cG20g/x/Q2IgEQuisVfZBq28hJ9SDQNequ+XjARWeO4Bg6VbQvYSiPMamEd1U4
-            IBBWy+Q/MWMaMXN/igfEptvC89ttqK4ckPjgiN8dQyG97jy+xs0kll7JGvydyK/S
-            XAGFitVH3lGXSmsDfijXKVP9/dUixM4Z38lxOwlb6cUyyREH6rRjWyqJcM9tTUVo
-            ArLybrpWYkZ/eVWi2/EXQ7I9nWLoivzrilf80Gh4VPBesuisZdATZUwUY0EG
-            =L8ob
+            hQIMA7uy4qQr71wiAQ/9EeBVTgJ3xGHB9Gr4glxiFQlLDnpRlWApyMD9Gup319jA
+            N96+dnleON4lnRs7kQmojqUG9+LzhTA887E2kI/e9QBH0f0ZWvkYhCR7I5f8w+64
+            y9MKLTL8TLP18p/xgwoAID9EqXTTO5NMi8yN1xHpWtGeY9nIaaNUWLF2nG6CgtPy
+            +YtIpGzQj5nkr4oRyTbHIWDJlODEjMguTSCoatr02dWYeeTiEm3yiI8LpEiFcPPm
+            60Ou1o2eCyP4jfaqKtEoyIqDSMyFjXnhULyJYrRdozvgsdIA8O/GBCAs7bDOwXTe
+            2xoCNuhbb0WM4mo8U1d7o+mVYcLutRJfsOUAj44CUa3fFvyTVK2jXdMLtWGlEUg5
+            VxyUkouao8YhgTttu2RIfLMMTLRDNaFujCCQBcARVltvqMpfr0Cwceyqf4ix1XP6
+            dQt3fRo44jU0cJTPtgKR9BkmRFFc5RmUzRskETxKHYH0/gABy74fwv2+hm+s7vbV
+            Unv2B6++K/SwAYjBRNQLh5BOGXdz29d89QyOlvrZUmfkLuYnyFpWf3k8S4wlNgHr
+            16V3KKDoDZlb9K+wLQ/o6Viag59HcbWHoc8A/6QExe4CMjYVycwinq8jT7OdQeqE
+            b46pmeeWgN8xq5z4vdNmNfRttqr3+oyQ1GWLboHhanPYkZ/muWz4JPDjau8V6iDS
+            XAHIRQ8+raEddWA6iRPpJRAufQYSJTSNB2kF0DX5NL2ViD3ouBqzEEOQ/9qmd9zx
+            Q8O4GCb850YrPp456JDrpllQlVHD2+lPEdKVA0TRzFD1DujRLf06n2wIMHdK
+            =uA7R
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
     version: 3.10.2
