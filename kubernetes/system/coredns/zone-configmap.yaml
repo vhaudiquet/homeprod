@@ -28,10 +28,10 @@ data:
     bw-r740         IN  A   10.1.2.117
     kube-r740       IN  A   10.1.2.171
     docker-r740     IN  A   10.1.2.212
-    truenas         IN  A   10.1.2.139
+    truenas         IN  A   10.2.2.221
 
     ; P330
-    p330            IN  A   10.2.1.149
+    p330            IN  A   10.2.2.138
 
     ; PVE
     pve             IN  A   10.1.2.10
