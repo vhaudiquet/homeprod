@@ -19,9 +19,9 @@ pushShard: ""
 # with these credentials on every cert-manager renewal.
 recoveryAdmin:
     enabled: true
-    username: ENC[AES256_GCM,data:ssWcS9c=,iv:K0cpea1wPDM9tEHcsP2N5rxDegzGWir+Nkh3Vnz7Ejg=,tag:mSoy5nCqTwQSj+tg8MZDFg==,type:str]
+    username: ENC[AES256_GCM,data:W7aZNhA=,iv:d0DosYNdnmJEc3pMIEgTSl3YyUGUvdSFUxty7oGj0s8=,tag:N4U5dbxg2gU/8bDsZKHaCQ==,type:str]
     password: ""
-    existingSecret: ENC[AES256_GCM,data:IMPTLHBqnk1/xkxykOi2Sxgfocdogn0=,iv:kJz4DMVb95w/2px0UjzhtReUK6tjZ3qILPKyqlNdpV4=,tag:dME8/hiUM+XVbwDovDSxeA==,type:str]
+    existingSecret: ENC[AES256_GCM,data:UrgIv36m86twJhcccQFl5+yDc7+8vYQ=,iv:RekqnmgiD7nmwc1PPdEjX4hBAom9dckvjfIPEFniESc=,tag:NwpbBZcG/FU4K8gRDLmESQ==,type:str]
     usernameKey: username
     passwordKey: password
 # Recovery mode suspends mail services and exposes only the management listener.
@@ -40,7 +40,7 @@ bootstrap:
 # certificate.yaml (letsencrypt-production, Cloudflare DNS-01).
 mailTls:
     enabled: true
-    existingSecret: ENC[AES256_GCM,data:RyFkt8p//R+qkc3UIG9v7BEXlrVlvA==,iv:S2dOLr8fKPyv5ke++zrajv0UFKJSTx1oa5jv7TZ/+hk=,tag:q1SHST/5aLa+4iNs2TSUVg==,type:str]
+    existingSecret: ENC[AES256_GCM,data:mYuo+xDaQyYhAE/3iiSj+2HEcZF1/w==,iv:8Pauul2cBj6Hu4QoSJS/LGMpofkaZOJJqJJLDjkQ8QE=,tag:yf3216LoI8DfqQDQplhlDQ==,type:str]
     certKey: tls.crt
     privateKeyKey: tls.key
     mountPath: /etc/stalwart/tls/ingress
@@ -77,7 +77,7 @@ mailService:
     enabled: true
     name: stalwart-mail
     type: LoadBalancer
-    loadBalancerIP: 10.2.1.5
+    loadBalancerIP: 10.2.2.5
     annotations: {}
 # WebUI ingress. TLS is terminated by Caddy at the edge (wildcard cert), so the
 # path is: public -> Caddy (TLS) -> Traefik (HTTP) -> this Ingress -> mgmt:8080.
@@ -120,27 +120,27 @@ podSecurityContext:
         type: RuntimeDefault
 containerSecurityContext: {}
 sops:
-    lastmodified: "2026-08-20T20:31:57Z"
-    mac: ENC[AES256_GCM,data:QjvWqFfWs1WiGwpjRG7yeyO4fMlfTk8WwUlTGhNAR/4MP2fyHV31VOgj0Dpamf3zHEOfVG4CQuADWQUbcwFbArdotn9sdsGrTheDWSikjM79AC2rhh/vCeREDyYR4nKm8aZISvGlwF6SQVoYO8VomVDJkNhK9ceWLaDyxrMJIxs=,iv:lQ+Zv4H7O8R8aOwPkru6iBYFR9ODpGwIdZdTQzQ8aJE=,tag:y1MRdyTltz6c9UWOQ3tWBQ==,type:str]
+    lastmodified: "2026-08-20T21:26:03Z"
+    mac: ENC[AES256_GCM,data:/Csupnf8vdHopaEP3+MOjv+99hs1muhP5mIZCNObOoEI3oxgJMNWHhi98YzSf4d/hpubTIkirryXrtK+bvdBJYydcdxd2BKPeFnVQwGdWG8VTZoW/8xWSufKOxGsJtjKtaLh5Q1b1WYsTKsfB0WF1QlEig4CWXtDTuCTncQktvo=,iv:v79M2+gzuMPE0epOCKuFs7VXnzdkeautJFp7K6PP7f0=,tag:ew9yozsxReJgyrapnQxmrg==,type:str]
     pgp:
-        - created_at: "2026-08-20T20:31:57Z"
+        - created_at: "2026-08-20T21:26:03Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/9EUc3vJ3fVYZm4KQ2owVf9IKdpt2rPgaAgZMqwFqNXIi+
-            ZA4/iiFv0BctD6pgx/Dwe5cHa5Wq3z6NDcO9g/wlZMRBLPIuGXcOey4AwBBvYlgt
-            +A6VxeCHimczImogGHUkJRlM39hdZh32hs8olzkVLk/nYdh6sKeGLm2dphP+kPJg
-            hnfgGA0pc5lSsz2gMHZiOy85mOpoFbj3c4Ndr1mKvSz4PbRAwIXn5idsASCZO/Dv
-            xqzmftrmahaNwfHvmKdYHApyIbb0kxRuWKiwpXFUuwpOOJDlC4QH5XuZc3mslLeb
-            vxI+l2o0ojMImgwXCreCxqGkKQN4osa/AdoqMSafGNgSjhLdkiw+XhG+Wy5EEh0V
-            eOyaLsW/OCxKhGOWPgGd570BSgGZaf9JjB9tKBmlocu/D8vhaREblziNE3/PkfZV
-            YjnrxktJsbT1sEOblfPulUwmkDQOfG1QBC4zxrJPzYnUxd0Klf5bkLFoHLBEK+KE
-            +ZOLW9TDWnccPm1ZdiIpR2CepUILRus3lVNxQUk4NKhssg3YYFH1FJy5t9cDP9eJ
-            hXSE5kq1kTL4W4+o7B6oDAljWe9UGW7OU3M18o8CQJ5nFLdv+gm9Xtzo8I4FTY/J
-            ATz77c/tILUl/TXkXvJNwzxqD4EAlq5ci5MiVFpdO0Fg2roK4fAGE4gzZZsG8FDS
-            XAH+UpKRFmQ43TdB7//yy0Qdziv8xu/FC8nWnYaYYsm6xVkMsGujnyKQ2x/j6eMH
-            4+Hh8gQocaZm5UKzKf8XFgZhupWKSNjjPivdWeoF/pHyhlzSGG0/bHjpmCpz
-            =/TCV
+            hQIMA7uy4qQr71wiARAAvURAKFHR8V4cEhWqXh2hhTklHH4ob4lUC5nbIQQepSlm
+            MgVKyOVtOb1fcyK6nIFpAFEkiUQrg3pffxv/jCKpkL+C+UecUemuL51CgD/zGGkk
+            LAWqpSyicSG81yx1DVNvbTOGozwbl3YvLKl2mQz4gvfHe/Lf69EHdPPPVdoJS9in
+            DlZ/jwSkyXX6D4l9op4fKCW3uqTXlRWUSY2aK+sYsbINeQD9u6pdfF0Tig+Gxx2u
+            0B+UxknMthkPEgWAjX3KQTahlu8Nbp419BRg9TTIu8frkNvo9tGXJ0cd912yBrrV
+            iSGq3GZ8ZLpHJoGRK/yfL1gsNRTLAFed1HPQ0P/5N19zJojf8bnm6HpMbb+2zT4X
+            4KugSImWtczsXPKvtysUgboXJYJCXwCVaIwQQ6Husz2W2fjwLT4aj6GoRn6hi8pL
+            TTDi57iMfKmbHOZsxFM47odM95u/fPfZZjZmk/51OkJD1hndrm1QrNdLR2/ZXSTk
+            kgblBHzPUMkkQHkGhk4HjQ82OCfKEi7S2syWtEqHQD0FKrJsZHpF8JJcO4ntyYCr
+            SWzFK6LHi1l4LkswrCFv+/HfQGGU3g9zYUT9c8ys0taNkHXUS0sDgLgC9esWxTuk
+            I0K7TEE6HhfD8CTnBiiqz2OqPyCs2ukUqK0DLrJvuQZnbL3s5Z8p4ISUYJdmecvS
+            XAGtE+9OR+2fHlR9DEa1oryNl/IHpm+ERSHs5PTSjsh2yyPpILln20DZxx8ry23A
+            ILyBwxcGVH9cSd2vH1doK8IyvNwh4bMFFbj3OOUsWBZaqqDQjJxOprumHA7P
+            =1Bee
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
