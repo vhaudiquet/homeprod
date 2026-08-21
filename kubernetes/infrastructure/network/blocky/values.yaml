@@ -67,29 +67,29 @@ resources:
         cpu: 200m
         memory: 256Mi
 # Full list of options https://github.com/0xERR0R/blocky/blob/main/docs/config.yml
-config: "upstreams:\n    groups:\n        default:\n            - 1.1.1.1\n            - 1.0.0.1\n        lan:\n            - 10.101.207.1\n\nconditional:\n    mapping:\n        lan: 10.101.207.1\n        cluster.local: 10.96.0.10\n\nblocking:\n    allowlists:\n        ads:\n            - |\n                dealabs.digidip.net\n                s.click.aliexpress.com\n                fonts.googleapis.com\n                fonts.gstatic.com\n                wl.spotify.com\n                www.googleadservices.com\n    \n    denylists:\n        ads:\n            - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n            - https://adaway.org/hosts.txt\n    \n    clientGroupsBlock:\n        default:\n            - ads\n    \n    blockType: zeroIp\n    blockTTL: 1m\n    loading:\n        refreshPeriod: 4h\n        downloads:\n            timeout: 60s\n\ncaching:\n    minTime: 5m\n    maxTime: 30m\n    # Disable negative caching (NXDOMAIN responses) for dynamic DNS\n    cacheTimeNegative: 0\n    prefetching: true\n    prefetchExpires: 2h\n    prefetchThreshold: 5\n\nprometheus:\n    enable: true\n    path: /metrics\n\nports:\n    dns: 53\n    http: 4000\n\nbootstrapDns: tcp+udp:1.1.1.1\n\nlog:\n    level: info\n    format: text\n    timestamp: true\n"
+config: "upstreams:\n    groups:\n        default:\n            - 1.1.1.1\n            - 1.0.0.1\n        lan:\n            - 10.99.121.92\n\nconditional:\n    mapping:\n        lan: 10.99.121.92\n        cluster.local: 10.96.0.10\n\nblocking:\n    allowlists:\n        ads:\n            - |\n                dealabs.digidip.net\n                s.click.aliexpress.com\n                fonts.googleapis.com\n                fonts.gstatic.com\n                wl.spotify.com\n                www.googleadservices.com\n    \n    denylists:\n        ads:\n            - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n            - https://adaway.org/hosts.txt\n    \n    clientGroupsBlock:\n        default:\n            - ads\n    \n    blockType: zeroIp\n    blockTTL: 1m\n    loading:\n        refreshPeriod: 4h\n        downloads:\n            timeout: 60s\n\ncaching:\n    minTime: 5m\n    maxTime: 30m\n    # Disable negative caching (NXDOMAIN responses) for dynamic DNS\n    cacheTimeNegative: 0\n    prefetching: true\n    prefetchExpires: 2h\n    prefetchThreshold: 5\n\nprometheus:\n    enable: true\n    path: /metrics\n\nports:\n    dns: 53\n    http: 4000\n\nbootstrapDns: tcp+udp:1.1.1.1\n\nlog:\n    level: info\n    format: text\n    timestamp: true\n"
 sops:
-    lastmodified: "2026-08-20T20:31:57Z"
-    mac: ENC[AES256_GCM,data:RsGI3l+9aiCChJLDS3HLY5V5AvHVBMPo9HZg37gNmAql2r237fBYT1D6W1i21VZtno/ylckkNPB2wcxJfHG6uh/R4SFbFcZsjCda8wgeqGDPvaTR29n0xUs/XBHxEHbOF223xLhS8x6iShX56EVJ6QPcKG47azk+/1v0TYyLs9E=,iv:RBkV4gYoecejjmVyvIX3f34ol9WFtpIiPRezVv7NfIo=,tag:nCZKJpl/T3jaFuUmhp0fzQ==,type:str]
+    lastmodified: "2026-08-21T16:53:47Z"
+    mac: ENC[AES256_GCM,data:UurGQEnmn0HR8d6e7I6+TvNTGDkp+4z2qxA3qR6s2ckhSrri40Dbhl2zYMHPzkch50HLbLmgDmkLPuvwVvvtRA++46IWCvPsLyirRgHfLCF8rvvJ2ydbUyRKspQi0+HiWhoQzsmC7Qn442iUXoB1IoSNR1Y8n94uVvgUyqTalkA=,iv:XnNYtp6mFWILZqP5JqjmZMp26PQnefZQK7UJCgPMYnY=,tag:hexfIqW/+tKvVY8OT5pmag==,type:str]
     pgp:
-        - created_at: "2026-08-20T20:31:57Z"
+        - created_at: "2026-08-21T16:53:47Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAkJkQQV3jR/0IYHZ0jgyvcLPV9EJQN85j5aNprps+uhRb
-            BDXf7tYR3jZiPDEBvg0pL2eYlP/Bh9a1fpTZ7NcCJWizI15PJXsIKzaJ2mDn776M
-            KaMAj0hy3kOKrmfH/Ajof9gjupJblvyQY6nqd1AlQapfdqVR4r5W6fq0iX1wuq4n
-            RLzTQ4zQaYfH76dRYQFrxCwleh5C2A16Z6drQukNTKjH79IDjVLJQT+7toLH3ws3
-            lgRUJnXCkpYY2vr8lbtmjfHI6i0g9bJFMkGlZRZ58BYhHJYcjO4JGwvZGCzgrzi8
-            U9Q7gIVS4Ccdog4H5pflgOUZB36Kc5pCAxE6puttEcvXV4KJnQCB2TrBpVZxswdG
-            /aoPKU+IYFUcxXeKKBTXtdoVWQlppqNR7aobbDhPU576SUnozV1wag4LcbZcWIt9
-            DLoJwX8A2bSBjNxC+XSYgK8p6r9SKeq8JucBD9dbwDK+4e1iHYhRNQNIXtEPuRFm
-            rAE0poTNdMeMirut4WSKy38cnb2V5lZqK9QdLk3dcs4wPxdohfUYVWmnSBzuAM/B
-            qePVPzfKod9Szp7uTAWWXVdbIXKt58Qn52GAkYQofjPamcumGksnQJ819v5TYo/Z
-            CtUMGtfi44SRPLR0vPoGgLTiYnu6jt8BUxqaRrzbv959XW8LCfm/NzY1MABuZaHS
-            XAGa3Zsq2bZHP2BpQuyCoL9QKYLTOtPxgxzcF3xyLuku/Qd7oo3/5NXY6ET3w4R4
-            aPrOhRlhOLQ00HVESc9FYjy41GT+pE/s+aa2ZXzsG3fDQb4+OTtl+b9kG9L1
-            =2k/e
+            hQIMA7uy4qQr71wiAQ//TuHosCarvDdeJK4Fo062JDb9KBUxlmSoSRuGFik/97wA
+            9xBDzqoMqptnDgd0J9FY4an9ie5M3aWyzFvV+LAgE104vD4jT0Zi35N5nKhTJLcX
+            KTLs61jgNnOo7NYww0zikzIXY0rqk+tIPFkuiQQRn6f5s5TB/FH1NAe4VNisenYF
+            6NhgFIZDyt10y1i75bLehG3s4c1OSvAQ2W0+Tti3kFGpJUqmf9+5jdC0sHQfpzFR
+            QOifTKaSp8zHuRx05/8DzRQrVohBjeIQRJzmgzQ8oynZTGTt3q0sP9+Eo9MZoPD+
+            Oe6cEoM8fPN2EO0BpeHWrEPsbF4V8KW/fd6sCUyGeGVxTIssupxeRVrN3jbANkXW
+            awz35sGhUBN2hloK7imy8tcw+FAZHZIFZhzMfEWGpg0rJSb8bZF8LEgmnEY7gq4C
+            x02lJSKHvnKpc2oKlyK3IrPnwqfr8ilZJn6Svh4IW59tyhJB/2eRjKT+S/laey4P
+            PEr9t/DC+kpndOPxkS2gxD7ENljdh6IfOLTQu9lQT3tA1mRM7HZUb0TVS5ZRL0VJ
+            zady8YZiKZCGTGl44pDdbG5d6r/h9lcmP6QeKnCU4KCPJrCUBWVYHxDz2fFQ5810
+            49FdWloWEGk2rM/7xW2wz5PD2XXLuiPyRhAz9nJ6iTMT0FkvxIseJ8uYgStQCnDS
+            XAEIZAmMcySSzP93SeevQTPPeTC3WrYcwfUVV5871+09M0eKURZqaWmnvZiaR1fs
+            fMPynVu7uwW65LDFdH2aMgp5NY77NZTDN4wgZkYQ7CG/IMA0GOvYS2J2XTFi
+            =7N0d
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
