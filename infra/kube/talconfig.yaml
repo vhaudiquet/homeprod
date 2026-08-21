@@ -1,0 +1,46 @@
+---
+clusterName: kube
+talosVersion: v1.13.8
+kubernetesVersion: v1.36.0
+endpoint: https://10.2.2.138:6443
+domain: cluster.local
+allowSchedulingOnMasters: true
+clusterPodNets:
+  - 10.244.0.0/16
+clusterSvcNets:
+  - 10.96.0.0/12
+cniConfig:
+  name: none
+nodes:
+  - hostname: p330
+    ipAddress: 10.2.2.138
+    filenameTmpl: "{{.ClusterName}}-{{.Hostname}}.yaml"
+    extensionServices: []
+    controlPlane: true
+    machineSpec:
+      mode: metal
+      arch: amd64
+      secureboot: false
+      useUKI: false
+      bootMethod: iso
+    installDisk: /dev/nvme0n1
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/intel-ucode
+            - siderolabs/iscsi-tools
+    kernelModules:
+      - name: iscsi_tcp
+      - name: libiscsi
+      - name: scsi_transport_iscsi
+      - name: ext4
+      - name: ixgbe
+        parameters:
+          - allow_unsupported_sfp=1
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+inlineManifests:
+  - name: cilium
+    contents: "@./manifests/cilium.yaml"

@@ -1,0 +1,67 @@
+ipam:
+    mode: kubernetes
+kubeProxyReplacement: true
+securityContext:
+    capabilities:
+        ciliumAgent:
+            - CHOWN
+            - KILL
+            - NET_ADMIN
+            - NET_RAW
+            - IPC_LOCK
+            - SYS_ADMIN
+            - SYS_RESOURCE
+            - DAC_OVERRIDE
+            - FOWNER
+            - SETGID
+            - SETUID
+        cleanCiliumState:
+            - NET_ADMIN
+            - SYS_ADMIN
+            - SYS_RESOURCE
+cgroup:
+    autoMount:
+        enabled: false
+    hostRoot: /sys/fs/cgroup
+k8sServiceHost: localhost
+k8sServicePort: 7445
+etcd:
+    clusterDomain: cluster.local
+l2announcements:
+    enabled: true
+externalIPs:
+    enabled: true
+ingressController:
+    enabled: false
+    loadbalancerMode: shared
+    default: false
+    service:
+        externalTrafficPolicy: Cluster
+envoy:
+    xffNumTrustedHopsL7PolicyIngress: 1
+sops:
+    lastmodified: "2026-08-21T18:35:32Z"
+    mac: ENC[AES256_GCM,data:Ad0t52gfwmsLe1VWx9dsV9zI1k2XFHRpy369T6xqoimcqM19jMcInS/0Rgpg9QTFqOhMMJnf/Qf9H1+bvOvoyk32ykbkRJh7V2QHF/vaBfD/GyvEeJb17swoPehf6JyaLhzpIU8I94el3EEFhwi42xhnW8c/ghtKMqcc5VNwJP0=,iv:ouYUEQhKHMlCVsMEaDyhAndS3y0WRkv+LPX9JGnjtfs=,tag:wXEAZhc6yn47LO/U0PauoA==,type:str]
+    pgp:
+        - created_at: "2026-08-21T18:35:32Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//c5xdgliA1tjpUtZlZ0ByB+acwEbEA7Ee2K2ySg3GcQHG
+            2oE2QO2TvRkUzyLE+td7NgRWBqEV/6u/Ozfee2tLiijjCgUg4QtgEPFqQVS9QKZW
+            QXRRsBhG5vxdJqKXn22g2bofNuJZuDSUiGL2MMy85Tm1HAc9Rb65+UcRqtlqrkVU
+            e2GaxcYM+YexWnpBqA+685PSidbYVehH5WSgfTXqbilYmxmZH0wBPdLzSm63dDd2
+            SdtFy3JfsNDg3jYMge57FHd+FANltbdW5tHQaa+6FX9akyQ+3mY/xXt2Ut/KiiuP
+            WFb3SvNxluRXjvyKQXmkUPZDjL8YbY+jdcH9WEuWXFClwa2g3OVOSPotSvJ5eW3A
+            z5kk3tIq+LqIYpCPd/0AjpkAzeijAFATTxVUUsvPJHe6WDrCC0koP/7Vqqk3vvJh
+            5BM4/1pT5v9HfbgirR5ja3EBxgLEGFHRW4IAL5dJnL+JtM/NQwYJuWmzEn9Bdlu8
+            25aqVfVRkeOrjh/dS+2jwJvjPhzWd0KHv58PkCJVT6tJcitgak3eK8yV74HXRrbj
+            dBYr0hxs1oDQt5U6bqVVfzCXg0c/ZP1Or/kcjQQUHNsOyornbxJ6RTqeVTdLENWY
+            RZ6d2WNFVagbH8Kr2ah/L+MzHPQvhNSrLBpj8FjJH3wifZ4AePubSidv+ipJkH3S
+            XgFe9BbrSzN6b684/bBswl6sOK/AiW9pFPrGTuT+0qFvPcKNHLq+faltMS9rz3DW
+            FF+s0h07i4pkf9iED1nfXane+DpuKpDaE6S8UIn7SwrXJ5A67woc28QcaFbxYkw=
+            =lil9
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    version: 3.10.2
