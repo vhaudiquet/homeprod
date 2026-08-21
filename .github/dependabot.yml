@@ -47,7 +47,6 @@ updates:
       - "/kubernetes/infrastructure/mail/stalwart"
       - "/kubernetes/infrastructure/network/blocky"
       - "/kubernetes/infrastructure/traefik"
-      - "/kubernetes/personal/bookmarks/linkwarden"
       - "/kubernetes/personal/media/photoprism"
       - "/kubernetes/personal/notes/notesnook"
       - "/kubernetes/personal/notes/obsidian-livesync"

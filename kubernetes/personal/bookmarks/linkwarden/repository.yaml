@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: linkwarden
-  namespace: linkwarden
-spec:
-  interval: 1m
-  url: https://soubenz.github.io/linkwarden-helm-chart/
