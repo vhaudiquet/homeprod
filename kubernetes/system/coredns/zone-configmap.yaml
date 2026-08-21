@@ -18,7 +18,7 @@ data:
             IN  NS  ns.lan.
     
     ; Nameserver record
-    ns            IN  A   10.1.2.172
+    ns            IN  A   10.1.2.3
     
     ; Static hosts
     openwrt         IN  A   10.1.1.1
@@ -28,22 +28,6 @@ data:
     bw-r740         IN  A   10.1.2.117
     kube-r740       IN  A   10.1.2.171
     docker-r740     IN  A   10.1.2.212
-    truenas         IN  A   10.2.2.221
-
-    ; P330
-    p330            IN  A   10.2.2.138
-
-    ; PVE
-    pve             IN  A   10.1.2.10
-    docker-homeprod IN  A   10.1.2.12
-
-    ; Ligory
-    pve-ligory      IN  A   10.2.2.10
-    docker-ligory   IN  A   10.2.2.232
-
-    ; IoT
-    c210            IN  A   10.1.1.106
-    elegoo-neptune-4pro IN  A  10.1.1.155
 
     ; docker-r740 services
     esphome         IN  A   10.1.2.212
