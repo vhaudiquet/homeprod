@@ -20,7 +20,7 @@ postgresql:
         password: ENC[AES256_GCM,data:cRaZ23HWjZ41ig==,iv:HABmXhmHvMhjUJ989xJOFPWW+EnLTCot1is80vMTBUE=,tag:r+/iRkQIlXvALv/JQbGFRg==,type:str]
     image:
         repository: bitnamilegacy/postgresql
-        tag: 15.9.0
+        tag: 17.5.0
     primary:
         args: []
         tolerations:
