@@ -2,7 +2,7 @@
 # Replaces the Docker Compose pplessdb service (postgres:16)
 image:
     repository: postgres
-    tag: "16"
+    tag: "18"
     imagePullPolicy: IfNotPresent
 auth:
     database: paperless
