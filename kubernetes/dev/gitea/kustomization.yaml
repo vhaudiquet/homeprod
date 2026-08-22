@@ -5,9 +5,16 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+  # Gitea Actions runners (gitea/helm-actions "actions" chart, same HelmRepository)
+  - priorityclass-actions.yaml
+  - actions-token-secret.yaml
+  - release-actions.yaml
 secretGenerator:
   - name: gitea-values
     files:
       - values.yaml=values.yaml
+  - name: gitea-actions-values
+    files:
+      - values.yaml=values-actions.yaml
 configurations:
   - kustomizeconfig.yaml

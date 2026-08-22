@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gitea-actions-runner
+  namespace: gitea
+spec:
+  interval: 1m
+  dependsOn:
+    - name: gitea
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: gitea
+        namespace: gitea
+      chart: actions
+      version: '0.1.2'
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: gitea-actions-values
+  # The chart has no priorityClassName support: inject a low-priority class so
+  # runner pods are the first to be evicted/OOM-killed under node pressure,
+  # instead of starving system or application workloads.
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: StatefulSet
+              name: gitea-actions-runner-runner
+            patch: |
+              - op: add
+                path: /spec/template/spec/priorityClassName
+                value: gitea-actions-runner-low

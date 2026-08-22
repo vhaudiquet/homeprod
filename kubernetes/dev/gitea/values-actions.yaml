@@ -1,0 +1,101 @@
+# Values for the gitea-actions (Actions runner) chart.
+#
+# Hard resource caps: CI jobs can be very intensive, so every layer is capped
+# so that a runaway job gets OOM-killed/throttled inside the runner pod instead
+# of exhausting the node and taking it (and everything running on it) down.
+#
+# Layers of protection:
+#   1. dind container limits  -> hard cap for the Docker daemon and ALL job
+#      containers it spawns (they run inside the dind cgroup).
+#   2. Per-job docker options -> each job container additionally capped below
+#      the dind limit, keeping headroom for the daemon + image cache.
+#   3. Low PriorityClass (injected via postRenderers in release-actions.yaml)
+#      -> under node pressure the runner is evicted/OOM-killed first.
+enabled: true
+# Register against the in-cluster Gitea service (chart "gitea" release).
+giteaRootURL: http://gitea-http.gitea.svc.cluster.local:3000
+existingSecret: gitea-actions-runner-token
+existingSecretKey: token
+statefulset:
+    # Single-node cluster, no point in more replicas
+    replicas: 1
+    timezone: Europe/Paris
+    runner:
+        resources:
+            requests:
+                cpu: 100m
+                memory: 128Mi
+            limits:
+                cpu: 500m
+                memory: 512Mi
+        config: |
+            log:
+                level: info
+            cache:
+                enabled: false
+            runner:
+                # One job at a time keeps resource usage predictable
+                capacity: 1
+                # Raise if jobs need longer than 3h (Gitea server-side job
+                # timeout applies as well)
+                #timeout: 3h
+            container:
+                require_docker: true
+                docker_timeout: 300s
+                # Hard per-job caps (docker create args). Slightly below the
+                # dind limits so the daemon and image cache keep headroom.
+                options: --memory=7g --cpus=3
+    dind:
+        resources:
+            requests:
+                cpu: 250m
+                memory: 512Mi
+            limits:
+                cpu: 4
+                memory: 8Gi
+    # Same failover tolerations/affinity as the gitea release, so runners can
+    # be scheduled wherever Gitea itself runs (p330 during r740 outage).
+    tolerations:
+        - key: ENC[AES256_GCM,data:jC1B3zH0XQ1O,iv:nGWUUNvIB+WBDG4MatKdzXKwWuXjkK2IsaDC8LCakC4=,tag:lp6Uv/aJaUt8XTXXhXQuXA==,type:str]
+          operator: Equal
+          value: failover
+          effect: NoSchedule
+        - key: ENC[AES256_GCM,data:pmPj2H2dChGATTl5oUJCt6Fq0A64zt/VFxRG6yy0XFKXlUkpgA==,iv:pmNCnZqu4j9TleelYDrtV7u9pjjgDO806lyKXeL3V38=,tag:+MKVAYraGF29PPQlJhQmxg==,type:str]
+          operator: Exists
+          effect: NoSchedule
+    affinity:
+        nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                        - key: ENC[AES256_GCM,data:zTvzBWPLKcDoRMcNlOB0injDajw=,iv:x4yI3vUBThzKTNHEaxelPmMV1fvArLu/avAAeeBP30c=,tag:uJqnx5qIFVYDONvp7Lu31Q==,type:str]
+                          operator: NotIn
+                          values:
+                            - "true"
+sops:
+    lastmodified: "2026-08-22T09:53:39Z"
+    mac: ENC[AES256_GCM,data:dSUMCCs5iobsQtiktm0YepMqHCjXwPpq35jimoS+IUIeBUO6lLuzt4gS6emVJUBUbNB4rptyqyCxX1GMXj+9iBUwKx2SR+FqXa+AzIJ4JMegF60GBIpBc2rSA7I/jSrv+6DC/7Kq1w5EQ9hhTOXAhhzDxkQjgBJF3jMmMrqU2lw=,iv:pu929/yRvhuMZGY6Yt75RpWCcg4Xr2beZZT2NZVPrOI=,tag:6OavMlfiKjH0w4F47ZJXHg==,type:str]
+    pgp:
+        - created_at: "2026-08-22T09:53:39Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+OgDT+QcY0FWtbrwMhUKn9Up6fn5yDy6dUnzr/Uvd+u/G
+            +5fBBh2oDsLQXyBNIX/OXj6YLq2dBHlrnxGAPVXyoXQtel3OuPWYVVp3bbxR4hOw
+            XZlqnVU+BYemRHHh/wy1FY/17z2QemKXDieVb51cxYxWXiXc02XVOOH2alglf3M6
+            X4cTz0iDu+tbLw1rBo9zwuCDJBQ6pCiyvTUdQrJOH8QwSpjd/kXS9BewJLv511LU
+            9sv0jWkd3O0JPp5SJ2GsmWLZLDE0QHoKmxmSCVWVQVsq85rod6/Ab2oGMeWNaTRn
+            X96XKyveBRKEbi/d7kCPeTLpKB0qxgAHgxCdQ9yVFucBEibGzHoC8qv0hH68pj46
+            XInzUjMseTnNNm5xvxrosMA3BMOs0ByYiRY85+x6pO4y9KxehhFTdNnq3XPYFD8x
+            y7yrmcgDrNXvj6btMt2QvX33idmi73QMQIDghjq3Sejjvg7dGJZgY1k4wZYqyXCD
+            UMQQ6512utS/RhZ44MUxdD2mhQ9RsCZhmeTXACyYiGW+cBTWkNu6negUIzjA7b4+
+            H0GOmaiZHlv/oDhM6+IHkV7B8kh/pkQ4em8Qhb6F38lohYyu7V3VBvQzK2egCoE3
+            7F6XfHa73DPr6/BWepRUcMr9M1YqyQOigx1RaxkIr+7CZwAO3acEbtEzgMY3GBbS
+            XgHcPOjXwU5N9XZRCzrpLD4iwYbQSSxZdxwKkpME+YRyNJ1edHW4HPNbY+2XC/he
+            Z55AJsoEPLFyoJQn47BMl8x5RzViSliEtIvwGJDYiO4W1QV+R54j9wm7zelJVMQ=
+            =Otyl
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(data|stringData|.*key|.*crt)$
+    version: 3.10.2

@@ -1,0 +1,17 @@
+# Low priority class for Gitea Actions runners.
+#
+# Negative value + Never preemption policy means runner pods never displace
+# other workloads, and are always the first candidates for kubelet eviction
+# and the kernel OOM killer when a node runs out of resources. Combined with
+# the hard resource limits on the runner pod, an intensive CI job can only
+# ever fail itself — it cannot take the node down with it.
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: gitea-actions-runner-low
+value: -1000
+preemptionPolicy: Never
+globalDefault: false
+description: >-
+  Low priority for Gitea Actions runner pods. Under node pressure these pods
+  are evicted (and OOM-killed) first, protecting system and app workloads.
