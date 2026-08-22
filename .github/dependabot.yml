@@ -4,6 +4,9 @@ updates:
     open-pull-requests-limit: 15
     schedule:
       interval: weekly
+    commit-message:
+      prefix: "docker"
+      include: "scope"
     directories:
       - "/docker/home/esphome"
       - "/docker/home/mosquitto-mqtt"
@@ -35,6 +38,9 @@ updates:
     open-pull-requests-limit: 15
     schedule:
       interval: weekly
+    commit-message:
+      prefix: "kube"
+      include: "scope"
     directories:
       - "/kubernetes/dev/gitea"
       - "/kubernetes/dev/harbor"

@@ -18,6 +18,9 @@ updates:
     open-pull-requests-limit: 15
     schedule:
       interval: weekly
+    commit-message:
+      prefix: "docker"
+      include: "scope"
     directories:
 YAML
 
@@ -36,6 +39,9 @@ cat >> "$tmpfile" <<'YAML'
     open-pull-requests-limit: 15
     schedule:
       interval: weekly
+    commit-message:
+      prefix: "kube"
+      include: "scope"
     directories:
 YAML
 
