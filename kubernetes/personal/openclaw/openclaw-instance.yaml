@@ -19,6 +19,11 @@ spec:
       className: traefik
       hosts:
         - host: openclaw.lan
+      security:
+        # Operator defaults forceHTTPS=true, which pins the Traefik router to
+        # the websecure entrypoint only (404 on plain HTTP). Disabled since
+        # this is a LAN-internal, token-auth-only endpoint without TLS.
+        forceHTTPS: false
       annotations:
         external-dns.alpha.kubernetes.io/enabled: "true"
   resources:
