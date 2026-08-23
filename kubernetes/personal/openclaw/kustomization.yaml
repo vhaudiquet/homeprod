@@ -4,3 +4,4 @@ namespace: openclaw
 resources:
   - openclaw-instance.yaml
   - openclaw-secrets.yaml
+  - networkpolicy.yaml

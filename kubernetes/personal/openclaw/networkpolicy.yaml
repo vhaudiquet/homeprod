@@ -1,0 +1,28 @@
+# Supplementary NetworkPolicy: the operator's managed default-deny policy
+# (netpol "openclaw") only allows same-namespace ingress, which blocks
+# Traefik from reaching the gateway proxy -> 504 through the Ingress.
+#
+# The CR field spec.networkPolicy.allowedIngressNamespaces would be the
+# native fix, but it is not in the CRD bundled with chart 0.39.0 yet
+# (silently pruned). Revisit after upgrading the operator.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: openclaw-traefik-ingress
+  namespace: openclaw
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: openclaw
+      app.kubernetes.io/name: openclaw
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: traefik
+      ports:
+        # Gateway proxy container port (Service 18789 -> targetPort 18790)
+        - port: 18790
+          protocol: TCP

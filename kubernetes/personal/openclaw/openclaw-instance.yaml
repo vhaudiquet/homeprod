@@ -26,11 +26,6 @@ spec:
         forceHTTPS: false
       annotations:
         external-dns.alpha.kubernetes.io/enabled: "true"
-  # Operator's default-deny NetworkPolicy only allows same-namespace ingress;
-  # allow Traefik so the Ingress route can reach the gateway proxy.
-  networkPolicy:
-    allowedIngressNamespaces:
-      - traefik
   resources:
     requests:
       cpu: 250m
