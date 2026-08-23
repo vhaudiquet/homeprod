@@ -7,6 +7,8 @@
 # - cert-manager-issuer: managed by Flux Kustomization (depends on cert-manager + webhook)
 # - caddy-certificates: managed by Flux Kustomization (Certificate CRDs need cert-manager)
 # - stalwart-certificates: managed by Flux Kustomization (Certificate CRDs need cert-manager)
+# - openclaw-operator: managed by Flux Kustomization (operator CRDs must be installed first)
+# - openclaw: managed by Flux Kustomization (OpenClawInstance CRD needs openclaw-operator)
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:

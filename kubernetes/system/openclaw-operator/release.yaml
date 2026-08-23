@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openclaw-operator
+  namespace: openclaw-operator-system
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: openclaw-operator
+      version: "0.39.0"
+      sourceRef:
+        kind: HelmRepository
+        name: openclaw-operator
+        namespace: openclaw-operator-system
+      interval: 1m
+  values:
+    # Scope the operator's watches and RBAC to the openclaw namespace only
+    # (renders Role/RoleBinding instead of cluster-wide ClusterRole).
+    watchNamespaces:
+      - openclaw
+    metrics:
+      serviceMonitor:
+        # No Prometheus Operator CRDs in this cluster (VictoriaMetrics stack).
+        enabled: false

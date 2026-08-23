@@ -1,0 +1,7 @@
+# Namespace watched by the operator for OpenClawInstance resources.
+# Must exist before the operator deploys: watchNamespaces renders namespaced
+# Role/RoleBinding into it and the chart does not create namespaces.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openclaw

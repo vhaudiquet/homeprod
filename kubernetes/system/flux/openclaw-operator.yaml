@@ -1,0 +1,20 @@
+# Flux Kustomization for the OpenClaw operator
+# Separate from main homeprod because the operator's CRDs must be installed
+# before OpenClawInstance resources can be applied
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: openclaw-operator
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: homeprod
+  path: ./kubernetes/system/openclaw-operator
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: openclaw-operator
+      namespace: openclaw-operator-system

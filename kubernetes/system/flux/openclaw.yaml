@@ -1,0 +1,25 @@
+# Flux Kustomization for the OpenClaw instance
+# Depends on the openclaw-operator so its CRDs exist before applying
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: openclaw
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  dependsOn:
+    - name: openclaw-operator
+  sourceRef:
+    kind: GitRepository
+    name: homeprod
+  path: ./kubernetes/personal/openclaw
+  decryption:
+    provider: sops
+    secretRef:
+      name: flux-sops
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: StatefulSet
+      name: openclaw
+      namespace: openclaw

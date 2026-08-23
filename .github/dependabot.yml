@@ -65,6 +65,7 @@ updates:
       - "/kubernetes/system/csi-driver-nfs"
       - "/kubernetes/system/external-dns"
       - "/kubernetes/system/longhorn"
+      - "/kubernetes/system/openclaw-operator"
       - "/kubernetes/utilities/dashy"
       - "/kubernetes/utilities/glance"
       - "/kubernetes/utilities/open-webui"

@@ -11,3 +11,5 @@ resources:
   - stalwart-certificates.yaml
   - longhorn.yaml
   - longhorn-jobs.yaml
+  - openclaw-operator.yaml
+  - openclaw.yaml
