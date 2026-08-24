@@ -6,3 +6,4 @@ resources:
   - openclaw-secrets.yaml
   - networkpolicy.yaml
   - networkpolicy-mail-egress.yaml
+  - networkpolicy-radicale-egress.yaml
