@@ -26,6 +26,26 @@ spec:
         forceHTTPS: false
       annotations:
         external-dns.alpha.kubernetes.io/enabled: "true"
+  # Headless Chromium sidecar for browser automation (scraping, screenshots,
+  # browser-based integrations). The operator injects CHROMIUM_URL into the
+  # gateway and points the "default" and "chrome" browser profiles at its CDP
+  # endpoint. Persistent profile keeps cookies/logins across pod restarts.
+  chromium:
+    enabled: true
+    image:
+      repository: chromedp/headless-shell
+      tag: "stable"
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: "1"
+        memory: 2Gi
+    persistence:
+      enabled: true
+      size: 2Gi
+      storageClass: longhorn
   resources:
     requests:
       cpu: 250m
