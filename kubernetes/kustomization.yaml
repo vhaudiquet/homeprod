@@ -33,6 +33,7 @@ resources:
   - home/zigbee2mqtt
   # Personal (apps storing my own content, grouped by content type)
   - personal/paperless
+  - personal/radicale
   - personal/media/photoprism
   - personal/notes/notesnook
   - personal/notes/obsidian-livesync

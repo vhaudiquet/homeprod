@@ -39,7 +39,6 @@ data:
     n8n             IN  A   10.1.2.212
     proxy           IN  A   10.1.2.212
     radarr          IN  A   10.1.2.212
-    radicale        IN  A   10.1.2.212
     sonarr          IN  A   10.1.2.212
     stirling-pdf    IN  A   10.1.2.212
     syncthing-valentin IN  A   10.1.2.212
