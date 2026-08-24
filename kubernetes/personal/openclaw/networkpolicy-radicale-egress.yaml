@@ -1,0 +1,25 @@
+# Supplementary egress policy: the operator's managed default-deny NetworkPolicy
+# only allows DNS + TCP 443 outbound, which blocks HTTP/CalDAV to Radicale.
+# The CR field spec.networkPolicy.additionalEgress would be the native fix,
+# but it is not in the CRD bundled with chart 0.39.0 yet (silently pruned).
+# Revisit after upgrading the operator.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: openclaw-radicale-egress
+  namespace: openclaw
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: openclaw
+      app.kubernetes.io/name: openclaw
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: radicale
+      ports:
+        - port: 5232
+          protocol: TCP
