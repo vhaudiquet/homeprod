@@ -26,6 +26,10 @@ spec:
         forceHTTPS: false
       annotations:
         external-dns.alpha.kubernetes.io/enabled: "true"
+  # Python toolchain init container: lets skills/MCP servers use uv, and lets
+  # the agent install python tools user-level (~/.local on the PVC) without root.
+  runtimeDeps:
+    python: true
   # Headless Chromium sidecar for browser automation (scraping, screenshots,
   # browser-based integrations). The operator injects CHROMIUM_URL into the
   # gateway and points the "default" and "chrome" browser profiles at its CDP
