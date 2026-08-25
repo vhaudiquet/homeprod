@@ -1,0 +1,71 @@
+# Self-hosted Renovate runner.
+#
+# Runs the managed `renovatebot/renovate` image on a schedule against the
+# `vhaudiquet/homeprod` repo (see config.json). Because we need to run SOPS
+# during postUpgradeTasks (re-encrypting values.yaml), Renovate cannot run on
+# the Mend-hosted app — it must be self-hosted with the sops command allow-listed
+# (see config.json -> allowedPostUpgradeCommands) and the SOPS PGP private key
+# loaded (renovate-gpg secret below).
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  # Run every hour; Renovate's own "schedule": ["every weekend"] (config.json)
+  # gates when PRs are actually created.
+  schedule: "42 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 4
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          tolerations:
+            - key: CriticalAddonsOnly
+              operator: Exists
+          containers:
+            - name: renovate
+              image: renovatebot/renovate:latest
+              envFrom:
+                - secretRef:
+                    name: renovate-secrets
+              env:
+                - name: RENOVATE_CONFIG_FILE
+                  value: /etc/renovate/config.json
+                - name: LOG_LEVEL
+                  value: info
+              command:
+                - /bin/sh
+                - -ec
+                - |
+                  set -eu
+                  # Import the SOPS PGP private key so rebuild/enable SOPS
+                  # re-encryption in postUpgradeTasks works.
+                  gpg --batch --import /etc/renovate/gpg/git-renovate-gpg.key || true
+                  exec renovate
+              volumeMounts:
+                - name: config
+                  mountPath: /etc/renovate/config.json
+                  subPath: config.json
+                  readOnly: true
+                - name: gpg
+                  mountPath: /etc/renovate/gpg
+                  readOnly: true
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 384Mi
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
+          volumes:
+            - name: config
+              configMap:
+                name: renovate-config
+            - name: gpg
+              secret:
+                name: renovate-gpg

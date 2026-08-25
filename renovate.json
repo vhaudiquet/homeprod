@@ -9,6 +9,16 @@
     "helm-values",
     "helmv3"
   ],
+  "postUpgradeTasks": {
+    "description": "SOPS round-trip on encrypted values.yaml. Renovate has no preUpgrade hook, so the decrypt must happen here: after the tag bump but before commit, decrypt the file, then re-encrypt. Encrypting an already-encrypted file would double-encrypt the existing ENC secret values and corrupt them.",
+    "commands": [
+      "sops -d {{packageFile}} > {{packageFile}}.plain && mv {{packageFile}}.plain {{packageFile}} && sops -e -i {{packageFile}}"
+    ],
+    "fileFilters": [
+      "**/values.yaml"
+    ],
+    "executionMode": "update"
+  },
   "packageRules": [
     {
       "description": "docker-compose updates",
