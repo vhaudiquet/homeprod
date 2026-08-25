@@ -15,7 +15,7 @@
       "matchManagers": [
         "docker-compose"
       ],
-      "commitMessage": "docker(deps): bump {{{depName}}} in {{{packageFile}}}"
+      "commitMessage": "chore(docker): bump {{{depName}}} in {{{packageFile}}}"
     },
     {
       "description": "helm updates",
@@ -23,7 +23,7 @@
         "helm-values",
         "helmv3"
       ],
-      "commitMessage": "kube(deps): bump {{{depName}}} in {{{packageFile}}}"
+      "commitMessage": "chore(kube): bump {{{depName}}} in {{{packageFile}}}"
     }
   ]
 }
