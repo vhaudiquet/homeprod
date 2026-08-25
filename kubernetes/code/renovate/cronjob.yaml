@@ -1,11 +1,13 @@
 # Self-hosted Renovate runner.
 #
 # Runs the managed `renovatebot/renovate` image on a schedule against the
-# `vhaudiquet/homeprod` repo (see config.json). Because we need to run SOPS
-# during postUpgradeTasks (re-encrypting values.yaml), Renovate cannot run on
-# the Mend-hosted app — it must be self-hosted with the sops command allow-listed
+# `vhaudiquet/homeprod` repo (see config.json). Because our `values.yaml` are
+# SOPS-encrypted and must be decrypted *before* Renovate edits them (and
+# re-encrypted before the PR commit), Renovate cannot run on the Mend-hosted
+# app — it must be self-hosted with the sops command allow-listed
 # (see config.json -> allowedPostUpgradeCommands) and the SOPS PGP private key
-# loaded (renovate-gpg secret below).
+# loaded (renovate-gpg secret below). boot.sh performs the pre-extraction
+# decrypt; postUpgradeTasks performs the re-encrypt.
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -38,19 +40,20 @@ spec:
                   value: /etc/renovate/config.json
                 - name: LOG_LEVEL
                   value: info
+              # boot.sh decrypts values.yaml BEFORE Renovate extracts/edits them
+              # (Renovate has no preUpgradeTasks hook; see boot.sh for why),
+              # then runs renovate. postUpgradeTasks only re-encrypts.
               command:
                 - /bin/sh
-                - -ec
-                - |
-                  set -eu
-                  # Import the SOPS PGP private key so rebuild/enable SOPS
-                  # re-encryption in postUpgradeTasks works.
-                  gpg --batch --import /etc/renovate/gpg/git-renovate-gpg.key || true
-                  exec renovate
+                - /etc/renovate/boot.sh
               volumeMounts:
                 - name: config
                   mountPath: /etc/renovate/config.json
                   subPath: config.json
+                  readOnly: true
+                - name: boot
+                  mountPath: /etc/renovate/boot.sh
+                  subPath: boot.sh
                   readOnly: true
                 - name: gpg
                   mountPath: /etc/renovate/gpg
@@ -64,6 +67,9 @@ spec:
                   memory: 1Gi
           volumes:
             - name: config
+              configMap:
+                name: renovate-config
+            - name: boot
               configMap:
                 name: renovate-config
             - name: gpg

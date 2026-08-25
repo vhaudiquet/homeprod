@@ -10,13 +10,14 @@ configMapGenerator:
   - name: renovate-config
     files:
       - config.json=config.json
+      - boot.sh=boot.sh
 secretGenerator:
   - name: renovate-secrets
     envs:
       - renovate.env
-  # SOPS PGP private key needed by the renovate runner to re-encrypt
-  # values.yaml during postUpgradeTasks. Mounted into the pod and imported
-  # into the container gpg keyring at startup.
+  # SOPS PGP private key needed by the renovate runner to decrypt values.yaml
+  # at boot and to re-encrypt them during postUpgradeTasks. Mounted into the
+  # pod and imported into the container gpg keyring at startup.
   - name: renovate-gpg
     files:
       - git-renovate-gpg.key
