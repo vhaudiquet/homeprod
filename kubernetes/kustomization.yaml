@@ -25,6 +25,8 @@ resources:
   - infrastructure/traefik
   - infrastructure/caddy
   - infrastructure/network/blocky
+  # Code (self-hosted dev tooling)
+  - code/renovate
   # Dev (developer platform)
   - dev/gitea
   - dev/harbor
