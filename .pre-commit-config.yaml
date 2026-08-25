@@ -6,9 +6,9 @@ repos:
         entry: .pre-commit-sops.sh
         language: script
         pass_filenames: true
-      - id: generate-dependabot
-        name: generate dependabot
-        entry: generate-dependabot.sh
+      - id: generate-renovate
+        name: generate renovate
+        entry: generate-renovate.sh
         language: script
         pass_filenames: false
       - id: generate-docker-swarmcd

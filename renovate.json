@@ -1,0 +1,123 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "schedule": [
+    "every weekend"
+  ],
+  "prConcurrentLimit": 15,
+  "enabledManagers": [
+    "docker-compose",
+    "helm-requirements",
+    "helm-values"
+  ],
+  "packageRules": [
+    {
+      "description": "docker-compose updates",
+      "matchManagers": [
+        "docker-compose"
+      ],
+      "commitMessage": "docker(deps): bump {{{depName}}} in {{{packageFile}}}"
+    },
+    {
+      "description": "helm updates",
+      "matchManagers": [
+        "helm-requirements",
+        "helm-values"
+      ],
+      "commitMessage": "kube(deps): bump {{{depName}}} in {{{packageFile}}}"
+    }
+  ],
+  "docker-compose": {
+    "fileMatch": [
+      "^docker/home/esphome/docker-compose[.]yml$",
+      "^docker/home/mosquitto-mqtt/docker-compose[.]yml$",
+      "^docker/home/n8n/docker-compose[.]yml$",
+      "^docker/home/node-red/docker-compose[.]yml$",
+      "^docker/home/zigbee2mqtt/docker-compose[.]yml$",
+      "^docker/infrastructure/mail/roundcube/docker-compose[.]yml$",
+      "^docker/infrastructure/network/traefik/docker-compose[.]yml$",
+      "^docker/infrastructure/observability/docker-compose[.]yml$",
+      "^docker/infrastructure/squid/docker-compose[.]yml$",
+      "^docker/personal/fireshare/docker-compose[.]yml$",
+      "^docker/personal/gramps/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/jackett/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/jellyfin/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/jellyseerr/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/radarr/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/sonarr/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/transmission/docker-compose[.]yml$",
+      "^docker/personal/media/films-series/wizarr/docker-compose[.]yml$",
+      "^docker/personal/media/music/navidrome/docker-compose[.]yml$",
+      "^docker/personal/media/youtube/tubearchivist/docker-compose[.]yml$",
+      "^docker/personal/radicale/docker-compose[.]yml$",
+      "^docker/personal/syncthing/docker-compose[.]yml$",
+      "^docker/personal/tandoor/docker-compose[.]yml$",
+      "^docker/production/alexscript/docker-compose[.]yml$",
+      "^docker/tools/excalidraw/docker-compose[.]yml$",
+      "^docker/tools/stirling-pdf/docker-compose[.]yml$"
+    ]
+  },
+  "helm-requirements": {
+    "fileMatch": [
+      "^kubernetes/dev/gitea/Chart[.]yaml$",
+      "^kubernetes/dev/harbor/Chart[.]yaml$",
+      "^kubernetes/home/home-assistant/Chart[.]yaml$",
+      "^kubernetes/home/zigbee2mqtt/Chart[.]yaml$",
+      "^kubernetes/infrastructure/authentik/Chart[.]yaml$",
+      "^kubernetes/infrastructure/caddy/Chart[.]yaml$",
+      "^kubernetes/infrastructure/cert-manager/Chart[.]yaml$",
+      "^kubernetes/infrastructure/cert-manager-webhook-ovh/Chart[.]yaml$",
+      "^kubernetes/infrastructure/mail/stalwart/Chart[.]yaml$",
+      "^kubernetes/infrastructure/network/blocky/Chart[.]yaml$",
+      "^kubernetes/infrastructure/traefik/Chart[.]yaml$",
+      "^kubernetes/personal/media/photoprism/Chart[.]yaml$",
+      "^kubernetes/personal/notes/notesnook/Chart[.]yaml$",
+      "^kubernetes/personal/notes/obsidian-livesync/Chart[.]yaml$",
+      "^kubernetes/personal/paperless/Chart[.]yaml$",
+      "^kubernetes/personal/radicale/Chart[.]yaml$",
+      "^kubernetes/production/buildpath/Chart[.]yaml$",
+      "^kubernetes/production/semery-fr/Chart[.]yaml$",
+      "^kubernetes/production/umami/Chart[.]yaml$",
+      "^kubernetes/production/vhaudiquet-fr/Chart[.]yaml$",
+      "^kubernetes/system/coredns/Chart[.]yaml$",
+      "^kubernetes/system/csi-driver-nfs/Chart[.]yaml$",
+      "^kubernetes/system/external-dns/Chart[.]yaml$",
+      "^kubernetes/system/longhorn/Chart[.]yaml$",
+      "^kubernetes/system/openclaw-operator/Chart[.]yaml$",
+      "^kubernetes/utilities/dashy/Chart[.]yaml$",
+      "^kubernetes/utilities/glance/Chart[.]yaml$",
+      "^kubernetes/utilities/open-webui/Chart[.]yaml$"
+    ]
+  },
+  "helm-values": {
+    "fileMatch": [
+      "^kubernetes/dev/gitea/values[.]yaml$",
+      "^kubernetes/dev/harbor/values[.]yaml$",
+      "^kubernetes/home/home-assistant/values[.]yaml$",
+      "^kubernetes/home/zigbee2mqtt/values[.]yaml$",
+      "^kubernetes/infrastructure/authentik/values[.]yaml$",
+      "^kubernetes/infrastructure/caddy/values[.]yaml$",
+      "^kubernetes/infrastructure/cert-manager/values[.]yaml$",
+      "^kubernetes/infrastructure/cert-manager-webhook-ovh/values[.]yaml$",
+      "^kubernetes/infrastructure/mail/stalwart/values[.]yaml$",
+      "^kubernetes/infrastructure/network/blocky/values[.]yaml$",
+      "^kubernetes/infrastructure/traefik/values[.]yaml$",
+      "^kubernetes/personal/media/photoprism/values[.]yaml$",
+      "^kubernetes/personal/notes/notesnook/values[.]yaml$",
+      "^kubernetes/personal/notes/obsidian-livesync/values[.]yaml$",
+      "^kubernetes/personal/paperless/values[.]yaml$",
+      "^kubernetes/personal/radicale/values[.]yaml$",
+      "^kubernetes/production/buildpath/values[.]yaml$",
+      "^kubernetes/production/semery-fr/values[.]yaml$",
+      "^kubernetes/production/umami/values[.]yaml$",
+      "^kubernetes/production/vhaudiquet-fr/values[.]yaml$",
+      "^kubernetes/system/coredns/values[.]yaml$",
+      "^kubernetes/system/csi-driver-nfs/values[.]yaml$",
+      "^kubernetes/system/external-dns/values[.]yaml$",
+      "^kubernetes/system/longhorn/values[.]yaml$",
+      "^kubernetes/system/openclaw-operator/values[.]yaml$",
+      "^kubernetes/utilities/dashy/values[.]yaml$",
+      "^kubernetes/utilities/glance/values[.]yaml$",
+      "^kubernetes/utilities/open-webui/values[.]yaml$"
+    ]
+  }
+}
