@@ -9,16 +9,6 @@
     "helm-values",
     "helmv3"
   ],
-  "postUpgradeTasks": {
-    "description": "Re-encrypt values.yaml after Renovate bumps an image tag. These files are decrypted to plaintext by the runner's boot.sh BEFORE Renovate extracts/edits them (Renovate has no preUpgradeTasks hook, and a post-edit decrypt would fail: editing a SOPS file invalidates its mac). So by the time this task runs, the file is plaintext and `sops -e -i` safely rebuilds a valid SOPS document carrying the bumped tag. branch mode re-encrypts each changed file once, after all deps on the branch are updated.",
-    "commands": [
-      "sops -e -i {{packageFile}}"
-    ],
-    "fileFilters": [
-      "**/values.yaml"
-    ],
-    "executionMode": "branch"
-  },
   "packageRules": [
     {
       "description": "docker-compose updates",
