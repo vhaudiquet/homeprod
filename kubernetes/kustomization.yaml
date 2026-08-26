@@ -28,6 +28,7 @@ resources:
   # Dev (developer platform)
   - dev/gitea
   - dev/harbor
+  - dev/renovate
   # Home (home automation)
   - home/home-assistant
   - home/zigbee2mqtt

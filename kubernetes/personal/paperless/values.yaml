@@ -1,5 +1,5 @@
 env:
-    PAPERLESS_SECRET_KEY: ENC[AES256_GCM,data:wFTf9ng/oLUgFUIYAsOMZWLUyqz95zopQlX5KgY9LFk+hsR2xEyOtQ==,iv:w7NPvFRRUsxK+MtDZavaYkVGBN5E8KQD5gwl4YXSA8E=,tag:usuV4LJrlSEMpOu0Tv8HXQ==,type:str]
+    PAPERLESS_SECRET_KEY: ENC[AES256_GCM,data:3Bat50+Yj1UcbAVIHT++aANAMkQR5i+c3+qXcpQTiK41sPHTzI0hlg==,iv:aDTPaN8143XphZ/Bejwrs9vuOvBK9CCMJDM4tSJXnwg=,tag:nWNYp3dxKG4xEHtVaL4yPA==,type:str]
     # -- Redis connection (CloudPirates Redis chart service)
     PAPERLESS_REDIS: redis://paperless-redis:6379
     # -- DBENGINE must be explicit
@@ -9,13 +9,13 @@ env:
     PAPERLESS_DBPORT: "5432"
     PAPERLESS_DBNAME: paperless
     PAPERLESS_DBUSER: paperless
-    PAPERLESS_DBPASS: ENC[AES256_GCM,data:vyY2HtGJ/K0U8EkW8GY=,iv:4nIyQrsvD5chBAvnC7mXXoArRyDYfcYi/Bi1I+kutYU=,tag:JnVMFqNoFh6PyzlfZUY6Zw==,type:str]
+    PAPERLESS_DBPASS: ENC[AES256_GCM,data:na/7pUYyaprcTZzPtZg=,iv:K1043P7KqU/7oZYU8rA2wYyKbuyGEvuI5keepR8YWw0=,tag:MOg/JM4PZQPliF3JoHl97g==,type:str]
     # -- OCR
     PAPERLESS_OCR_LANGUAGE: fra
     PAPERLESS_OCR_LANGUAGES: fra eng
     # -- OIDC integration via Authentik
     PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-    PAPERLESS_SOCIALACCOUNT_PROVIDERS: ENC[AES256_GCM,data:r71MklOTuRljOiBBHXECmj4pnQiqBst8JMasNDSIMENu20TOXPb/qTcwwsLEGsL569tUVplPRTo0/s+ix1CNZPf2HGoz6B9rJ00/Cxf6Ns6k2b1bXr1+7/zfcX9zXklSMfzC1NjiYpwqODr4K2jMcxY6WG8/QUSjvAlVwDO35butKv23oK2kFM5mRIoqeMiuxotmEpqP0xvVlGOWYonu5/F6O1bmBGQxsxRQDK4K4+9k8Gn00j5ZiMGpPetoboSBDMJID4vf9M2LgRP/r/1pwpnmYq2mjOZruJ2r8xZ9d8JYtxQvE/oBvrBtHPFGT8AIa92LyRDpxg6eEb+3lSEHon56rByQcnKSFGGJQiE80UNgmQx/dYDo119gZuRWrWAJp1t5d0tcOuk+64pC6FLj+a9niHSZ2Si6+Jc4AF3GRfQ3qGWNpY3Di4wM8RcNgjKJMWwbN8cYBZD+nyzMFBQsKN7a7cGJXqa4KknJR1GvoRPcPXXtresCasj9znQ5c/bPAjb8RhhNfcfRDRibBu/JOXJz9ulY1UpSONrxvXtbdbLsqExUTMBLfHw=,iv:CDXZXm1+UP2Ctp1/vJpLwWWPm6c+FD/F9FFRuH1GDwU=,tag:PQTYdaheTTu3gKT1CfjCog==,type:str]
+    PAPERLESS_SOCIALACCOUNT_PROVIDERS: ENC[AES256_GCM,data:haqI1TF+9/qv++u13rwt1H4ulnqeDOIyTfV20LfZzQ3s4/RrmCM/jqTa/AVNBoXjaMi1XYOd/heR4AmBCQK2S7qZuQMIEVF2RuGbWxmlMziyPwGBPsQilCWUi8cWBROXxYfSnCbhaLlTUszfZekHgjdfRXSFtt0W2QouvWzzlAmOB1BNshxgTWVNnxlMDDzDrYOjTa0qY5SjBKIW2e6v44Tqt5hDaZWNUAVinC46nAYJSm2p77+A2sU7/JRKiIoxpA9N3uXSZgVhseiGCqWoRjGlhbP/UtkWg7NM2g2129vk2N7Jj+gH5wm1XZSzYjBJ4Dw3VO+onp4jNHms2CIaS0zEenzY4vwIBWGrBXByI9yS/oPzgCNGuA++HiRdV/DUPhc7Vos4qIepRzVXmdb4sfCXx211fxHQbfc1U/1vWAwysLdFmcc+4UJ5WG+OLv/tHIt4wvnEYyCzzAwnu6B/RRNnPLVZl6mhfyig9Ybaqn+jKPbepiL9al36uPpbnKLCNOjZ82jkbf2/ShGT/u2swydqd6ATUE8J8K8JJ0nYMaKoPOr1XatigfM=,iv:Az1X+MeQcslqgJOpmR/+6rwilJ6UJijppMvJ5WsxsL0=,tag:wi/aezWzbmu9iZsgN23Bpw==,type:str]
     PAPERLESS_ACCOUNT_DEFAULT_HTTP_PROTOCOL: http
     PAPERLESS_TIME_ZONE: Europe/Paris
     # -- Reject duplicates
@@ -53,28 +53,29 @@ resources:
         cpu: "2"
         memory: 2Gi
 sops:
-    lastmodified: "2026-08-16T09:07:01Z"
-    mac: ENC[AES256_GCM,data:RXzsGHok4t1L8bgCrDGBpbjTXx/ZFPIf+MVmYQTznqTptKAmPqtaruhylEmB0r6lXCUi9HWHvBpjXROhtost4zRzg3d+O240VsVDHcbDEodHISVxD54Dhd18lDyHWVWpyhyMxbHY0RDW0H3Zz0+gAPHA0HDHdVPBK4doCBF+pQE=,iv:nvqLFy+lsXHAd58VGXL7r9qdnlKcyfaznhyRY5E2V8w=,tag:3E3zkbsHy5IdIs5HbtO1+A==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:U4bCrsT7XSlFnQMDT3HHW4XUmE1KHXD3EEaygAhI4AYwMxooxBKBKXGOvYtDOqE237MBhgDpPj5qAGF8Li5Oqxz/2IlNANk/ifZMteFna4TTbBLaGaMj3ptjtDH++aP2WwB2/CDsH0oaLIpFXvgB6/wJDS9zj1fQEpfafQUFbY0=,iv:/DF1bQJKI3MFN7Od2/z30S3yfmuednEb8kML9monMcI=,tag:NC7i+Fvms0hKOjgPnRb4DA==,type:str]
     pgp:
-        - created_at: "2026-08-16T09:07:01Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//VNeqlQFXKPGY/K3AvJLFpI38fD6SROdnEd0O4WHbtSMu
-            Cv15zBpF2bx5+P1bxBHpPCJNetNdltcLv6cV370pkew22VI67o+txfCLImVMhriK
-            zrM/SFGVeZvmXIQRhClegwPTPxjMo58RU229rDghjmlQOfNeitqUWOLkOZb6WkWF
-            uFsIKd9ulmA04V2USrD/IcK6Vcl3P5LZS/gTTqTsw87zXx1yUGn43CBlkJ0NQbjD
-            cWCfcvYJzLS58Jr65kSFZthjeb3k7n891OmoO1x/sW9DBa82ckmk1GBfelATCwpy
-            0Gt/3iR4SU7q2R0bpEPhE8W0pCk6nBv7/gsqSKDe5c1aABoBhBVwBecAE/LKVjrS
-            nIuj40ehPTWuaT1GJYzELy0iPQCNNrbCxBHaYcpY9Jkg1Z0Poun5j+QymTVRS/Qj
-            HOZQXgFzeLrXI6fZE1IeKOuBDxxCSRUiMn/watR2+Lwrpqoz3vvuZmLc5OU41Gw/
-            MHTOuFcLZ3gw3Gdt6umMqNKBrqBxxsbYtHDC8cNNPiKDg0ajXqm3x1Tfq9AiEnmm
-            eRbn2/5dLkMEZMA2QWdOx/1KNytvvzb9FxrwJOE4PBjTCsIyjn7I9X1drduy9xS9
-            z71fwdVkKD8yBdB+IiDf5/J3HPDTH+DYl8hYHQUaZwyV7K/taz1pslFprjJJdojS
-            XgF6lMymEyNvLn+LNGPpbAJizrwN/3IM25G712RpV1H8EjCxbh85nFnfegOZWAmM
-            GsD9dUkm3ose357y1ejh1HKh29HQdOyNP9mfZpybNj8L2/q9isVa3lIQepTJ+r0=
-            =Ok29
+            hQIMA7uy4qQr71wiARAAwIXwCILszqO7HqCMKf4RfogrZ+fLJDGSa2r2FnmAl8Ig
+            MOFX+OKnuiofIkO4gSBF82CWuN4YnNSKU2o2Yk9zClxx+vaAwm3BZIg9cqJcIw89
+            85loMaMFhjfSoA5kFzXMGqC78SJYo1CIQSbrOqNSd73RlTQTqYf0ceHVaoKDbfb1
+            kAb8LcbxIzNq1AXXCMt4yaFfwoEZhCGdYmjftcob3mm4g4wbEKm8cGsesQ/gBcIg
+            KRclhCTo9DIvYbmzvqDpoC111rNWMcuM8HNsN73Yi5b5RbodEWplBa33veJvXYbP
+            zwxEOENCDTjwUKvIPy23MWXVePJ+omTXuzKm68eu1ez8ddvcYxHijmBtZ2Kjudix
+            Tt2SARHIsKIRMZn88j1QpNWyoZXWIWK9Zz5CjAUIwb5Gu3LY9tknuG9HMu+r9t1U
+            YJkSLPKIQaqNknUaPzCNkqufa1BG+WObAWpRXAxJblOC5YI1koMO9Z4DkF048Y3D
+            5pYEgSyOl82E/lLogkjGCi69M/iE0/YmqdVcznc1hNHkYCKh0gK82R0U5okDoYIN
+            gb23yT5SYosUnzss4wEvnm0LMe66yA3vffHEhQzY8lSxg1rM9j9ky7fr8H2HgHra
+            1RcFk3cu3OadfppfFkaQbrL7tZ8xrEc9RSyJDdxtXgmBJ1ynVAulbUQfrdoPfsbS
+            XAGKQIopMAoh9q7Bz+WoxOGTx7FTbOqslnRb4FD4HfjTwLicsQSW7x5WPDZ410MB
+            WD0tRys6zGGkwAmXNdjQlQP51BAPo3aFg9J//LazrZIafJ78/cULvkZ7tJ2A
+            =Pg7l
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

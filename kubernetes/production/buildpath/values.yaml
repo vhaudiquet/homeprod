@@ -3,7 +3,7 @@
 mongo:
     auth:
         rootUser: root
-        rootPassword: ENC[AES256_GCM,data:yKSN7sugGhM=,iv:7DM05CopEc6ocTrte5M+YkLT7C7rPJLy+1db2+aevl8=,tag:QXaKXQB11Z2vdgxqcUuITg==,type:str]
+        rootPassword: ENC[AES256_GCM,data:KYOvN1TxMko=,iv:S3MLPsJoSPGwM5oHSmMR5kWaYPvz+daURgVczll0i5g=,tag:pjUS0aZopHu38Faz/REMLA==,type:str]
     wiredTigerCacheSizeGB: "1"
     resources:
         limits:
@@ -62,30 +62,31 @@ matchCollector:
 # --- Secrets ---
 # mongoPass defaults to mongo.auth.rootPassword if empty (chart template)
 secrets:
-    riotApiKey: ENC[AES256_GCM,data:+8pTWeB4+yZQrsKI2TofjfD7UXGR3FM9/0qtRabYzt4uFYtzcWD9I+Cn,iv:QRvhqATwr5d/a5c+j9G3E/+ywe0J8HRl7dEhvBB9G3E=,tag:FEAEFvpxNqLIgkI4oUEthw==,type:str]
+    riotApiKey: ENC[AES256_GCM,data:2tArxsgyeEZoHwgEeL5PxWcBjdd/Wp55pBuqLnDPwSpZtElMcgrWvMaF,iv:sHm3HvoWLY91IkTSukqSqaDFPd9/T52k244BWKSrKeY=,tag:3r8Bd/uqsZeczWeRy9eyRQ==,type:str]
 sops:
-    lastmodified: "2026-08-13T10:55:04Z"
-    mac: ENC[AES256_GCM,data:pfBuIh6+7hFlirOgnKxhb+hOSd5iI99HQdBdreN/fV1tt03nsLh+xgMwddRMjUY0IQ/Z+L9ZM1TklCgAaXPU7D7ZCnMnVvhvRcSVhjOMca4JVXWtCgYm+/JDFEL+tUbuJqcHF1cjCCG6LKxAG1QhPCfrO3VcUxi5xQRRIgPlPRw=,iv:RCu0jtZmH4p+H1CqWSl0ccFyjlB6asj1S8y4d8EYSL8=,tag:ueRgSKiNhpeWpli0xB+dcQ==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:u7XouUyhhpnMGZ67/jCINIMLNnD0O1dyFh6RR3jlV5KqeRZMzoerDlf2MS7TCD1IMcFjVpHnxU3bOEvRH5kKQJqFq74Su1t/2nFZJPtlw7veBTl4JNlew1uf9l+L+Z5WbDda293smj2Q2R5lwdM4+JRVdcMCKfqbo08UKssUfkI=,iv:oWs3m/l6GsNgKDnYgrriuP+lUUyt7rcZ8tzKi4Xl6IA=,tag:ACNUOv0BPTvuiSHYDzdibA==,type:str]
     pgp:
-        - created_at: "2026-08-13T10:55:04Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAtiFXYhTPpb9298IfH+flVwlwUblP8yTIkVK0OTaYabrQ
-            i9Am0gTUIW0bKPaLNZfYIiu1+h1Qi477bDVVERhZa54QuwIJaJSX5qYFbKH0/3FG
-            xohOQNHKXy0SZGCjbgmJvy331JkdFGX24/9bbDyvht14AUlBhhs74zx61IG/POE5
-            EWLV6P74W88XU1xLWchssMUbs/7nQtuP+N0LQ28Ja4i9nc8xwrM80kn/s5PJeil9
-            ccvjFg9maQ7BY5IYyw2nkPiQ1r++4lVPKzGgJmORRnohsD+Ytf/HlTKNy3KMcgJg
-            DxLEQvej0cSV9clN1DhQbot3dPL4eDXnLhzU0VdZGT5uLvnsMjeINSwyJP2GgHPa
-            OSqG6jT3wJKJMLQ+GWIeTXZD2aPpCHfbhAMvUgKba7hUU/gxQ7/xFwQMW5Mgr+AY
-            NRcbmvFEeWOm73oubbBUepJEoZBAAN9kgH02IZHD9lkfVUdMzFb853x73ZTRi4CS
-            HhAKUqiSEg1ZGgMWPY7H59RGn1Vguf9+YTT0MSZ2YntuQ3Zz++zxM7gomUXOmwoH
-            YuOrV8tOFZ7A5Bv8sGc9NXJuH4D6V3eq6A3BvJb5nRX+hA3uyqMDHuhbW1Ei4f9R
-            vvRp4cGTJY8Mq3GxPmPrH0Rf1P2XIHwfe707DioFJkwTaAtl7aQkEKVU+C9RFSXS
-            XgEvV71YV73oUC+wfugCtRjfWkLfup5KA/0iBsTHiHTAX+3i+TIwfVvgYavPvrRf
-            HktjWZk6X9aD7jMTQRQo53URbcYOiEuKFvOOwYO47RjEWvdToGpSxo3hcddM0XU=
-            =hC/0
+            hQIMA7uy4qQr71wiARAApDjG4q+2vm1NoIEsErqtCoQWpWidU/q6yKEIMlAMxG3m
+            T18ToL7N+/cXN7J4AYmV6D9KL3CC/DDWnPSgcQEW16of3SsBBUF/ufYD8Vm+bkwx
+            ua6Ma213lMBI84RIbHjra/OxDBOP5/w0Cwdkv4jZpgQdgtpkrUwwU1LDZ1JImc6Y
+            x9NQ2ud2D3MsqqAeNOM7YBdVi7dKvnstaBqKDYvuhNCgAYMthw/Z6+67avEcKtcC
+            wtXC8cAEklvpmyKkXXRTYJSkhXkujrRXTbfRIrGW6/qsAlpolOiBYSeVmWgV/BeP
+            j/SMAMGmgy7GQAM8QW+UQhU9a4AOxOP0bc+OubRpQ46VjqjJ/sYgJGww8X6ym+iX
+            kilij98VfdQnGTvbuc4xmiXFDylHcce5p5RWk5HQVfJc+4iNqqzKC9bk3Z/lbgOE
+            TY9MHkQoVlaxFYFRPJM+IZnCdMIZvUE49PgwlRu9BeMdDiDb5PTtq87gvc1O8XdB
+            M8lfa8zr3Eb95f0gbUViZQd2zTVPFKVlGFD894gHoePmUDqNFIVXnthghVjo0Oa0
+            AG69N7F/UvDGqchvcYALOtmnc/sISO7+OOCUjyTASq4sDAyHHuZGLwlgpKX743kD
+            Qj6QATEYwYDkgnAx4d6VbvPOvo5zNFXI4TgnzzJIdMa3qnK+rS5I2Hp+KFMPmwPS
+            XgF02056swR92TVWrRMRnsXX7jSj4M9VtwcLrK4ZGlqIp8erChZRgRIvRHWjPkAh
+            sdSS6JC5YfLxMxGvWrskGwuGdMMbpzsRjzyaJKeSVSFqT3rlx5koq6ecBOt1DRg=
+            =m2ZU
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

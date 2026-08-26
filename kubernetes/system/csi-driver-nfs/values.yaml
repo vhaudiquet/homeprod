@@ -16,28 +16,29 @@ driver:
 feature:
     enableFSGroupPolicy: true
 sops:
-    lastmodified: "2025-09-23T20:49:33Z"
-    mac: ENC[AES256_GCM,data:PzR0Bd7Zri4gjpaSaeouJxSJbUP8f3dHuzuNlXm7q0B3SgTExHAYWT+YQ4S1QZPibE7LcPMln8Al+ac2TtVaIYD+voISUMt1+w6bqA2RmO0ZbF0mOqMiMTnWtbvCI5b/8g5+lYQRWt+5k6Lwtl5qxbdEeaBKa9qYpNw/DoEDwlM=,iv:T2XcsYVdQUGrjbleoAfcZXmS/m+kh1VcdMpU6TAMnX8=,tag:eWpR8XjOdSujxaz5aeWz2Q==,type:str]
+    lastmodified: "2026-08-26T19:29:16Z"
+    mac: ENC[AES256_GCM,data:NapXtPezjbRh2RVcv8Pi5/jS+TxCsPEVCXhWBLIuvfC4wWuwKelqjX1BjH4B0zTlEVzPzXKkeLyT5Kz0Jh68hwltSPCzF+32BqzpxpP1PD/ErvLvjtagRwnoV7KVN0MuR7RyNusFQUBDVXll9dHp5R7eUIcpe0S2qkVWiqnbx5c=,iv:ynnKQThC7PLua9tNTJLRp1b+V9yp6yUtKtd8fgvkol0=,tag:3r/XZYwK+G4sv+GAHQ2OCQ==,type:str]
     pgp:
-        - created_at: "2025-09-23T20:49:33Z"
+        - created_at: "2026-08-26T19:29:16Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+IMPmEpFfZkMC65azxf/qhbBg6z2rVC5Yjb2x0F9vhiCS
-            nbyrAe1jTi5sLXBFAeB3NSR4NAdmuicJMIVcCTBbIQFOdGgE9zh62ZK3nR32JabJ
-            cPIiQLI0N3Mk3Jgmll2m2Zfj4FoanDYm3rJ2mAaKRhqN+txjHCv6bfTMcWfx09FZ
-            QjZbtU3frO+5dbSv7SAvQGpk2ehZJ/zcbhnwMv/wD8uMj9fjRLdhP4yBqDDapiL5
-            IvHkEZhm0egy6dYx2KsM17j31GbA+b74GU1+2+OiZI8CVym8ZqYjHTwMGYjSQrmF
-            v5DqpNrmmq0iumkRkjwYD1z6VCRJTWaSgUplfUoJnXGx8Grgmh7TqTBzAH2LlkR/
-            lqqOo1+GydP1H292AQ21JMTEUoTjbVSJgYDZo+FgfbWIWQMa3DfPx5byC1cL1iQY
-            kIJHkJ5k6NyPzJAF88Wah0dGlUx7IQ8wVZ8T43hf7VaeU1KoLucQfBiSau068cUn
-            zekMh0apT3PadC3w5t5yia+gl4acy6PdpyqFdqEE1CahsIxr8PzFIa3c9lyzkr+E
-            /naeDLQT0akEnRUnvSFLYEwo9TD+pA63eGAMg0fxNtvBpn0l7T9ygyw70ERqyOGk
-            RixYAOwemlFKm4vsJa8Om3vE8chZ70z9e50/bx+kybGgTWKR6251AWU/yCxQd5HS
-            XgFgCrzXAVInmOTNqpafadWJloLrMh9ukeDS2eNIeTe+rbRL9z1iWnBWnJSJ0RBr
-            RYagnwWcQTdxi13qUQcxFGynYZGa703r2/yvCnE0iDVU44IJvWr2B9PW0wnjOSI=
-            =NHP9
+            hQIMA7uy4qQr71wiARAAoaqSEhJGt0xxhujiIxgrHc0psSFXl9USxXJWYsxFAB5e
+            ypcxbemrGtf4cTQn8Ol/pEF/hd8q7NlUnfggBYua9jX5O2jTUYe6v/l67Jxvux/Y
+            X3nt9BmsizFEpHsm4QicsNfqnxJMEWILKA2A+35SBIfRIgqcEP03JrJKkOIsbAkD
+            taNxfHhJEgJlctqnGgIK8KSXQQhYohZiOLukTpfwY8nys+O4dfz7lPu9jlF3GZHM
+            2BZgbEb3+dNq4MsJIysy8ECUCZVuMuhxYHgogcXmm7iZXDoc+ala3CVjGwi/KBVx
+            aD4UBG06kacMaiM9ddpelmTvkD4/GHl1FFCoiIkVelmNMVjD5aecn4xl6r15CC4J
+            IQRO2Jc72sLPAjQsiq9El6K0hFoWj9v4L7xLDbE/1KozjVK8eUtKT5r5p5t5JOvq
+            wvD2TfjDwxdosJ/hkCj6FwvGZxvUUHAyXIN82Q8nMMldjyqtww0JbSOLEz8sZFds
+            AqbTz95kNYZGSoJRa6OYOdXYQk0wG89sqBm5taFm6V9N0hsgv6y7Od21wEgHKxKX
+            GMR/K/mlZ8lr30Tb3KhCgPQ5JpyDKBIvGuAJLnlVE5//wkj7Qd+xXAiZX7qhNFBq
+            ZNy7FKLSC83l5hFKFyFbELe7VPB7YaBGy2312uZue+WQgchndFgRataROaFcz43S
+            XgHovdD6j4T/AEd7N/l+pd6Za8Xejc25+37F3i2Mstbme2Nh8pEqkogRk0zgpJKS
+            /Y/FtQl8+lpJAwiOAbghZYnflvK9bLnTa4cR5MXb737G4MjMg29sPP7sEJGdhpQ=
+            =Xr/t
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

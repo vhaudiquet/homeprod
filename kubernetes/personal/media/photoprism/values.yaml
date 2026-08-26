@@ -46,28 +46,29 @@ mariadb:
         repository: bitnamilegacy/mariadb
         tag: 12.0.2-debian-12-r0
 sops:
-    lastmodified: "2026-08-11T09:25:09Z"
-    mac: ENC[AES256_GCM,data:Gjvc44UTfro130jSfI5Ceryzl1KHMmMOawmuosAqacSa4y9FfnXgmirDJkqXXYcLYeUplP12TP1v05euwcGPB12L81l2EZN2mxPbDYgoOAuoGtYqTlN3IZ1cVW5ASFWrCPEdClr0DNvtnIWctzhdue/NKV2ebZpw1wrgTwOWF7k=,iv:Hdu2l60/2VEhlNQPrWKMXV96rwkRgn8E1sHM8W7BL5Q=,tag:pwG9n9n69sIe+6fPxKgiyg==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:adk4q933eJVfmG5NA0j6jrpC4n96mtrE0d21HQ3UpVwiGAyTyzZd7Mk2MGS6oESih6Z5a3CpNeZoiFaiU+QERdLA09Blye6379eNLukW8B4FJSaPhVngXHTHsuzM4AKabuB1uZaSbyS9D0HDo85E+PTP5nlouEsqKzqksst6AHE=,iv:Bl+Leocrbx2xwYlfDRoenV1u2GCJrKaApL4N3iOo5lw=,tag:v4lookjjCJiF8wSs3oXQMQ==,type:str]
     pgp:
-        - created_at: "2026-08-11T09:25:09Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//S/qbQ9OuFPkoxYkoh1r6q16kDt0A/W2DsK+mz0uPsupF
-            ybzXWRkWKt0rXoKADx3jOnWicJNjVgcX4+3OISeNc29f2uOglXeXBFrp7/Kxsl34
-            KKK4YeKnFLXsCcb0HIAZ9QNuk5m3qFqPDvgYlbszF9D0CgzitdAltpiNT7ckwaPq
-            0/78byG3kMttTLW1Uj3Rlwm9SAdLcsUjeHSLVpFWaRXndV4TVL7QnqL1OPdIxJkc
-            2/ecyPgkx4Iaonnwz+8iRAv19rQOw33cZtNjF3kTjk4xGahSc4sUf+kX69JJqrXC
-            KNflyyV0K5nVye6EbfftpUSqAUfpAFNdmUK6PEVSGCi1AK9oJjb8TDuYGJDZlNDG
-            +P5/WFcZ3uwcwM8syXm6M/ZoWJRvtjwV+IVV+pbeAAGzpsMzUwqikKnrjotEfPOg
-            teCyTDHCyDHwr6eNclP1YptwrPPdwRbhQ1UTOPZ0spVjqWOO/V/UFYjwx4M8ENYV
-            uwtRsI9fJN3K2eKZXOhtSLpkBNPkKNBKqgLn2Kx+TWA79HEWUTPaO2bpY88A7ep5
-            CnDJ7PqjDYCijcNcILwmQPCYCjaQl3yIw/K2ESGDWJOOs/TZFksoDptjZ4/4Hg7l
-            Hz5SMbY0/6hIVwLCpT8nIAe9fWGsu61ALJjz/pdNjRbcXJlrCtfv8lawGTJeC3/S
-            XgE3i1O4BZ6syvZh4x7ROcEXuxnynZ4wbJpGOLr0fjKm/Sxp39BgkT2BxmqPGXvk
-            n4pSoqI5fCVlRTkVO5Mr6SdiC4A4S31hREQycIWN1spQcJSe2s3gz3ZRDq/1izM=
-            =67H6
+            hQIMA7uy4qQr71wiAQ//WzVHXsFFjzPmzCb9i6k6nG1kG1EtWqMdr+U9axyLdeks
+            fZ+CPL/b8vZ5Y+vTmuHZJttGDjk79ii7if3yhzVB1FKbn5wnhwHJ/qfvhAv6G4SE
+            5NKTj4jnhozLXfxV2BbhS1dPaeMJYoFhufBRpYxq7J9APrIgveL8iuAyEbqNcGNw
+            lZxxB6RW9dBaUohgar7A2YPIp5dOGdspKiz8gGwqycDCcvKh11TiqRPGxxdwh1jz
+            MJ9t9Y71c2wgwdVPWlc3Lu+Wpb+nXrZVi8cB4PjWWmswFJfsE1HHjmaLd8cX+FKa
+            Y3ivbUzv6bubVW8ms2jWfNBrUYyLb3a9xGjpYwUOuCqi5uh0xAKL4BH9U8jY9pib
+            /DlWWQc9MDaFq2GDQls6yh6AFOHuGDaUwxYaBdgo1OlzZGa5fLqfFraEMgS/3fYe
+            HT4y25xhOdbgzPWNe4AAwSXDbciXkFQlUsK8I3WbNzuena3AyucZFKBw8gR6JNg1
+            LhepaLVkYtGzKp/iAECF6xgPqi4r6GQnHPnMvLdJGIlWJQ4L/gBzn/Sx7AOwNDtL
+            +14U+jvPlI4OiupKBdFI54tsDUQOA26ww1y0317x1jCrRkQ3cbQYPJhxuUnKpx1x
+            yVbCPlkxZDZMUKBsRV4KGwvVcbVT9DYCuT7BJXDuNdfhqujf/BolK2kRlYNz56HS
+            XAHhRDxgICV+G48GkXDObUOUaxpqDdXomizYmqZfn+tUiLOrqRVJw6g7JjFmi5DQ
+            hIIfV8iKh65e0zwPkRqECh2d6oGhChUYvDLOQFUGu1Bbm9ej3V3hQUMiKPAX
+            =B28Y
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

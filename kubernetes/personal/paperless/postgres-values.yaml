@@ -6,8 +6,8 @@ image:
     imagePullPolicy: IfNotPresent
 auth:
     database: paperless
-    username: ENC[AES256_GCM,data:S7uuUdR9Xda5,iv:u70rbg0QT6tIOggzZ8caz3cRCh7DhtxaVj1KGvfgljU=,tag:RvERbQz/9Pr3SJmemm/BlA==,type:str]
-    password: ENC[AES256_GCM,data:n3rP8mKu6wM+WMLCFrQ=,iv:ge9HJkb6Y+WQodFwIC+kLr7MTFJwXwrwEdd4zIffos8=,tag:moiLXtBwnRQyREURuYk/Eg==,type:str]
+    username: ENC[AES256_GCM,data:QJg2amOMjGjl,iv:6voXFyOcS1uX1TgVTDysLpwmZKZGtvQFyEDPpCUpa4c=,tag:vZsCCg/0UnzVFjsQ4XLlHg==,type:str]
+    password: ENC[AES256_GCM,data:bKE4o5FXsaU6J71JCHc=,iv:nxr2YJW6syA2vdkRStbSCh2hUOnzHHh4djYA6YL6h0E=,tag:rT++kewjSd3/p+4c6zRgGA==,type:str]
 persistence:
     enabled: true
     size: 10Gi
@@ -21,28 +21,29 @@ resources:
         cpu: "1"
         memory: 1Gi
 sops:
-    lastmodified: "2026-08-16T09:07:01Z"
-    mac: ENC[AES256_GCM,data:Tv9mLhZqqz8eBYS+IKUV5fgpRf+iGSkHZF4+fcxk7k6AH3XLF5tsN31wx3MLdA8Wnk+zADobJtAHx8onQufyV+pvON5/8IUFGZKOuKv7tB6gQBeaNfrVans+gBSqnufxCsXkIrcAS25QZM9mFEM4ZnbJUNFzNvkoGotRtnwaIkA=,iv:QQVnbx3UL9e1Z7gyBWE8QahtQcC/hQ233sIAv6Zg/W4=,tag:yX/9iCBvJh/GaWIdSydKmA==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:aVqq/OZnLifCx2xO8eqTXlRfZgQ5mZkFnS6qx1yOHfe5UTqWnYKKpSpQaPk0kSh4a56nEDo8Sg8uUGRG8hE4fO5gyux88EWu2S5LQFL51O5g7p21KcsLD2CTf12aKqGIvwYvpRsVTekHpqVEqu0dxAotLaW2f0NSXsuCVwclpc4=,iv:CUjlO3O6z29/DO0JbPrdmu0iw9TwJ5QktN0o0K9eF6A=,tag:+xy9IdL4tJ8N5fux8NGMxg==,type:str]
     pgp:
-        - created_at: "2026-08-16T09:07:01Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//YXRqL71ibLBGFfmNZFEoFYJiPFfl/s7dwmd1hvyCHzY4
-            OA3i3ci7g/XLZYJIh+0xt/aLlgubDNwtgSKULn1T6jPKYec/eErPni4IEQOJYvLX
-            ZhJxrr7cxdm3kQ8sPw3lBzKa/fKfljrt0wsEeEligwHlqpbu8JutgGLW2qmVP7D2
-            58meumXOLZQylZysEbp8oCuRBzfyZ4dMrXMLzBXdv3TFm+PWUAnF+fB9L5UazLnf
-            fLjHXCEfpu73hg7mxuMCIanhvhwUbtBBS8bj+iR0CFrT2gBg4sdJcpEowCAlL1fR
-            kCtqPW44KP3Ho+1T8tSl3e0k0BFTxGCAfYJmv1JCMe2ejw3vr9rPZRZ8Ni/eXdoi
-            0C94eA009E2NCYWOLWnfTxMBjSKuyNpQGtRuLU/PrI3juuGCUY7VhX3EMxuqAdlG
-            zax3aJIBvAwuv1xlIbvvG2SPGnoSyLJ/Fd2mJlp49ZFYGGMtLtBXfgA50w+ng79j
-            hRFVbo2XmxfT6DM7TpfssWeGyNOkOS2khrmnOlej9VzUWMU69S1IxEAyQkZihOKf
-            PjzWzAx7N6r6JH0NUbJwM5wZ9TbqEfN7DqEI99N35Mdc9r51BOUr3BMiRBQQoLwI
-            fnfuauHMsPahsj5ndK5U3m62o7N0ezTzZqm8mDWyLH6NX0P3qnLmTQ6XzSIdsxXS
-            XgG0BHJfl+7I5Bki2b+PILhkIVu/DmJNRmGU+5nI3+2F/NruHEFs8OaQQthOOS7j
-            2QDPFVVAcNjWzHNkvYQOrIIBYGf084WsYlznACAcTyasp0LAamZc/S8sLt0RCas=
-            =qWxv
+            hQIMA7uy4qQr71wiAQ//UKL1JX0nvcucTccreWw1VlpVW5By8mDBr5jKaP7IdJoV
+            J/+gdgPNCQazO3JA+rmFar2rOiEKVL+cHaJvqKbD3XmS6p93FDTpde0KljLNlymj
+            rptGKJpOswPrAcTT1nuWQiDp32n9EOI6s9RmBVttqipWnjisN1/BCL2he4CT0fWr
+            ezqrlr9U2xfqvWSeku5dYUwluYo/x9corTXrsIJO2YVR1VGMLhc6FGvJrGYyJjWh
+            pt5xV7PsX800NVKmQTbcS9/r+jVWzXjQbyGyowk5g/NeS/8Jjv0VKC3wjj7LoTz+
+            5N0jv58seQJWTY8xrRegoWGT/KXTcVPfwZB4ZXKMACDHoJLuSqnpGlMdgY7GY4sV
+            BzDNYCpYgiy/0O6gl+LXHzSHLCPT2+HoR+akJJTvx1hPANg0axe+YcQiO4931ROJ
+            azn9FznfIeWfqIA3qNOi1jGhaAR1j/0M++D8ogW6VB+LDVvc26dN7bCkByYcdes6
+            uvnrulHOknscjwrjAlNfNyXmGm6gY1stoSwmfKR+emOQGaReJjPZl5f02U4yp5AM
+            tYKxB1Zzgzy1xeNNEpdiywKJEKua4D5K1IrRmhz44a0LZaaEKVMjeRnhU/yvt9RX
+            ++r0RbUuKhenL39QUgfatcSUK1YtP88TdYwTV0HX7wtvsPYe5nch5HDbrb0NipTS
+            XgHS2f4xvRYSbTGcxMfTJMXnkewf6O7dOn1sErYUUr4GSxKVBXycw4zFHsYIvvSO
+            g76KJ6Yd2z3xJN/jIPSGnfeWL20sN1VoZPRsDSb6RrAq7YisUSzdPk5j8OEzeJc=
+            =MZEy
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

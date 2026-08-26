@@ -69,28 +69,29 @@ resources:
 # Full list of options https://github.com/0xERR0R/blocky/blob/main/docs/config.yml
 config: "upstreams:\n    groups:\n        default:\n            - 1.1.1.1\n            - 1.0.0.1\n        lan:\n            - 10.99.121.92\n\nconditional:\n    mapping:\n        lan: 10.99.121.92\n        cluster.local: 10.96.0.10\n\nblocking:\n    allowlists:\n        ads:\n            - |\n                dealabs.digidip.net\n                s.click.aliexpress.com\n                fonts.googleapis.com\n                fonts.gstatic.com\n                wl.spotify.com\n                www.googleadservices.com\n    \n    denylists:\n        ads:\n            - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n            - https://adaway.org/hosts.txt\n    \n    clientGroupsBlock:\n        default:\n            - ads\n    \n    blockType: zeroIp\n    blockTTL: 1m\n    loading:\n        refreshPeriod: 4h\n        downloads:\n            timeout: 60s\n\ncaching:\n    minTime: 5m\n    maxTime: 30m\n    # Disable negative caching (NXDOMAIN responses) for dynamic DNS\n    cacheTimeNegative: 0\n    prefetching: true\n    prefetchExpires: 2h\n    prefetchThreshold: 5\n\nprometheus:\n    enable: true\n    path: /metrics\n\nports:\n    dns: 53\n    http: 4000\n\nbootstrapDns: tcp+udp:1.1.1.1\n\nlog:\n    level: info\n    format: text\n    timestamp: true\n"
 sops:
-    lastmodified: "2026-08-21T16:53:47Z"
-    mac: ENC[AES256_GCM,data:UurGQEnmn0HR8d6e7I6+TvNTGDkp+4z2qxA3qR6s2ckhSrri40Dbhl2zYMHPzkch50HLbLmgDmkLPuvwVvvtRA++46IWCvPsLyirRgHfLCF8rvvJ2ydbUyRKspQi0+HiWhoQzsmC7Qn442iUXoB1IoSNR1Y8n94uVvgUyqTalkA=,iv:XnNYtp6mFWILZqP5JqjmZMp26PQnefZQK7UJCgPMYnY=,tag:hexfIqW/+tKvVY8OT5pmag==,type:str]
+    lastmodified: "2026-08-26T19:28:03Z"
+    mac: ENC[AES256_GCM,data:AHNehC5esPLPfdA7IzXLEs2j/W58mSEd4KrTHEYE7aquR6TNScLpYcpGby6Aeq8q2Xy2Q0y3fRSiUbYYwdiN/jjToI2QpolhPs/OUI6I1ygTtRlXxWdes12va3N4K5unV3XA+9skaJvowYPm3uyuIVcBXLRvagVpTKEvwQp7zdA=,iv:7Y2aflGaabRYvXXFMF+L6tmVcjBbGPl+AEs9O1fWPMg=,tag:Od7rKT14x9UfwxRwtcUgFg==,type:str]
     pgp:
-        - created_at: "2026-08-21T16:53:47Z"
+        - created_at: "2026-08-26T19:28:03Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//TuHosCarvDdeJK4Fo062JDb9KBUxlmSoSRuGFik/97wA
-            9xBDzqoMqptnDgd0J9FY4an9ie5M3aWyzFvV+LAgE104vD4jT0Zi35N5nKhTJLcX
-            KTLs61jgNnOo7NYww0zikzIXY0rqk+tIPFkuiQQRn6f5s5TB/FH1NAe4VNisenYF
-            6NhgFIZDyt10y1i75bLehG3s4c1OSvAQ2W0+Tti3kFGpJUqmf9+5jdC0sHQfpzFR
-            QOifTKaSp8zHuRx05/8DzRQrVohBjeIQRJzmgzQ8oynZTGTt3q0sP9+Eo9MZoPD+
-            Oe6cEoM8fPN2EO0BpeHWrEPsbF4V8KW/fd6sCUyGeGVxTIssupxeRVrN3jbANkXW
-            awz35sGhUBN2hloK7imy8tcw+FAZHZIFZhzMfEWGpg0rJSb8bZF8LEgmnEY7gq4C
-            x02lJSKHvnKpc2oKlyK3IrPnwqfr8ilZJn6Svh4IW59tyhJB/2eRjKT+S/laey4P
-            PEr9t/DC+kpndOPxkS2gxD7ENljdh6IfOLTQu9lQT3tA1mRM7HZUb0TVS5ZRL0VJ
-            zady8YZiKZCGTGl44pDdbG5d6r/h9lcmP6QeKnCU4KCPJrCUBWVYHxDz2fFQ5810
-            49FdWloWEGk2rM/7xW2wz5PD2XXLuiPyRhAz9nJ6iTMT0FkvxIseJ8uYgStQCnDS
-            XAEIZAmMcySSzP93SeevQTPPeTC3WrYcwfUVV5871+09M0eKURZqaWmnvZiaR1fs
-            fMPynVu7uwW65LDFdH2aMgp5NY77NZTDN4wgZkYQ7CG/IMA0GOvYS2J2XTFi
-            =7N0d
+            hQIMA7uy4qQr71wiARAAsHoc6hRIlKt/qGyDLRLyJzXFtgfkmgVLIQzRWS/kTsaz
+            ouBD8r8wSQfRxtZhEGkSU6XME/8tk0dy3P9Pcy/97MA69euXaJwcmtQSirO4kEmz
+            VuJzJ/pyH8aEstgle4yb0iX/xe2rKA4NgKJFvAOqPyBZlGe7+V4zM1m54LLGCYKk
+            QrfBzmFPiAZ8p7lzoeFepzQz0pHjCP4Lmk1NzMP1ZJcdR03Sb5xhq/ACjued8vlV
+            zb87VAPnacvsIqVzVi+pq5WmVpFNEJkudD+hSv76YytI8Or2OoQI3CGkey1lAcZS
+            M7x2K+kKSkq4uTTUdsiRKEAtAIsNzYFZJqURklCP+ED2m8B8fP5IK/TaDhHxvHn2
+            Avi8sjAxlk5HZA+vPIv/oDJgnMiSpiROS2YWSr2By6De/uGfVwWC28y6qffUmxnU
+            hxH/170L1o1QkfDZZtjDT9Xp4pIya+Db+ERNVlZ4g28yHw1ONtHWBRanDODw7dfJ
+            rubjN6BTbk7zWMgAGjUpc+9TR3LiFAsRUEwYOA1OIlkcf6ue5ZwLxOS4Coy/rTBU
+            eUuKwvcBKbuCJz8BnE+3kYeKDA/DnoD22p4/aygaekO5DyF54f37D7cejrdBc7Hy
+            cQ+zfa3Gix55kRX18Kbed1fHn7KA16/91jpYG0AkkY70cLniLj3jmlfir7am1GXS
+            XgGkye2YsBusF3Tol0a7t1iLSCOpqyVAfEADB36VCvD+BW7wNJWAHz7J3THPtZTz
+            /MkKrMn5EUU9k11dSmy2vrSQFRsHEG2lhwpY7AerQcpeXL3h+il1H959dMEvISA=
+            =KsPm
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

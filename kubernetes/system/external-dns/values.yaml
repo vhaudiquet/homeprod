@@ -8,33 +8,34 @@ provider:
 domainFilters:
     - lan
 extraArgs:
-    - ENC[AES256_GCM,data:pWoRZNy0bqOOC/KNOy5u6yVpqJv29cJIgQ==,iv:gWQc3vdCwT7V67D0tyrPASAUNhVKjc2SIBLcQutIWG8=,tag:q6C1CLTMiGv0ZJ4jrPYOGg==,type:str]
+    - ENC[AES256_GCM,data:6iKGrY+uwK8bF3mpw2TrzLzJkNcPg5gLLg==,iv:0NuYOmgVUGKZkncT01li1G814YHMhgz2MbdfNBewRqw=,tag:evLAb6LzulILrr9bQaeWDA==,type:str]
 env:
     - name: ETCD_URLS
-      value: ENC[AES256_GCM,data:w4cTglu/bE5AkzdHdXhC8B0IazuxfQECVdPB3S2kUSJ8L4Q21oUQOs8I,iv:p560+9a3EqNcnA83Ahx/91w0PfzqWlAY8KRhbaCO5t4=,tag:ajc0Al6wZTOVrkLDXG90+w==,type:str]
+      value: ENC[AES256_GCM,data:Y9osquaMjUJa/irZR3cM+wmhtaIIhQYwVkLVoc1mvK3NOkCX9T0xtCYX,iv:5RkDFNaBi6rpa+JXmwjhZ/DIDtEcCyQ+nY6b/bdZa/c=,tag:EbLcsqneJud6ZQaWOLqZlQ==,type:str]
 sops:
-    lastmodified: "2026-05-02T14:07:20Z"
-    mac: ENC[AES256_GCM,data:unn1TyPyIJZZZl3rB07iCjBJLP5dACsEowaHG2kPD7ItcLeZhz8gjy0Mz0lPgZXizBLtxdPxlH9W4DPZM6tIudghKovOg7ivoUlA78We87wOxACzAlLwG02vw4f5CKwopqEpdcl9aprLbg815IzcDdsKqSLHIw+Xdm0nW4rP+T0=,iv:YCoJhgO4hlcCcvVx/dxrIBR1677U9UREX26QPB8G/WY=,tag:PguKaLKr6wm93OgYgzEENQ==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:GfjlnBdScJU8n8IErBE3mQ2aUpDjrnq6VJmc1Jj+g1ZWVXnfWP2VdN+mn2UHEkZTSzbKLyOI90aDJJYAz3xyR/Tku4GPfz9GFirb+ihz/VkxELtGKUWKOuGKvijieMbzSO/BkdZnkUc4iaxpmIhwxT5CLcqmfjuZmUKHyZLa+gA=,iv:HJH6Kt2cHjjfaPkkQNNsni7r6YNW+uqa0kF9+Am0dO4=,tag:ixBoBrexlvkMvwuHVDzw1Q==,type:str]
     pgp:
-        - created_at: "2026-05-02T14:07:18Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+OD3xMKWh/zrmSAzeha7eBUQqxV4Md+Sk5ZaZZpJwXm0F
-            Icb4N7rMRZiUL/BXaH7dDyLNKFbqTGTtLhBtp8IbW6Y6pijQDa3lgX2aC2LjZYP2
-            GTILWOVYMo18h/idESrj9RBpODDCLUwDUipmNNDrNmeq+aotWEBGZgum2mE/lIdY
-            Xx+gK9y6vE4IRnDp0AMBahYenO1QrzmzEJphBocw9H9RBwrXx3a4Ke4NY56/0cn+
-            Q0+pBZdN4T+tmsplwT55I/2UIyyuLWLzfiXqgzP9PHj2qasP/0txDr3cL1bdMnLU
-            U3ubRFbWHwstjKvsc7sHEZscaSE6CXzpxMCQs98q0I119+l5K4cm/n7ch3b7JDFB
-            vRuYVdNXBllKMbSdvl++zhh9eYD/gofkZhx9cpJTrku8u6IlKuZkuTjNPp4QtkY6
-            pPbC42znQ1xhEw5y4YtCxCfynhjCIko31P0uraMu5Ni8nPwt+nWANKLXn6T0VzlM
-            lFuU2FiPm9/p/4vNd3WlN73ShEf+QCUR6fZqJDEWY82lbdxMX5+p3JKbWtiY+rbH
-            scKh6hH1PAEYxNQosOabQWnt095niHXseWRAAYaRkm86jB500noYZw9sASmARFT6
-            ojrl+hKzUqZa7Y5QIG3VFEiLJKIMDDoT8ojeKkuq5jCznInMdqQ/LlRX68IPI53S
-            XgGNlbkKDLJx2r8ImRTXDkXIJT0d7iBnWksUHYgNnMnFgd8cR5Kud2NU2Hfh5zbQ
-            2q3dcJiO58H3CK6fZQhLkyTbodvD8+4z6E9rblWeAZR03qf8UPW2UmmWPlRgUPc=
-            =SbhF
+            hQIMA7uy4qQr71wiAQ//bmKIj9YnLfdbA0FGxeve0/LggMedHktqWamjHy00TCls
+            +sVFYjJ5LY4d5i8yQQMP3PbTv6TL5PChDJ0oLXuVevuszDpTrCxJCbpQgIhzNdpH
+            DnSh0nvn/N4dr0vyiZ0i3HOqVn0BxPm8YpllsU6yXzoHdOtDVf2iboYe/ePL9XAX
+            PB7ZYOeAKjPcCPrb5lUaBKn9j8WmMz3XmGcQpYS7kIfJ5BZlcuXROV7UCLo8V3pD
+            6NvyXWBhbmBJVWjofcrLQxIdGgc1WKpIOjAWs7cmroZ3Qpyh6r3EFd8GkahVFruK
+            y79BELZjZIg7texNN+oseqv/KXWVC7ZU+fRbUJCSF/z0zWINzTyrbIbMi3MxDzUf
+            A6e8HGij0PRmkzij4BkFbkbRbvoYYdl0pThtoHlZCvKuVSa8g4IPorukK3HD9ows
+            9W1KzUOBMGmhiQLivg0k9OUkZcCtGdgu70a502paW+KieFngfcEkQG3CzA6crRw7
+            uWAC6UJCGtD++kiIloaqFlur3ElihesbrP/KD2XvDzoKXoTKHQQtbus+RupHJdLV
+            gxEzftWABs/4CVirQ4PwV765egsn33nXoHsqTu99bbA61d30T2x/EetOuxVGJqdj
+            L1c9OKXB5SF7/9QxPmmAGGQvm1k9R8Ii7LxOUX+HKlk8bEys6L565KYPz8lhxYrS
+            XgFGgKB+m98+t0UKtYTuc7N9JXiKjCKuahm3sjWHN61C50W4UZIe6/1h/mVpQrcM
+            DjOv4pDbXvVRFXoKEA5W4WimyRcvkICDloI2Q71F4nT3Bv+3MkjN6KC+wdzJBo8=
+            =+bui
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

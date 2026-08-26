@@ -34,23 +34,23 @@ persistence:
 # R740, but keeps things correct if that ever changes).
 longhornManager:
     tolerations:
-        - key: ENC[AES256_GCM,data:DDNTXJiwP2LQiOmqgf/L6tLIZiFgqh42dLDXj8xomGv7rlUP9A==,iv:eu6vnl3EiLu1DWWDWlxkQNcN6/uEhSkpufw7L9Ikr14=,tag:DJOMo8LDGmzkqvIEkfCTHg==,type:str]
+        - key: ENC[AES256_GCM,data:/lEcTm3XFvlmSSJwYhG0CeYXmDHOfUa+yHXfQFxt9WgHN/EBGQ==,iv:h2ZUX6s/lrhjp6yC+PFYACR10uxH7D86vAESbQ9H/9s=,tag:F5xBv+YpjHeErRKTRzNM6g==,type:str]
           operator: Exists
           effect: NoSchedule
         # Tolerate the failover taint so longhorn-manager runs on the P330
-        - key: ENC[AES256_GCM,data:rbWq0sruC6zC,iv:Eq5izQ4LXZ90Bhf1BJ7V9/Xo7HVMULeDHZ6NgItZfGQ=,tag:ixJt7YD4cBy+SrG2WVn0ng==,type:str]
-          value: ENC[AES256_GCM,data:wxGNkS97rg8=,iv:bBGGqcwibhXE0zkH+ZJEVgr20ogu7JwQxxDXqJcMdsQ=,tag:VLBQh8vRl1SiYB9S/vwLeg==,type:str]
+        - key: ENC[AES256_GCM,data:dBRTGlRjjGCR,iv:AcPEXMinsw6ow0izpIXFntwZUMAvMOA1P65mJDBwhmw=,tag:0w24kf8BfryNs07RpWme9w==,type:str]
+          value: ENC[AES256_GCM,data:7XvkPrpko5A=,iv:J8qgVcveMb17rgzYN6WgmE5NpsaKDKMU/2EEctaQL5I=,tag:T9ofKbtlEiVPBqX/xEpnFA==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-driver (CSI provisioner/attacher deployer) — tolerate the same
 # taints so CSI operations work from the failover node.
 longhornDriver:
     tolerations:
-        - key: ENC[AES256_GCM,data:1EBSG4hL4heCnLFJYzTNaQWtFU3v6xwTlG+Y9/H4p5d0TZdFog==,iv:9ILcNXXzxzG5CYA4Ny7bKHBI581B1qJC3OBUObScxbQ=,tag:4B4JaFO0tfyVA6w7ypCY6g==,type:str]
+        - key: ENC[AES256_GCM,data:LuvHfPv9JRofL9cOJe/kvfs01+9F3d1hiCjr+WCTzMrxlneCBw==,iv:aC8TMpygwEio0Y6zau5QGTRNMDoxajuBLwVrFF+7fjg=,tag:nSJB+PBouekJkX23ar46kA==,type:str]
           operator: Exists
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:ZSC5qg+ChOkI,iv:rIq8j7L7F641kWDzcSV9lrYxhHggT1FTZ8WF53vxvV0=,tag:Hj4RlF3usdIQi0G6Ecmdbg==,type:str]
-          value: ENC[AES256_GCM,data:YfiuCv2EKec=,iv:+6i5CT1ToCKy1gFtVVIFv5FLQaJaKHx4vQk8b0IBy3U=,tag:zHgzNuijbwI1QbvuLnZNvw==,type:str]
+        - key: ENC[AES256_GCM,data:P+XEpfaaKMkr,iv:SY0hvYXfF6MyJYbzKcCEMaNhzoTWAbK1dYgusgTfsWM=,tag:U9M9+EeSylFKaOqmWUW6bg==,type:str]
+          value: ENC[AES256_GCM,data:A7XxyClHSCQ=,iv:cw9fzGcxDcSrELJlWmqxGuzTvZy5aYe/y43Xq0a1xdc=,tag:sj0ZQPBXJQURZ6A3QPJENg==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-ui — tolerate the same taints so the UI is reachable even if it
@@ -58,11 +58,11 @@ longhornDriver:
 longhornUI:
     replicas: 1
     tolerations:
-        - key: ENC[AES256_GCM,data:n4UdwssGYhHQgDTpCpu+WgIPsdNc8uAaZtnURZt0/C3VfeLR4w==,iv:mqy0GqHN0KxtkETS7psu61Mr1oGmtPDhg2vQhVDas6c=,tag:uUd+NY90XK3i0aigc5ndCg==,type:str]
+        - key: ENC[AES256_GCM,data:k8A6ubFAYnPbFLVraOLB80iJctQEV4ffH21UceeYlMG0khgfkg==,iv:YIz/8wC36BkA6n2qKyBEp+jJhfI0mTvXz57oQC527s4=,tag:kA2c9nmLkKJMANrv6KXXPA==,type:str]
           operator: Exists
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:isSkUNqax+AU,iv:jWgZyZL9VMmzYqoLCUkIiUuy1iBeOm2RE5CjZGCcXxQ=,tag:714V0YGb7jqebC4IRX/phw==,type:str]
-          value: ENC[AES256_GCM,data:Qbtu1wgV1oI=,iv:RihD43IA1+C3m9OkXACGgd5lY9lDWCyzIcw/MCoSMvg=,tag:WzQtC4rT+uovS6s36DJWUw==,type:str]
+        - key: ENC[AES256_GCM,data:38V7JVb5lLNy,iv:gCB4vmb9dDlOvYg2BBJyg4qzFKz6rfCNiiPZF77t2JI=,tag:rPQtsPyoVSo1CuRnB/jVGw==,type:str]
+          value: ENC[AES256_GCM,data:1X3YImQC2Js=,iv:G/y3Gn1NVPoIqtezDGEahPdv8G4kepSDGipnh+kd5Xk=,tag:HgUm6SNMLp7ELXhpUwWDbw==,type:str]
           operator: Equal
           effect: NoSchedule
 # Disable ingress for now
@@ -77,28 +77,29 @@ defaultBackupStore:
     # Poll the backup target every 5 minutes for new/removed backups.
     pollInterval: 300
 sops:
-    lastmodified: "2026-07-26T08:44:08Z"
-    mac: ENC[AES256_GCM,data:4shHlVWcVol/Z8b+5+tz6shT8x6gCZz2xhYv1VT7dHlgcYWWgq2V5mbGUtsVmWFzkGPC5rYvU3dUEiEkl0zb6Q1rP/fD6xQmlyIgH/ioHrfCvjorY5Rv8t4OFH/TyBK9hMwC+iFdAUJOdE9vYQoDmUMTGz6XwWiDY3PxRv1X9D4=,iv:DDDiStImg5qH2QP9lcSyW5+b+1P1mk6F0TWkt9p2syo=,tag:zJnZ455gsXPkE4Lfup2Rcg==,type:str]
+    lastmodified: "2026-08-26T19:28:05Z"
+    mac: ENC[AES256_GCM,data:afotIAcIgyM9YUDnvMJEVQqG2GG5+x14vbBdzg1wb2nYvJEQmLF6QRXhi7xhU59xIk7aPC+EuZmaXITc7jRJdgmr+4ovyEA0ajaRhLh22Zvhwg/WwtSOTx21PLQ8TqnKyCT+Qg/XfHimefkJM5LN09ZcmlBfAn6ycUo2rjTafho=,iv:+2UW9Ozwaezz8U/WnmcDFkKnl5HWePnWrgM++fqup1A=,tag:OlJi69lRHdWMyZXDqKUU9g==,type:str]
     pgp:
-        - created_at: "2026-07-26T08:44:08Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/9FsBtkggrKwHfh5FFRUFkyqCU596d/R7ZEvsMP7zzCH9H
-            VAAYJxl8D6/KY5EavpeZH4s2ZnlzZjlb/qS2CKpSzXuN7ADPnK10cBxxAOQLp6KF
-            pqdkv6x5MyWbfv87IzM8cI0D/jlG2/iZPfBZy/YU4Rg8cefIl82vNgNADW2O68bK
-            w1VS75AYKmUfXZ2vqz+wX46YcjdXkrvRwzM9lzfIm2Q2dKMqBKSYzxMICZ/hWGRj
-            t33KbZLKC1Kg0NmYOY4GCt8hi6Ck4TjKvzxktsEpXYFDhWzXe9nr+axtrfypLrAn
-            fcLCQV1FSovMK+P4JxB/dd0u+F3RR500F3tBJPQ1xs1Rc1f8Cd2Ynr/3LWtTstkq
-            JyOfLFAj4/LG8o7ub/FSvLZZI052iRLZqlIIe0cFTqCz31yVEJOnLJWmME36hDEm
-            rfd3X9IvixfwWVTa3K0TxZta7u0Q0DsqHIt3eLdeTJC3wY4J+A/vUvPFv137YEqp
-            O+/ALTbwK7ViSQIupjr4kEcklBtiu9myNi3u8JNg67/XHwahCh0tfGk4jCevve5S
-            dDk4Ud7469LuDwYSZw0RdwuU89jQivvsp8/mZpQIoSVzl//iEQ2EOAff1gMfiPoj
-            1MrwGtrrMAo+2Uoxacd7LfFn/l1zRNiGw1rX21NzswmzIU84US4Grv9LGealQ8TS
-            XgH+datMRHIAPKcYY0u/B/PfyoKArlPUzQsIQOm02+s1zuvK/dArKxgObKTAr/u4
-            uNuVH3ObUVMb6VX4iwlxfS+VKpjotTbgY2TJfV46kGC3JJ0w1LdjEyJbpYlIz/k=
-            =HWEp
+            hQIMA7uy4qQr71wiAQ/+N+McZCHhik9SUyO4Dk2O2/9Lu06X81x+VCgjBP99Sa4V
+            bix8t+QUfkhtUhzkxWtX9NMRa8r/61xMFs6RWIfCT1pAUKerbSBuTUb6kJSaDEfW
+            WvJqfAp6SHGLAi5brvcargnRXBon2uuWCMIifB5dAQWrZxSyh3Y+6QBD4bKUJAkD
+            9oEJv0edWoDbVbwPxYGJTZWARXONo5wAOXJJPP8EGPmt84XK/u+s4jMDfEzeo1cA
+            Uhg4+1E6IXjFCAokMgk+vPwq6YhWpUt3kjY6xUaOpF4M4z4nxAUusJrAdJ55W5Hr
+            kffOrQv4h9rb9+XQDh83jdbUN+PToq81mzY2S/CutdyRDYIokFosocBay/bSRV8N
+            jg/yKXzuh6NDHRgYHmIIWwxLenG2ig/JMwRCqK32NJaSAFa/aghdkLqjjNrzGFca
+            DAH4xxT5g4kfER7R3TX//V+vQGOmlS/Ft3p8uuBHiKhTwTf18tKLvyqFQEqYA7D0
+            eyXcsQr5P/mnWKaTrau86aYMbaBjP4DtT4hHYr2yVkY4e5IyCW7IIYjxmg0zqJoO
+            oZeLk14Y+v++vCzGhglSkyiQEqCVrEhgj/JJbb2mPh/F+Ck9NSu7z54qQK7HpUx0
+            fmgW0+szkfnSlzWSa8m9cSpSgIqFeH6/yuGkgrOm+e/t0pTlE8w2Sgf3KwC2qk3S
+            XAGwOmmBn2FUjN/dBcjfhlJjxJS6Cb3ggJ6YnracJzJVjx+YkkIdpFYYsYs6HY98
+            Fhlt9FPDs0IfH/wXQdGRF4o4e7n+YXrgPXcHEebDgQq5C+e0p3OawnvnROQQ
+            =JRl3
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

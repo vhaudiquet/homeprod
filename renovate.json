@@ -7,7 +7,7 @@
   "enabledManagers": [
     "docker-compose",
     "helm-values",
-    "helmv3"
+    "flux"
   ],
   "packageRules": [
     {
@@ -18,12 +18,18 @@
       "commitMessage": "chore(docker): bump {{{depName}}} in {{{packageFile}}}"
     },
     {
-      "description": "helm updates",
+      "description": "helm values updates",
       "matchManagers": [
-        "helm-values",
-        "helmv3"
+        "helm-values"
       ],
       "commitMessage": "chore(kube): bump {{{depName}}} in {{{packageFile}}}"
+    },
+    {
+      "description": "Flux HelmRelease chart version updates",
+      "matchManagers": [
+        "flux"
+      ],
+      "commitMessage": "chore(kube): bump chart {{{depName}}} in {{{packageFile}}}"
     }
   ]
 }

@@ -56,11 +56,11 @@ statefulset:
     # Same failover tolerations/affinity as the gitea release, so runners can
     # be scheduled wherever Gitea itself runs (p330 during r740 outage).
     tolerations:
-        - key: ENC[AES256_GCM,data:jC1B3zH0XQ1O,iv:nGWUUNvIB+WBDG4MatKdzXKwWuXjkK2IsaDC8LCakC4=,tag:lp6Uv/aJaUt8XTXXhXQuXA==,type:str]
+        - key: ENC[AES256_GCM,data:wLfr0r+e9KYm,iv:BGZnWKQUlOje9RhAs7tBDzNcDt5LcfTnqRSqrdFc/A4=,tag:bb1f7NwEwmEzrf5k9ivFPg==,type:str]
           operator: Equal
           value: failover
           effect: NoSchedule
-        - key: ENC[AES256_GCM,data:pmPj2H2dChGATTl5oUJCt6Fq0A64zt/VFxRG6yy0XFKXlUkpgA==,iv:pmNCnZqu4j9TleelYDrtV7u9pjjgDO806lyKXeL3V38=,tag:+MKVAYraGF29PPQlJhQmxg==,type:str]
+        - key: ENC[AES256_GCM,data:1kBsMuUlpluDmpVddyZCI/ylRbluHmQ62F88Q9LEoiZkgdpm5g==,iv:IlggVbY7s/xaSM2ljMkiTDwvIjf12g3SQzfL2fWWf78=,tag:2aNlCFumidKSbnoUV1IBzw==,type:str]
           operator: Exists
           effect: NoSchedule
     affinity:
@@ -69,32 +69,32 @@ statefulset:
                 - weight: 100
                   preference:
                     matchExpressions:
-                        - key: ENC[AES256_GCM,data:zTvzBWPLKcDoRMcNlOB0injDajw=,iv:x4yI3vUBThzKTNHEaxelPmMV1fvArLu/avAAeeBP30c=,tag:uJqnx5qIFVYDONvp7Lu31Q==,type:str]
+                        - key: ENC[AES256_GCM,data:JuejrbDWeF+d/+d2Hq+q4V9vihk=,iv:VPgkBuv2hqJbTNFXpv3SzRGtFA6iVq1kFR8hfANg0cQ=,tag:D/wrkytnO8oZ3/+4yicq7Q==,type:str]
                           operator: NotIn
                           values:
                             - "true"
 sops:
-    lastmodified: "2026-08-22T09:53:39Z"
-    mac: ENC[AES256_GCM,data:dSUMCCs5iobsQtiktm0YepMqHCjXwPpq35jimoS+IUIeBUO6lLuzt4gS6emVJUBUbNB4rptyqyCxX1GMXj+9iBUwKx2SR+FqXa+AzIJ4JMegF60GBIpBc2rSA7I/jSrv+6DC/7Kq1w5EQ9hhTOXAhhzDxkQjgBJF3jMmMrqU2lw=,iv:pu929/yRvhuMZGY6Yt75RpWCcg4Xr2beZZT2NZVPrOI=,tag:6OavMlfiKjH0w4F47ZJXHg==,type:str]
+    lastmodified: "2026-08-26T19:28:03Z"
+    mac: ENC[AES256_GCM,data:srIJjIgWx1OGgGwz71wQgT8c1gg64iV2VHrrb11SYXpaYg0VMp9d0maJHCaKt5rDVtWw/+Ft4WbR0z2FJBLEmr64/cFX8/SgrOR7pAc/vAgPKfxiSHg6iJoVCGHssGHm4NzvSUC2fkMqc8WUiZDR5hztUKSlp9oNPO2bKZmw7Zo=,iv:tgSmO28JZiGK9xO4uIH35zlRzJcW8lKxaggtqXlFq/w=,tag:+mIagmS+Z5RSFdSo/yDhjg==,type:str]
     pgp:
-        - created_at: "2026-08-22T09:53:39Z"
+        - created_at: "2026-08-26T19:28:03Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+OgDT+QcY0FWtbrwMhUKn9Up6fn5yDy6dUnzr/Uvd+u/G
-            +5fBBh2oDsLQXyBNIX/OXj6YLq2dBHlrnxGAPVXyoXQtel3OuPWYVVp3bbxR4hOw
-            XZlqnVU+BYemRHHh/wy1FY/17z2QemKXDieVb51cxYxWXiXc02XVOOH2alglf3M6
-            X4cTz0iDu+tbLw1rBo9zwuCDJBQ6pCiyvTUdQrJOH8QwSpjd/kXS9BewJLv511LU
-            9sv0jWkd3O0JPp5SJ2GsmWLZLDE0QHoKmxmSCVWVQVsq85rod6/Ab2oGMeWNaTRn
-            X96XKyveBRKEbi/d7kCPeTLpKB0qxgAHgxCdQ9yVFucBEibGzHoC8qv0hH68pj46
-            XInzUjMseTnNNm5xvxrosMA3BMOs0ByYiRY85+x6pO4y9KxehhFTdNnq3XPYFD8x
-            y7yrmcgDrNXvj6btMt2QvX33idmi73QMQIDghjq3Sejjvg7dGJZgY1k4wZYqyXCD
-            UMQQ6512utS/RhZ44MUxdD2mhQ9RsCZhmeTXACyYiGW+cBTWkNu6negUIzjA7b4+
-            H0GOmaiZHlv/oDhM6+IHkV7B8kh/pkQ4em8Qhb6F38lohYyu7V3VBvQzK2egCoE3
-            7F6XfHa73DPr6/BWepRUcMr9M1YqyQOigx1RaxkIr+7CZwAO3acEbtEzgMY3GBbS
-            XgHcPOjXwU5N9XZRCzrpLD4iwYbQSSxZdxwKkpME+YRyNJ1edHW4HPNbY+2XC/he
-            Z55AJsoEPLFyoJQn47BMl8x5RzViSliEtIvwGJDYiO4W1QV+R54j9wm7zelJVMQ=
-            =Otyl
+            hQIMA7uy4qQr71wiAQ//X9NxtKUDFkdKDmWQh3wRSriiq25U7gkL0Q7SE45Tz5V6
+            03i6QmzCyBpI81TQQBRRzfdkuuqocBgplTRRRvFsNQNcwc5KCq1zHIDVYE+XlcmI
+            /bwA0GpBZwDN6Mv+G8+6UwhSp+YgsiGFTVAIctfz90cRYPpABX4wRcDYInTlifHk
+            weBq30iS6Nl9TajpgyyAUct6EBQ8u1YmxsII9RYWjdoTS/SAuAxNM2px7fwOPAoL
+            fq6/AxXj1n+uKjxl1calL95768RmLUerdxDmac53/73Pj271hmbwrWqe+JzkSriu
+            YMHYNOVLglf7nS3AQSqAa9PljBv7xHw9jOUqkJH14W7/NpSRvc4PICyIWA3Yfpfq
+            ymMI/OOYosyl3ZYhfLGUIAIYLkA1StgGVfpmeOmUCPEn2FIInBmguzDRMrdnUkoz
+            KYh/06Ug6YsgCTsy8Ffhzy724ITRADzqYlTU060tTwFN7cgFVHiIfZdYIFxDxNSL
+            NELw8Nl7+9jkWjlnmPvtxfrN90L7nBm4s3mZrYeyZ1/ElcxDkJKb4r+PJuc6rCpM
+            tuD9BXxjl5qa/trl/1+fVToDMMm5vws0MLl4DBkbNUNkD7wWko0I4rDSZ+X4SihM
+            /V7XgzeQ41KMnDdZYwTKdIVhCpZOIBwZlLuZSYCn8uhqO0YMkkpB1x1EOb2fy3zS
+            XgFdP2zpsUHWsy/iENHCgnMkQ+l2XwZZ2bgZGqwpRbLO0fDNX0kRZ45NzKl2+t79
+            npggZ12JFTPPbQG+o0hY0p7LjnjbfBsp7m9ykvymizZXlzP9efoOq6kjD/CRBu0=
+            =WgiB
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(data|stringData|.*key|.*crt)$

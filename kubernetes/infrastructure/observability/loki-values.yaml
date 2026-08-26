@@ -71,28 +71,29 @@ gateway:
 minio:
     enabled: false
 sops:
-    lastmodified: "2026-08-10T20:52:47Z"
-    mac: ENC[AES256_GCM,data:sT6EiERjNR2hOgsogpkCM3cKRctkGbcxcIrrJB7jb8KJZ2HxGdRGP7+U6uNF3ugxzPcT0O4/80qlEFQ3b+Sf6N+vSAXaBsab+oh7uKt+9En7lgd5V9zkbQtQSS+cr+dlUhU6SOVMCJ2weGyfL59TvIPpxVLy2RRfauAA5W0fl/U=,iv:Bcx4gaBUKZ3GBEKCs4KQMaySuT+Fb7SC7URRrMWRRU8=,tag:byEDzUiP2zdTjPyBO2j1sQ==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:evTELz9bIobCkZDF9+yXXPBjI2Ua95iFEJN2b1mr2pzaei7sYMbseygjtn2RWz33bEMF3q18MSX5XmcqLBs0T2O0RO11yu1KG1QaG2+SudGhCv9+D5DggIsDlHH7PM32n9mX6brA58gD4DS4BKTSHm4MiWQFVxi2GjIdYnNwwww=,iv:KFFXx3MBq0VzAyUvRK//VEHzLVTVd1Zxwwjq/QHqPZ0=,tag:2EAvsPnPnt6dVBF3uXmjfQ==,type:str]
     pgp:
-        - created_at: "2026-08-10T20:52:47Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//YxPGeiBdLh1nQ6BiV8hWCne5bJA0PcvafsB3caBLcVu2
-            wg7mk+MlcHolXLOpS3DSsdYVlfXr1+qIDToXmFeuWMgeGiSUL5mQghIiZfHlBzwT
-            7aZUcKClYsWg5EGUN9kLkEpqcakrKN/GKE2uBS1Rh0fZUzDbrtugacWfNHmCymQ6
-            TkExLX0nylb4TJgQ77qLk0iAFKwyJ1xw6x/mcc1z8fbUKhyhs9e9pErhCH8f5myl
-            /mAxx3rRu/bEtfn9IRO+XVLLw3l4b0KK21koFi5ZVB05+sz91c4+UNLSHsHaymtP
-            IAcRnaMa1KyOZ9iZ9iVTbFgFfTZy+4N2dm4tYAyvR9Nphj0+XhVfjeoljEh4HdXY
-            SdtSXh/aC9H45Q6wwT7PvBHywRMLYLj0iAoY++SO6/cHF2HGtZJ3MzjrjcUyUZHL
-            oCK7Qmp64bHdYXJQIIprT+cB5CwUPOgW9lE/LbRwIEPbFzCn6q2LMrbZ1Cna9Dd1
-            +/AELxscykqatnuRYP+zNEl4y9Foxux4usXMDCl0piNnVWU1b2T4tBRitD65KUnG
-            yR64Dk9E9+OT/v6xaHKxIxBkfrhOj3K1Tb3tyEhgfvan3x6JRMN1bt4wrD0+Q1s6
-            nY1B/ya63Qo3JHm0461S5oK7Ncv2Op4y1yr//LJ8ueFEOB6zRYoPn4O11WV/29zS
-            XAHMOHZFr7tUXOV222SQ17jIFL/5vrJ0F5WAWrVla4hGRYFUe/Zt/9RABDcKZRWL
-            qzgLvXkfXAiNMqJd1CrOSXBG5MyHoVUYSZef4HXABf2sOxYsGqIgFqUciOa1
-            =OE2y
+            hQIMA7uy4qQr71wiAQ/8CEL9TX06JlyWb79yvro2icKUtd4KCpeD/tBnAnn2ZNbc
+            zAL5xcMIk0FfJS4Rpi3isUimawVoLMBEFhdbNGSq6O/7Za+mmG95eodBalGEe9d0
+            vx0yZQHNNhVZVssMwixApcB4H9bss2qOZJ2An3iIak2dkCG+c+3r+RyeVvOlLF0N
+            Q/b4TEzVlnlHt3gAti77mku0rTbFfGNiKjC08jVtyqxXxSCiDCl97X6d7KHVXyEc
+            /F7WtoYUI14GyKZd5BX/XDuyEOMmGd+ZmM73oIIwrwlcrFnkzHyk45aqrruSpXns
+            xim9CO1Z3t8/wCc3udRmY9KnbKBV1vX3SjGecUi+tBwrchhJ9AqHRMQgOuDMEDx0
+            K2fCAAuww7ZdHCI8R7nBYOj+mbfgy+4vJ6Gtoeee/z7NITGAIZFbggHp8Tyv73AV
+            hxdaFj+//SzHTCu1VAeUTo3idFByAjPqFyIcXJwOhjhUuMhTGG4w6ZolbwNdt2jd
+            1OAxC2q3iECF2sCHDIk0ZhAitnulnilr6YtJ3tdevwVUfQOsuV0efRjkdKoeBHMp
+            FghsUcbItQuZ36+axCrsLk7d/K6fvetPx14wCX2xWma25S6+E4mRbvOlcUKfc6WE
+            /IaM8kObsRYxbhW7gfyBr/4qpGAUcQOJX2psYEXZVZJ0IwrFC9RAbIXYFf1Zv2/S
+            XAGypKSrEQxTBv+0zAi/cPVNZsx5mJR2bYGj4X56z4VVuLQRxVq9X4hLUxkLhoGh
+            0mmlW17YMU2+eVx9f5yTDyHlfRbS0UuVhmLEYtWfAYOWlXvuBB3mA+14ZoIB
+            =LgDs
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

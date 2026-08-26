@@ -2,11 +2,11 @@
 # Single-node deployment with CORS configured for Obsidian plugin compatibility
 clusterSize: 1
 allowAdminParty: false
-createAdminSecret: ENC[AES256_GCM,data:qCS2Aw==,iv:krKXRZ/w5sXAdb6LQqqKm2bABA68QGxV/x0zalpwFgs=,tag:j4apfBIYrPrgZGBp5vIH0g==,type:bool]
+createAdminSecret: ENC[AES256_GCM,data:tq55XA==,iv:jNb8l50LZyGleKH/6gMge4NcVB/QI7DYvfjFzi0hXBk=,tag:UAdyYHVSxx8pVRoq2eB6tg==,type:bool]
 autoSetup:
     enabled: true
 adminUsername: obsidian
-adminPassword: ENC[AES256_GCM,data:jKwtIOt0yvxfoS7JhXs=,iv:j3KMCBjl4mtg+Tkbt4ooZnqvd8tGKkUf2psJlws31Ag=,tag:AjJkxLbOKx1kBlOfPRS68w==,type:str]
+adminPassword: ENC[AES256_GCM,data:HhKrquaOqxB3BkhC3MM=,iv:WADwvJbfNWNfHipSy3prQO6+Xo5haL7XTxANMdb/lbQ=,tag:dInMwg2yBubwFIAtt+rW8Q==,type:str]
 image:
     repository: couchdb
     tag: 3.5.2
@@ -50,28 +50,29 @@ resources:
         cpu: 500m
         memory: 512Mi
 sops:
-    lastmodified: "2026-08-16T21:48:44Z"
-    mac: ENC[AES256_GCM,data:he/K5j1OtA9jwaVkjI7fRMzBjsXpTAwtxlzfKObix9U5FT3eZR/BUFiugACufOLxzltY4HYlGK0mSKID+Jp9bMz1F/QmdGv5+HRRPRIGphNiG7aZWaJJTlJ4/0JjLJtONxLqASeoTap89Q/yuphb3+6ZNCcCsZQLMJbz7gEZ+cE=,iv:Pf0IlT9wdnwO/H2ABiTHsOc7DuBZjBy25y8SW9nC0wU=,tag:6ub3N8LDu6Y2lpsC/iLiaA==,type:str]
+    lastmodified: "2026-08-26T19:28:04Z"
+    mac: ENC[AES256_GCM,data:dVVKNsyOx9q89vnvPvMNuDCW7Ge/7ZB/pEG+ixqJVzIlHoyetmsYywolAO33Gc5iy6f5qhQKjmj9G53+eN7qa0qJMFiJR/cqr08RVp0oo80E1Dm9z4KsTv+oRd7vI9JFygk0Q2mk2vb3wVrqaPywU+2bOtFEZ6j2ZwtuWYTosXc=,iv:SsyFIrX0P10x73fRJaju0/QKlStzLGP9TE9sptIa0MA=,tag:vnqsKfk/Zs4M4O1R9hdmsg==,type:str]
     pgp:
-        - created_at: "2026-08-16T21:48:44Z"
+        - created_at: "2026-08-26T19:28:04Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/8Dc+KANhQYaPDLXEw5hJO0zHVfKjvh7KXH6s20b132DZh
-            7G5xRs1srollgxKPL4VYI0g1TQvIIP5+54wlCGxVow3ly93qV2FCTxxeGampb5VN
-            LiPaPam/6www/JCxuqEcWbib6T8qzdfrGeS0CiXxNEW0GMZsOj/1QGpIfEr2TdTN
-            O5Wf+qVHoUb51dTdO29BAREKCO953DAI+BmsvHsQgMtxmngrq6ufCyh0Els7U4HK
-            E1B03E7tEgsWPkZNJqULUF4Ux9nqK3xFbWFu6BJlSbB45mYjouWbT4XF+9HpL59V
-            55e0X7OWcMJ8YTL4cbAnXopDkFmVAkoDOKdQEcbc528hmcJOvv1acLG5wkeuiEjw
-            G7Cp8M5t76LCvfnetFs9C8GZIPjyP+PHfsxYNlZIK3Qt8QTvOtt95ZWK6ijCJzUN
-            CrLPXHRAvyWglzqT0s32JveNAfEr4CI8EcNSJ84S71FOhvmk5w6Kx9U19FHnMeHw
-            Yt2Rr1h8OXi4NMkzmBU/XUj400mpzU3vmmdAYLGbXO1w8DjM5Qibt5ZK7DkZTtm5
-            B2qVq1TVZEL0hg1nonTGt1LA/RzPvUs8wIfrzqW230qI+1DnKo/AOWZFt3z46aMu
-            FZx40RpVif3ckv+JoVV6SS6pYQNXbjNPl4NupTdC9bwcbRwsX5fU6uEqkdJAqpXS
-            XgE4u1kcJaDjlS+SX70HmjadjpCBgoiHIf9xU+oPBLh3t+fDiauzHl5iszGzayeV
-            B7fSbNDm54Paum0cXPUB+FOWzh8lwkbLkE65Ld+nMeJ9C7PbX2cmMKkPKBO/rzs=
-            =tlZW
+            hQIMA7uy4qQr71wiAQ//eZdPLQ1KBMwbCMIZ76qP9hOZ9/tKnFmtZqkFnoyqpshZ
+            kRCeITaLhJJE9TQNj0VW/Ng+RW5kDA1OvTWOdz6lfjdepiyu87ZkrHBpr7F64prJ
+            /wr2eiXQvz4p927kTw6cmiy9wWpHH+PPoJsoEJVIXzWNBxIBfGtW0DqpkCUhePwX
+            CT1LBdpa/Wz/t3JIoOTIq4MmU9q3SKMJJUsADKI9NuaGfkcyYoLG1/k0bZcbbCpe
+            /Tb+ynOPNIo07WjCQ5whYDFUlxW48zcvcH4tp0NaDcHDBNFgrPwxU9hwkK2p3I3c
+            hPKlMOYqk2cM9zksx9zBvsRSTNCraBJj0tooJk6RxOo3sWUQISVJ8IuRremSEagP
+            drnp9Hz8V08UgGGjlg8tG+yccNS37sFBUzDCKspCCRPkiRW5mYO+5HyMTE8L4lUm
+            tBhVbEvavYK2S1UXB1xg/X9AVtA05N75ggeB4D3yJnGnY4pXH4D8vAhgpTecsqkb
+            5BzCo2R/HTzj07bYw/k4PlGdbAGNJuwzo48GfLqPQy0qEpx5BS3NTzM6QlD8C45q
+            WQ4HxMEg5AcrArprwdPQjATIXqbcfDtQA+rxMtckjySOxYvxnfJeEzBH1crjDq//
+            18wmvQJFGKba6ztvC5Jou+3OaJnFSaDiVqhRBGlzcsre4aOrZusYY9ilRpY/a3PS
+            XgGgfHBTfP5IYruR5jbEi21aqJKxAh5gnnjMtrWnL/ObCabccfpyZer5xrnljV1d
+            nE9PQrCmefxMcUHbAoNYZPqI+JPd9TAvR33rVCfFd8uzCOGwIJq2rct3eXH7Xyg=
+            =fYOk
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

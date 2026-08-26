@@ -19,9 +19,9 @@ pushShard: ""
 # with these credentials on every cert-manager renewal.
 recoveryAdmin:
     enabled: true
-    username: ENC[AES256_GCM,data:W7aZNhA=,iv:d0DosYNdnmJEc3pMIEgTSl3YyUGUvdSFUxty7oGj0s8=,tag:N4U5dbxg2gU/8bDsZKHaCQ==,type:str]
+    username: ENC[AES256_GCM,data:/BGEPaI=,iv:QTV3fDckhrdxI0k43vUY/6Hr15pCcEQostuxcAHEF+g=,tag:nSGTlZJuclizN2AKtfGG0A==,type:str]
     password: ""
-    existingSecret: ENC[AES256_GCM,data:UrgIv36m86twJhcccQFl5+yDc7+8vYQ=,iv:RekqnmgiD7nmwc1PPdEjX4hBAom9dckvjfIPEFniESc=,tag:NwpbBZcG/FU4K8gRDLmESQ==,type:str]
+    existingSecret: ENC[AES256_GCM,data:P/5gC7128OrelglEo5iTGTva45BOI3E=,iv:W0QngumMdOo/LFXdUrMN236CIHaOh8N9cj1wMEtfr3Q=,tag:5QLyu1Yd31YCZfRRYyK+2g==,type:str]
     usernameKey: username
     passwordKey: password
 # Recovery mode suspends mail services and exposes only the management listener.
@@ -40,7 +40,7 @@ bootstrap:
 # certificate.yaml (letsencrypt-production, Cloudflare DNS-01).
 mailTls:
     enabled: true
-    existingSecret: ENC[AES256_GCM,data:mYuo+xDaQyYhAE/3iiSj+2HEcZF1/w==,iv:8Pauul2cBj6Hu4QoSJS/LGMpofkaZOJJqJJLDjkQ8QE=,tag:yf3216LoI8DfqQDQplhlDQ==,type:str]
+    existingSecret: ENC[AES256_GCM,data:Mi40TeV+sRmZaEBMsOI0qgXWkMyNmQ==,iv:ExlgVMe+CONDWLmZY4uze+jhVvXN92zb2ptcLCor3Dw=,tag:4VQ38SxY28yR7kp1u69auw==,type:str]
     certKey: tls.crt
     privateKeyKey: tls.key
     mountPath: /etc/stalwart/tls/ingress
@@ -120,28 +120,29 @@ podSecurityContext:
         type: RuntimeDefault
 containerSecurityContext: {}
 sops:
-    lastmodified: "2026-08-20T21:26:03Z"
-    mac: ENC[AES256_GCM,data:/Csupnf8vdHopaEP3+MOjv+99hs1muhP5mIZCNObOoEI3oxgJMNWHhi98YzSf4d/hpubTIkirryXrtK+bvdBJYydcdxd2BKPeFnVQwGdWG8VTZoW/8xWSufKOxGsJtjKtaLh5Q1b1WYsTKsfB0WF1QlEig4CWXtDTuCTncQktvo=,iv:v79M2+gzuMPE0epOCKuFs7VXnzdkeautJFp7K6PP7f0=,tag:ew9yozsxReJgyrapnQxmrg==,type:str]
+    lastmodified: "2026-08-26T19:28:03Z"
+    mac: ENC[AES256_GCM,data:Fh5vxhnPiSRaC/xMV06GwoNAqfiZYJHFj3xKrWzMwau2aC62JTDkEpmm/UN7w4ILQk05xjUkcoSJF5IcKT6+gjkLRVt8qwiarJDZ3SbwM11x7rm4m0wBTJIMeytq1h68l5mQ9i5yW5bxnBNDpUqaAAmq/Ev0/+6lspXw/kfJTUw=,iv:Tg5ZYPd2bpTN/gu99oJEcl0aKiNtX5xca0MUfzCXILo=,tag:2IKyAEuTjp8QhhUaNb1+5A==,type:str]
     pgp:
-        - created_at: "2026-08-20T21:26:03Z"
+        - created_at: "2026-08-26T19:28:03Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAvURAKFHR8V4cEhWqXh2hhTklHH4ob4lUC5nbIQQepSlm
-            MgVKyOVtOb1fcyK6nIFpAFEkiUQrg3pffxv/jCKpkL+C+UecUemuL51CgD/zGGkk
-            LAWqpSyicSG81yx1DVNvbTOGozwbl3YvLKl2mQz4gvfHe/Lf69EHdPPPVdoJS9in
-            DlZ/jwSkyXX6D4l9op4fKCW3uqTXlRWUSY2aK+sYsbINeQD9u6pdfF0Tig+Gxx2u
-            0B+UxknMthkPEgWAjX3KQTahlu8Nbp419BRg9TTIu8frkNvo9tGXJ0cd912yBrrV
-            iSGq3GZ8ZLpHJoGRK/yfL1gsNRTLAFed1HPQ0P/5N19zJojf8bnm6HpMbb+2zT4X
-            4KugSImWtczsXPKvtysUgboXJYJCXwCVaIwQQ6Husz2W2fjwLT4aj6GoRn6hi8pL
-            TTDi57iMfKmbHOZsxFM47odM95u/fPfZZjZmk/51OkJD1hndrm1QrNdLR2/ZXSTk
-            kgblBHzPUMkkQHkGhk4HjQ82OCfKEi7S2syWtEqHQD0FKrJsZHpF8JJcO4ntyYCr
-            SWzFK6LHi1l4LkswrCFv+/HfQGGU3g9zYUT9c8ys0taNkHXUS0sDgLgC9esWxTuk
-            I0K7TEE6HhfD8CTnBiiqz2OqPyCs2ukUqK0DLrJvuQZnbL3s5Z8p4ISUYJdmecvS
-            XAGtE+9OR+2fHlR9DEa1oryNl/IHpm+ERSHs5PTSjsh2yyPpILln20DZxx8ry23A
-            ILyBwxcGVH9cSd2vH1doK8IyvNwh4bMFFbj3OOUsWBZaqqDQjJxOprumHA7P
-            =1Bee
+            hQIMA7uy4qQr71wiAQ/9FX7SR8uKEyIvQYbNb8JdhsMCjbioQc/JMvx9EWjqhIwE
+            WTsntkuZ0874eXO4c/WicYNHtxNmeqHfyt6ByVq7F8qIsHb19u33qkc67tjGG7rh
+            svebMITMYgfqdHOmblLMCAHVoB0tI21nyPbf4POUHUtsP0IogUogY70x2a1wefdS
+            RpH28+VIcKQjK2l7JKIkQ81+CHy4RV50/CzVUOojSOeNPDGtsT+5I3sf7dHuj2jF
+            Ab5MhqXICRDlTj5AXLNfGuymILVjKWytRe5dR02EpuvlLUkHH1hztZQN9TaV92sj
+            kcEz6Qfft/PudcG4iZj6yqbjAoZjoSGEOwH/gRONa5dAamG/QGXFpaf7z6pPKHal
+            TQPidrFADuI7upnb+1xK0rF87FQON+p4py57/H5E+0FueSqXs0MiHgc4mL06IdqR
+            uoOODfpp4G66uxAqBxs6YvEPYxT9yib/keUQli7gFPwRjsZixm2hiwCnDPNR11gZ
+            HjgH3XN9Ba+uELuNIRtU96uWc6HZACrq0PmCvLKgvamDd0LbK7yD1cX7OiD4XCP4
+            G7dllNeAgEUY2ha3xE93cMBDirSlN0LbV+NYFm2MR2IluI1DkaVDqLa3ajoP/7Qp
+            2zop6Mp3QEKWjZrS27eEjHHIcjGqbfvaOI1qXCHGw3elM0XkbKtaMmqV4rwjwjLS
+            XgG9T3aqe9VCK1wyHAdsHsSgjVz+44YgoOXT2HnC4nSNej5xRZBEIfF8YNnCBiY8
+            sLfjNlnSVe6+x1H8VZn4NrXGOz/kwiWpMEMEQuCIbqPJt45GM+GtC1f/gj8eMyo=
+            =IbSO
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

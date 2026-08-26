@@ -4,7 +4,7 @@
 replicaCount: 1
 env:
     - name: TZ
-      value: ENC[AES256_GCM,data:aOeUzoi3PC8rjf8A,iv:xJpXljsxr61EhJvy6YiZU5mFXdWij6LCsQE8FIOgGZw=,tag:QMV8RzHlOilzTG45smv0yg==,type:str]
+      value: ENC[AES256_GCM,data:KEcOJfkU2JYAOQv8,iv:DrPCrrhkXja3gst7OJKJ+aWvZiO2+ITw420JBukOR0Q=,tag:uDvIa1XZJGfyoYlikkxJpQ==,type:str]
 config:
     # No authentication, LAN-only exposure behind Traefik. 
     auth:
@@ -33,28 +33,29 @@ resources:
         cpu: 500m
         memory: 256Mi
 sops:
-    lastmodified: "2026-08-24T19:16:53Z"
-    mac: ENC[AES256_GCM,data:o9/Kj3saNHqymzpAgJH+vpA5YiiHxE/XW4QUbG5mdndGgxqsLqTTp2vRdzwE11tj0hGxe3dHKv/DgMhcHllMcvBnJk30JZcj5UqK3LioCfozXNpveL56vsq61ZvjZf71sfgXqQT0CfzMRxqj9DG5WhEUGcKmwTbI4RZFFNWsOSM=,iv:msO8/hPrfzVm3Pp4CJswmTQX6uiAsOBN2hF5JKMxKTs=,tag:0PlvpRQpkXYx+WP+IZwh2w==,type:str]
+    lastmodified: "2026-08-26T19:31:54Z"
+    mac: ENC[AES256_GCM,data:hbhDZjTboKtyFEjKCghRbcNAD1WTdD+IlayaCWPY40zp0tvb+rvjggF7MvdQNjqjOof0yQpp74eVlH8To0CUqTJQT6g5bCxgttv5jT+T0/Myz/U2T1xz28tMczJapQ/fFg9CoCmElc36ucfLEmbrl9dcdYH01p5zKIQbTxssYFE=,iv:4vt3c1wTcws6BCplDm5bKRtie3xSaVjKpyUhldzg93k=,tag:9EdiEkKVtfcfck2RpnlpVw==,type:str]
     pgp:
-        - created_at: "2026-08-24T19:16:53Z"
+        - created_at: "2026-08-26T19:31:54Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAvad1UZD+8o8EnpkOIAEcYMhJPbS0c8rAZHC7vHJdK1gn
-            Q5UZOSmRuGffXeD1oUOADM4ozDmKqq4wRl6doomky4MCXLb5FojgOoaUwzm/Sx+9
-            YeqWob1DQCSnlF/Dksj5wFnm1amAK8XXIJc5nelwoYSMH8Xby2ZnyzTEmfWcPFul
-            8IVrSEv2/JrJfmSU1ogXrKvVe+hrQ+Qixi5JTpmMYtUD8LiZMGCsK4VRVN3N7ie+
-            CgTx+OTb8G53h9DwVbVh8ct1rTlBB4EJBzN7bRDPrgu/mTtw2h/Rb9YfGfJ/tDDH
-            TFfgpVaeYkhTOxZwGosRztaD/qLBoSoiRZc3ZDU/fyD677PtkX6KHyxpNLSZThH6
-            XbSi2n6LTpDXFQbo6OtHtOMdn7B/wXAE+IErWeRx2RbO0MF3bM7p9x/ahXl+0BTm
-            U6q3+bsDmkdNN2TWUXuCPcIhtu9dwNZLewbxVcus3zrOmiEpR8jZWcOzp42QJeE4
-            kcXptlPNzSlGyjB3Oll/uIhaKiKKonIQq7W3w+LHuJi1bO5qDbQjb1L89Rm/hlW4
-            h4OssMz4pkeqsEcDyo2vCXYJ4cyrnUSeOTgiS6NOeVxHe+deVbTsW+ScLh55CGmh
-            ANiG7cJO7Dp8soIvaw6hpj6RiIA5Ifi6mGp2SCoXtOk06JPuskUKzdHFeZejobzS
-            XgEqYjYCIJY+/R2eiC+n8eGrCrGTZ1kQrbCTQnoZjdEJe0vKbIY89o6I/oMvxqSl
-            X+qzUG+vbdTboV3svUqjNBv2vX/hMr1OSvrfyEnncaqc2Gmika5eaDtl0bPYy7k=
-            =TQys
+            hQIMA7uy4qQr71wiAQ/9G5KO5oSV9/JM8c5nbeKYJ3gEYBkgRyVzWDRYuJnq/pjv
+            ryFaMSG9llmIVKEjSkNwrLcnCN0OXRzeeEFKWwm7V5n9qBvLz+wTGaEeFXklpg2Z
+            EvAiaWzgUYRTvhFxSx9QXojjdy62Ym0mK8lu/TFtCf8POzvm5zqH26091NK608lo
+            mc/XLXVNA5l9iRZbHHeRJC6RxSDheQPop/kx6qn5ZxsCgveHWmolIxkX14ixdMkG
+            SHaRmGqJC0jWMhUBXFYvbd/86mEM126XKkQjAzIf54NJNQDoctKMOGbgKfThE5u+
+            i7K7K1syTJe03eHCU6SC4u+90jaEjN1QIWr433A4Bna2zVfT2/HEKcfGKmY6TAuR
+            PgpsBss+LiMKNHfDTENdmGuiRurXNxVNezk0X2PsYEEdDGJ0JbmxFx2vj0Zhgm1L
+            mv4YbqCODcGDwlArRKH72qfnxj0g8ZCjLbZRziGNo/Rbl83T4wQfaWhybE9hXOP7
+            QxlGCYutWWd3llRYdWry14TqZxGABnDv/6yDHWjg5wZC3NPd4KQbMptjnb6u3V5m
+            rFCJZsRMrCD+84D1EaRu0NLtPCRp0trq0oZ9L2F20UKp1W3n9cTXjBdD2AKYYIG4
+            EvhvMmTKiQYjKnD4GQqeiztdIEj3Wwq6eabfjF6lwM8XmWx9OG2Z9jh65jb3xenS
+            XAHH/pgI4LF27j6OAglSu5c3l35OWHWV+mlM0LZUevc7GkEvErVJHVTU8iZFN07Y
+            JdEi5rzz4wpGEjOaQkcvnSNcCIUUOlg2k1SizCFlYlZMBbmtwafuvQKb7MMC
+            =chFT
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
     version: 3.10.2

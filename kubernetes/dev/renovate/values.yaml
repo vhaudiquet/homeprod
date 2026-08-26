@@ -1,0 +1,70 @@
+# Official Renovate chart (https://github.com/renovatebot/helm-charts).
+# Runs Renovate as a CronJob against github.com/vhaudiquet/homeprod.
+#
+# The GitHub token is NOT stored here: it lives in token-secret.yaml and is
+# injected as env (top-level existingSecret -> envFrom), picked up by Renovate
+# as RENOVATE_TOKEN.
+cronjob:
+    # Aligns with the "every weekend" schedule in the repo's renovate.json:
+    # one run every Saturday morning is enough to open the weekly PRs.
+    schedule: 0 6 * * 6
+    timeZone: Europe/Paris
+    concurrencyPolicy: Forbid
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 2
+# Top-level chart key: wires the `renovate-token` Secret's keys as container
+# env vars via envFrom.
+existingSecret: ENC[AES256_GCM,data:tt9OJ41wHayCWgQYd+Y=,iv:jBqe+K1hL36ViFntV4cU3qh9jdnG6W8e4LiE99rIFIA=,tag:Kj8/qKd689iIatQgUc+9iA==,type:str]
+renovate:
+    # Self-hosted config (https://docs.renovatebot.com/self-hosted-configuration).
+    # Repo-level update policy lives in renovate.json at the repo root; this only
+    # tells the bot WHERE to run and WHO to authenticate as.
+    config: |
+        {
+          "platform": "github",
+          "repositories": ["vhaudiquet/homeprod"],
+          "gitAuthor": "renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "onboarding": false,
+          "persistRepoData": true
+        }
+    persistence:
+        cache:
+            # Persist the repo cache + SQLite between runs: much faster clones and
+            # fewer GitHub API calls on a weekly schedule.
+            enabled: true
+            storageClass: longhorn
+            storageSize: 1Gi
+resources:
+    requests:
+        cpu: 50m
+        memory: 256Mi
+    limits:
+        cpu: "1"
+        memory: 1Gi
+sops:
+    lastmodified: "2026-08-26T19:31:53Z"
+    mac: ENC[AES256_GCM,data:fA2nukiGOWK5UVQRbBagOLdqSBjYYG2VysxXfQ3TuRtFYhN8bd16j5xIfy2aDrlLEVw19uhInggQMu2vJg7xT6V6Z9w5YsHwcSQWSGCMjTk764/ChT3QGA0nhVG2ktgsZgaiU/MrCAPN/XQP3dG6Y25vkcptFcXnn7Ig5D+V2eQ=,iv:3fKfVaDJ7RjjAI0n4I+6na9pKLB07yGgjvRXjh7I3Iw=,tag:cyclZ/i2rfKeAof15J4ufA==,type:str]
+    pgp:
+        - created_at: "2026-08-26T19:31:53Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiARAAi9efDDL8A1RFxx50RBFjLi3G2OG8XQfo/UF3O7gd65vH
+            tu+3b9KtiRvWurOVqapAxUwapiiwx4Gsem5F1Q9FoX+5HfQ3APQ91kxfGjQTjx00
+            2lt+pl4JyeKj0+ilGMP5xaUyOvZGNB33v4ls14Uljzg3tqQQPGUvYMJ6f5svXXOo
+            ugagStCSx9jh0j++Y9gCFZXYSn3C1IblGeUxkh7fUJQjveqp8R5Ofntdg7sbV5Au
+            Xeah95zdQxdJ/zb6GW7t0dWY5KEYi4Tg1gNybvMIKDdWZ8NND7kaFOSx5Bg8aGJa
+            +6nh21MHs7oNmzpxLXNa9rTk1ncE2HcLcTIXl+NHf10dPcR6R32w8Bc5e1UtBKI9
+            mUeHgH2zphG4Xihcchbeeb6RAxBvl2EWLglxB/HKKw8ouC3EmlOj63QS7o8ES8CZ
+            z+/uq4uOP65Q9k0xa9YHl4nGVXlOYqxFkiB71UYIqwUxyw/Th0IEZhBrd2GFf2wl
+            CUj9DDDejWBvGyIwp1MIRLhQkMrL4KczHLAdMEC/OcvylZHxESOpMEIq+CUXi0wr
+            GyjnwLS3F1ZPB0+Xbpy8OfTKAT1jI6Z65G6138p6c8xJsh+lBwBd4QFTJ0VfR+fd
+            /edCwMKalySDK0Li9OIphj1or90l/ZURdlZpIrgnYrYeBg7HibuN2E0u0cMur/DS
+            XgExhwYtGznQThvIySwqAa2YMLm5tz5PJ1mUGkJ2AUaJuQX9SfhFYJSCGjpv8Fbf
+            04FCKZ7B8eG9j9ae0Wfn07SeN9xSZEMuCtE0KLjAR0v5ACAF5Lb6Ee5tc+5K2sk=
+            =zZdk
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
+    version: 3.10.2
