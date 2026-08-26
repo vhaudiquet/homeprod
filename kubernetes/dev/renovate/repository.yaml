@@ -1,3 +1,5 @@
+# Upstream publishes the chart to OCI only; the legacy HTTP repo
+# (docs.renovatebot.com/helm-charts) is stale and lags behind releases.
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -5,4 +7,5 @@ metadata:
   namespace: renovate
 spec:
   interval: 1h
-  url: https://docs.renovatebot.com/helm-charts
+  type: oci
+  url: oci://ghcr.io/renovatebot/charts
