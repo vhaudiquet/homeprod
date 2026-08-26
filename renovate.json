@@ -9,27 +9,31 @@
     "helm-values",
     "flux"
   ],
+  "osvVulnerabilityAlerts": true,
   "packageRules": [
     {
       "description": "docker-compose updates",
       "matchManagers": [
         "docker-compose"
       ],
-      "commitMessage": "chore(docker): bump {{{depName}}} in {{{packageFile}}}"
+      "commitMessagePrefix": "chore(docker):",
+      "commitMessageAction": "bump"
     },
     {
       "description": "helm values updates",
       "matchManagers": [
         "helm-values"
       ],
-      "commitMessage": "chore(kube): bump {{{depName}}} in {{{packageFile}}}"
+      "commitMessagePrefix": "chore(kube):",
+      "commitMessageAction": "bump"
     },
     {
       "description": "Flux HelmRelease chart version updates",
       "matchManagers": [
         "flux"
       ],
-      "commitMessage": "chore(kube): bump chart {{{depName}}} in {{{packageFile}}}"
+      "commitMessagePrefix": "chore(kube):",
+      "commitMessageAction": "bump chart"
     }
   ]
 }
