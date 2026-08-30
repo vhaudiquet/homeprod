@@ -37,10 +37,10 @@ renovate:
 resources:
     requests:
         cpu: 50m
-        memory: 256Mi
+        memory: 512Mi
     limits:
         cpu: "1"
-        memory: 1Gi
+        memory: 2Gi
 sops:
     lastmodified: "2026-08-26T19:31:53Z"
     mac: ENC[AES256_GCM,data:fA2nukiGOWK5UVQRbBagOLdqSBjYYG2VysxXfQ3TuRtFYhN8bd16j5xIfy2aDrlLEVw19uhInggQMu2vJg7xT6V6Z9w5YsHwcSQWSGCMjTk764/ChT3QGA0nhVG2ktgsZgaiU/MrCAPN/XQP3dG6Y25vkcptFcXnn7Ig5D+V2eQ=,iv:3fKfVaDJ7RjjAI0n4I+6na9pKLB07yGgjvRXjh7I3Iw=,tag:cyclZ/i2rfKeAof15J4ufA==,type:str]
