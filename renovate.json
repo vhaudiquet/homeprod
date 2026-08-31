@@ -1,8 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "schedule": [
-    "every weekend"
-  ],
   "prConcurrentLimit": 15,
   "enabledManagers": [
     "docker-compose",
