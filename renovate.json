@@ -1,12 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "prConcurrentLimit": 15,
+  "prHourlyLimit": 0,
+  "prFooter": "",
   "enabledManagers": [
     "docker-compose",
+    "github-actions",
     "helm-values",
-    "flux"
+    "flux",
+    "terraform"
   ],
   "osvVulnerabilityAlerts": true,
+  "flux": {
+    "managerFilePatterns": [
+      "/kubernetes/.+\\.ya?ml$/"
+    ]
+  },
   "packageRules": [
     {
       "description": "docker-compose updates",
