@@ -12,7 +12,7 @@ spec:
         name: cert-manager-webhook-ovh
         namespace: cert-manager
       chart: cert-manager-webhook-ovh
-      version: "v0.9.13"
+      version: "0.9.16"
       interval: 1m
   valuesFrom:
     - kind: Secret
