@@ -21,10 +21,10 @@ valkey:
         resources:
             requests:
                 cpu: 100m
-                memory: 128Mi
+                memory: 256Mi
             limits:
                 cpu: 500m
-                memory: 256Mi
+                memory: 512Mi
         tolerations:
             - key: ENC[AES256_GCM,data:fXEKv6sROAEz,iv:ausWhm1zJdx+Mu26pauhi5G+ODZqLZ27SmfkAuMUtYY=,tag:cNYyeG09Hk++uED5M0TBKw==,type:str]
               operator: Equal
