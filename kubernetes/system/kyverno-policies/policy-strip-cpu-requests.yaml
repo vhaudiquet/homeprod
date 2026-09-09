@@ -24,8 +24,7 @@
 #     kubectl patch clusterpolicy.kyverno.io strip-cpu-requests --type=merge \
 #       -p '{"spec":{"failurePolicy":"Ignore"}}'
 # ============================================================================
-
-apiVersion: kyverno.io/v2
+apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: strip-cpu-requests
