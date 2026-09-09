@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: kyverno
+spec:
+  interval: 5m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+        namespace: kyverno
+      chart: kyverno
+      version: '3.3.7'
+      interval: 5m
+  # Minimal footprint for a single-node cluster:
+  #  - admissionReports disabled (no extra Redis/Postgres)
+  #  - admissionController + backgroundController only (no reports, no
+  #    cleanupController) — the backgroundController lets the ClusterPolicy also
+  #    mutate ALREADY-RUNNING pods (not just new/updated ones), so flipping the
+  #    relief on immediately strips CPU requests from existing workloads.
+  #  - tolerates the control-plane node (allowSchedulingOnMasters=true on p330)
+  #  - low CPU request so Kyverno's own admission doesn't itself deadlock the node
+  values:
+    admissionController:
+      rbac:
+        create: true
+      # Scale to 1 replica on this single-node cluster
+      replicas: 1
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+    # The background controller re-applies policies to already-existing resources,
+    # so the CPU-request strip also affects pods that were created BEFORE the policy
+    # (and pods Flux re-applies with their original requests between toggles).
+    backgroundController:
+      enabled: true
+      replicas: 1
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+    # Reports/reportsController are for policy-report auditing — not needed for a
+    # one-off relief toggle.
+    reportsController:
+      enabled: false
+    cleanupController:
+      enabled: false
+    # No autoscaling on a single node.
+    autoscaling:
+      admissionController:
+        enabled: false
+      backgroundController:
+        enabled: false

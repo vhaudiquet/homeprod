@@ -1,0 +1,114 @@
+---
+# ============================================================================
+# CPU-REQUEST RELIEF — TOGGLEABLE CLUSTER POLICY
+# ============================================================================
+# Emergency relief for CPU-saturated scenarios
+#
+# When ENABLED, this Kyverno ClusterPolicy removes the `resources.requests.cpu`
+# field from every Pod created/updated in the cluster (except Kyverno's own pods,
+# critical kube-system control-plane pods, and the Longhorn instance-manager /
+# engine-image / longhorn-manager, which must keep guarantees so admission and
+# the storage layer keep working). With no CPU request, pods schedule onto
+# whatever capacity is free and burst freely.
+#
+# === TOGGLE ===
+#   The policy is ACTIVE by default (failurePolicy: Ignore = mutate, never block).
+#
+#   DISABLE relief (restore the per-app CPU requests on next Flux reconcile):
+#     kubectl patch clusterpolicy.kyverno.io strip-cpu-requests --type=merge \
+#       -p '{"spec":{"failurePolicy":"Never"}}'
+#   # failurePolicy: Never tells Kyverno to skip the rule without mutating, so the
+#   # original CPU requests from each HelmRelease are restored on next reconcile.
+#
+#   RE-ENABLE relief (strip requests again):
+#     kubectl patch clusterpolicy.kyverno.io strip-cpu-requests --type=merge \
+#       -p '{"spec":{"failurePolicy":"Ignore"}}'
+# ============================================================================
+
+apiVersion: kyverno.io/v2
+kind: ClusterPolicy
+metadata:
+  name: strip-cpu-requests
+  annotations:
+    policies.kyverno.io/title: Strip CPU Requests (Emergency Relief)
+    policies.kyverno.io/category: Other
+    policies.kyverno.io/severity: low
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Removes resources.requests.cpu from pods so they can be scheduled on an
+      overloaded single-node cluster. Toggle via spec.failurePolicy:
+      Ignore = active (strip), Never = inactive (restore).
+spec:
+  # Never block a pod if Kyverno admission is itself under pressure.
+  failurePolicy: Ignore
+  # background: true so the backgroundController also mutates ALREADY-EXISTING
+  # pods (not just new/updated ones at admission). This makes the relief take
+  # effect immediately on flip-on, without waiting for a pod restart.
+  background: true
+  rules:
+    - name: remove-cpu-request-from-containers
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      # Keep guarantees for things that must keep running so admission and the
+      # storage layer keep working even while everything else is bursting.
+      exclude:
+        any:
+          - resources:
+              namespaces:
+                - kyverno
+          - resources:
+              namespaces:
+                - kube-system
+              names:
+                # Control-plane static pods (apiserver, scheduler, controller-manager)
+                - kube-apiserver-*
+                - kube-scheduler-*
+                - kube-controller-manager-*
+          - resources:
+              namespaces:
+                - longhorn-system
+              selector:
+                matchLabels:
+                  app: longhorn-manager
+          - resources:
+              namespaces:
+                - longhorn-system
+              selector:
+                matchLabels:
+                  app: instance-manager
+          - resources:
+              namespaces:
+                - longhorn-system
+              selector:
+                matchLabels:
+                  app: engine-image
+      mutate:
+        # Use `foreach` over the pod's own containers (relative paths, NOT
+        # request.object.*) so the rule works in BOTH admission AND background
+        # modes. The backgroundController has no admission request, so
+        # request.object.* is unavailable in background scanning.
+        foreach:
+          - list: "spec.containers[]"
+            patchStrategicMerge: |
+              spec:
+                containers:
+                  - name: "{{ element.name }}"
+                    resources:
+                      requests:
+                        cpu: null
+          - list: "spec.initContainers[]"
+            preconditions:
+              all:
+                - key: "{{ spec.initContainers[] || `[]` | length(@) }}"
+                  operator: GreaterThan
+                  value: 0
+            patchStrategicMerge: |
+              spec:
+                initContainers:
+                  - name: "{{ element.name }}"
+                    resources:
+                      requests:
+                        cpu: null

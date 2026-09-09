@@ -13,3 +13,4 @@ resources:
   - longhorn-jobs.yaml
   - openclaw-operator.yaml
   - openclaw.yaml
+  - kyverno.yaml
