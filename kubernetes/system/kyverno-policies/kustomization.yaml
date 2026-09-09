@@ -1,0 +1,12 @@
+---
+# Kyverno ClusterPolicies.
+# Applied by the Flux Kustomization "kyverno-policies" which dependsOn "kyverno"
+# (the controller + CRDs). This split is required because Flux dry-runs every
+# resource in a Kustomization before applying any — the ClusterPolicy references
+# the kyverno.io/v2 CRD that only exists once the kyverno HelmRelease installs.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Toggleable emergency relief: strips resources.requests.cpu cluster-wide.
+  # See the file header for the toggle (failurePolicy Ignore/Never) commands.
+  - policy-strip-cpu-requests.yaml

@@ -14,3 +14,4 @@ resources:
   - openclaw-operator.yaml
   - openclaw.yaml
   - kyverno.yaml
+  - kyverno-policies.yaml
