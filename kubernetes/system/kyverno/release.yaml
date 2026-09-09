@@ -12,7 +12,7 @@ spec:
         name: kyverno
         namespace: kyverno
       chart: kyverno
-      version: '3.3.7'
+      version: '3.9.0'
       interval: 5m
   # Minimal footprint for a single-node cluster:
   #  - admissionReports disabled (no extra Redis/Postgres)

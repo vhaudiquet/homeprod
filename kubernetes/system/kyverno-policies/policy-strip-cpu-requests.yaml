@@ -86,12 +86,11 @@ spec:
                 matchLabels:
                   app: engine-image
       mutate:
-        # Use `foreach` over the pod's own containers (relative paths, NOT
-        # request.object.*) so the rule works in BOTH admission AND background
-        # modes. The backgroundController has no admission request, so
-        # request.object.* is unavailable in background scanning.
+        # `request.object` is available in BOTH admission and background modes:
+        # the backgroundController synthesizes an admission-like request for
+        # existing resources, so the same foreach works for both.
         foreach:
-          - list: "spec.containers[]"
+          - list: "request.object.spec.containers"
             patchStrategicMerge: |
               spec:
                 containers:
@@ -99,12 +98,7 @@ spec:
                     resources:
                       requests:
                         cpu: null
-          - list: "spec.initContainers[]"
-            preconditions:
-              all:
-                - key: "{{ spec.initContainers[] || `[]` | length(@) }}"
-                  operator: GreaterThan
-                  value: 0
+          - list: "request.object.spec.initContainers || `[]`"
             patchStrategicMerge: |
               spec:
                 initContainers:
