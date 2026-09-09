@@ -88,9 +88,12 @@ spec:
         # `request.object` is available in BOTH admission and background modes:
         # the backgroundController synthesizes an admission-like request for
         # existing resources, so the same foreach works for both.
+        # NOTE: inside `foreach`, patchStrategicMerge must be an INLINE YAML
+        # mapping — a `|` block scalar is parsed as a string and fails with
+        # "wrong node kind: expected MappingNode but got ScalarNode".
         foreach:
           - list: "request.object.spec.containers"
-            patchStrategicMerge: |
+            patchStrategicMerge:
               spec:
                 containers:
                   - name: "{{ element.name }}"
@@ -98,7 +101,7 @@ spec:
                       requests:
                         cpu: null
           - list: "request.object.spec.initContainers || `[]`"
-            patchStrategicMerge: |
+            patchStrategicMerge:
               spec:
                 initContainers:
                   - name: "{{ element.name }}"
