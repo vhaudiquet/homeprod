@@ -1,7 +1,8 @@
 # Longhorn Helm Values
 defaultSettings:
-    # 2 replicas so volumes survive single-node loss
-    defaultReplicaCount: 2
+    # ReplicaCount below is to be updated when cluster node count change.
+    # Single-node clusters can only have 1 replica, multi-node should have 2 or ideally 3 when possible.
+    defaultReplicaCount: 1
     # Allow full disk usage on single-node
     storageOverProvisioningPercentage: 100
     storageMinimalAvailablePercentage: 10
@@ -15,35 +16,28 @@ defaultSettings:
     # set here via the `taintToleration` setting (semicolon-separated `kubectl
     # taint` syntax), not via per-component `tolerations` blocks.
     #
-    # The P330 node is tainted `dedicated=failover:NoSchedule` (see
-    # infra/p330/kube/variables.tf). Tolerating it lets Longhorn schedule
-    # engine/replica pods there so a volume can be failed over to the P330.
-    # The control-plane taint is also tolerated defensively, although with
-    # allowSchedulingOnControlPlanes=true on the R740 it is not actually applied.
-    taintToleration: dedicated=failover:NoSchedule;node-role.kubernetes.io/control-plane:NoSchedule
+    taintToleration: node-role.kubernetes.io/control-plane:NoSchedule
 persistence:
     defaultClass: true
-    defaultClassReplicaCount: 2
+    defaultClassReplicaCount: 1
     # Retain volumes on PVC delete — safer during migration
     reclaimPolicy: Retain
     # Mount options for ext4
     fstype: ext4
-# longhorn-manager is a DaemonSet — it must run on every storage node,
-# including the P330 failover node. The control-plane toleration is defensive
-# (allowSchedulingOnControlPlanes=true means it is not actually applied on the
-# R740, but keeps things correct if that ever changes).
+# longhorn-manager is a DaemonSet — it must run on every storage node.
 longhornManager:
     tolerations:
         - key: ENC[AES256_GCM,data:/lEcTm3XFvlmSSJwYhG0CeYXmDHOfUa+yHXfQFxt9WgHN/EBGQ==,iv:h2ZUX6s/lrhjp6yC+PFYACR10uxH7D86vAESbQ9H/9s=,tag:F5xBv+YpjHeErRKTRzNM6g==,type:str]
           operator: Exists
           effect: NoSchedule
-        # Tolerate the failover taint so longhorn-manager runs on the P330
+        # Was the failover taint toleration (now a no-op; see note above)
         - key: ENC[AES256_GCM,data:dBRTGlRjjGCR,iv:AcPEXMinsw6ow0izpIXFntwZUMAvMOA1P65mJDBwhmw=,tag:0w24kf8BfryNs07RpWme9w==,type:str]
           value: ENC[AES256_GCM,data:7XvkPrpko5A=,iv:J8qgVcveMb17rgzYN6WgmE5NpsaKDKMU/2EEctaQL5I=,tag:T9ofKbtlEiVPBqX/xEpnFA==,type:str]
           operator: Equal
           effect: NoSchedule
 # longhorn-driver (CSI provisioner/attacher deployer) — tolerate the same
-# taints so CSI operations work from the failover node.
+# taints so CSI operations work. The second toleration was for the removed
+# failover taint and is now a harmless encrypted no-op.
 longhornDriver:
     tolerations:
         - key: ENC[AES256_GCM,data:LuvHfPv9JRofL9cOJe/kvfs01+9F3d1hiCjr+WCTzMrxlneCBw==,iv:aC8TMpygwEio0Y6zau5QGTRNMDoxajuBLwVrFF+7fjg=,tag:nSJB+PBouekJkX23ar46kA==,type:str]
@@ -53,8 +47,7 @@ longhornDriver:
           value: ENC[AES256_GCM,data:A7XxyClHSCQ=,iv:cw9fzGcxDcSrELJlWmqxGuzTvZy5aYe/y43Xq0a1xdc=,tag:sj0ZQPBXJQURZ6A3QPJENg==,type:str]
           operator: Equal
           effect: NoSchedule
-# longhorn-ui — tolerate the same taints so the UI is reachable even if it
-# lands on the failover node.
+# longhorn-ui — tolerate the same taints so the UI is reachable.
 longhornUI:
     replicas: 1
     tolerations:

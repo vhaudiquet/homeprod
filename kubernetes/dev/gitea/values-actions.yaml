@@ -44,17 +44,15 @@ statefulset:
                 docker_timeout: 300s
                 # Hard per-job caps (docker create args). Slightly below the
                 # dind limits so the daemon and image cache keep headroom.
-                options: --memory=7g --cpus=3
+                options: --memory=7g --cpus=1
     dind:
         resources:
             requests:
                 cpu: 250m
                 memory: 512Mi
             limits:
-                cpu: 4
+                cpu: 1500m
                 memory: 8Gi
-    # Same failover tolerations/affinity as the gitea release, so runners can
-    # be scheduled wherever Gitea itself runs (p330 during r740 outage).
     tolerations:
         - key: ENC[AES256_GCM,data:wLfr0r+e9KYm,iv:BGZnWKQUlOje9RhAs7tBDzNcDt5LcfTnqRSqrdFc/A4=,tag:bb1f7NwEwmEzrf5k9ivFPg==,type:str]
           operator: Equal
