@@ -34,8 +34,11 @@ metadata:
     policies.kyverno.io/severity: low
     policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
-      Removes resources.requests.cpu from pods so they can be scheduled on an
-      overloaded single-node cluster. Toggle via spec.failurePolicy:
+      Removes resources.requests.cpu AND resources.limits.cpu from pods so they
+      can be scheduled on an overloaded single-node cluster. Limits must be
+      stripped too: the LimitRanger admission plugin defaults requests.cpu =
+      limits.cpu whenever a limit exists without a request, so stripping only
+      the request is a no-op. Toggle via spec.failurePolicy:
       Ignore = active (strip), Never = inactive (restore).
 spec:
   # Never block a pod if Kyverno admission is itself under pressure.
@@ -88,9 +91,13 @@ spec:
         # `request.object` is available in BOTH admission and background modes:
         # the backgroundController synthesizes an admission-like request for
         # existing resources, so the same foreach works for both.
-        # NOTE: inside `foreach`, patchStrategicMerge must be an INLINE YAML
+        # NOTE 1: inside `foreach`, patchStrategicMerge must be an INLINE YAML
         # mapping — a `|` block scalar is parsed as a string and fails with
         # "wrong node kind: expected MappingNode but got ScalarNode".
+        # NOTE 2: limits.cpu MUST be stripped together with requests.cpu.
+        # The LimitRanger admission plugin defaults requests.cpu = limits.cpu
+        # whenever a container has a limit but no request, so stripping only
+        # the request is a no-op for any container that declares a limit.
         foreach:
           - list: "request.object.spec.containers"
             patchStrategicMerge:
@@ -100,6 +107,8 @@ spec:
                     resources:
                       requests:
                         cpu: null
+                      limits:
+                        cpu: null
           - list: "request.object.spec.initContainers || `[]`"
             patchStrategicMerge:
               spec:
@@ -107,4 +116,6 @@ spec:
                   - name: "{{ element.name }}"
                     resources:
                       requests:
+                        cpu: null
+                      limits:
                         cpu: null
