@@ -31,6 +31,11 @@ l2announcements:
     enabled: true
 externalIPs:
     enabled: true
+# Single-node cluster: the operator defaults to 2 replicas, but both
+# bind the same host ports, so the second replica can never schedule ("node(s)
+# didn't have free ports for the requested pod ports") and sits Pending forever.
+operator:
+    replicas: 1
 ingressController:
     enabled: false
     loadbalancerMode: shared
