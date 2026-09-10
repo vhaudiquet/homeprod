@@ -8,3 +8,6 @@ spec:
   - cidr: "10.2.2.4/32"
   - cidr: "10.2.2.5/32"
   - cidr: "10.2.2.6/32"
+  # openclaw gateway: LAN-only node/mobile access. Requested explicitly via the
+  # io.cilium/lb-ipam-ips annotation on the openclaw Service.
+  - cidr: "10.2.2.7/32"

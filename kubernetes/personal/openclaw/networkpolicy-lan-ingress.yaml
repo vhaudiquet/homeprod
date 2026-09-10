@@ -1,0 +1,47 @@
+# Supplementary NetworkPolicy: allow direct LAN/WireGuard access to the gateway
+# and canvas listeners on the openclaw LoadBalancer VIP (10.2.2.7).
+#
+# Why this exists: the operator's managed default-deny policy only admits
+# same-namespace ingress, and networkpolicy.yaml adds the traefik namespace for
+# the Ingress path. Neither covers a client connecting straight to the
+# LoadBalancer VIP, which is how the Android app and remote node hosts reach the
+# gateway (mobile/node pairing refuses our .lan hostname, so they use the VIP).
+#
+# Ports are the *target* ports after DNAT:
+#   18790 = GatewayProxyPort (Service port 18789)
+#   18794 = CanvasProxyPort  (Service port 18793)
+# Deliberately NOT opened: 9222 (Chromium CDP - full browser control) and the
+# metrics port.
+#
+# Cluster CIDRs are excluded so this does not grant every pod in the cluster a
+# path to the gateway; only the LAN and private-network (WireGuard) ranges are
+# admitted. Tighten the ranges to the exact LAN/WireGuard subnets if desired.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: openclaw-lan-ingress
+  namespace: openclaw
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: openclaw
+      app.kubernetes.io/name: openclaw
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 10.0.0.0/8
+            except:
+              # Service CIDR and pod CIDR (infra/kube/talconfig.yaml).
+              - 10.96.0.0/12
+              - 10.244.0.0/16
+        - ipBlock:
+            cidr: 172.16.0.0/12
+        - ipBlock:
+            cidr: 192.168.0.0/16
+      ports:
+        - port: 18790
+          protocol: TCP
+        - port: 18794
+          protocol: TCP

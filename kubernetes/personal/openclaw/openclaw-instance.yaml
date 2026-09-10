@@ -55,6 +55,28 @@ spec:
         forceHTTPS: false
       annotations:
         external-dns.alpha.kubernetes.io/enabled: "true"
+    # LAN-only LoadBalancer VIP for native node/mobile pairing.
+    #
+    # Why: mobile/node pairing refuses our dotless `openclaw.lan` hostname for
+    # cleartext ws:// (only loopback, RFC1918 literals, and *.local qualify),
+    # and minting a setup code against a loopback-bound gateway fails outright.
+    # Exposing the gateway on a LAN VIP over plaintext ws:// is the minimal fix
+    # that needs no TLS, no public ingress, and no Tailscale.
+    #
+    # Trade-off: non-loopback cleartext setup codes are issued with *limited*
+    # operator access (no operator.admin), which is sufficient for node
+    # capabilities and phone-side chat, but not for managing the gateway.
+    #
+    # Ports are left at the operator defaults (gateway 18789 -> proxy 18790,
+    # canvas 18793 -> proxy 18794); setting spec.networking.service.ports would
+    # replace them.
+    service:
+      type: LoadBalancer
+      annotations:
+        # Pin the exact VIP. Requires the matching block in
+        # kubernetes/system/cilium/pool.yaml; without it Cilium IPAM assigns a
+        # different address from the pool.
+        io.cilium/lb-ipam-ips: "10.2.2.7"
   # Python toolchain init container: lets skills/MCP servers use uv, and lets
   # the agent install python tools user-level (~/.local on the PVC) without root.
   runtimeDeps:
