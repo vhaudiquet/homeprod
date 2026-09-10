@@ -5,5 +5,6 @@ resources:
   - openclaw-instance.yaml
   - openclaw-secrets.yaml
   - networkpolicy.yaml
+  - networkpolicy-lan-ingress.yaml
   - networkpolicy-mail-egress.yaml
   - networkpolicy-radicale-egress.yaml
