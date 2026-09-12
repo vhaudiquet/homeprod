@@ -12,7 +12,7 @@ spec:
         name: derwitt
         namespace: radicale
       chart: radicale
-      version: "2.1.0"
+      version: "2.1.1"
       interval: 1m
   valuesFrom:
     - kind: Secret
