@@ -1,0 +1,39 @@
+# Supplementary egress policy: the operator's managed default-deny NetworkPolicy
+# only allows DNS (53) and TCP 443 outbound, so any other port toward the local
+# network is dropped. That blocks the OpenClaw pod from reaching LAN services
+# that do not speak HTTPS on 443. Measured from inside the pod against
+# 10.4.1.222, 443 returns RST (admitted, nothing listening) while 7020 times
+# out, which shows LAN routing works and only the port is being refused.
+#
+# The egress rule below sets no `ports`, because the goal is arbitrary LAN
+# services rather than one known port. Cluster CIDRs are excluded so this does
+# not become a blanket "any pod, any port" grant; the LAN is what gets admitted.
+# Note this is additive to the operator's rules, so DNS and 443 everywhere still
+# hold.
+#
+# Written as a sidecar policy rather than via the CR fields
+# spec.security.networkPolicy.additionalEgress / allowedEgressCIDRs, matching
+# the existing networkpolicy-mail-egress / -radicale-egress pattern. Those CR
+# fields DO appear in the 0.39.0 CRD template, contrary to the comments on the
+# sibling policies, so they are worth retrying once the installed CRD version is
+# confirmed. Until then the sidecar route is the one known to take effect.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: openclaw-lan-egress
+  namespace: openclaw
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: openclaw
+      app.kubernetes.io/name: openclaw
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 10.0.0.0/8
+            except:
+              # Service CIDR and pod CIDR (infra/kube/talconfig.yaml).
+              - 10.96.0.0/12
+              - 10.244.0.0/16
