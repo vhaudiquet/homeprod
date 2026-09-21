@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: k8s-home-lab
+  namespace: syncthing
+spec:
+  interval: 1h
+  url: https://k8s-home-lab.github.io/helm-charts/

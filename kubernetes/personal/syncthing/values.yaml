@@ -1,0 +1,152 @@
+# Syncthing continuous file synchronization
+#
+# Sync ports (22000 TCP+QUIC, 21027 UDP) are exposed through LoadBalancer
+# services on the dedicated Cilium pool IP 10.2.2.7 (appended to
+# kubernetes/system/cilium/pool.yaml). The GUI goes through Traefik like the
+# other *.lan services.
+controller:
+    replicas: 1
+image:
+    repository: syncthing/syncthing
+    tag: "2.1"
+env:
+    - name: TZ
+      value: Europe/Paris
+    - name: PUID
+      value: "1000"
+    - name: PGID
+      value: "1000"
+podSecurityContext:
+    fsGroup: 1000
+service:
+    main:
+        ports:
+            http:
+                port: 8384
+    # Sync protocol and QUIC share 22000 on the pooled IP; LAN discovery
+    # rides on UDP 21027. externalTrafficPolicy Local preserves client IPs.
+    listen:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: 10.2.2.7
+        ports:
+            listen:
+                enabled: true
+                port: 22000
+                protocol: TCP
+                targetPort: 22000
+            quic:
+                enabled: true
+                port: 22000
+                protocol: UDP
+                targetPort: 22000
+    discovery:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: 10.2.2.7
+        ports:
+            discovery:
+                enabled: true
+                port: 21027
+                protocol: UDP
+                targetPort: 21027
+probes:
+    liveness:
+        custom: true
+        spec:
+            httpGet:
+                path: /rest/noauth/health
+                port: http
+    readiness:
+        custom: true
+        spec:
+            httpGet:
+                path: /rest/noauth/health
+                port: http
+ingress:
+    main:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+            external-dns.alpha.kubernetes.io/enabled: "true"
+        hosts:
+            - host: syncthing.lan
+              paths:
+                - path: /
+                  pathType: Prefix
+persistence:
+    config:
+        enabled: true
+        mountPath: /var/syncthing/config
+        storageClass: longhorn
+        size: 5Gi
+    # Shares are recreated by hand in the GUI after cutover — the instance
+    # boots with a fresh config (see plans/syncthing-docker-to-kube-migration.md):
+    # valentin's folders at /data/valentin/… and sarah's at /data/sarah/…, all
+    # backed by the same TrueNAS exports as the docker stack. Photoprism
+    # already mounts the valentin Photos export concurrently.
+    valentin-documents:
+        enabled: true
+        type: custom
+        mountPath: /data/valentin/Documents
+        volumeSpec:
+            nfs:
+                server: truenas.lan
+                path: /mnt/main_storage/valentin/Documents
+    valentin-photos:
+        enabled: true
+        type: custom
+        mountPath: /data/valentin/Photos
+        volumeSpec:
+            nfs:
+                server: truenas.lan
+                path: /mnt/main_storage/valentin/Photos
+    sarah-documents:
+        enabled: true
+        type: custom
+        mountPath: /data/sarah/Documents
+        volumeSpec:
+            nfs:
+                server: truenas.lan
+                path: /mnt/main_storage/sarah/Documents
+    sarah-photos:
+        enabled: true
+        type: custom
+        mountPath: /data/sarah/Photos
+        volumeSpec:
+            nfs:
+                server: truenas.lan
+                path: /mnt/main_storage/sarah/Photos
+resources:
+    requests:
+        memory: 512Mi
+    limits:
+        memory: 2Gi
+sops:
+    lastmodified: "2026-09-21T22:28:39Z"
+    mac: ENC[AES256_GCM,data:BR4P4s4C9n4bEHryqfHpzzFHxAlKeujFBO2Qhsc4qdkcI5dftJ7jrknWtW0uv1E2Aljp50Mx1Rk4wglaWh3MS/ZnY/1dUxCfKuXOGkv9+mymQxDk6zJLsUNTH7sMr5kzlVWfv3yzXF50HWuiNl71BAv4mtlrtarXS1KVQrCKNaA=,iv:aG9OxDOhwk7xYNbvESNMFnXIjKhbYNO0gvDn1a9QQvc=,tag:QxM3EX8V2KJzosRz5damrw==,type:str]
+    pgp:
+        - created_at: "2026-09-21T22:28:39Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//cvlMqPSaED2y5dsq8H/W/dqYVOeG7E/ZOuJGaYnImrrp
+            V2W6vPTzQ8QuYTKa1X4aOIlda04n7i2kDQCvpszmdpsU2y0SWtsgOBbyloIU3cAM
+            69HGd1SNqP/FayeZy/hHNvvEjmsgKX/9IV1YBGOcikmd7MqoxgGRgIxXORzY0dBG
+            7oREwV0HubdIBG6Fi6HUyN+Pugftpcumfwtl8ppPUYi1HGKzL5LzIT6gfqXtUcBg
+            8Wl2f0kMZsat1e05sZZah41dg+BAlyDgCRFo/ZQIhzHi28rJkZWG2aZxQfvAFMYJ
+            hUkjVyN7rAO01b2PsXK3bleFjD8iL8PhHY/Rio0/Uizjub7inako2SUd38D7X+ce
+            M1c2GoDVNmwZyXg7jBzb67JxLPn4Ic1kbjUi/JJL22rDzN0pBf6J7ExCpVGxrwK8
+            ++YDD1m/rY3YA8/ioM+pTu3ktEd1zu0T1yFySjgtvX8QVmOkrG1AA8E/N3+pzFWP
+            9wrJJ+yp5CYQl9d3j5LQcOzmvROi0EHjeZY75IHw8NwkyWdnRgWFIPsXxVoSUhSk
+            909RE//BuKSSRd1r9D/4w14Eb9KC74bIsUIflyK2Qs/N3rh9+/O8FS/5saryq7Er
+            GO3oAmFqC2F4Y6zFlmXkr43gBFjCPWl0DxI3uUK/gcw8kBpLSJex3j2sDaLViS/S
+            XgFsDLAjHnEo5DC+xyJQI5xMWsQzx/ASNZdBVLrnYPsRt+YG7qfu3lKNS9ujAG7K
+            ti58fACtT97K8IrUMNyEDGieFz65TYPcie4qILnDt2Hkr6QUEdBR8rvn/8z36D8=
+            =47Rw
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(data|stringData|.*key|.*crt)$
+    version: 3.10.2
