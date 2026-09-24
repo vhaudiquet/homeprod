@@ -40,6 +40,8 @@ data:
 
         @umami       host umami.vhaudiquet.fr
 
+        @pkgatlas    host pkgatlas.vhaudiquet.fr
+
         handle @authentik {
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
@@ -68,6 +70,9 @@ data:
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @umami {
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
+        }
+        handle @pkgatlas {
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
 

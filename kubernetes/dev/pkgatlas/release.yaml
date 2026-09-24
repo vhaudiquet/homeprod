@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: pkgatlas
+    namespace: pkgatlas
+spec:
+    interval: 1m
+    chart:
+        spec:
+            sourceRef:
+                kind: HelmRepository
+                name: pkgatlas
+                namespace: pkgatlas
+            chart: pkgatlas
+            # CI publishes a timestamped version on every main push and
+            # stamps appVersion with the commit SHA of the image it
+            # builds; this range always picks the latest one.
+            version: '>=0.4.0-0'
+            interval: 1m
+    valuesFrom:
+        - kind: Secret
+          name: pkgatlas-values

@@ -29,6 +29,7 @@ resources:
   - dev/gitea
   - dev/harbor
   - dev/renovate
+  - dev/pkgatlas
   # Home (home automation)
   - home/home-assistant
   - home/zigbee2mqtt

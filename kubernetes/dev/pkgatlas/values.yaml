@@ -1,0 +1,47 @@
+# Chart: https://git.vhaudiquet.fr/vhaudiquet/pkgatlas (chart/pkgatlas).
+# The image ships both binaries (build + serve) and runs as nonroot
+# (uid 65532, distroless). Everything else is chart default: discovery
+# first — build.enabled=false, the first refresh pass builds the whole
+# live rotation and /v1/readyz stays 503 until it lands; weekly
+# refresh after that.
+image:
+    repository: git.vhaudiquet.fr/vhaudiquet/pkgatlas
+ingress:
+    enabled: true
+    className: traefik
+    hosts:
+        - host: pkgatlas.vhaudiquet.fr
+          paths:
+            - path: /
+              pathType: Prefix
+    # TLS terminates at Caddy with the *.vhaudiquet.fr wildcard cert;
+    # Caddy proxies to Traefik by host, so no tls block here (same as
+    # gitea's ingress).
+    tls: []
+sops:
+    lastmodified: "2026-09-24T19:57:42Z"
+    mac: ENC[AES256_GCM,data:cidn6U0EFjuEx98GA8Jlppg3GobcGGrhs20dPoAnUXdpFogfsp3YOTPCKuKi0LrOw/fxBP84U4drx5lJcjL11Ft/Ozn6Z8tk3l8cdqK+BUm6yijtQ0PXHjPUJYNIeqxrQKJzFlVHS+tOARbhQ3DjoNt71WBMfSPUDcPxrbnwVAA=,iv:Yz85yh9jrLXf6DKeVmOLeiVCWcthKCPGCJJwR3RVikg=,tag:7Mdv4VZUpsjuysitx4b2DA==,type:str]
+    pgp:
+        - created_at: "2026-09-24T19:57:42Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+N+gGPOCbuxleT6xx0FduVN1vspYJlCyrtLsy632Yz17x
+            ucwqSuGciqUf2kF3GwnOzINEY0eLskbKHMX5wkbJg8+X6dXoRyiseX3fdNrpvMGR
+            P1ZC/C4O6BzQoPJOXDQZHuWPI0Imx61PlzDPzsJ44JBvwrkCKgoaWOvzMyTjZHiC
+            iplyHpzDR2sqfMe29aQICrEV6Z87eMWQ3wie6CzX2OYTj89BejsN2Ibg4n5cqdNO
+            c+mM7Ek2nSWMWYGbdL0W2N6WSIbGuQj/aVbS0s6585NUPJtmcznB7uosRroqfbd2
+            9SMP1gaUOr+00kykRxKtd/ZoW7S/21kGbZ8FwvtKZFrBwcoUuLehbSGAHRYLo6dI
+            5WGeky65IrvpKen8Q/B6o6EByTONt2h+XiyJyLwDLeFh13/ldkGqa1oW+4BTHuX9
+            2WvLOboHpr4MGQdO53Q8zm8VCGAltusII6ZVaoEyjilqZtC/Aa9XZIT/HshOGTQi
+            4CITE1BfGEApOcBbBQKdjYofdWcyuLSF/ertXvcvNiCoVe0wYiHSYUht+HulQ3t+
+            Z0K7C2sJ2bx8C+316b2MzCGVrVOuqDABpQJjIr4aiRG9v8BtYTaUc425CLm9TMtA
+            PmZR1Rqowy4ECekrbvk3lNjPoq13HLSqkm2ppL9WFub5zY2XY0npprSeUknTmSDS
+            XgGFDhcroUq0vTUlJbC015kpa6cpynwTmMuQrFaMPeKeBPkL4Le6QFJMjpIi3yg3
+            65bSBv5t7YXoHFJWVFYej005Lz1lxp1VtaMiA0bnKEnyh/SbfcUqD4d9P1WNx+4=
+            =ulvs
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
+    version: 3.10.2
