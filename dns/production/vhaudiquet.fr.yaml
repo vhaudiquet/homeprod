@@ -383,6 +383,13 @@ photos:
   ttl: 300
   type: A
   value: 82.64.154.58
+pkgatlas:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 82.64.154.58
 sse-nook:
   octodns:
     cloudflare:
