@@ -12,10 +12,14 @@ jobs:
   update-records:
     name: octodns
     runs-on: ubuntu-latest
-    container: octodns/cloudflare:latest
+    container: octodns/octodns:latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install DNS providers
+        run: pip install octodns-cloudflare octodns-porkbun
       - name: octodns-sync - production
         run: octodns-sync --config-file ./config/production.yaml --doit
         env:
           CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          PORKBUN_API_KEY: ${{ secrets.PORKBUN_API_KEY }}
+          PORKBUN_SECRET_KEY: ${{ secrets.PORKBUN_SECRET_KEY }}

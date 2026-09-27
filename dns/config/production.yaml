@@ -7,10 +7,24 @@ providers:
   cloudflare:
     class: octodns_cloudflare.CloudflareProvider
     token: env/CLOUDFLARE_TOKEN
+  porkbun:
+    class: octodns_porkbun.PorkbunProvider
+    api_key: env/PORKBUN_API_KEY
+    secret_key: env/PORKBUN_SECRET_KEY
 
 zones:
-  '*':
+  vhaudiquet.fr.:
     sources:
       - config
     targets:
       - cloudflare
+  buildpath.win.:
+    sources:
+      - config
+    targets:
+      - cloudflare
+  saggar.dev.:
+    sources:
+      - config
+    targets:
+      - porkbun
