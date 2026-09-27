@@ -42,3 +42,18 @@ spec:
         selector:
           dnsZones:
             - semery.fr
+      # Porkbun solver for saggar.dev (via cert-manager-webhook-porkbun)
+      - dns01:
+          webhook:
+            groupName: acme.saggar.dev
+            solverName: porkbun
+            config:
+              apiKey:
+                name: porkbun-api-credentials
+                key: api-key
+              secretApiKey:
+                name: porkbun-api-credentials
+                key: secret-key
+        selector:
+          dnsZones:
+            - saggar.dev

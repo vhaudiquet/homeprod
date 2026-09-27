@@ -6,6 +6,7 @@ resources:
   - webhook.yaml
   - cert-manager.yaml
   - cert-manager-webhook-ovh.yaml
+  - cert-manager-webhook-porkbun.yaml
   - cert-manager-issuer.yaml
   - caddy-certificates.yaml
   - stalwart-certificates.yaml

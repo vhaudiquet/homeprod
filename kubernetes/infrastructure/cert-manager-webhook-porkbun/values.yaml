@@ -1,0 +1,49 @@
+# cert-manager-webhook-porkbun Values
+# groupName must match the ClusterIssuer webhook stanza
+groupName: acme.saggar.dev
+# cert-manager deployment configuration for RBAC
+# The chart creates RoleBindings so cert-manager's service account can reach
+# the webhook and read the Porkbun credential Secret
+certManager:
+    namespace: cert-manager
+    serviceAccountName: cert-manager
+# Restrict the webhook's Secret read access to the Porkbun credentials only
+rbac:
+    secretAccess:
+        secretNames:
+            - ENC[AES256_GCM,data:WXGjM38wR7oKcvetV91WocOt48njb5Y=,iv:7UEsgh62qq/0fGfmjG96Kko/r2h9IOD7IqRnu7poGFo=,tag:qdb4+n9ZnQidlz5fnHq94g==,type:str]
+# Pod configuration
+replicaCount: 1
+resources:
+    requests:
+        cpu: 10m
+        memory: 32Mi
+    limits:
+        memory: 128Mi
+sops:
+    lastmodified: "2026-09-27T22:55:14Z"
+    mac: ENC[AES256_GCM,data:rSc+2n8PYZLdBJRWB3lgiH40+24/5v0vLRAkHV3vM3IyxZgBrjJxmWjAu5PJWHDobQiw7G7x7ZMotJx6TbJztbnBpB5GmdoFC0kVkxxdE8txCWlmcwed6oktCJQ0nR09DaqTk3OvRZgFsWwkVMhZwCjLS+gZBzTTcw84MKqQcGg=,iv:tJd2rGP0EzrjVSp5ESHf5BnFU7fFjMUgfZTgZeM2yRk=,tag:hxVTpxEjz1naTbrDTQUSYA==,type:str]
+    pgp:
+        - created_at: "2026-09-27T22:55:14Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/5AVsqIJQvmzAAexGSmYjPrdmX7W7JaVHYpUCFbiU9RP32
+            S1ffbzV+YjmYkrLhnwhosNeheEVbEiWeyrea+B9wlTgUp1R9+oy8ooc30uDr/vhY
+            9K56DoEcUhi95mQD1U7e7LK6qUkMowS0HWXEEOb/r/bvL3lQNmc4rNJ8Dz+MDFh3
+            A59ZkrvspjccrLd9wJUb1QbwLKRw/QpE/bT17nj8bOwcAipdz2Q/GoX0LGp88fgS
+            Yy6G/zwVpY/mDylHZbunDVBEqAziR3TAbQsRQZou2oB69Q0jwVs8//vVhWSpniUr
+            an/XdNaEDR5LFJESJK9Kf3H2Qe/Cq8ynC3NFAwk+tHVLOW8MxQrDUvq3fTQq/Zl+
+            CEzMD7+5bQDLQX82QMZ0TdjcLCIEouqCHo9dnGQGUX7NQd1ePV3xda6750zr1maX
+            PVTmx12nS+fCwo1DVLSTVa907TLg3h/DoADzpzcmhTfE7xO2mNcfN+P1dnHT2+U4
+            FhUXqYgZSkgjlkkpVr8XmZg4Cb98lgpS6hDqXylrXhdsCvGgW9YKg0wdQqb6H4Sr
+            ycBsXmj4/j1EMB9yqfSpO/6NNDjTMms0nWsrGXI7NHpROj+AV7fWXC1yxhw6uTus
+            SYhve/6VvbCb3hw9gHb9lzQ9VvTq/0jOqIMBoLoD1Wd45tHczPx1xbVf3KyB1HTS
+            XgFYYLiLku1Jj87DtdbsAbN0tNQNets9TBVffkawgFNsei/H5ZazKFPOC5NrwnJ1
+            FWLWI1fwFZG18c29b8mrEUKqX8GD+YO0BKwmtL7n9out6YAA+hK780RytQDdD00=
+            =yh2A
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    mac_only_encrypted: true
+    version: 3.10.2

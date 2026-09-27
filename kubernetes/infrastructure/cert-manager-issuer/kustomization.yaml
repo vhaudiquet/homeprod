@@ -5,3 +5,4 @@ resources:
   - clusterissuer.yaml
   - ovh-credentials-secret.yaml
   - ovh-secret-reader-rbac.yaml
+  - porkbun-api-credentials-secret.yaml
