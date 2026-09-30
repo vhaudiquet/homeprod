@@ -9,6 +9,11 @@ ports:
             trustedIPs:
                 - 127.0.0.1/32
                 - 10.0.0.0/8
+        transport:
+            respondingTimeouts:
+                # v3 default is 60s, counted over the whole request body:
+                # large HTTP git pushes die with a 504 past one minute.
+                readTimeout: 5m
 # Tolerate failover node
 tolerations:
     - key: ENC[AES256_GCM,data:r4uAu1ni9/Z8,iv:aKgn6DgT9XnjzmotnaEIL+WzUiQ34CazfervJwrYsdM=,tag:EeOY1YZwNCOPgHwXpas3ew==,type:str]
