@@ -3,3 +3,7 @@
 : ttl: 600
   type: A
   value: 82.64.154.58
+api:
+  ttl: 600
+  type: A
+  value: 82.64.154.58

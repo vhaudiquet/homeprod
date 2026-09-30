@@ -112,3 +112,8 @@ data:
       tls /etc/caddy/certs/saggar-dev/tls.crt /etc/caddy/certs/saggar-dev/tls.key
       reverse_proxy traefik.traefik.svc.cluster.local.:80
     }
+
+    api.saggar.dev {
+      tls /etc/caddy/certs/api-saggar-dev/tls.crt /etc/caddy/certs/api-saggar-dev/tls.key
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
+    }

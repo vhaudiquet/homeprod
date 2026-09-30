@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: saggar
+    namespace: saggar
+spec:
+    interval: 1m
+    url: https://git.vhaudiquet.fr/api/packages/saggar/helm
+    secretRef:
+        name: saggar-packages-auth

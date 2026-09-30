@@ -46,6 +46,7 @@ resources:
   - utilities/open-webui
   # Production (public-facing websites/apps)
   - production/buildpath
+  - production/saggar
   - production/semery-fr
   - production/umami
   - production/vhaudiquet-fr

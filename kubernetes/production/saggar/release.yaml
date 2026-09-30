@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: saggar
+    namespace: saggar
+spec:
+    interval: 1m
+    chart:
+        spec:
+            sourceRef:
+                kind: HelmRepository
+                name: saggar
+                namespace: saggar
+            chart: saggar-hub
+            version: '>=0.2.0-0'
+            interval: 1m
+    valuesFrom:
+        - kind: Secret
+          name: saggar-values
