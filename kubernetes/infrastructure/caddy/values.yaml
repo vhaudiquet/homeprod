@@ -36,34 +36,39 @@ health:
 volumes:
     - name: vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:SpOriUboZlbUXYJmQGnNOPk=,iv:QrqYhqd84W2qpSxqDRV4IkBS+8VjQI/IV+3EjreakL0=,tag:aZe2IOK2rZrE8vUH1XvhHg==,type:str]
-        optional: ENC[AES256_GCM,data:HDGdlQ==,iv:Iu/fSqxv5uWPGesWB9JE8LI6PaI3zeTkCC7AKbIEFGA=,tag:jIsbpSdjsFIj6LzYPzVxow==,type:bool]
+        secretName: ENC[AES256_GCM,data:0Gno0HzWCXBsKXu7HrFFpuk=,iv:Ygz3WDWijXzF6U1OEqGu3F7fkBsa7Q77dyURlgpww98=,tag:R1TH/CfTQXrC8INNWPTEBQ==,type:str]
+        optional: ENC[AES256_GCM,data:lKaUaQ==,iv:ZD07ALdJ9QvLJZJvEANiHS+W9iusenyWsK4vO41fVqg=,tag:+5zgK51gMTwyCf+NuvdGOg==,type:bool]
     - name: wildcard-vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:OOpMJ2GZWXpH9GSPlGxPRkHLO+uIyANsdEw=,iv:ceeKNMsu3vNthfVRvF9dx+07QeweHU5ljyskpFMSwb0=,tag:i3b7ppoW2ALoY/bp28Q44g==,type:str]
-        optional: ENC[AES256_GCM,data:XaMKEw==,iv:pq//askiMe+iqmkCB/LYd0Jme8pEpU6EYHvYRkoE0z0=,tag:Gk9LvLUPDkAXIOIPp026uA==,type:bool]
+        secretName: ENC[AES256_GCM,data:OgYNRxtElsKPLTxcHPAc8q1F8WsN+tdeo8A=,iv:3iflBURWgaOqa0fHp3J/ouxEyJD2AleHvANpumRSUFs=,tag:+WCVNo6P079P5WNmLRIsDQ==,type:str]
+        optional: ENC[AES256_GCM,data:uMCq9Q==,iv:rgEKryNgTq6m3VYYfImzQex7Fs5R+WIrMMX7+6zRJTo=,tag:ZtK824N7JkyQECslAsELUw==,type:bool]
     # semery.fr certs from cert-manager (OVH DNS-01)
     - name: semery-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:Qrw/Klx4eH7P2Dm7eQ==,iv:QviJIz+HklUwywWbwAdYL5sLEiHw/cX03sumVsi02d0=,tag:gDoVFTF8rAX+H2gLImRgLg==,type:str]
-        optional: ENC[AES256_GCM,data:lE0q7w==,iv:CdivcpbYUN9vhCeZx5LowREOzdD+eXDjGiyO1bWupQE=,tag:/pd7XLRJtFVKPxtxVEPB0g==,type:bool]
+        secretName: ENC[AES256_GCM,data:BpYXgcOGKCfCkyWOPg==,iv:xEjs7L+74fCv2Lqh3gHL8Q5m64d9XkrO7QQjn1eNAdQ=,tag:M5TI2aFCl5Q+IFJv3fkczA==,type:str]
+        optional: ENC[AES256_GCM,data:6fbebg==,iv:aht7EEppRwKTYBnO4L/4VAlN2euvAVLPLuq7ekKWm0s=,tag:lHsPWL26QWbzAc32u9FYvw==,type:bool]
     - name: wildcard-semery-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:b1C11W0r1MCOg7D5L7mVK73X02J4jA==,iv:5pJknW4W3owYzo5ScMJL0FR9phdKEYf9lLNm1tOxAAw=,tag:A+dUs8Fr1tRkODuRZ104sg==,type:str]
-        optional: ENC[AES256_GCM,data:gUa/9Q==,iv:WfLWFM/54xeAb0OlV89BP7oQ9bwO3Nc4FLaqGYOe8Ms=,tag:6SjdQdTHwEH6hZkEExbJ7Q==,type:bool]
+        secretName: ENC[AES256_GCM,data:UGyQYSXVWGw0F2XOynpuKfcgTdFIeg==,iv:8uzadBqa8qdQYImy81Z49ef4hUoIAXEN1lcpF/zLzKE=,tag:UfN9BzxGabZfoIIctowVjw==,type:str]
+        optional: ENC[AES256_GCM,data:PxyWIg==,iv:0TxiU0ItTdtU7HQNbNhGjC2n1ECNQU9xB1EkDxDwwJY=,tag:XoiW8gIU9J3JGJ/bU68l+w==,type:bool]
     - name: buildpath-win-tls
       secret:
-        secretName: ENC[AES256_GCM,data:4yTNA5uUqJSpR7OZNTwAMiI=,iv:lEsnUetc5jJPsK7ElPLwpEUpL4/2jgRE7qe2HcrZ30Y=,tag:OPoXY3oNFzKfXztY8NoUtQ==,type:str]
-        optional: ENC[AES256_GCM,data:ZTDwVw==,iv:/FoV+Q/zJF2yV7Yi3WVR7BiGtzHGA6Hp0vfe5vyiZnA=,tag:Ot6IkJqyyrSxql9C8riHAA==,type:bool]
+        secretName: ENC[AES256_GCM,data:9hnCOPClLIGgPNnNPaJbNXw=,iv:px4ZrrTlmXyqGI0dsWFzXndUGVqlV83Kv4aDdG0S4Jo=,tag:wiK4rTqyQN8+fWQhZB1chQ==,type:str]
+        optional: ENC[AES256_GCM,data:vC8okg==,iv:Pl81vGJ6Lt7jvFuOZAoDl2iV/F0IgOfKoeVUCOdNPC4=,tag:tUo1/Y1ZXqpM6hsu52l+ZQ==,type:bool]
     # saggar.dev cert from cert-manager (Porkbun DNS-01)
     - name: saggar-dev-tls
       secret:
-        secretName: ENC[AES256_GCM,data:DwW0dJwcrOnikkkjchk=,iv:FN3RN4DKafzbU4UgyQmBLUxxQ4qtUnCX3wrl1MFAaoc=,tag:Imk5YlfwRSvVSBJQYjKqjQ==,type:str]
-        optional: ENC[AES256_GCM,data:tGW91Q==,iv:IZ+zz8YZVg0W7aUSyPDbC6fsRHbAPdUQ7ZtI1hrpf10=,tag:lPjurgxAojAiad7zkX/KUg==,type:bool]
+        secretName: ENC[AES256_GCM,data:dL9l5pMrG/mYNQrqLYU=,iv:iuObGUhAFxovuZNglvbkf2Tm6Ska6TOKucnbB6sDhKo=,tag:SmCPAODV/Sy/dNuUQJ48Zw==,type:str]
+        optional: ENC[AES256_GCM,data:Ulw09Q==,iv:TKMN40lRkp+xmsAPDBVrVIe+h+6z5NlNZrpf7VvIah0=,tag:Cq3itFokCituCEJtrANeAA==,type:bool]
     - name: api-saggar-dev-tls
       secret:
-        secretName: ENC[AES256_GCM,data:Ezt7Hql26w4qxjhBYnjLX7eo,iv:scYe4oHntsROQIRP8uv6ia0AJ1PCR9eDX4Wm6e0X2Bw=,tag:ysTY4RliaRx590P4ffNqjQ==,type:str]
-        optional: ENC[AES256_GCM,data:mdt9xw==,iv:QEVjHZU76rPJVXUacHjdrxnHQo/8cdKv4aZugvKagNQ=,tag:p1uQl03c8s37C45AyfexqA==,type:bool]
+        secretName: ENC[AES256_GCM,data:FQm3BLurAD2EMCgsg/kMgWIH,iv:f6bv6YFL2ExmHS1QmdAyOcI/nnCIHL7xEX0/kZQ9rts=,tag:KQRXKValNB0oWYCCqZ8xdg==,type:str]
+        optional: ENC[AES256_GCM,data:+dUIjw==,iv:ztZ+5x76lpd2FqbZkgedeD2yneBKGicbW1MGTg4mUbo=,tag:ty4QRjVhbrB9WoOTenXcew==,type:bool]
+    # docs.saggar.dev cert — the saggar book (static nginx)
+    - name: docs-saggar-dev-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:B/wTyuOSik2qea3FuCT2LpVqhA==,iv:Y8N5aQw4Yf2mPk1sEoeaxQEb3N1VVyyfiQy1cW1qdTI=,tag:Pn4k9TuMCJ5iAlWIVejb9Q==,type:str]
+        optional: ENC[AES256_GCM,data:Zt+j3g==,iv:AlxMaVpZMLKXDwP/xR9AiZS5p3Zm0/Kk0RXh7+s3/HA=,tag:6raJ2r1dw08NmP9GGbSysg==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
@@ -90,6 +95,9 @@ volumeMounts:
     - name: api-saggar-dev-tls
       mountPath: /etc/caddy/certs/api-saggar-dev
       readOnly: true
+    - name: docs-saggar-dev-tls
+      mountPath: /etc/caddy/certs/docs-saggar-dev
+      readOnly: true
     - name: routes
       mountPath: /etc/caddy/routes
       readOnly: true
@@ -114,7 +122,7 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:KNq9PvmPwNMneNpmmNW/ysyP3X4=,iv:gNa5O/D0ubMw0X4ru7orn36j2RrQ7iQEn77AzXonknk=,tag:9xC0JIqzIanslqpTbSLgfw==,type:str]
+                    - key: ENC[AES256_GCM,data:icR94wmhgXZjrKlEJhGCuCqwxfI=,iv:s4zhWsRFXy2rZnETpkhixCoFHykEt7z2cRjW3lXJZP0=,tag:ejJW4EqCxEyDCrvRtdg82Q==,type:str]
                       operator: NotIn
                       values:
                         - "true"
@@ -128,35 +136,35 @@ affinity:
                 topologyKey: kubernetes.io/hostname
 tolerations:
     # Tolerate the failover taint so caddy CAN schedule on p330 (small-node-1).
-    - key: ENC[AES256_GCM,data:CfmLliVoJpWg,iv:hXn2virDViCTsig3KTpG92bIiR67J8Q1znv7EGddAPM=,tag:cmX5RIuQ52MLwsVD3fchfw==,type:str]
+    - key: ENC[AES256_GCM,data:Nw/vagZB7oUw,iv:HcfljVdo6FMPkAduv4hug8AVoe+/VniXMBKrJ8VT/QM=,tag:fr3Fl3fdmez/83pnZ9cFLQ==,type:str]
       operator: Equal
-      value: ENC[AES256_GCM,data:kHylg1crZpY=,iv:BAFhKQr6MmqgwQ5sCkPjBc3E1zQwF0muukclRRctQIo=,tag:5MOgTEPhPJCYQl/fn/g9lQ==,type:str]
+      value: ENC[AES256_GCM,data:647LykKfZZk=,iv:0Dz446WOcetIdS5x6ffugLgLJ7bqGk5DflIOajNxeJI=,tag:aGRWSC9aN8Jo0R8B96cYjw==,type:str]
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:R7iJZh/6vOXnZfJ9UFSX8fc780oWv2Lkk2APf0LFBmyYMY6JOw==,iv:6DaA3d3BQMMOUh+N5+ptOgAwwg2QZen59J2nOyyswts=,tag:WWMsIea8vT+w4nuPHA2HGw==,type:str]
+    - key: ENC[AES256_GCM,data:i29MKq5p+vyIcWAKjOzfwLXJQ84MniWDAUbK9a+DyavBHi7v7Q==,iv:SaTj2YkCO40MT7l2VsH89/zi9y4COte3c1wnNcp1NRU=,tag:8VOtUPeDlg62Mbjg1/J5BQ==,type:str]
       operator: Exists
       effect: NoSchedule
 sops:
-    lastmodified: "2026-09-30T20:30:47Z"
-    mac: ENC[AES256_GCM,data:ATt+bgh+jbmu4qSP7ymZjhXBv64tKxvKXArf/CsNms95uo+5qcPnShZfH86V1FjHelIHXKxhdMaaaPlUnzzYSQmejhJKlC9t83eav0Ue1v1/vD9W07B2wI3driwfFOPKYv67wvSydBcQmOUuYp1VDuvsvfllgEgzmzJsNx+q2mI=,iv:prVWlmCM32Nu2qY3BeegEFo9IAhy2I5BU6lY9D0t84M=,tag:IsEkero8o9D1U5E2e+bdDA==,type:str]
+    lastmodified: "2026-10-01T17:39:26Z"
+    mac: ENC[AES256_GCM,data:SCcbYDaj1ERDedV1LqbeBQ3uDJjkmyWkU2PXfmZ5BO5FC8b1ZkJJ9Ckcb8IvzSj2/f839RRHWGk7isUpwUrJ6QwifzYC53VAobr/S40sKx7281sYC+OX20zxa0hAf0fts1PsWWaWQ8IEVd08481MxyZFUFpFqGyGuyUeuIJtWf4=,iv:/U7yj5ONy57kFGqZNUOuCagw5N7mKgxv7s7QlR+nZNE=,tag:qBYkZmR3n/YrnfT7T/VwXw==,type:str]
     pgp:
-        - created_at: "2026-09-30T20:30:47Z"
+        - created_at: "2026-10-01T17:39:26Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+K1pDoq5wQ34ZdW1mh1R7ltdyvV01Y3+f9Rw7jC50LhQf
-            3XyJnjsWIi5/BzcmEMkunIEvFvZdDgq/6md+rNces0Efheei5AvnNxhgi/OThx33
-            Gwuhs6jqDUzDnKEMth0kpj0dAKVxJ0NtJRiu5VF+l4zQWQmjGCAy69yHdTcF6HqB
-            fSicOeTmZ0O1JrlT9BF/gnwDtfAX7WwXehTvF2v03oS/KhIeNCryVzMXJ9Sda0Yv
-            W3V+Ds6JhDCuV7/zCY4h7PYvicibb7fDUI8Qm1pe/Bu4A/m40gjdTGUdudGVE5UB
-            aQGF3xusdxouv80FLfNLVjjNr+fVrAjG2L4HNqHNiUbd36KlOo7Lssicu8yKi9BL
-            CctICAnrSoZzX1cv7BhTb+ww0sOKazR/sDLgdNx+4w4U51BH1gwyZTt1fZTtk5gM
-            12meU0t2CZguy8GIBqe54SPYgHWBhR61HhZX/6M5rO4+LQL41K77Sp4ApWtfZvLZ
-            sbaVA3vwUKCl+YLBwog3T5OSj7cJisiCkHj4vQtZad7MafRr2pAYXdSInjvGsPtf
-            BTTYMzAcy4m1ctSi+LdNFr5vRn2M8d1GHaeAIEaKyFMaCuJDGOjx5pBmZzGLEEHt
-            08HeZjxmkPvYFWlHypvDcj+kbleXS0eWQ2muKSavk7fmFYN1UQhBdFYln81WJkHS
-            XgFnwZo7Rb9lQRc5ACIR/6x30kiXDcB5AB7EeHIJsGEbD7aE5DpvMh4T2mS7uObk
-            Ow+SMwe4Ny5D81neGMcBgJdHLRnIqtif4Lb4nYntrhLw0l7Dr6hkvCKGWWE83fE=
-            =r3HN
+            hQIMA7uy4qQr71wiAQ//W/WNIqPCl5afTCLEJOUnvBj80zjZ0+cDI7W/dvipnAqx
+            LQZr9zPfG3zURJBzGRpUDvqUWt2tymikQPx5rSNGgHeLYRru3SwaD3M5AEgkjAmC
+            Y02hH6fIsJ+k5NhOS0wAlkgXze3EXq+0JOE8ZYQnF0ggYfsK6vTD+q+fI7zxddfx
+            0KLi8Gec5GXjgO93Roi0GwVguvQ9IDxe/xkGxQQ+CdZ7X6w2vfzBz/of6QJAGvRr
+            8XKWmuUDBOdvWNFqfmsLMZ03ssD/h/WmxwTUMCHcynXSyprL+QRNH+lMMSVCFwyo
+            yiagQVxDPx9zmp/fwnSYt99sN9Q+Ky75r0UdFJYzpk9ZfqHveEVIh7JUigwAawF+
+            oX8amZoyG5Qm24ZwTA6pkuzw8yc9KNPEGi5UjGFW+Q2fDPjq3Zt0NrSyfGD48dzJ
+            NnlmwkMkWGxTeVwmzdxgg9sd5QvG+8/pwJE76epJdXRQLd8ylJGoUNgbO0tZGEdW
+            99pFqcbTN1UfZ6CtuPKTtU3GHylprTB1qw0wM1Hl/y8UEo82iuJmDdZ1HWEA+9AS
+            rCaYe0ZnWmTQHpWHXMBVK0OPqamOGiMZX4c6AUEdU5kyBymGmN5tjov6d+vA+4ai
+            0OQjcH2QKzNshGrxo+iLIDP70AeZCg0BoKyo41X8Af4cRi6ub6l1lIWMmTYTY/7S
+            XgHrANxBUj67L7Qt8spnz5FsQQ7ikTSEb1sXPM6RQ/hzFXdOHQTzJjwlr0NUXDgy
+            dwC2khracGn6F9cXSrD7SN1elORAKr+HFWqBrnDLrYSkhkVI3kmCoueP7cwNFR0=
+            =jpmk
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$

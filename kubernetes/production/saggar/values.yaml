@@ -13,8 +13,8 @@ image:
 imageCredentials:
     create: true
     registry: git.vhaudiquet.fr
-    username: ENC[AES256_GCM,data:/BEuQFoDxyFVzQ==,iv:O4X+Q3DhkCItIHABBrHYRI842vI86NTmAx1jEtIrOrw=,tag:+H6KUFV4H+uDAyBxEbsj6g==,type:str]
-    password: ENC[AES256_GCM,data:S88PWTFhnBeDK+ofX9AOJLeuM+YN1tnd2IL453Mv4gk0Rbr4ttTgcQ==,iv:7UFDQn1VZG7e/z/Su1lOJeMgnNzWYevv9PoCOPSA810=,tag:eyFF74hIY4Tj6zoBpvhJ+w==,type:str]
+    username: ENC[AES256_GCM,data:QijNVgCz8hF0Kg==,iv:eredumkfDLZ6AKM8nCcZwl14EyRRnBvXLL52Yaau0d0=,tag:P/miR7dyjGaMxqM/g7r0ow==,type:str]
+    password: ENC[AES256_GCM,data:SY3i9j6rBFh5RfehxBQX+ljVe11cGL1cRNkiFqcNbBlNkF9uqMC9hQ==,iv:qpHKDwzQDr8uTJN9e7OgUr/JN2O+EGJylbH/R+EU9tc=,tag:2DbOvUUTsrNfhIzhjirz/Q==,type:str]
 # Login via the home Gitea: the engine is the confidential client of
 # the provider and runs every code exchange, so its discovery drives
 # the endpoints (issuer verified live). Credentials live in
@@ -26,9 +26,9 @@ auth:
     providers:
         - name: gitea
           issuer: https://git.vhaudiquet.fr
-          existingSecret: ENC[AES256_GCM,data:QU4XxTO9yYTtAD1DIVrHeHs=,iv:R63SB9qZqCoI2VThliV1jobCMmGYJw+GKwfRp0CSMz0=,tag:TjFWZdjsfm0AgqPRbv5uBQ==,type:str]
+          existingSecret: ENC[AES256_GCM,data:lvGugwt7hGbPGF9JSn88B1c=,iv:1Zqze/jXv8kuVNdGdJB9PwvMFHWBihIsEX9jJo7DQvg=,tag:gSgFdyI7HfAj8dwoGd2kbg==,type:str]
           clientIdKey: client-id
-          clientSecretKey: ENC[AES256_GCM,data:NCzGSzyzi1sK0L2AFA==,iv:t9JRUnHCEMedeW/+IXWKY4XDCweJIi7MDYI5EBtpvQE=,tag:uSX2qj8ZoQbW9Iww1Y3NNQ==,type:str]
+          clientSecretKey: ENC[AES256_GCM,data:6vvWWtiomj1TpNJ41g==,iv:xb9HfW2MQNs9vLmPxujUV8us8Tce08L3si1Qd/CCwWk=,tag:LQdV0f79n9NqKBOrh6DDTg==,type:str]
 ingress:
     enabled: true
     className: traefik
@@ -59,28 +59,36 @@ ui:
         annotations: {}
         tls:
             enabled: false
+docs:
+    # The chart deploys the book by default; the ingress renders as
+    # soon as a host is set (no enabled knob).
+    ingress:
+        className: traefik
+        host: docs.saggar.dev
+        tls:
+            enabled: false
 sops:
-    lastmodified: "2026-09-30T20:30:47Z"
-    mac: ENC[AES256_GCM,data:jo02sAVCmt1qO+2DUOjWSAXo47OzviRvz/GEX7hU/g4U1CyhKP/zHxoAIeCAOVnL4DJ+w0ayYuU16Im/iFa2tVnvpRVhVpnUgDgin11EukeLizUodAbm9mmsdBqlivrRxjf7yj8Czg6VOHHtcUMLQcXIgwTZ2GoSotXN7EBp+FM=,iv:149oaU4BK7gjgb0mZPMrB62L4KxbeQyVtW0r8Ox7BKg=,tag:hnVG7Wg/zGiGl1KjO8olCA==,type:str]
+    lastmodified: "2026-10-01T17:39:26Z"
+    mac: ENC[AES256_GCM,data:1pn1rHaCx8eYYR6NPt6hgUEwDxRYQQtgkklSu6FroH92gUq2jhX3420lzboTMvvpuBF/vqjbuw1sIR60YfZZ8R5ahw7CCcv8L5sfz9DhUU/vMBYF6r3HDY70AnXkPK3+rPw6ZofB8h+Y/DQEBpPe/LeDEPCOGQjIml349yAvMIk=,iv:A6/PeL8JuFtzS0hMAiP2/dvbXq7Ob3o9VaA0pE2IWEU=,tag:GV2pspKqmaQjafkp4HUwSw==,type:str]
     pgp:
-        - created_at: "2026-09-30T20:30:47Z"
+        - created_at: "2026-10-01T17:39:26Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAnlK3L9KylJuKOT8XrUI7L7ax+K2XEqQh3bXtByc1y1ns
-            ka5iGUuuMT00T88y0J1DuOiGj51WiZtKyr1pOVmqsS/uVYXE7FruR2A/KWrZEVG0
-            wb8UuPP/TWbo8vc3uvq/ivTv70CnfjGI43uv12r51EsIbCvnSikI6p5tAzX8bwoI
-            Ei/wQexFlz82Vc0qZ0Dmw6aa1pkDBrN5jIW47WPRUnFwpejdA5ZsvdeBxeeiPJXh
-            iXMbqp9R2A5615WdZaVoSzSTacRk4LU3zcDhGWkr7ja37+BYer9ZBbNrh/tA4GH5
-            EjmbNkmR6A5Ra3TII8/B4ycqwhShuyjSV6bj+TCV2J8VGCvI+20PIcDP8SGIBhLg
-            JHmpGTwc2pjRD4Ekgt6rrOoKYLpP16ooEbqdxHmzhWHfKCI8v6yinSaU3Lz9vXL5
-            TeRCZ9fIZB5zXE1nEeAFCGHfOV/HQCP9Z1/x8EsflH0SYosx/jjOUFSP8Q+AsJ/+
-            ompNtICXVliM1jsebhGNwBdadfe/8T1M/zwdof/XY+6myKGNxhxFNbq/B92Ppwo9
-            KYYCImMgLRUKjQLgBqJrzL6jkqWUwGpCfcgdsZQyFLzGzUIkbCITPCNLiMb195PS
-            ruJ2NJZA4YCZ8OapzBRI7KFAH+s00ipE25wK85zsS3f41RwZKHG0XE09l/bJFDTS
-            XAEA78VEJxsCtdMHtSX2cGvDOc5PGT8qDwvn5O8ubDjPN11u1rL24yYdzEsHEzbL
-            F0TT5R7s5FQk1YOCzXVaFOKFEnpU4STRm9uYKP7SUYJUyT/TzzNu5iYaachA
-            =Y1SN
+            hQIMA7uy4qQr71wiAQ/+PFcuCPKb5Mpej7uym38cwwVgjaJoaeLrKpfWBw4CEy3v
+            PbJgTS7kNKyjHqoeHQcLZZwmms1//b7XQfX2kPnNJIo/06cAgYv5AJ4etMNJ3hys
+            ShuiTMmMayKg2U8TdMhzwKFgymhQ5PUzGU1Xg2D9J1hUgW/rRVOb5wHKsBgYkOIx
+            ufuQpPhNm9j1xOqWtnf6xCRbZ1HRlE6mAX+4TvRJk/x3U1YW1gI2neyEtFiuCsCj
+            PSO9W+5WovDLQlCmGRmCweUwODShpdVqBEoXSS3wjGihz9xKH3lS+NnPZVMoeurE
+            kzHjTxQgv4ZLDo9OuXcZz5mlXju9tmvkpLpqP1oHnN+es6Ks0jIpZcvXaZvvF4W5
+            CLsC9dDplvAA3IpiF6+vpdDL0/QHpxo61V4jLLqO6o84x2jD1odR+zSkmxUxaQ94
+            hxlPY+DGTrvHV0qOWlWLLZO6ddwOqeUC6ntBiZu3FG3UwTwPv9YXvi+ApP4Lylov
+            BNKaCxKLalD37BKcPrpaJBwucME56Ny9p0WbHUaBNv74UGIKqPl6BI+9z7oObsrT
+            YfmcB0Wlpz8N6SHntYJDhLJktJ27csy6BTPjQsFEK/dHbGyR5X4CiBSehqGd400s
+            bomyLdR7m3g4fFG7Qq9Wzh8MA2WC6Fx+ExUXz91xrsejEJhckUl9N0sQDdCO3trS
+            UQFWjDQEh9LAJ3U/nQ0SWjaNnJ25U0qJ9qMZYyDDR2aiMqRAwcOZc315S+S/FrGE
+            lMkMngLiKqznm9GSsgcBgRIcqovbJr1gCJS/b2+4abjQtw==
+            =gAn1
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
