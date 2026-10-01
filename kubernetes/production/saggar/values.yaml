@@ -23,6 +23,9 @@ imageCredentials:
 # needs nothing: it discovers the provider from the engine's open
 # /auth/methods.
 auth:
+    # The web origin the device login names: `saggar login` prints the
+    # confirmation page under it (saggar.dev/device).
+    uiUrl: https://saggar.dev
     providers:
         - name: gitea
           issuer: https://git.vhaudiquet.fr
