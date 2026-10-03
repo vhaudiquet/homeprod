@@ -14,7 +14,7 @@ spec:
         name: stalwart-helm
         namespace: stalwart
       chart: stalwart
-      version: "0.7.19"
+      version: "0.7.21"
       interval: 1m
   valuesFrom:
     - kind: Secret
