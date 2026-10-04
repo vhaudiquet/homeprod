@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: saggar
+    namespace: get-saggar
+spec:
+    interval: 1m
+    # The org-scoped chart repository CI publishes to — namespace-
+    # scoped like every app, so this release carries its own copy of
+    # the repo and its auth secret.
+    url: https://git.vhaudiquet.fr/api/packages/saggar/helm
+    secretRef:
+        name: saggar-packages-auth

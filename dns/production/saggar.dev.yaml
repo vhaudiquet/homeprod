@@ -11,3 +11,7 @@ docs:
   ttl: 600
   type: A
   value: 82.64.154.58
+get:
+  ttl: 600
+  type: A
+  value: 82.64.154.58

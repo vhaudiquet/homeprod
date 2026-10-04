@@ -127,3 +127,19 @@ spec:
     - docs.saggar.dev
   duration: 2160h # 90 days
   renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: get-saggar-dev
+  namespace: caddy
+spec:
+  secretName: get-saggar-dev-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: get.saggar.dev
+  dnsNames:
+    - get.saggar.dev
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry

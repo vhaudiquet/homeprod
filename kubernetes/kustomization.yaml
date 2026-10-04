@@ -47,6 +47,7 @@ resources:
   # Production (public-facing websites/apps)
   - production/buildpath
   - production/saggar
+  - production/get-saggar
   - production/semery-fr
   - production/umami
   - production/vhaudiquet-fr
