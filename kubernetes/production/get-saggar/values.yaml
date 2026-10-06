@@ -6,6 +6,12 @@
 # domain> — Garage resolves the bucket from the Host's first label —
 # so bucket `get` on get.saggar.dev.
 bucket: get
+garage:
+    # Single-node store: skip the hourly self-sync cycles — while a
+    # full sync runs, S3 auth lookups transiently answer
+    # InvalidAccessKeyId, which is what kept failing the edge job's
+    # prune step. Weekly.
+    fullSyncInterval: 604800
 web:
     ingress:
         className: traefik
@@ -16,27 +22,27 @@ web:
         tls:
             enabled: false
 sops:
-    lastmodified: "2026-10-04T21:14:10Z"
-    mac: ENC[AES256_GCM,data:eiYi01TPIHeaCxGblY8k5RuBXacex96leJdmI0Ii3PI6GElJnmZ4elE8PYCBs+XsjwlixLQEEIEN7kTzf2mm2rmoa/2HXhgZW1xPGOW1k6Oh3T6b9fhIwHYVpFTcKikTJo5mcZHlIF8wjNf3AxysWLa94O5G11XVoZnquzoP2to=,iv:nn8jSbwgf75AuOQci2pB56dxB3QFUVdDrMLMqMUXD7U=,tag:jwAS38pKBYrD92KSFei4ew==,type:str]
+    lastmodified: "2026-10-06T04:20:10Z"
+    mac: ENC[AES256_GCM,data:ncXYOdUYTaYikkKWVUzWinakZVV7tjja31QIo/xhibZ8Jc9L/dl9U8//xJ95Hlb9uuMJvUHvk78KmH2mYVQhfhyNwkNZXvK3o3azx+WWQYaZebEudRbXdHO6gyywcoywlEFuaVWjVsTpggz2VtlNwP/tqLCf41uTUJB4NZi12uU=,iv:uj13/y/iGeoyqgnx74wh1Pzb01NupeLW55qBhCBNleM=,tag:PGmmMZCw49wt8RmpJH1CzQ==,type:str]
     pgp:
-        - created_at: "2026-10-04T21:14:10Z"
+        - created_at: "2026-10-06T04:20:10Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//aSdSsLiq0QPPhi7RxG87wsS4Q6yTW4htlkCBfAIJR+ky
-            rNXO5ADj3Hhl3n9R90Cci0Txc2XJE7w3hWs/P70Q4Fu8LLDHEN/jvCUIn7ARywhQ
-            NZUezluFFTeZVitwpiK+lSws7Nzy4eduPd3VDx02W9Ej2IXa9e41vWb7JMODBzSz
-            p5wntTjPZJfcrscijPM5Q1rvv6SWtp4b5DZJzDTZWAYVuPhgW/JF0HZhh+EXcKSv
-            Ea0UDXCXE+Qy3NUlFGNVKk+vXhzAUp+qrRi0Eno0uTfZ+9xNRdqARusdwLCO/uqm
-            wwEZn+TiRt/Uc+qcXSjWUcgOHckLk1sXCLTh0TA3DrCWdEfMp+eMDXaA1eN6V2XU
-            tSCK6Tx3eDvWKmm23CHPRgQB4cookcHbiPScjZicjp3w2iTQ6GZ7LsgDNE0IsdHg
-            Ha1Cl2QNfxhHWPNPFFRedcLbAjj94CNLMRfBctf+sB7PZydeTUFGYKwTScFBsL0k
-            8ll5qhEl/6qFWGOVrynF2dccYBXYSK6fs2A8pwBVqNvh7mtejd7D2/S2Mpc/lLCq
-            VNdUlkAKpsCMyzIVqlgJ0TB1SdwR02jKBgOr9XOvA8tCb835On/tHlelz9uOq040
-            OrQlLmiJwom2J7lP6WzJE28t3uVALZo4tIiiNivOFpdh91LLC3GAUVGaH3uT3ufS
-            XgFFkDQToe1sS4pv/RdbjHEB1tSHqIgsKuTTnlsxwYF7ZzxwfxETwVlU1yMaEIIH
-            enA5z0XVyRwoLqT36U54SZo0Rq0SHs6W0w6qr+sIDmoMP9Cxw0a5jJ1P0zb2PbM=
-            =uIr+
+            hQIMA7uy4qQr71wiAQ/+MH/izXRcAzwF1Dp5mgQBthTFYX01sUpjU9y5Z9jeRnny
+            UgtCuURwaI41nG+ZOrv3yy2dSsgABMgr8nZZEju/Tb+jZ/qzkPR8JWTpiieXefH4
+            Q5lEy6l1rLVOJudsgx7BG07h6gqr0Mu89gcpFThkXiCo5eAV/hlY9Y6eG6ZybWZ/
+            K2bUv8JB09S8ZsuFsTqp87lZMogWFcIjO8JMirjWRxgd+1NZFoGmSIb+6KkLTD2+
+            eMjbLnGZ3HyWLSzJBRkF5bGgODNGA8qaHmKKMTT8/H9zD1Z++nKCrx7SQpoStQxw
+            xluXAyefTiwCqhEVT42C68Lhz5pH6AyHgJGmls/NWv6bvj/3AQwXlkO87Xkd8x3L
+            aEDHIc5rEso18IZuNzlI193AEhipT8mcMi8IFA4YbnVnkK86PSXQ7qWrbbc4BmkN
+            cU/vUlpBM1HeiYdTFZf8Dvfw55bNn/pMhPhoLWpHjAnAEDJdrVh33OTurdmtYTRW
+            nRK3q2WVHa+UGlkKfdpKr1ivZ9O4ulSfyIYKVsLI5sYAbkJ4o6ytlcQlK6E/7AEK
+            Ux/KAnTb5nXOLN8Vbq0xGlyjYei0GY+IZWkkWL80k59NFfrDLXtG/zCxE74ANplm
+            qx+dCbggjT2lNsM+homldhYU0VhDnvrWM1/9bRI3DUVUxfGUCKMTqUj2b97vLGDS
+            XgHGOTHKKTQjpEg7DnnSS/romTxglHrAEa/3Cu4S4uUVIK7aL8JIoHXYaHho6Jp1
+            9RpCscjyeMfE/wnyTbeR1OZ6wnIMuLXzVzma0fy0fbYqGhJllULpMgsZGe6bhpI=
+            =MIya
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
