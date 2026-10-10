@@ -1,0 +1,24 @@
+# Tracks the rhema-claw chart as CI publishes it on main: the timestamp
+# pre-releases (0.1.0-YYYYMMDD-HHMMSS) all sort above 0.1.0-0, and the
+# chart's appVersion carries the commit SHA the image was tagged with —
+# values.image.tag stays empty to ride it. Same rolling scheme as the
+# saggar release.
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rhema-claw
+  namespace: rhema-claw
+spec:
+  interval: 1m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: vhaudiquet
+        namespace: rhema-claw
+      chart: rhema-claw
+      version: ">=0.1.0-0"
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: rhema-claw-values

@@ -36,6 +36,7 @@ resources:
   # Personal (apps storing my own content, grouped by content type)
   - personal/paperless
   - personal/radicale
+  - personal/rhema-claw
   - personal/syncthing
   - personal/media/photoprism
   - personal/notes/notesnook

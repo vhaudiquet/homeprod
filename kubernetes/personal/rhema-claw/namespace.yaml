@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rhema-claw
+  labels:
+    app.kubernetes.io/name: rhema-claw
+    app.kubernetes.io/component: ai-agent

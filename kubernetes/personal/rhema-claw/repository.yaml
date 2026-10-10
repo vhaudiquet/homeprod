@@ -1,0 +1,11 @@
+# The vhaudiquet package repository on the home Gitea — where the rhema
+# CI publishes the rhema-claw chart on every main push (base version +
+# timestamp, ordered by SemVer pre-release rules). Public: no auth.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: vhaudiquet
+  namespace: rhema-claw
+spec:
+  interval: 1m
+  url: https://git.vhaudiquet.fr/api/packages/vhaudiquet/helm

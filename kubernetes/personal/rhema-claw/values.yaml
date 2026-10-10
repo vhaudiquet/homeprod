@@ -1,0 +1,69 @@
+# The rhema claw — the resident agent daemon from ../rhema.
+# Single-node by design (one SQLite store, one dispatcher): the chart
+# fails the render past one replica.
+image:
+    repository: git.vhaudiquet.fr/vhaudiquet/rhema-claw
+    # Empty: follows the chart's appVersion — the commit SHA CI stamped on
+    # the pushed images.
+    tag: ""
+# Bearer token for the /v1 routes (/healthz stays open). The daemon
+# shells out through the coding agent, so the surface must not sit open
+# on the LAN. Encrypted at rest: the .sops.yaml creation rule scoped to
+# this file adds `token` to the values encrypted_regex.
+token: ENC[AES256_GCM,data:fZKJzLy8FjN+0ONrHn40Tgb1/uTtYdAWTJwY7BfFltsGCPnuMx1F8KIPfQbzliyH,iv:yzaHrdDrSBbnT01aJmv8537D1lVe4kwIDINiuOgXPKU=,tag:dT7Z5v3CUhJg/+BqcjAWIA==,type:str]
+# No provider, model, or credentials: the backend is selected
+# dynamically (nothing injected, nothing pinned) — when a dispatch or a
+# chat turn needs a key, the daemon resolves it through the rhema
+# config seam, not through this release. The nulls erase the chart's
+# built-in anthropic/claude defaults from the rendered claw.yaml.
+config:
+    provider: null
+    model: null
+    watches: null
+# The chart's own ingress, rendered from these values. Plain HTTP on
+# purpose: kosmos.lan is LAN-internal and token-auth-only, like every
+# other .lan surface here (no TLS story for .lan hosts).
+ingress:
+    enabled: true
+    host: kosmos.lan
+    className: traefik
+    annotations:
+        external-dns.alpha.kubernetes.io/enabled: "true"
+persistence:
+    enabled: true
+    storageClass: longhorn
+    size: 5Gi
+resources:
+    requests:
+        cpu: 100m
+        memory: 256Mi
+    limits:
+        cpu: "1"
+        memory: 1Gi
+sops:
+    lastmodified: "2026-10-10T11:49:22Z"
+    mac: ENC[AES256_GCM,data:vz3cATCAOEoyXOJCz0u+GfIq06lV5sV3mUoOKa4lUOWnShGOnxxE+v60AslV4KYBfmSCVliTalM0Vm8isuqJSAd9ZdPaI0CZ9F0gkxza22eaESkapIcIYrAhJYcZnRBSyAXjdVHyIzlvVwyTEqWYvEW7F5MJUgc4igHFD1/gMIA=,iv:VxsYzAWGhOiLXCt68Mpu8N9xgjsXXgc2LnInv2BExV8=,tag:rICLpdj4D37QZtTNV91uWA==,type:str]
+    pgp:
+        - created_at: "2026-10-10T11:49:22Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//WeO+shUgWwJAu2IdxVteea0IpFCyo93hWqxLWMytqF7+
+            3h2s7zXXsNvNCvqndHzNSrZt+OuSQDWSBVIzfxlztw7ga6BdI92OhpOZPCIyKwDT
+            LzzUCPrSAGOZVekOkFXKlVDjMFunAiEp/soGda7bbP+VrdHJmeRh8fioTOgd/4qL
+            /QmmJk3bMTlMoVcknOW2qI3n79YA9qnI0vjwBL63bDeZnxZ8CiZzd1SDr10K0rDf
+            f9ErcmeKAwm+HgehSA3xId0Cph4gnf3xNhNDe2gcZvoFlPIrZT0iU0fBzMRuJPxt
+            c9g+TqTAHBfx90H58/NF8Sfr3ScXNUHvHzgzrq4w+ogqmp8NYsdDbzG1C318dV2o
+            nITluENiYgR9Qs6gJda94aEc00IYEBp4lNGp5G1SyHiDB+jMMsiHX6w3x286dgNx
+            G6DcJ+TabCO+A+Fzq74I2ds+paoEgDegDMCIgK6uSKF0jT2ID579Bf2kRraneOqV
+            amgBI2CQZG5FAqdhbtpf4PHAK9YR3b42mgF9nBAc+f/oFeAZm8nFmG7LubwxqbgY
+            HLa7+ct38ygp/pwZ0FQcU5I3VwqYyU+JA3HMsL2yspHJAeQuXAvzkCQ8NaDOMpEY
+            JRY1pIHl3SwTkV3zh9co8r2Ho8fGYO6KzlNfEdRsx2C6DegM70kpPuYzcCDYAd3S
+            XAE6EX2dM+NxYqhHEIwKjFMJlROWwhhRhheFZnyYRMsn75NkeqRfPi2tJgMkIMk9
+            OJ1eekhgFbQr8vaWtrIOhjvQG9ieg2ujuyltVcC2XUFxQONCxbfoXC2oYu1Y
+            =gTTK
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
+    mac_only_encrypted: true
+    version: 3.10.2
