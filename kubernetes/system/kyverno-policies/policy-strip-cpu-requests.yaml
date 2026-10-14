@@ -80,13 +80,13 @@ spec:
                 - longhorn-system
               selector:
                 matchLabels:
-                  app: instance-manager
+                  longhorn.io/component: instance-manager
           - resources:
               namespaces:
                 - longhorn-system
               selector:
                 matchLabels:
-                  app: engine-image
+                  longhorn.io/component: engine-image
       mutate:
         # `request.object` is available in BOTH admission and background modes:
         # the backgroundController synthesizes an admission-like request for
