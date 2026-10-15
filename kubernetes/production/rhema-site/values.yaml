@@ -1,0 +1,42 @@
+# rhema.rs, the static landing/download site (chart rhema-site, repo
+# vhaudiquet/rhema.rs). One stateless nginx Deployment.
+# TLS terminates at Caddy with the cert-manager rhema.rs certs; Caddy
+# proxies to Traefik by host, so the ingress stays plain HTTP (same
+# shape as every other public site here).
+replicaCount: 1
+ingress:
+    enabled: true
+    className: traefik
+    siteHost: rhema.rs
+    # www redirects to the apex inside nginx, so it rides the same
+    # service; only the host name differs.
+    wwwHost: www.rhema.rs
+    tls:
+        enabled: false
+sops:
+    lastmodified: "2026-10-15T20:28:50Z"
+    mac: ENC[AES256_GCM,data:jDNsyWKl2WhofVTzlgevHuPoLZUrLTW87Wd+dLv3nWEFWfN3G8fy0IKGbns1NpFyhx/OfqDJjlmDeZyt4dfmRUPC3Y1MI3kd4KUGlKf0lPy94MTJog7DZtVGtS0RUCN7/NevqtopIivj38u1dXjdcRI+F8bL91blf+RHvvvGOe8=,iv:pmVYVtNhczWqk8CLrAP2McUTrn8uTE88LC9oKtYQzf4=,tag:s+TXQDFqipQtfkE/BN2ASA==,type:str]
+    pgp:
+        - created_at: "2026-10-15T20:28:50Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//df2F/yV6AzsAeDXunqgf016/km+/O8b37+WSaoB7UHb0
+            f/3lqxoVD9EWaTLum1pwHbhauDrjsOyyqkmIbEeOdnMQjEhDvnjfkDbTDupwl7Qg
+            m95ozoUsprhlqEu61ANhAx5xOHfelV5hkL5+ef9o3o0Ist2T8uBv/v+KxnbCHwmQ
+            e2/rjZ9BF8JgnhYVN3VKnpCgz2k9DVAdIZ4saeaET71MCK2naaO8BcVOH86H2Kn6
+            croIE0V/RNPBL3V0PDF804jRIPwfwd0sQiSwwpo11a/9Zgfwj2PDft1FPFyRv7Yt
+            iy5RaJ8rY8C2AqxRj1V0QIp6SyT784yhW02//8zZOA3Mcs9RUJfBosbqQDb3KIPx
+            MMNNgA1/Fa+7VWI7UX6/24tg2m7MPSCRLvzZMWzriKvcKQj/A0fn4pgcQfQ5wqnm
+            v/VrdLL8PBfy2dkYAsBvx4mAt11sOPwoT0iFhxInLNGeGsteJ5/texgLmJ/uO6vx
+            jJLJT8izFKqZKJCK5Db/Qx8RuiuGysaS3NiWVKfdWrwlbNsMKeRFMEaEAfKjPOPG
+            +1WQcvi+jHfCWsjimxW2+Cs90ZIUY3lbGLuQWhFj8zynQt5rehCZzqjmtx6MbHRT
+            GdDZm62Ox1sdMq1ZwMVElWelyNSTtPNN53DcEEiTGqaSwJjdLz9WZhcjMl0vE5rS
+            XAGm3AzBcPNFtWEODV1AyXwOUPea5RJ7ZNOOPy7jTrV0sZwJ8TAc67VP9IW8n1CM
+            22ri2Xq2qDidxsCKiQeaF77DN2YhBYJnxhvfeplVcKGyqb/EElDznR/fprDR
+            =IpGk
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
+    mac_only_encrypted: true
+    version: 3.10.2

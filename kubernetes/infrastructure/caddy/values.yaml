@@ -36,44 +36,57 @@ health:
 volumes:
     - name: vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:16xnpbPT5Q3QPhiOVW09rO4=,iv:rITfPR/pb9otdRXURijM9l4eOyjAm/LpMCVzDI1HdiQ=,tag:XTt5U79sfX4F7gL3pdfCIQ==,type:str]
-        optional: ENC[AES256_GCM,data:ghlFPw==,iv:nZ6HKGVI7z0R7ZDnxdKCFdAtPrUCYTPc6C3ahLhi05o=,tag:zKbUifBUjU2haTMIldoKhA==,type:bool]
+        secretName: ENC[AES256_GCM,data:D2xWOtTHFXl7bTLlsNFjEro=,iv:i3vheop7ASLCyF1ZIeh59ViCnrvQU/5e7Gy8Fsfc4E0=,tag:FQ+D8OLi0kMjhvYgPBgHwg==,type:str]
+        optional: ENC[AES256_GCM,data:xLVbSQ==,iv:rLbyZVz2r3O4n7BYIKQE10RMbKDB1pF4UV3O2dzErU4=,tag:GOLUMif6wNICBQAHPhKfKg==,type:bool]
     - name: wildcard-vhaudiquet-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:HFV3Bw6giG42LsVv7NHQCNbsk0ewFftMuNE=,iv:lhlMGwLwaKTjXwqErw/bsSG6zRuc9lfwwF9Ru/WiFG0=,tag:gU4IW396EUuiZUdRIz5neA==,type:str]
-        optional: ENC[AES256_GCM,data:NSoRKQ==,iv:0xYJ3X2fajkm+KuXLB67nzKJtlszZz/iLlpPBkPgsGc=,tag:pQ0P4pak230kfNvxILH7Hg==,type:bool]
+        secretName: ENC[AES256_GCM,data:OdqKNJjbvmKVxgMrTZ7hbzh/NAS3y9SBv1A=,iv:MLBUkpW05IK+/dGuDogx9zOjmHYTMFz2H0QW6dTTl0M=,tag:npbS+ZqBDwdrSiTEVNH6Jw==,type:str]
+        optional: ENC[AES256_GCM,data:SyvgEA==,iv:TPm9h2WO428rsauBosgbVvAMgHAb9wEkxBVtITwFBfY=,tag:kVshZCShC7/Mc2CROqHfaQ==,type:bool]
     # semery.fr certs from cert-manager (OVH DNS-01)
     - name: semery-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:J7uLCquEggEP2naKHg==,iv:8RudvW7ki/DkWZwVHd1AXAt+6YrLrOpXotQDh9vwgp4=,tag:1PzTWbWEqKUdhlwRcctpGQ==,type:str]
-        optional: ENC[AES256_GCM,data:1q/Bng==,iv:jEnPnyR3pCV0CL8hK+NfMxH1LDKSRyansf6GZDshzQE=,tag:TzOXcGF91InOrCdCCm/Bcg==,type:bool]
+        secretName: ENC[AES256_GCM,data:bvSLNmf5Og+W3A0lfA==,iv:i7k0xLKOnhPI+vtuRBQtej8NVIlCgxt8TgQXi9ARzUY=,tag:/GSbsAcEMOVGYg81oZUasg==,type:str]
+        optional: ENC[AES256_GCM,data:Zip/dQ==,iv:nEc6ykKhmIuinWmfesEPWIeou/5lhHHvr4pJ4oqltiI=,tag:wKeOuUV7UepXRl/6+ynr8A==,type:bool]
     - name: wildcard-semery-fr-tls
       secret:
-        secretName: ENC[AES256_GCM,data:5n5namMP+KepRLRQZgvzlr9hEzNmvQ==,iv:Xnh7FIAVaxQ1Mxd8+en8bM9ueFsG1ujxh472mQhqFFw=,tag:omVRURP2KbSEyHsUqUhfCg==,type:str]
-        optional: ENC[AES256_GCM,data:0GArbg==,iv:1wW6BFk6Vs2y42iIniy4YbMFBOYdqwXop2WCEldwBBA=,tag:gmZlb7zIh3W/0L3qg8XQCQ==,type:bool]
+        secretName: ENC[AES256_GCM,data:VSNpS7a5hA3hgT75QChkcfejZM3u2Q==,iv:pHayamRJo2/McSWAMpQGGMayS0+gqwHVBoq2HYOO4mg=,tag:CFI70/UmYU0hDkGg6TKQlQ==,type:str]
+        optional: ENC[AES256_GCM,data:ohcOzQ==,iv:Mx874e2brtx3mw3nyBRDNvHlN/TNkX3KeuR1IGv4SNI=,tag:hoFf1pIBUZcbdZtScrLYUA==,type:bool]
     - name: buildpath-win-tls
       secret:
-        secretName: ENC[AES256_GCM,data:CTR7I92zQSaOKCcLPGnAs4Q=,iv:egtHKvBbs1dJsMgoIFK+gyOnC7ZX/3UfaAGIDkryd+c=,tag:vk3xGP8YeXhQSi6QLk+3Ww==,type:str]
-        optional: ENC[AES256_GCM,data:nOml1Q==,iv:viRMNPrBLmm8IfJDqcfWOuyMx/y7eE0CTMYjWmK5/rE=,tag:VpAuffCx/VqP2X947l/p3A==,type:bool]
+        secretName: ENC[AES256_GCM,data:CayRdTe/1SeKMD2/zUKI7Rg=,iv:90+63nKSMYR6CvcQlkrFVYVUXCDbAjxgCvCGJ9saMNI=,tag:uEThP8zDAuR8GphhBfqQCA==,type:str]
+        optional: ENC[AES256_GCM,data:H4Hvlg==,iv:gLz3SHoQeuwi7PtRHVvY+sx9WvjkRXjBqAJoMmk9xlo=,tag:0uwNn7dvfMSRedOGCTyazg==,type:bool]
     # saggar.dev cert from cert-manager (Porkbun DNS-01)
     - name: saggar-dev-tls
       secret:
-        secretName: ENC[AES256_GCM,data:5eb4Fv9OJqjbPuxT1/8=,iv:ZsOSvoCc9+ZtTVboRKJBRR8FITk3gowa/uylv+mfA+k=,tag:hkoQ8QHt9evQfDUT4rq51Q==,type:str]
-        optional: ENC[AES256_GCM,data:iac+qA==,iv:hf1rDOHE3frRL702sotOP8akjBi20mRTXQ6vlUb4Ac0=,tag:+G8rgN61c5agYmbJsldqrA==,type:bool]
+        secretName: ENC[AES256_GCM,data:YPdpVHK/LiE4paOigTQ=,iv:qm4BTynQw4W8VL0dfBOZfIX5dvHqcMlj2zjJG8m1kDo=,tag:KGjXYivQIMliYDHu9Wj+Aw==,type:str]
+        optional: ENC[AES256_GCM,data:CBphCg==,iv:RraJZATt6Ibc4OMTeD4sabxVM9Di7S4j/o75S9i+iOA=,tag:JpQ2yJQGe7yRy4ug3pA1WQ==,type:bool]
     - name: api-saggar-dev-tls
       secret:
-        secretName: ENC[AES256_GCM,data:5NJaLtBQizRFNbF5IS2YbEmF,iv:lTJkrES8y7/QO73p7G8RG/CmxGedyXAvfrK3Q26OtU0=,tag:92P2+010Isgg3SQjYwPBCw==,type:str]
-        optional: ENC[AES256_GCM,data:3ax/5A==,iv:CvLi5JqkXPfq9+jVA/Q+mpdEZJ7UosxzZAR1aArpDbk=,tag:yOsLJuqtCrvg8YneJRUeoA==,type:bool]
+        secretName: ENC[AES256_GCM,data:sXYq4C2KbOXI9T+/zmHmShwa,iv:qcBBCS8g0Jaq9ha8OWJO4nHO/GdqWmTar0fdx15Fazc=,tag:lVleMYZGjox/B20Ujrtw6w==,type:str]
+        optional: ENC[AES256_GCM,data:BtPsSg==,iv:ViKdh5qK1DZDcc1xCHDNx4xxXGv9QpyORaCMjxRHMR8=,tag:ZiaYVvxhrpZ+Kh9BaF+fpw==,type:bool]
     # docs.saggar.dev cert — the saggar book (static nginx)
     - name: docs-saggar-dev-tls
       secret:
-        secretName: ENC[AES256_GCM,data:xDf3adcsj6i0FJ2kAc5UxnVE3w==,iv:+qGMWJKoQo/MjibTR9mbgX3T6/xwr+vq1U+ef14xXfs=,tag:Y2jZHktvL8RKUacSv9JDJg==,type:str]
-        optional: ENC[AES256_GCM,data:wEEiYQ==,iv:zNWY0N5935+biGIjIl+q5XPyLLX7/ABhnwHsp4FEZpM=,tag:v8trm6fiM5q/T6EOh1fxcQ==,type:bool]
+        secretName: ENC[AES256_GCM,data:Fn83SsnhrEt9+PbvSMG/OOJLlw==,iv:8J4crsxgxGfD/YaYRx132gt1xfIxmmu9neZwhcw4dbg=,tag:ZpDy9xlViZCrYNu2ymK/kA==,type:str]
+        optional: ENC[AES256_GCM,data:FXd+lw==,iv:tqo5qFN64wZMO4kga1GNl68uzMABfpt28zrsMmIflEg=,tag:uRlNysTQWrz3lpJu22SsFA==,type:bool]
     # get.saggar.dev cert — the saggar distribution host (garage web)
     - name: get-saggar-dev-tls
       secret:
-        secretName: ENC[AES256_GCM,data:iFG9+7bSIUgFZpm8h5Tc362g,iv:Wm6cW1+ehjoylvjwSE3oT0VcQFZONq9znpfi2w/wP9U=,tag:UoEXdJzWoVX6/g8UtbByzQ==,type:str]
-        optional: ENC[AES256_GCM,data:t8VFbw==,iv:Imo0wBOb9ufS9YPqtTegEHQFnyhgSYmcg2FHEzBkW9I=,tag:19zicABMKqAR/nDr85WpCw==,type:bool]
+        secretName: ENC[AES256_GCM,data:Mdov3JsgNSIjvqakpIHlHiSL,iv:UxIkAyfaMpeXAC4glfD1+91WWAQzkV6VuHuEJ5zY1+o=,tag:sS1V+o78+IIk7KlIapaPmg==,type:str]
+        optional: ENC[AES256_GCM,data:OQoedg==,iv:3/h1ECjUEoQ1tjxFtvmKcsfTketSQ46rMKVhah3MVmo=,tag:mNTlm3VBw7X9GLR5zYRuRQ==,type:bool]
+    # rhema.rs certs from cert-manager (Cloudflare DNS-01)
+    - name: rhema-rs-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:79n7ikzaDj402klW,iv:TO79LTmYcuOOKM1PqdV0PkW+v3q9AfLqGMFK5PMSxlw=,tag:jozhhq2EEr9+Lw25+T3RYg==,type:str]
+        optional: ENC[AES256_GCM,data:udjVWg==,iv:StyNicpFRx1ly3puiZasmTe5QSBSkBGkDck0gcbGgyQ=,tag:KNxAIcVzDqRoGJklnwxiaw==,type:bool]
+    - name: www-rhema-rs-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:sAGCq1p0l/dC1CP9/Fvosg==,iv:vwqMJC+26i6dRTMEAEC4BVcEFh37Rt1Fbu1Fv/sQ6S0=,tag:fkyF57/gbkRN0C7Y+S6lVw==,type:str]
+        optional: ENC[AES256_GCM,data:p+B6hA==,iv:vai/Nnq8xjW0jJiUjLCfVTvhz1yOTHm4AymgjBFXhyQ=,tag:fK4h7ORopnH1gLDTdmhTPw==,type:bool]
+    - name: get-rhema-rs-tls
+      secret:
+        secretName: ENC[AES256_GCM,data:2FtFXFWg+xSMsaRaLX2zEw==,iv:zW4Eo5r4/bMvKGAuWm/TV8j08UotUP7xiQrcnt4jfL8=,tag:Pl5n5xFdFE5bVQqFU7L8aw==,type:str]
+        optional: ENC[AES256_GCM,data:eV29uQ==,iv:NuAEbtzcMH5J4EiSmaes3O21PZW4DizPpzCfokElqnk=,tag:CBY/ZGvKUvFqDvnX9mMEWw==,type:bool]
     - name: routes
       configMap:
         name: caddy-routes
@@ -106,6 +119,15 @@ volumeMounts:
     - name: get-saggar-dev-tls
       mountPath: /etc/caddy/certs/get-saggar-dev
       readOnly: true
+    - name: rhema-rs-tls
+      mountPath: /etc/caddy/certs/rhema-rs
+      readOnly: true
+    - name: www-rhema-rs-tls
+      mountPath: /etc/caddy/certs/www-rhema-rs
+      readOnly: true
+    - name: get-rhema-rs-tls
+      mountPath: /etc/caddy/certs/get-rhema-rs
+      readOnly: true
     - name: routes
       mountPath: /etc/caddy/routes
       readOnly: true
@@ -130,7 +152,7 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:RTux56Pd/U6b6MLk5uRUC2YXP3w=,iv:K/9+Mh8dyp9DOumKFLmZFHXqjxzhhYEKKSnXRc/Pb2A=,tag:fk03mWjQEQPCdALb2gEMdQ==,type:str]
+                    - key: ENC[AES256_GCM,data:2bVw/UmbXQWM5c+5dXHYh8gSQCo=,iv:zTx1jZ+gQaYJpNwAkGERkIoHMro75Q3D96nKl0cSyLg=,tag:EO5tZ0PWnDMH9zFi09chgQ==,type:str]
                       operator: NotIn
                       values:
                         - "true"
@@ -144,37 +166,37 @@ affinity:
                 topologyKey: kubernetes.io/hostname
 tolerations:
     # Tolerate the failover taint so caddy CAN schedule on p330 (small-node-1).
-    - key: ENC[AES256_GCM,data:JPKKj4UA7JWi,iv:0PNgCHVFO2bywVfcXrOrcTQpNjz2TUUM0RrBmF6godw=,tag:h27cJ4dd9C1iLKgffNLVfQ==,type:str]
+    - key: ENC[AES256_GCM,data:O1bYTq27fBf6,iv:rZDYkdUJaO6dwzXUygXQUaawv/uLQzWYudjNQ0yGjic=,tag:ab0ke6BjcHvES8Da2VX/QQ==,type:str]
       operator: Equal
-      value: ENC[AES256_GCM,data:7dtvTUy+xUI=,iv:pQdnyz5X+gQB0DOFFxs5D+2RAPD8xl+hgJFwARcbBWo=,tag:A321CiM+q8tLJJyanRn/Ww==,type:str]
+      value: ENC[AES256_GCM,data:TcvIJdr6Evg=,iv:tgh1FaG2PtJXzRY2iWPZX1g2d0KNOWTkk76hantu7aw=,tag:3X4CQBCt4u8Pojh2B2SUrA==,type:str]
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:t71fVLGG7y2am6kXa3DcpGt76uZJ+cOuYZKiaRF2LljtRCxzpw==,iv:Fa0zVUsH/TbWBbL2foIsvq7UQ2kIcA3yNvG2qMuGnng=,tag:KchzYUpe4Z6JIZCvSM2ztw==,type:str]
+    - key: ENC[AES256_GCM,data:neIt7rxn+pXMCAQHGuIlq46lpAGmQDSFKmTpRO8d0zcKxKrD8Q==,iv:25kFrqcf1hwdoME8MFvMC6g56ILuokixy0xBKsNfJNo=,tag:/6aMf2K7YWHhcMzIo7faqw==,type:str]
       operator: Exists
       effect: NoSchedule
 sops:
-    lastmodified: "2026-10-04T21:14:10Z"
-    mac: ENC[AES256_GCM,data:vv4/zTp8LHusfYtM4xUwKHnesHu49VXfhRmKPo/nB7ItGYATsD5PtnXrGluOkwng/5pvRVs5WCtLt9fdZ9k7aKsfFHisi2OylEkx76xcAQ1f8GOCNkvfnjVuPEbaIZK1Mvdepbe1oZ0B4m5I2KqfvnUpXzmG82vNq0hj5vlQ1uM=,iv:7mKc4OBbPUYuLXer5f1OZcHggJBOu5rD/luh64in5lc=,tag:ch1Nvtyfa94AI9tAOm81hw==,type:str]
+    lastmodified: "2026-10-15T20:32:05Z"
+    mac: ENC[AES256_GCM,data:sqj/1hitznnb+V5XCGBHqHcdLbJ/NzBcTAVPeXJqWKSYioEiQQYJCxVXeCtcLIUnSyihNpjDFweNX7T/MFkU7lfugn1SmRPRYbXp11HTDaaDbtzo509v1ysGHdJ7TDKhyf6egKs3WBlpWVrfcH6izU6zymV6A/w5nOGnLtgS2Q8=,iv:wQ72EMM05AvMhQDT798L6c53XSP4CXtwt4iEYletRDc=,tag:+zAnPBU8cjNh8rrgjsFlNA==,type:str]
     pgp:
-        - created_at: "2026-10-04T21:14:09Z"
+        - created_at: "2026-10-15T20:32:05Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/+Io9dFjaXDz2CSdPjMBiT8ISxnUxZ9F3VX+bqKg9nRusr
-            slx5VsHGCsfK4DyF4GXcqsyDPkz6v39ehhUFdseZewg1AbYTNy9RIEgeSo3fwcnO
-            bee48z1Nti+8F3h+4O2ao+nGx4wSS6MYO3oO5vV5a4oNKe6T59X7eGT30uohatO6
-            jo6UuHu3/e7eyzK7/iSF3SemtkZ1ZiXOgKKeBXashrp+2vDdY+3ow/pRpFyohqWh
-            4mBt8SyCWOsf0BUdNZfJPDO594hwTjrrRIsmBeXde97rFXKBDd5tPR9tjNlihWsw
-            lC0e4331jvwns+rlSOASBX/BVsqVGh8nw/5XWxqW3oMqjvolgofGhP8CtFQkUuoq
-            VoHcgQd79wo0Q107wcp3ftMak010/NweAER1CFtCDBE6DAS05qaaOwwM3erusaw2
-            ZY/ezGULEmSgZ8RA3HHjtxo1ExLMZ+CpPb0mAAamql8O0uCpLl0TRkWvR4zwpo2K
-            ojOTW2dLjhJwJaodAMnKQm8mWtegC8Uektw1RdYCbCTD4sKv9vkxymnSLmE3dvWD
-            Htp/hCSTqDCc0sSBDdagIZWo8VtdduWqeGG7+Qs1wY+NizSlYRDmEsahbgPk9Bcu
-            W7vhpJFZ/98jxEmgaiUVJ3BVqZYiJBdDk4GvSw+/QmyNvd39xNLXIN3DcRTLmqvS
-            XgH/TZt96utCGDUjYFAFw4s4UL3EhttfDe+hSwzrAcslhjyeCORFhYrnwOncCr51
-            tr+maBFPip6FgASJQjDVnxtw9zFDfurbx8W2wk9uh6w3qw4jbGDq9wsI0wvfous=
-            =C10g
+            hQIMA7uy4qQr71wiARAAgaodPX6AX75xrUnhm0hNIXAQlpHkixvUop2rukqd2p1Q
+            1nP9ZshZx6yTEs7PYWofIeKG0kSKYE3qKwrNSwDXSUz2zshl3M/s0YXUHo2CFbAj
+            1SnDFTvPHIOGFTA4IK73G7efb0F5X9Plu4xc6Jzdl+G0mJ5d6lV13bkQJBJpXSNu
+            fVqLqFLDBGI2c1JzG8Gh5Du2xSHPVcWm1bI5XN/W2SngP/xN18VNsl/2yI0lMWdd
+            4MMj16WZXuCzpKpcEtwYEEjbSdMxRp0D6WlVoQuhUMGKD1VOK6DjQ1h8H6Pn4XUR
+            OLAQn3oauUa4eZ309pAwZyAtzi7CgfS1wrMUAWGfTv9B6KA7lyOYpjgpReMRTN2r
+            e8k4bxJgr3Jj8NYqhwbSGYJ6r8zfC13G08fDaHqIqWjZF7uV/NX4pBqYBOfhkjxT
+            2BqlyB4AjpZV5UhJ+vHctOtt4VyeIVt4VFz319gC9BX+sv6EXMzbN64Q/zI3wd7H
+            3ZtU7mvLDnmW1kqjTQDbuSw3VJy4cttmzZmlWvNl1u8rmhbOf13AZIILY4f7eE6h
+            lneK/Zbyq76h5khwu0mLhZV79Ru088iAIyhgnlgJA+4HzEEYCmJMHvuFtlzuaT4/
+            NDf7BTNKM8HBLU7j7Lr0n+rRwQQ+xwUP3iPkXVPsd1DFyRNwbki/zExAzxdKLJDS
+            XgEIQ7sMMMxiuIfAUQQ2X+uVRbgldQA4vz5FRxH8rkg3Ig8bRglecGZkDP23ZnW0
+            8834GBJ6qJXnYRzrVWP0PA89+5R0UoTHLSr8AhYAYm8Bzpktf+6vdzv05vc+7dE=
+            =Tv8G
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
     mac_only_encrypted: true
     version: 3.10.2

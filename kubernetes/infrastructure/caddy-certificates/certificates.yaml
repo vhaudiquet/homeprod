@@ -143,3 +143,51 @@ spec:
     - get.saggar.dev
   duration: 2160h # 90 days
   renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: rhema-rs
+  namespace: caddy
+spec:
+  secretName: rhema-rs-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: rhema.rs
+  dnsNames:
+    - rhema.rs
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: www-rhema-rs
+  namespace: caddy
+spec:
+  secretName: www-rhema-rs-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: www.rhema.rs
+  dnsNames:
+    - www.rhema.rs
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: get-rhema-rs
+  namespace: caddy
+spec:
+  secretName: get-rhema-rs-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: get.rhema.rs
+  dnsNames:
+    - get.rhema.rs
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry

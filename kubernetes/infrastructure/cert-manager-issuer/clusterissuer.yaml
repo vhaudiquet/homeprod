@@ -22,6 +22,7 @@ spec:
           dnsZones:
             - vhaudiquet.fr
             - buildpath.win
+            - rhema.rs
       # OVH solver for semery.fr (via cert-manager-webhook-ovh)
       - dns01:
           webhook:

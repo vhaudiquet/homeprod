@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: rhema-site
+  namespace: rhema-site
+spec:
+  interval: 1m
+  # Public org-scoped chart repository, same one CI publishes the
+  # rhema-site chart to (from git.vhaudiquet.fr/vhaudiquet/rhema.rs).
+  url: https://git.vhaudiquet.fr/api/packages/vhaudiquet/helm

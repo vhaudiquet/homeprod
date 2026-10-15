@@ -127,3 +127,18 @@ data:
       tls /etc/caddy/certs/get-saggar-dev/tls.crt /etc/caddy/certs/get-saggar-dev/tls.key
       reverse_proxy traefik.traefik.svc.cluster.local.:80
     }
+
+    rhema.rs {
+      tls /etc/caddy/certs/rhema-rs/tls.crt /etc/caddy/certs/rhema-rs/tls.key
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
+    }
+
+    www.rhema.rs {
+      tls /etc/caddy/certs/www-rhema-rs/tls.crt /etc/caddy/certs/www-rhema-rs/tls.key
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
+    }
+
+    get.rhema.rs {
+      tls /etc/caddy/certs/get-rhema-rs/tls.crt /etc/caddy/certs/get-rhema-rs/tls.key
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
+    }

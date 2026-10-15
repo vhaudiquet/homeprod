@@ -49,6 +49,8 @@ resources:
   - production/buildpath
   - production/saggar
   - production/get-saggar
+  - production/get-rhema
+  - production/rhema-site
   - production/semery-fr
   - production/umami
   - production/vhaudiquet-fr
