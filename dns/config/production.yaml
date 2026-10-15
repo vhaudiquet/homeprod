@@ -23,6 +23,11 @@ zones:
       - config
     targets:
       - cloudflare
+  rhema.rs.:
+    sources:
+      - config
+    targets:
+      - cloudflare
   saggar.dev.:
     sources:
       - config

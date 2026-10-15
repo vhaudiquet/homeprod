@@ -1,0 +1,25 @@
+---
+? ''
+: octodns:
+    cloudflare:
+      auto-ttl: true
+      proxied: false
+  ttl: 300
+  type: A
+  value: 82.64.154.58
+get:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+      proxied: false
+  ttl: 300
+  type: A
+  value: 82.64.154.58
+www:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+      proxied: false
+  ttl: 300
+  type: A
+  value: 82.64.154.58
