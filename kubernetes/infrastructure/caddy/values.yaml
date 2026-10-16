@@ -1,0 +1,206 @@
+# Caddy Edge Proxy
+replicaCount: 2
+# Listen on standard HTTP port
+listenPort: 80
+# Enable HTTPS
+https:
+    enabled: true
+    port: 443
+image:
+    repository: caddy
+    pullPolicy: IfNotPresent
+    tagSuffix: ""
+    tag: 2.11.7
+service:
+    type: LoadBalancer
+    # Cluster (not Local) so any node can forward to pods on any other node.
+    externalTrafficPolicy: Cluster
+# Disable ingress - Caddy IS the edge proxy
+ingress:
+    enabled: false
+resources:
+    requests:
+        cpu: 100m
+        memory: 128Mi
+    limits:
+        cpu: 500m
+        memory: 256Mi
+# Caddy needs root to bind to ports 80/443 and write runtime data
+# Using restrictive security context causes "operation not permitted"
+podSecurityContext: {}
+securityContext: {}
+health:
+    path: /
+    port: 9999
+# Extra volumes: TLS certificates from cert-manager + external routes ConfigMap
+volumes:
+    - name: vhaudiquet-fr-tls
+      secret:
+        secretName: vhaudiquet-fr-tls
+        optional: true
+    - name: wildcard-vhaudiquet-fr-tls
+      secret:
+        secretName: wildcard-vhaudiquet-fr-tls
+        optional: true
+    # semery.fr certs from cert-manager (OVH DNS-01)
+    - name: semery-fr-tls
+      secret:
+        secretName: semery-fr-tls
+        optional: true
+    - name: wildcard-semery-fr-tls
+      secret:
+        secretName: wildcard-semery-fr-tls
+        optional: true
+    - name: buildpath-win-tls
+      secret:
+        secretName: buildpath-win-tls
+        optional: true
+    # saggar.dev cert from cert-manager (Porkbun DNS-01)
+    - name: saggar-dev-tls
+      secret:
+        secretName: saggar-dev-tls
+        optional: true
+    - name: api-saggar-dev-tls
+      secret:
+        secretName: api-saggar-dev-tls
+        optional: true
+    # docs.saggar.dev cert — the saggar book (static nginx)
+    - name: docs-saggar-dev-tls
+      secret:
+        secretName: docs-saggar-dev-tls
+        optional: true
+    # get.saggar.dev cert — the saggar distribution host (garage web)
+    - name: get-saggar-dev-tls
+      secret:
+        secretName: get-saggar-dev-tls
+        optional: true
+    # rhema.rs certs from cert-manager (Cloudflare DNS-01)
+    - name: rhema-rs-tls
+      secret:
+        secretName: rhema-rs-tls
+        optional: true
+    - name: www-rhema-rs-tls
+      secret:
+        secretName: www-rhema-rs-tls
+        optional: true
+    - name: get-rhema-rs-tls
+      secret:
+        secretName: get-rhema-rs-tls
+        optional: true
+    - name: s3-rhema-rs-tls
+      secret: null
+    - name: routes
+      configMap:
+        name: caddy-routes
+# Extra volume mounts - each secret mounted as a directory with tls.crt/tls.key
+volumeMounts:
+    - name: vhaudiquet-fr-tls
+      mountPath: /etc/caddy/certs/vhaudiquet-fr
+      readOnly: true
+    - name: wildcard-vhaudiquet-fr-tls
+      mountPath: /etc/caddy/certs/wildcard-vhaudiquet-fr
+      readOnly: true
+    - name: semery-fr-tls
+      mountPath: /etc/caddy/certs/semery-fr
+      readOnly: true
+    - name: wildcard-semery-fr-tls
+      mountPath: /etc/caddy/certs/wildcard-semery-fr
+      readOnly: true
+    - name: buildpath-win-tls
+      mountPath: /etc/caddy/certs/buildpath-win
+      readOnly: true
+    - name: saggar-dev-tls
+      mountPath: /etc/caddy/certs/saggar-dev
+      readOnly: true
+    - name: api-saggar-dev-tls
+      mountPath: /etc/caddy/certs/api-saggar-dev
+      readOnly: true
+    - name: docs-saggar-dev-tls
+      mountPath: /etc/caddy/certs/docs-saggar-dev
+      readOnly: true
+    - name: get-saggar-dev-tls
+      mountPath: /etc/caddy/certs/get-saggar-dev
+      readOnly: true
+    - name: rhema-rs-tls
+      mountPath: /etc/caddy/certs/rhema-rs
+      readOnly: true
+    - name: www-rhema-rs-tls
+      mountPath: /etc/caddy/certs/www-rhema-rs
+      readOnly: true
+    - name: get-rhema-rs-tls
+      mountPath: /etc/caddy/certs/get-rhema-rs
+      readOnly: true
+    - name: s3-rhema-rs-tls
+      mountPath: /etc/caddy/certs/s3-rhema-rs
+      readOnly: true
+    - name: routes
+      mountPath: /etc/caddy/routes
+      readOnly: true
+# Caddy configuration
+config:
+    debug: false
+    # Global options (goes inside the global {} block)
+    global: |
+        auto_https off
+    # The main Caddyfile content - imports routes from external ConfigMap
+    # This keeps routes in a separate, easily editable file
+    caddyFile: |
+        :80 {
+            redir https://{host}{uri} permanent
+        }
+
+        import /etc/caddy/routes/Caddyfile
+affinity:
+    # Prefer non-failover nodes in normal operation
+    nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                    - key: ENC[AES256_GCM,data:IO4YZvu3BxATq/oW4Tq/BU3x4oc=,iv:IVwP+Pqc4WX0tOyBv4TBGcB48tI4R9krE2k14nGGo5E=,tag:YGR1+9c3CnkYBd29j5zFNQ==,type:str]
+                      operator: NotIn
+                      values:
+                        - "true"
+    podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                    matchLabels:
+                        app.kubernetes.io/name: caddy
+                topologyKey: kubernetes.io/hostname
+tolerations:
+    # Tolerate the failover taint so caddy CAN schedule on p330 (small-node-1).
+    - key: ENC[AES256_GCM,data:x+j/W5FusRl+,iv:5uXOTvjiBy6jd7DaiMeYqN3dcau5jhEnDzGN5fqZk10=,tag:dVRfHdyeG85T3iZ3xc4lLw==,type:str]
+      operator: Equal
+      value: failover
+      effect: NoSchedule
+    - key: ENC[AES256_GCM,data:2mnZnF8eARuD+IkEir+jxzwXDBJ8K+uTcP6iM7DwXPEXntqC4w==,iv:vh4RwXNXQbW+w13txDzBo8VdQZt8BepoSP/5oLAoCl4=,tag:NABR8rjDGhs8G2HD43TYaQ==,type:str]
+      operator: Exists
+      effect: NoSchedule
+sops:
+    lastmodified: "2026-10-16T07:01:46Z"
+    mac: ENC[AES256_GCM,data:rSpWoufRJ+dt5V0Rgqb5t387rQAQkcR821ojbVF024R9Llf02oqZpBkl/Kr0/tSYzJP4Q5oQw+p9E05r6NuVa5iwmlTYxTrbk5dyvtwPVdO8lsZrQ5MchLbxue2xC25fEL5JV7KGFMhhzp+qwl9Rde8WVGYK69asSO/rmg9i85g=,iv:IWsodxdyVhsMXKqOVhG+lRalNyX2UnhTpAdarI8HPT4=,tag:xvbti1fClqW0tUrUSVXBgA==,type:str]
+    pgp:
+        - created_at: "2026-10-16T07:01:46Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/7Bbg14RINRrIeE1cfYdX7moaWk9FtH2/bNpF1qMMKJ6ZV
+            ddZlULVUkcH2BvXJpuxy3WsoI+AShU0rwsWNqSNiX8F/Lbw3FBkejgogARGDM89H
+            NAcYJOmHR2mILoFxn99Zf2a2Jqh4dmCgqxRiAo12SeeFCV2JCB55yfM0GkWABkqH
+            uZa8ogCG9XafXccvWIqFS5FN5PyZm7ndF4Qum/tWV5HauKWPEQGFQTVkCj6+PzeD
+            MRn3R5QOs9PXDlWHIeFJ/xDqS1FT/ZCxlzEyHxGYWdGri7JDONwkqhgUQ/1oBElz
+            wn5OhcmzeE5MRe3ZSs4Ul2lbqH1Hue8LRx4xgfLU2Y6u43s1d30lXgVbJC/6HvsE
+            C80SC3+xmsrcyGBM2+iy5gPJLk6kS9S2TGEWJuhbdNymS5UqvvNPTRnQ6Gl85EZx
+            ycFTsEAzf3XI3z5QCo8WbW0AXsvkLH7J5xTm5ipHXg9ziNq4+JKXYF5M+vvaDKaa
+            TrAoLI9yM/izOuFfW6GE6P/NiE3Ao93Vy1LjCGkIPIacW0USf+PHYXH+qoAOmRHX
+            7I10u+MHuXU1i29LG3E6eEvakoDhzf4/MOKfb4sNfFf/R1NhHP7WyJICtVxFYJpz
+            hCjXpLWh1TexEZHHJQXGPt3f7SSmspGuj19fkZ83CGPRspKHbDJWWu64KNg45hbS
+            XgH5WBcMHxzyHwjnMgbrvg+AoYB836fY25RdQBL+JwaZzGR+0FbWGLZ1Q21INysh
+            mFepL86/g1RQbehCgW/MX5+xpch9e5P1RcBzCDA+M0DjfKnZLnJsqNQMovwlBto=
+            =dlhb
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(data|stringData|.*key|.*crt)$
+    version: 3.10.2
