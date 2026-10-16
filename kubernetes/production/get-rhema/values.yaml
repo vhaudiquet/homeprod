@@ -19,30 +19,40 @@ web:
         # cert; Caddy proxies to Traefik by host, so no tls block here.
         tls:
             enabled: false
+# The write surface, public via Caddy: the release runners reach the
+# S3 API by host (the in-cluster Service name does not resolve from
+# them). TLS terminates at Caddy, like the web face.
+s3:
+    ingress:
+        enabled: true
+        className: traefik
+        host: s3.rhema.rs
+        tls:
+            enabled: false
+            secretName: ""
 sops:
-    lastmodified: "2026-10-15T20:28:51Z"
-    mac: ENC[AES256_GCM,data:+lYkUZ+5erultYuI0ejlAUiVnPhwZ7wwlB3IqDP2M5YAXln7kqu7xMptvrgWGEHPavdmZwBvbBLf3FC1i1Zkio04iFpZ/zLTb/msomSjf7e2lQhk5VLHgqzS/Cd/ZvEvlXfuVPTKrWDdlKKdozY+Ge+WspGSL26Hf7/9rMqKvpM=,iv:6Rh6Ues/OHxDkgOkGIylz490m3kNX1TGQP5bH/UFjRg=,tag:w2oXRK2twjXN3IhnKf0uow==,type:str]
+    lastmodified: "2026-10-16T06:56:14Z"
+    mac: ENC[AES256_GCM,data:XuFKJcXb2C22x1GaADmX+QwQNAeUiYsmSh4g0Z5CTyvIXSI5gksAVKNgF0RqRNDLDmDA1jGCS+a0Y//ExXZO1kKQj2jYdYcKU4IvOmniMiwut5ZtobFbuskv7boAxmNRT/Y/4RgyyT8+45b/2+u3i9u2cwSQQ0Itvh5PxpFlE+I=,iv:3qXS6rEkeodOwLt5AOx8atfr15fK1zpmkM8uKjxUB2w=,tag:1Y78Jq8E44IGukCpR99UwA==,type:str]
     pgp:
-        - created_at: "2026-10-15T20:28:50Z"
+        - created_at: "2026-10-16T06:56:14Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAgirAbNH6NDN+dAcsGAR48/S2Vt3gLLjsL/pHSC0hb7S4
-            oDF/FMLTyUQMG+KTZBEas3KhO/Y1weay9wQEx1M4Jk809fbARjXl2gJFcdtlO28f
-            MVh9kBq5xY4YtFlRm1bKffTNaxFwNh0Exjl6yAKrUsPwH9eFEBlehK/prDXjmyAv
-            tHwW4GuPRBFMlZAtxvkTNZfnBKfimIirjDHurgHxmaNmH7B+UKGIb3NHI2f5QQug
-            VtDZoEuGovGcegIQfWorq1pzSX0PF2pOn+bgn/DZ7BWbeLRArD6prnlzbrAL3NeL
-            V+fofYig1SNCuqBKxzfsPYnhLe7Ylg3oYzGqn7N6G9ub0xF3FVpRksoluHtMTECf
-            2Oiab48jHrQCHA0+Br6OxO8TQK3sWHGQuUhBbE7tugeGg+v8lfyHPghmNrPBFL2n
-            fpOnLCid+FZII7d4LFVQr3kE/+DMGVzGYBIPgBlPovTME6MJeox2Tq3+qh2QUCzF
-            Chue14+oHuzw2lnqltG62t52LRLKrNlI/1+D0mWz4VWU4O/3wiJwUYxA9dVni05J
-            d8DW6Q8600cJLRtvVvh+r+7DmVPeg8h/yBfsSbtiPPLpTkL93JNhHfx7pD1++e7x
-            oagv9f2DQ0Vc6EGhnk96T6bvPQqgeZJMJtdDl4/nyxA9Y4DpBFzue+qzZxkgldnS
-            XgF3M4q96nyp5d9JwcYvUlF9XWxSCyc3IMRDV3QQo7BJKH/EBXiMSFg23LBBbdRH
-            Rwtt2sPE1u0d2wRZEIS5YU6dmQ55lhK0NBLyTVqm0IACQS67GeQrPpAvD1QOjng=
-            =zBGK
+            hQIMA7uy4qQr71wiAQ/+KleFpAm4wpwoyB8U15o27ys2KXyKNFUl0EeRhYBYjcqe
+            wgtiayZjGbM0Tz2x9+SFLQhezldMlH8N5l0BscuYBMAUgDXS9OMN+v/1nHk0pu43
+            FUYHEWbYmYgngzGKuQhdrGEEtNBH12oKcBVwIPG7zaTfAlhfZIq/xsh6QyfTZX36
+            mSzUsshYPmqUM+RymH/PrJjpWz15XBdFUiY59+hNa9kqjalyTg0gijuu6JkKbYTK
+            SnFd2i9Ud/meniC4oBlLyOc0PX1/uyeIY1SFbGHdwBcHCFdIzMow2fZWLzimsNyB
+            GIO31PbyhG3ZCb2cOzYC0XqJUdP6lHbAyDBDiGWu+dBupDb8d96XeaIF0cTgOjxJ
+            0FrDMk1OAc1HjnhGo4QrEPMT0vMJmRDcDWXp60pFycRIrjGyXItMqkW06Xlr5HvF
+            OM8q3gjz6s7/Yi80EHKyFEHsvLl8jw2OXYhSiUEy6mSfii5k4Hhs2PBJFKcxLqZA
+            tH0caDA4zJia8FdlaTHI9OE33TvP/9uxvY9kBJUaeMdLxCo4T0keOiam2b0K/H8N
+            owIhdVJmXtsAFiw+t7KKZku9kQtkav8hEn1G++VQXL/XUjxvv3CewDq9cbNW7aIU
+            byjUf4jPR+kI4TeyR01YMDP2+O5Ld0/NxlCKqF10w8KVs1OsWFBagC7I4iPy99XS
+            XAEWw3W3SSGkz+9t2cqmXTxCPIvU0ANjkz8PoNAfx9HC3UWk3So1MGht0FDR9QVZ
+            AOzPM4U43wnYrTp1sq4N9Xh7xU2m2e7iUt/g2dtRFvx0vv2qMt4ianqzYiB0
+            =1619
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
-    mac_only_encrypted: true
+    encrypted_regex: ^(data|stringData|.*key|.*crt)$
     version: 3.10.2

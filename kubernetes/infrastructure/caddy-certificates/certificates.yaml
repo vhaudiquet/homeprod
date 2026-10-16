@@ -163,6 +163,22 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  name: s3-rhema-rs
+  namespace: caddy
+spec:
+  secretName: s3-rhema-rs-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: s3.rhema.rs
+  dnsNames:
+    - s3.rhema.rs
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
   name: www-rhema-rs
   namespace: caddy
 spec:

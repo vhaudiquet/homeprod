@@ -15,6 +15,14 @@ get:
   ttl: 300
   type: A
   value: 82.64.154.58
+s3:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+      proxied: false
+  ttl: 300
+  type: A
+  value: 82.64.154.58
 www:
   octodns:
     cloudflare:

@@ -142,3 +142,8 @@ data:
       tls /etc/caddy/certs/get-rhema-rs/tls.crt /etc/caddy/certs/get-rhema-rs/tls.key
       reverse_proxy traefik.traefik.svc.cluster.local.:80
     }
+
+    s3.rhema.rs {
+      tls /etc/caddy/certs/s3-rhema-rs/tls.crt /etc/caddy/certs/s3-rhema-rs/tls.key
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
+    }
