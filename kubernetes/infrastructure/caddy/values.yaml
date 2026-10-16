@@ -88,7 +88,9 @@ volumes:
         secretName: get-rhema-rs-tls
         optional: true
     - name: s3-rhema-rs-tls
-      secret: null
+      secret:
+        secretName: s3-rhema-rs-tls
+        optional: true
     - name: routes
       configMap:
         name: caddy-routes
@@ -157,7 +159,7 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:IO4YZvu3BxATq/oW4Tq/BU3x4oc=,iv:IVwP+Pqc4WX0tOyBv4TBGcB48tI4R9krE2k14nGGo5E=,tag:YGR1+9c3CnkYBd29j5zFNQ==,type:str]
+                    - key: ENC[AES256_GCM,data:AsOdq9OGQbAGV42W4d22EGVMi5E=,iv:U3sLu8pI7fqOPbvpfpVz21cUfwovKRFi8jY6laTyStY=,tag:EQVSFAzTYw2En2xdGTCF3Q==,type:str]
                       operator: NotIn
                       values:
                         - "true"
@@ -171,35 +173,35 @@ affinity:
                 topologyKey: kubernetes.io/hostname
 tolerations:
     # Tolerate the failover taint so caddy CAN schedule on p330 (small-node-1).
-    - key: ENC[AES256_GCM,data:x+j/W5FusRl+,iv:5uXOTvjiBy6jd7DaiMeYqN3dcau5jhEnDzGN5fqZk10=,tag:dVRfHdyeG85T3iZ3xc4lLw==,type:str]
+    - key: ENC[AES256_GCM,data:s3X0PmRJCCVh,iv:UYZl3EsmdSTdF9NoYsL+zbxLlkfO2GU80Sy3CpSXMBY=,tag:35UtC37ldCItR9fAtSXVVw==,type:str]
       operator: Equal
       value: failover
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:2mnZnF8eARuD+IkEir+jxzwXDBJ8K+uTcP6iM7DwXPEXntqC4w==,iv:vh4RwXNXQbW+w13txDzBo8VdQZt8BepoSP/5oLAoCl4=,tag:NABR8rjDGhs8G2HD43TYaQ==,type:str]
+    - key: ENC[AES256_GCM,data:NYCyZsj7wMxKUjaDu+rUOQYxDKvvEwSWuDAxQkSGTczXyApCbw==,iv:3AcvLXryeZ6dfmqanFpGOgEf1nGuEVbvUmZzruxzL98=,tag:Daa9AgXQZkkr7RIzljWOeQ==,type:str]
       operator: Exists
       effect: NoSchedule
 sops:
-    lastmodified: "2026-10-16T07:01:46Z"
-    mac: ENC[AES256_GCM,data:rSpWoufRJ+dt5V0Rgqb5t387rQAQkcR821ojbVF024R9Llf02oqZpBkl/Kr0/tSYzJP4Q5oQw+p9E05r6NuVa5iwmlTYxTrbk5dyvtwPVdO8lsZrQ5MchLbxue2xC25fEL5JV7KGFMhhzp+qwl9Rde8WVGYK69asSO/rmg9i85g=,iv:IWsodxdyVhsMXKqOVhG+lRalNyX2UnhTpAdarI8HPT4=,tag:xvbti1fClqW0tUrUSVXBgA==,type:str]
+    lastmodified: "2026-10-16T07:06:11Z"
+    mac: ENC[AES256_GCM,data:kMIxep2WVIr8/uAiw12T1JXMbtpyijo1c1MOOUKuok2Z1zSrnFZovgIup3u8/2BhqJ2UUDm5hFJi41Tsq45ba5ELs4PX1whi6EXlHQJxNo7ScfepEi10es/wa+p+3w9V8Yv9cklIWk14zh0UABs8jRzOJXhn5XI3O644CJSULQA=,iv:3ssxqRNRvXbmn0HiQFdwoGVbsnzvtQxfpHPIUpplMK8=,tag:5VRyB/Hh4tZUWp6KCPNSQg==,type:str]
     pgp:
-        - created_at: "2026-10-16T07:01:46Z"
+        - created_at: "2026-10-16T07:06:11Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ/7Bbg14RINRrIeE1cfYdX7moaWk9FtH2/bNpF1qMMKJ6ZV
-            ddZlULVUkcH2BvXJpuxy3WsoI+AShU0rwsWNqSNiX8F/Lbw3FBkejgogARGDM89H
-            NAcYJOmHR2mILoFxn99Zf2a2Jqh4dmCgqxRiAo12SeeFCV2JCB55yfM0GkWABkqH
-            uZa8ogCG9XafXccvWIqFS5FN5PyZm7ndF4Qum/tWV5HauKWPEQGFQTVkCj6+PzeD
-            MRn3R5QOs9PXDlWHIeFJ/xDqS1FT/ZCxlzEyHxGYWdGri7JDONwkqhgUQ/1oBElz
-            wn5OhcmzeE5MRe3ZSs4Ul2lbqH1Hue8LRx4xgfLU2Y6u43s1d30lXgVbJC/6HvsE
-            C80SC3+xmsrcyGBM2+iy5gPJLk6kS9S2TGEWJuhbdNymS5UqvvNPTRnQ6Gl85EZx
-            ycFTsEAzf3XI3z5QCo8WbW0AXsvkLH7J5xTm5ipHXg9ziNq4+JKXYF5M+vvaDKaa
-            TrAoLI9yM/izOuFfW6GE6P/NiE3Ao93Vy1LjCGkIPIacW0USf+PHYXH+qoAOmRHX
-            7I10u+MHuXU1i29LG3E6eEvakoDhzf4/MOKfb4sNfFf/R1NhHP7WyJICtVxFYJpz
-            hCjXpLWh1TexEZHHJQXGPt3f7SSmspGuj19fkZ83CGPRspKHbDJWWu64KNg45hbS
-            XgH5WBcMHxzyHwjnMgbrvg+AoYB836fY25RdQBL+JwaZzGR+0FbWGLZ1Q21INysh
-            mFepL86/g1RQbehCgW/MX5+xpch9e5P1RcBzCDA+M0DjfKnZLnJsqNQMovwlBto=
-            =dlhb
+            hQIMA7uy4qQr71wiARAAuN5nBauJiH5bFx80iF2W2XJDwMCFG+SPlqv2ErxVaYkD
+            kSt8pA0o4Bzqr6gP6cEgEhzQHAVVvsvTZJTY5lX6KWNRxhz/RXDhxAi9xdBHQ81f
+            dDWn7pgD8sv8cODM39yeukhGlHxZuk7FiUJ4fBnouojWUCxf2Ib5m5TEaWwmmv5n
+            EBBjjcbGZzyWBzCkLbEY/ML1FIx5j/jyZjpjMp2En1309ljIBckjLk5s9Kntp6oJ
+            /TkW/BhU96y8fyGM6u3FV54wORNlCT3P5cDT4rsQd+KgG0DDchAdUSb7hmBEn+iC
+            W/eUsp7nhObkZZBjTKYeS502Q+3RUEXoLnVLWougDxMSA1rJNS3nkgzK1cmKs97/
+            Ghnb5TUGPmoQMUltQzxInDq1mgeGfuFUffprYprYKGeVC/oQ6uPHE4jVZImlWRjv
+            w6YPHv/2XhWMN5vH/ybsrqxcFb5+1z8u8J58GAJ37hDXzkL8ENJUouonM3sywaBc
+            VbXHzJwYEuLhRfNpay6ovwPkhU25gV3atBiXloIWc0PivPjOAJqqs0vkMgRiA+3R
+            yUagVKdyavVUhqou2LOxSGSv77uFPWZwhqUILtqzTeSE6GHUxVqKQPa91klRRNI7
+            YWNtM7ZqSeANK99h5vgphhPZpuKkIzXHSLEXdplxvaRERfWMU3UGCDZOMVcDMlbS
+            XgGovkHZ9+NKVgZVpsRyQQutbSJqvHVZJx162gu3UKC1IgnDnhslOGKVWw/oKNb5
+            KyPf0CLk9BCAlSngr5D5pw4GJ9eq7RNFOqC32LPwXgNSD1AfLFHYGWh3RZM+81w=
+            =eA3w
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(data|stringData|.*key|.*crt)$
