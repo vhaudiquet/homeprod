@@ -9,7 +9,7 @@ adminUsername: obsidian
 adminPassword: ENC[AES256_GCM,data:HhKrquaOqxB3BkhC3MM=,iv:WADwvJbfNWNfHipSy3prQO6+Xo5haL7XTxANMdb/lbQ=,tag:dInMwg2yBubwFIAtt+rW8Q==,type:str]
 image:
     repository: couchdb
-    tag: 3.5.2
+    tag: 3.5.3
     pullPolicy: IfNotPresent
 # Enable CORS for Obsidian LiveSync plugin
 # Equivalent to the Traefik CORS middleware in the Docker setup,
