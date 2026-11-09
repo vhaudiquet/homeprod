@@ -12,7 +12,7 @@ spec:
         name: paperless
         namespace: paperless
       chart: paperless
-      version: "11.4.0"
+      version: "11.18.0"
       interval: 1m
   dependsOn:
     - name: paperless-postgres
