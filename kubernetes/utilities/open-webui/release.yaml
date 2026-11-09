@@ -13,7 +13,7 @@ spec:
         name: open-webui
         namespace: open-webui
       chart: open-webui
-      version: '16.0.0'
+      version: '16.6.0'
       interval: 1m
   valuesFrom:
     - kind: Secret
