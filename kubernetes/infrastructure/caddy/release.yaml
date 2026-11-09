@@ -13,7 +13,7 @@ spec:
         namespace: caddy
       chart: caddy
       interval: 1m
-      version: "0.7.1"
+      version: "0.9.4"
   valuesFrom:
     - kind: Secret
       name: caddy-values
