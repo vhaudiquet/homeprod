@@ -1,4 +1,9 @@
 image:
+    # registry/repository are restated here (same values the chart defaults
+    # to) because Renovate's helm-values manager only tracks a tag when a
+    # repository sits in the same image block.
+    registry: docker.gitea.com
+    repository: gitea
     tag: 1.27.1
     rootless: true
 ingress:

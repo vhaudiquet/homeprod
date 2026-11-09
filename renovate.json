@@ -40,6 +40,20 @@
       ],
       "commitMessagePrefix": "chore(kube):",
       "commitMessageAction": "bump chart"
+    },
+    {
+      "description": "PhotoPrism tags are YYMMDD dates. Read them as dates so each release is a minor bump instead of a huge major jump that Renovate refuses (maxMajorIncrement).",
+      "matchPackageNames": [
+        "photoprism/photoprism"
+      ],
+      "versioning": "regex:^(?<major>\\d{2})(?<minor>\\d{2})(?<patch>\\d{2})$"
+    },
+    {
+      "description": "Jellyfin tags are YYYYMMDDNN build stamps. Read them as dates so releases are minor bumps instead of huge major jumps that Renovate refuses (maxMajorIncrement).",
+      "matchPackageNames": [
+        "jellyfin/jellyfin"
+      ],
+      "versioning": "regex:^(?<major>\\d{4})(?<minor>\\d{2})(?<patch>\\d{4})$"
     }
   ]
 }
