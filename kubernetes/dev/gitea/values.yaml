@@ -4,7 +4,7 @@ image:
     # repository sits in the same image block.
     registry: docker.gitea.com
     repository: gitea
-    tag: 1.27.3
+    tag: 28.3.0
     rootless: true
 ingress:
     enabled: true
@@ -35,10 +35,10 @@ postgresql:
     global:
         postgresql:
             auth:
-                postgressPassword: ENC[AES256_GCM,data:4Kd4qz3DuJboaA==,iv:I9K1+j2tv7MKel9ej2/AED0JrxIfeb3D1xdDKCS+jTs=,tag:MpQ0NjglUvGZXzeOQjIj3Q==,type:str]
-                password: ENC[AES256_GCM,data:YX6VvEJWfkO0dg==,iv:ixQkW2q7Y9YRIGMIbqWclA5q9Ufw+lNS7Gc4Wd1toiY=,tag:krGDeY+E4+PUjowt8jKAmA==,type:str]
+                postgressPassword: ENC[AES256_GCM,data:Cl29f5lLk223KQ==,iv:K1Tz2t41cC03aJngxH9A63/bDs9/5LcF7GQ+Z6sCwnk=,tag:qEWTlIS6tU0l7InoFjQRSQ==,type:str]
+                password: ENC[AES256_GCM,data:YGanZYpDpBtTwA==,iv:MEuJjKtu4GJpYxkzzMUxD4jVtmqZonEP9cyFye3xOuc=,tag:6h3OSPHroFPSGeuhTvEUkg==,type:str]
                 database: gitea
-                username: ENC[AES256_GCM,data:KvdO0oE=,iv:vFYOVlo2kvOHOhASDlccTfcpsgAkS6YXOLCm5sDcxaQ=,tag:9J6Dmc3vYpHlFSggoGVmLQ==,type:str]
+                username: ENC[AES256_GCM,data:LHws8aY=,iv:dxU7cMNZyVXFYkJDLEYSY7p5mVBu3sXF7g0xm8aQBuM=,tag:jh1kjZ55QcmFrs6jpI+PNg==,type:str]
     volumePermissions:
         enabled: true
     primary:
@@ -82,8 +82,8 @@ gitea:
     oauth:
         - name: Authentik
           provider: openidConnect
-          key: ENC[AES256_GCM,data:F0AGCSAkU2ZWmS4jniL8k32ABwrjtURAPLa3RKOCpJoaMkKRlRrqwA==,iv:vQcD73C3itBqKFEiv8PhLD2G3exC0zc2NDE3LGYpvXA=,tag:24nO98pP7a00sTBDWEMsBA==,type:str]
-          secret: ENC[AES256_GCM,data:0/6XDvRXUnQXrJzivtDS6b+mmYjtOVcHhGmQJPFG1zDyO9BksHKau0D+hIsfM85761U7LAISct0HungGNeOQOULnmvVT8hEIgC21RHjArXztJY2964NS5XXfURc7pVxOJ7LSDFFd4azExwhrTktqmerG+F6SI5V/oq2iYYqJA7o=,iv:ShYcIgyccHvEFhVn++gBR7gmMOEKcBz9sj/Y+4pk/Hc=,tag:SkFM2d06O/zhpfVji4QDKA==,type:str]
+          key: ENC[AES256_GCM,data:qy3qhgaC5TgKMbWEqEHXYDmpP0db2kzGP815IKjHWKqD937K1Vz+Vw==,iv:77INjoHnuRzyT0qnF5x32vQ4f6ufy1J4DKRWFdDZAqM=,tag:m1oYIQRTPsTEQ1X7IV3C0A==,type:str]
+          secret: ENC[AES256_GCM,data:hLLEnE76+YbixG/GMzrS4Xt9OZn5sPBxzEI9V5hmva6em2UUsNJgWmiXck62lOIHFznBLfTJVa6pBUb/Etg2SEAqJx3sKbNGS2rDyGIDp4uhHNqvEGF6+5ceSN+KbCkLz+gcyyJcYF2asguLX/O9nY/yrHxadVeRQdvyU3JxvAY=,iv:aMtu+sbaUkVvfaQnfmc90ewlfa1cot5Ul2yr0wq4Tg0=,tag:ZYFnfnqtDLkrBQg3njlgHg==,type:str]
           autoDiscoverUrl: https://authentik.vhaudiquet.fr/application/o/gitea/.well-known/openid-configuration
     config:
         APP_NAME: Gitea
@@ -97,6 +97,7 @@ gitea:
         database:
             DB_TYPE: postgres
         service:
+            DISABLE_REGISTRATION: true
             ALLOW_ONLY_EXTERNAL_REGISTRATION: true
         actions:
             ENABLED: true
@@ -109,6 +110,10 @@ gitea:
         indexer:
             ISSUE_INDEXER_TYPE: bleve
             REPO_INDEXER_ENABLED: true
+# A schema migration must not run underneath a still-serving old binary, and
+# both pods would mount the same RWO /data volume. Stop the old pod first.
+strategy:
+    type: Recreate
 # Resource limits for Gitea container. Sized to receive a full linux
 # kernel tree: index-pack on ~12M objects needs several GiB and more
 # than half a core (the 1Gi limit OOMKilled the pod mid push).
@@ -121,29 +126,29 @@ resources:
         memory: 6Gi
 replicaCount: 1
 sops:
-    lastmodified: "2026-09-30T21:03:47Z"
-    mac: ENC[AES256_GCM,data:eHMr2BqfWNI32S14XEivXtXSIRiCBCAQz06mwtbNyXc1dI6YgF4pKdyIbfRWQW0ZYcbvqKxtyugao+lhc24Ds/GgIbdwchlMyz/DyuOQtM5GMHcSoInQUQVGzrM8hSyztKzq10bH0DmKvT68+uaVx0hf6rzxEqLRb3GAk4q3310=,iv:5kJ6bYE/54EbDWctSXBcVTjJtc/J3mV664tFD1WTK90=,tag:AAbHK3njH0PCqw9yjSWevQ==,type:str]
+    lastmodified: "2026-11-09T16:59:52Z"
+    mac: ENC[AES256_GCM,data:5ONMgVeKvfglo2wQmO4kyyjwOKUMSlthfTaWkgwlaDLHHOPKtrvHj0KM+QTRDcEmRMrB5eLvhHLmk45gCWVnU1LvIvL4L3zdI6PdWHpJMFoPVPw2d3WeqlUDz1IWfNAH/I6SHRMgxBoJScuC53eSzglljhmZB3O7yektkOLD/5g=,iv:Ji9m1GzT07Noit8Hh/nf8n17gbCM8chPnRt4sqpgFEQ=,tag:qIIiIO+D0vCZhTCOSwKBAg==,type:str]
     pgp:
-        - created_at: "2026-09-30T21:03:47Z"
+        - created_at: "2026-11-09T16:59:52Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiAQ//Vf2Rdp8NG4AsbIIOiXabY3AzLyVbE9Pn52+FBF+NIfkS
-            XDqlgvMAWHtmV2LzvJPwPIUjCZkoRwmDsh9zi+W1XzHh9kKxzwvIxfjiqm8fwJh8
-            gb4a/y5mkkEqs+H0zE1H4D91dPbfOmDABJKaePmWTB+tc48bY6qX+LYs7hkPwsHU
-            sN64cidbIbzBoq0t1TWZFkl6MZYWX9IyqJE1XcqYDAvwxlJ4JMJH2pGQlY8+7U96
-            YQgbXhuAik5IzNQlmdpq0mt0j3KZgM7KbLJ2en6JAiO0EhD3xKbFnC0bPniUEX2c
-            Yv6Z/1NrmNImCwbOkrNF9sqto4d9VHFDH8udSHKCXcSbzJmkfF4XUOBuNxtprmQV
-            Wlcw5ZMFpnOgRn+V2gb0Cd3cm5rje0QAYCgIGUfduvMm9BReAQTvpUdKkqKs0mLr
-            XiRAG0HfjjGNcVqWA0H0L5UxlVwHJh6zSNHDzTPVlGenVcQSpiUORKxZqANpQchW
-            /wtFghatZFKbbzEz6Mo5C3hMKOXjl/VNWsmva8BoloDKPm9pWH5S4x0ExYiOWSOk
-            Yk9j+twTgJXMeptO55qMCJKl6CcRsbgVr5yJJXWC6I3tr2ssx1BnSAPYDviuhsC1
-            YAbgFlvdzE6n8FmTixVwzVZrTbZV7alz9PECViMP5evAphe3n1MvnLEvMM0WOm/S
-            XgG0Ty4hQ9ZD7gzhIrh06xVuh+MC/PaMYIZ7LBVHgQy8xbAgQH0qXkF39/9rCIws
-            A/D0FN29uXvfSWzlgSrGOj218eKHX9g+nZGIAHeejd/FJVnOKQpUboUlg/x3jqQ=
-            =943y
+            hQIMA7uy4qQr71wiARAAk5XESPx386LjnY635rsBvJyn8z8OIevKJkjfng6XjWFM
+            3nZGdIpWlzh+3RzFYnQm5cQ8AK7ZVQGg9+ldr18bRdxyRqCJB+EZAOkQqUF+moBf
+            cO9qrkcwsRpX8m95CvYS0mbj4CNjbGmVc4gg2/vUKYrrW3WFldD7/tcj0WNO7KoV
+            g8a3K/KBP4m5QqlPf6iN8SJE5IPCw7Ntz1TUV4KMkP8y7tBE55Uf2WhvV2K03kxP
+            B/LuXz7gs3XbeuPQ9ftEVyDXuyPiMqxtWcKTIXMdlU+AVtL9oMjyqajnVW4PPFKQ
+            oJ2/aZafHICyWNq8eA3zccD9Myv7PNfueOQsVq2S3IP/32hs4jv17zWQuvFIKmWA
+            hmXxz20fLtxclzPZK577VADJdoS+XbA64GMNjfDhfRP21PiO8pHVQvyo+bVDAQfh
+            xBa6mlcQlSrzjdvF5Hk2S+busP8pYPhAmxC64wQpt0mWPsB7DjW14yDTVoZgXxfa
+            lzjOnh+BH+i9qcCFf9JI15y1nIJLMQ0heQ3eoyHa/kp3xRk9r5X1EQZzLMoqTHWt
+            VNDjJbV0ptsfa0XETOPZWurdj12XuGf0Bt9sLi0MrvxZp581J+uIcHUcKRcORfRX
+            w/73eRSq78/jXEW34RZi0I5apnuTv4NnljjKd8KdVwpbtQbIfUB8Il0ANWD5TI3S
+            XAGLbe8OhWSsesqXPHf9VE4W7SXmu5EGcDKiSV6sUx5jw0uLGbIEdxC285hp5i9T
+            LO8nk66zG6OgFgQ26mUns6PD+oxKXfs4TIGdymGvXrPMsLn3URrk5DV+Jb3+
+            =zlyJ
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
-    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml)$
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
     mac_only_encrypted: true
     version: 3.10.2
