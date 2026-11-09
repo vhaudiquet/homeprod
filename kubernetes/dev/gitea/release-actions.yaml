@@ -14,7 +14,7 @@ spec:
         name: gitea
         namespace: gitea
       chart: actions
-      version: '0.1.2'
+      version: '0.1.3'
       interval: 1m
   valuesFrom:
     - kind: Secret
