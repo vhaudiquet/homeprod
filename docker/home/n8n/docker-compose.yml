@@ -17,7 +17,7 @@ services:
       - "traefik.http.routers.n8n.rule=Host(`n8n.lan`)"
 
   redis:
-    image: redis:8.2.2
+    image: redis:8.10.3
 
 volumes:
   data:
