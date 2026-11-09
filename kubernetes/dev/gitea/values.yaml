@@ -4,7 +4,7 @@ image:
     # repository sits in the same image block.
     registry: docker.gitea.com
     repository: gitea
-    tag: 1.27.1
+    tag: 1.27.3
     rootless: true
 ingress:
     enabled: true
