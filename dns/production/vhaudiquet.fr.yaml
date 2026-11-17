@@ -257,6 +257,13 @@ _submissions._tcp:
     priority: 0
     target: vhaudiquet.fr.
     weight: 1
+alexscript:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 82.64.154.58
 auth-nook:
   octodns:
     cloudflare:
