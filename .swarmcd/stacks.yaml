@@ -119,11 +119,6 @@ tandoor:
   sops_files:
     - docker/personal/tandoor/.env
 
-alexscript:
-  repo: homeprod
-  branch: main
-  compose_file: docker/production/alexscript/docker-compose.yml
-
 excalidraw:
   repo: homeprod
   branch: main
