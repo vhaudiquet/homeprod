@@ -1,0 +1,10 @@
+# The vhaudiquet package repository on the home Gitea, where the alexscript
+# CI publishes the chart on every main push. Public: no auth.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: vhaudiquet
+  namespace: alexscript
+spec:
+  interval: 1m
+  url: https://git.vhaudiquet.fr/api/packages/vhaudiquet/helm

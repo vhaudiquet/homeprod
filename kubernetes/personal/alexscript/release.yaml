@@ -1,0 +1,23 @@
+# Tracks the alexscript chart as CI publishes it on main: the timestamp
+# pre-releases (0.1.0-YYYYMMDD-HHMMSS) sort above 0.1.0-0, and the chart's
+# appVersion carries the commit SHA the image was tagged with, so
+# values.image.tag stays empty to follow it.
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alexscript
+  namespace: alexscript
+spec:
+  interval: 1m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: vhaudiquet
+        namespace: alexscript
+      chart: alexscript
+      version: ">=0.1.0-0"
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: alexscript-values

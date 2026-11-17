@@ -1,0 +1,63 @@
+# alexscript — books HEM rooms on MyDiese when the window opens.
+# One replica by design: the scheduler lives in the web process and the
+# chart refuses replicaCount above 1.
+replicaCount: 1
+image:
+    repository: git.vhaudiquet.fr/vhaudiquet/alexscript
+    # Empty: follows the chart appVersion, the commit SHA CI stamped on the
+    # pushed image.
+    tag: ""
+# MyDiese credentials. The password is encrypted at rest by the .sops.yaml
+# creation rule for values.yaml.
+auth:
+    login: alexandre.haudiquet@etu.hesge.ch
+    password: ENC[AES256_GCM,data:24gQnCGa9njjVw==,iv:qaS7TOA5KmimF8gEidee51gP7WKf6tn1NKwaCpppWic=,tag:UhkoMFwmmdHY7rGRo4QuHg==,type:str]
+# The Flask UI has no authentication, so keep it on the LAN.
+ingress:
+    enabled: true
+    className: traefik
+    annotations:
+        external-dns.alpha.kubernetes.io/enabled: "true"
+    hosts:
+        - host: alexscript.lan
+          paths:
+            - path: /
+              pathType: Prefix
+# SQLite database and room cache. Longhorn is the cluster's storage class.
+persistence:
+    enabled: true
+    storageClassName: longhorn
+    size: 1Gi
+resources:
+    requests:
+        cpu: 50m
+        memory: 128Mi
+    limits:
+        memory: 512Mi
+sops:
+    lastmodified: "2026-11-17T17:21:15Z"
+    mac: ENC[AES256_GCM,data:eTqE/oc/rMFHGtc9H9zsCZVMz8aBz/SQzpORMnMOT/H2mWSVQFXZmedRlJdXWQ5LwhefsoKbxjn38b+Mr3mUZjxb9sVRVaHiNXNGu90OIfsWwQjNG2v+TaB1vshD+ESPJFOPgx2hofUKcJcD08WzC8slpMdlDYE+EaQ0VzENU8E=,iv:GdYYyH0HjvwFWcRvXKbWNUPwSdPS5rIEwJE4+zGAMNM=,tag:+HdWSi6J9rGpsdSeQmATZQ==,type:str]
+    pgp:
+        - created_at: "2026-11-17T17:21:15Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ/+LhY/0NRjzR1BQS17bxtCE3egjEgUxH9gsHBshFWBHmRA
+            mS1MRMKhyXnW+drH2eQSvDWvBDOD8qXDTOtoR04H09fbtNOScSx7MoYsJBhHSA8B
+            QqiC23QfvUwrcmqeq6fify1iscE6Zd3S/yCcR189t3XRnI1HyzrRT7Buq27cu6bG
+            8GERSh10TWRVeToZabnLAQ9tRAMNm85J2gPJyFmuDR23OlJ7xB+1PfWiCDL/UHKw
+            j8HaUbF3fzlV2eyQbTxIMuHsas9mDqPiEUuq8dVGEE7uf/vYI0rGcdGoyr6QXckP
+            liB9zCgU/028zMbARcQWSZz83S2wKU59TADqC7GWY0eigEU3G6Li41Ot87h6I2tK
+            zjq5ApMfbEvOo2KyRsp8LpAHy1ged7Z1Bo4WrWClNpCRArkkDpqSUZLYXLZdKy14
+            OCP0GdHxyEQfpiWdiBUeAZfWpKKnaYd3gNuiILHsY2IT5A68TjW+cUM6FDvBk2LR
+            6BTFtvM5AOTSbxxBs8pTk+X8hdrrSNZewa36xVAdtNkBKueV57UpZpL9b7cNwYAh
+            46zy13cg28fQj9ZbxENDAhlscLLAEUQ4JIxsMUN8/1AZnAYN9/5kcTJdgTKNs6RK
+            kSBOl8D2eh1qY/rmRAm2eqlYo8JaXA6ajM3Zm3nT4Jrn8GzSa3P7liYrb744h+TS
+            XAF1rWZ7KxE3j7jPniE39A0fkX8TMPtDwqmhahGihpAe2TKsnztF8VEa+2cnd0aS
+            skKqvWDo1JaffVZsz6nZ+1RyqP5wI6c5xo8Z4LCgVw5QVpTCWm6XstXKEuUp
+            =Qtas
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
+    mac_only_encrypted: true
+    version: 3.10.2

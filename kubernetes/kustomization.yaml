@@ -34,6 +34,7 @@ resources:
   - home/home-assistant
   - home/zigbee2mqtt
   # Personal (apps storing my own content, grouped by content type)
+  - personal/alexscript
   - personal/paperless
   - personal/radicale
   - personal/rhema-claw
