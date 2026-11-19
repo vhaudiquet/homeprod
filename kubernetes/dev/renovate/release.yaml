@@ -12,7 +12,7 @@ spec:
         name: renovate
         namespace: renovate
       chart: renovate
-      version: "46.260.4"
+      version: "46.447.1"
       interval: 1m
   valuesFrom:
     - kind: Secret
