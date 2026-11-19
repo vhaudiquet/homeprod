@@ -7,7 +7,7 @@
 # Container image
 image:
     repository: stalwartlabs/stalwart
-    tag: v0.16.27
+    tag: v1.1.1
     pullPolicy: IfNotPresent
 # Single-node RocksDB deployment.
 replicaCount: 1
@@ -53,7 +53,7 @@ mailTls:
 # and are managed via JMAP/WebUI.
 config:
     '@type': RocksDb
-    path: /var/lib/stalwart
+    path: /var/lib/stalwart/v1
 # Main Service: ClusterIP. Used by the Ingress for the management WebUI (mgmt)
 # and for in-cluster access. Mail L4 ports are exposed separately via mailService.
 service:
@@ -119,6 +119,18 @@ podSecurityContext:
     seccompProfile:
         type: RuntimeDefault
 containerSecurityContext: {}
+# v1 migration (0.16 -> 1.x) is done manually with stalwartlabs/stalwart-migrate:v1.0.8
+# into /var/lib/stalwart/v1 (a subdir of the data PVC) while 0.16 is still running,
+# because the chart-native v1Migrate job does not mount the data PVC and only supports
+# network (SQL) stores, not RocksDB. alreadyDone=true clears the chart refuse-to-upgrade
+# guard; the first upgrade writes the stalwart-stalwart-v1-migrated marker ConfigMap.
+# Run BEFORE pushing this change: snapshot the PVC, incremental migrate, then at
+# cutover: flux suspend hr stalwart -n stalwart; scale sts to 0; final migrate run
+# --final --yes; push; flux resume. Afterwards restart once with
+# STALWART_UPDATE_ROLE_PERMISSIONS=true (extraEnv) to grant new default-role perms.
+v1Migrate:
+    enabled: false
+    alreadyDone: true
 sops:
     lastmodified: "2026-08-26T19:28:03Z"
     mac: ENC[AES256_GCM,data:Fh5vxhnPiSRaC/xMV06GwoNAqfiZYJHFj3xKrWzMwau2aC62JTDkEpmm/UN7w4ILQk05xjUkcoSJF5IcKT6+gjkLRVt8qwiarJDZ3SbwM11x7rm4m0wBTJIMeytq1h68l5mQ9i5yW5bxnBNDpUqaAAmq/Ev0/+6lspXw/kfJTUw=,iv:Tg5ZYPd2bpTN/gu99oJEcl0aKiNtX5xca0MUfzCXILo=,tag:2IKyAEuTjp8QhhUaNb1+5A==,type:str]
