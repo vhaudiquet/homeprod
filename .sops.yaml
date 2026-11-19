@@ -4,7 +4,7 @@ creation_rules:
     mac_only_encrypted: true
     pgp: DC6910268E657FF70BA7EC289974494E76938DDC
   - path_regex: .*.yaml
-    encrypted_regex: ^(data|stringData|.*key|.*crt)$
+    encrypted_regex: ^(data|stringData|.*key|.*crt|.*[Ss]ecret.*|.*[Tt]oken.*)$
     pgp: DC6910268E657FF70BA7EC289974494E76938DDC
   - path_regex: .*.env$
     input_type: dotenv
