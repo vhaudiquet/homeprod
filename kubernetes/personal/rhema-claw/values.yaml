@@ -10,7 +10,7 @@ image:
 # shells out through the coding agent, so the surface must not sit open
 # on the LAN. Encrypted at rest: the .sops.yaml creation rule scoped to
 # this file adds `token` to the values encrypted_regex.
-token: ENC[AES256_GCM,data:wOS3kwOvv3uALUpZBL8BgW0OIR8eP0fTsP8Anzohe7WuvE0dy8EN6rO+dt2GwUGk,iv:5h/NiOp4uIpcwClBFN7VHc6rtN5n0oH4n7hPzcW/Mms=,tag:n0V7+B1gT7KxOrjTTOBU5w==,type:str]
+token: ENC[AES256_GCM,data:Mi3qNbC1/Dnkqd35G+AneNkKsU/rhGLSDCCh91A57PExHBkQEy3tujfEQRJ2OtvC,iv:CL+nmvLPHqsdLYZ7/Oa66U1qLbZ5MBk48V/W/F5qJUM=,tag:DRzabnP28LBKKlQAx4YqMQ==,type:str]
 # No provider, model, or credentials: the backend is selected
 # dynamically (nothing injected, nothing pinned) — when a dispatch or a
 # chat turn needs a key, the daemon resolves it through the rhema
@@ -36,32 +36,32 @@ persistence:
 resources:
     requests:
         cpu: 100m
-        memory: 256Mi
+        memory: 512Mi
     limits:
-        cpu: "1"
-        memory: 1Gi
+        cpu: "2"
+        memory: 2Gi
 sops:
-    lastmodified: "2026-11-22T23:45:11Z"
-    mac: ENC[AES256_GCM,data:1phuT1CgcckM396isc45Xx7dlcZ+xWqCCjWBOe7vMsx/Vb9VKL4ikvys60Wo6dhPGYnT6Zglxls+eIRoAccqDTPju3YGa2Z67d10feG36FJCMtu5ytTrKuaH37RGQKKivwGeWIqArjjPQRQACbSvGqn+Wrqr4AGfR0dtblpAIcY=,iv:nQOELbKdnEpOfYLzmGE9AnoEppBKfbbdGGstpjQNzLU=,tag:vSxy2KDngbb2ZUXj7EI2aA==,type:str]
+    lastmodified: "2026-11-23T00:10:58Z"
+    mac: ENC[AES256_GCM,data:XKibkySBCzBj24jh9BqlY0ztvoEYuR7d8FGXGFjxpxwLpS10NZ2cb2W5HIhvNo+TupP+0NzDhvRg6ZslCn4sPxnETly73glqADsHwMUr2i3HkVWkx2Dl7E+17sXzXjEXcZJrVGW6w1VsUrl2PcvHudQTY4JdpbJ3RqrQRtrYL38=,iv:/F5uDyye/uipRyyFwjS8v8rOyh66q3zYYqGu0RN89gw=,tag:uVIigTjAlGPTpw4zKM5B0Q==,type:str]
     pgp:
-        - created_at: "2026-11-22T23:45:11Z"
+        - created_at: "2026-11-23T00:10:58Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAh8uPZ/T5JUxji5POTfb8K6SfpX8nenhVl7T+lGWtO+/3
-            xOr25Ai4olJeCbVAaRNJJE3FWLyCnvC9nBtvlsjhjRGeMSygLUkyJz5qRIYQVvZ2
-            V4V4NlxvfbzLBMFmSuD/rciGbslWEDTGpdRWKAGMZEzOxkUz0xHOO/8OHsRkR4bY
-            d0mB71wg4gO3x+sdMTiW3hkp/KXiDt/qKjggOFKZoPdfP2H57jl3BUIZS0lysT1e
-            dQ67rgcWn/lEbWaj6GkpAgFmdQAophNpXxD9DNLKnvQmT33GK4dAKSzS6xXuqfPl
-            HPliuMJvFQwhioBYMj1j8WhuvSAuFknSt9Gcp+NR9KiX9T8iGE3Z66+jcxFaqiO/
-            KXxtoLQxYx66AjUUl62QCi5Wa1dvmL1txq0udRyrW9gIg/Gq784so4/jKbtn58ek
-            wGJipjI2jKhW7qd6VJkoQRl2lHpHnpTfP0JZz1KSdqU/hubwXk4UeQoi0SrLxma4
-            jysqU3Mhey8JgdHGFzx5+6GLTGfnCG1/8OQwN7pDza1mranEVvVDnyldRy/YJkcg
-            QY923TVtmbiL53jdJM8xXUwRec9v7YQj3Gy2tHsboM7O7A+4DlrXOlfmQeMFpgLE
-            h4Mkx8jzGA6NmwVtYO1+CtDvMMiNEv46lB33vFFgoHuBdWOpdI34XF1Fbyyno9XS
-            XgELlTn60C5/OJicSc8ncSluoprdLJjxIQe2jXJyE6J7vp1n+Xg+BPt/7ee+tyI+
-            MjbwotdoxypidwGYzsHzYLIjSgn4wWbw+VdAv3qlu5E1O6woLweIFLByDpETAUk=
-            =WKgO
+            hQIMA7uy4qQr71wiAQ//SnnXtLSeBwhzgX+KH6PrPBbZuyn4IJkmVwtiXd0iaSlV
+            UsU4eOJ50EaX4mPKvKYdU63F3WqwSKOkSDmnseLkqa6vUwPC0dtQJ58SnmuG/lZm
+            Nu5EtYHf9n38y2kG8f9de+qfvXzYBHKOzB7j7/6T0+QN2ORXPIpQI5ylgFMtHRYe
+            IeDTQuSauSTXgOuqCqCVFIL+86Q4OI8/w/Ukn7vOyd6Nf1r5ObJJA13EUlpQn1/v
+            rLzvRtDuu+8rXDbsdViZQ6PUIxbUO807xLc4FLGVCyBHxU/A/B2NNjuWXXgvX6w+
+            yIVkVv0zLRmE06pQUAUwoXyeMyGSYwLIUCl2zFKLVzvjyf6MWGElD3O5QgkHDKKA
+            UKfzbeUC+iAzr0VwtztZsY1oQw1B9vOXIs6yzaZBCTs14EWi3/Y5lb9C6RsKbJBR
+            p2v9x+U7y3dHCRdOdo9R5+lDsghkCTdLpyoc7HsEhgMhU8JWnBIYuRCSrrlReiqA
+            WGYvAukSwMt5beYCUtBGN3L7nB9x1CTyVijOzBHUNM41YU3Z1lEEGAj7vBqUUg78
+            mgKW40vdYhtrw4JDZYSMb3Tj0oKW2++ai+WgvCqC9oN/enHQqsURCWE1b50SPzAn
+            AfalRSlGSbghYTQBDkLb+BM0Ea2KOUmeWgvETfPkBEF5bKDrxYqcxQLUU/eaR+3S
+            XgEXwVCuKdQWQkaH3V2WOtatokJTUwKMLuxgd4JTp6D9BABHbP+HgA1ITSj5B1ld
+            +1iCSNYcrEMhQM8K+8yZz2pUij6chn/OOepCR/eSm2Ikqgcixi0TKw5MzPqZGhs=
+            =G+CZ
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
