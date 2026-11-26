@@ -84,7 +84,7 @@ postgresql-ha:
 persistence:
     enabled: true
     subPath: data
-    size: 30Gi
+    size: 60Gi
 extraVolumes:
     - name: git
       nfs:
