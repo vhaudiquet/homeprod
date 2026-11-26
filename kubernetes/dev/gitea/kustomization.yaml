@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+  - valkey-cache-index-cleanup.yaml
   # Gitea Actions runners (gitea/helm-actions "actions" chart, same HelmRepository)
   - priorityclass-actions.yaml
   - actions-token-secret.yaml

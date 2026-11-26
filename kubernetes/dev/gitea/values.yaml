@@ -22,6 +22,15 @@ valkey-cluster:
 # Use standalone Valkey (replaces 'redis' in chart 12.x)
 valkey:
     enabled: true
+    # The Gitea cache adapter keeps every cache key it has ever written as a
+    # field of one hash (MacaronCache) and never removes expired fields. The
+    # hash reached 3.4M fields and the pod was OOMKilled at the old 1Gi limit.
+    # valkey-cache-index-cleanup.yaml drops that hash daily.
+    commonConfiguration: |-
+        appendonly yes
+        save ""
+        maxmemory 1536mb
+        maxmemory-policy volatile-lru
     primary:
         resources:
             requests:
@@ -29,7 +38,14 @@ valkey:
                 memory: 256Mi
             limits:
                 cpu: 500m
-                memory: 1Gi
+                memory: 2Gi
+        startupProbe:
+            enabled: true
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 60
 postgresql:
     enabled: true
     global:
@@ -110,6 +126,11 @@ gitea:
         indexer:
             ISSUE_INDEXER_TYPE: bleve
             REPO_INDEXER_ENABLED: true
+        # Gitea caches the last commit of every file at every commit it renders
+        # (blame and history views). At the 8760h default this reached 3.3M
+        # cache keys. One day still covers normal browsing and bounds the set.
+        cache.last_commit:
+            ITEM_TTL: 24h
 # A schema migration must not run underneath a still-serving old binary, and
 # both pods would mount the same RWO /data volume. Stop the old pod first.
 strategy:
