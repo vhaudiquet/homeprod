@@ -24,13 +24,6 @@
     values:
     - v=spf1 a ra=postmaster -all
     - v=spf1 mx ra=postmaster -all
-'*.preview.together':
-  octodns:
-    cloudflare:
-      auto-ttl: true
-  ttl: 300
-  type: A
-  value: 82.64.154.58
 202412e._domainkey:
   octodns:
     cloudflare:
@@ -77,6 +70,13 @@
   ttl: 300
   type: TXT
   value: v=DKIM1\; k=rsa\; h=sha256\; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvlO5KyPBJAYmGnIoaerGzNlWiiWCOiKaluIauTmRKArSDfDafDiy+k30mwtGRn4i4Q8EAWgplG4Xd3fRYCZsjsEna7QV0GDHsX5fY3eFPOnzdU0M5bbXne9UIztej+qUuPTq5BIZhCCNboAIKCKXbRdAJ+hVGnPkPUq+JjfD1EB2E4aoZ/ukoA+QYfq8A86X2TU1WQKNARRsQvGob1No1xyjtztu+1mt8FC15q/YGYfrNt9GxgPnWlsp2PuHgLblX8COiJMejWJ8DgRTmLc0ncEI3qVVpNICDzl0I8+cvkEgJxF6QA4EKB/SjzlfRooHbf7zwfxmcc5ndTsxix9NawIDAQAB
+'*.preview.together':
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 82.64.154.58
 _25._tcp:
   octodns:
     cloudflare:
