@@ -207,3 +207,22 @@ spec:
     - get.rhema.rs
   duration: 2160h # 90 days
   renewBefore: 360h # 15 days before expiry
+---
+# Wildcard for the rhema-together preview hosts
+# (<signed>.preview.together.vhaudiquet.fr). The zone's *.vhaudiquet.fr
+# certificate covers one label only, so this needs its own record.
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-preview-together-vhaudiquet-fr
+  namespace: caddy
+spec:
+  secretName: wildcard-preview-together-vhaudiquet-fr-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.preview.together.vhaudiquet.fr"
+  dnsNames:
+    - "*.preview.together.vhaudiquet.fr"
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days before expiry

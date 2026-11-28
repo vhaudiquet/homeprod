@@ -1,0 +1,70 @@
+# together.vhaudiquet.fr — a shared room where people and a Rhema agent
+# work on the same code. One pod, one SQLite file on longhorn.
+image:
+    repository: git.vhaudiquet.fr/vhaudiquet/rhema-together
+    # Empty: follows the chart's appVersion, the commit SHA CI stamped
+    # on the pushed image.
+    tag: ""
+app:
+    # Invite and setup links are built from this origin; https makes
+    # the session cookie Secure.
+    publicUrl: https://together.vhaudiquet.fr
+    # Preview hosts are signed subdomains of this origin. The wildcard
+    # DNS record and certificate cover *.preview.together.vhaudiquet.fr.
+    previewOrigin: https://preview.together.vhaudiquet.fr
+    # Closed: the setup account and invite links are enough, and an
+    # account can make the server open SSH connections to any host.
+    allowRegistration: false
+ingress:
+    enabled: true
+    className: traefik
+    hosts:
+        - host: together.vhaudiquet.fr
+          paths:
+            - path: /
+              pathType: Prefix
+        - host: '*.preview.together.vhaudiquet.fr'
+          paths:
+            - path: /
+              pathType: Prefix
+    # TLS terminates at Caddy, which proxies to Traefik by host; the
+    # chart's ingress stays plain HTTP like every other public site here.
+    tls: []
+persistence:
+    enabled: true
+    storageClass: longhorn
+    size: 5Gi
+resources:
+    requests:
+        cpu: 100m
+        memory: 512Mi
+    limits:
+        cpu: "2"
+        memory: 2Gi
+sops:
+    lastmodified: "2026-11-28T11:11:57Z"
+    mac: ENC[AES256_GCM,data:0Hh+80+ktTqS/QW21kxfMnZvMd/nJOdkCOzFohQaY08mtlpYk5+paruKGjaWVVV9KP/lb+y8F0U/Zz2lr5e9T49tZXM9+5aTZrN7AQXhD69/wbqgrRYK7MfgBosHDv/gzLZy9G4epaFNlnSqaMJF4Pe1d9h9QiNcuQIPaiheWgk=,iv:3JUVMtHslEPuxLey3TLwh0jW+R/6//hsVdmIOIinqy4=,tag:yugIyz+5SeXEUc39ClhZNA==,type:str]
+    pgp:
+        - created_at: "2026-11-28T11:11:57Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7uy4qQr71wiAQ//Y0KKB0rzJDFFgIhOpMK7xQDrJlXIP0l+z4JytfcNZVDq
+            ACRnEMETTvDNdRSzWcSZE/IXIXBb/sxkkiLycouH+/aqv+YkAd3YYOQHhilpBJrC
+            qKW1BMf1GZ2Y0VrKioBbiIdo0c6QKZ6DV/yBd+LFbhE66wZC2gr1rHDYQamhkowF
+            FoVpN9Xz8jPYh7ts1oCz4cwD3RtMkx3o+DCm1wR0d/2tCvmxQPRgUtp9P4dwLUjt
+            QZPYFAqfKoptkRjbiFCBoIjywW2XeiM3XvkPteOnATZPgUTHBpnOWyKRDhqNdRXc
+            RQzPbpf4wC6QBnsImF0lGoJM5jN4UJ8EHEO0M6s75qHL6voZoGAqU/OtbYWuJd+u
+            RKy++y1vLuCJeX7Z6UEOl7KboqbwFAGx3sbw+itgGgqn5jTnzJFZ8eb08CaTR+xW
+            wlntiyyukYIbDIAWba43x7aAJgc8+VXw5Uhsbxooq+1pH6AjAyuo6WnF7+ygblgY
+            HWm2HjvGUOZLQ7lR+RS0J1J4SKoNrIKI0vpiUGqS+S57YGqyDf7SYtHNFA6EaEqk
+            xvZ9nDKkvQ0/OIQYfXnjS4PJYSzoR6bcYDrfgnjElcCKMVhZJidmUS08TaMPmytv
+            wAAfte9dQ8FIhbwmigIOoPGTyUcvgropEEpG6kNYlCd63Vf/epGa5xroCGYGAPLS
+            XgG0lAZA/kgxr/IHf4DS4Xhee3Ak/jw99UuhTXDYVExpvN81PP3K4PC7gcM/6I52
+            x8hV5M9l/IoS12AKDSQggvnzb7eFoal4M8lRnSDt8zP82fpS3izcnIJEG/vf3sM=
+            =9Odm
+            -----END PGP MESSAGE-----
+          fp: DC6910268E657FF70BA7EC289974494E76938DDC
+    encrypted_regex: ^(password|value|ssh-key|api-key|user|username|privateKey|clientSecret|clientId|apiKey|extraArgs.*|.*Secret.*|extraEnvVars|.*SECRET.*|.*secret.*|key|.*Password|.*PASS|.*SOCIALACCOUNT_PROVIDERS|.*\.ya?ml|token)$
+    mac_only_encrypted: true
+    version: 3.10.2

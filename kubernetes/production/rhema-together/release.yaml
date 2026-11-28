@@ -1,0 +1,23 @@
+# Tracks the rhema-together chart as CI publishes it on main: the
+# timestamp pre-releases (0.1.0-YYYYMMDD-HHMMSS) sort above 0.1.0-0,
+# and the chart's appVersion is the commit SHA the image was tagged
+# with, so values.image.tag stays empty.
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rhema-together
+  namespace: rhema-together
+spec:
+  interval: 1m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: vhaudiquet
+        namespace: rhema-together
+      chart: rhema-together
+      version: ">=0.1.0-0"
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: rhema-together-values

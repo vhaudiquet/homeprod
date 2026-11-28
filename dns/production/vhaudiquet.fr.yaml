@@ -24,6 +24,13 @@
     values:
     - v=spf1 a ra=postmaster -all
     - v=spf1 mx ra=postmaster -all
+'*.preview.together':
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 82.64.154.58
 202412e._domainkey:
   octodns:
     cloudflare:
@@ -398,6 +405,13 @@ pkgatlas:
   type: A
   value: 82.64.154.58
 sse-nook:
+  octodns:
+    cloudflare:
+      auto-ttl: true
+  ttl: 300
+  type: A
+  value: 82.64.154.58
+together:
   octodns:
     cloudflare:
       auto-ttl: true
