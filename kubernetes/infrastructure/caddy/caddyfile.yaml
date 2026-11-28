@@ -44,6 +44,8 @@ data:
 
         @alexscript  host alexscript.vhaudiquet.fr
 
+        @together    host together.vhaudiquet.fr
+
         handle @authentik {
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
@@ -78,6 +80,9 @@ data:
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
         handle @alexscript {
+            reverse_proxy traefik.traefik.svc.cluster.local.:80
+        }
+        handle @together {
             reverse_proxy traefik.traefik.svc.cluster.local.:80
         }
 
@@ -146,5 +151,12 @@ data:
 
     s3.rhema.rs {
       tls /etc/caddy/certs/s3-rhema-rs/tls.crt /etc/caddy/certs/s3-rhema-rs/tls.key
+      reverse_proxy traefik.traefik.svc.cluster.local.:80
+    }
+
+    # Rhema Together previews: every signed <host>.preview.together.vhaudiquet.fr
+    # is one room's port or static target.
+    *.preview.together.vhaudiquet.fr {
+      tls /etc/caddy/certs/wildcard-preview-together-vhaudiquet-fr/tls.crt /etc/caddy/certs/wildcard-preview-together-vhaudiquet-fr/tls.key
       reverse_proxy traefik.traefik.svc.cluster.local.:80
     }

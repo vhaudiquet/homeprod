@@ -91,6 +91,11 @@ volumes:
       secret:
         secretName: s3-rhema-rs-tls
         optional: true
+    # together.vhaudiquet.fr preview wildcard (cert-manager, Cloudflare DNS-01)
+    - name: wildcard-preview-together-vhaudiquet-fr-tls
+      secret:
+        secretName: wildcard-preview-together-vhaudiquet-fr-tls
+        optional: true
     - name: routes
       configMap:
         name: caddy-routes
@@ -135,6 +140,9 @@ volumeMounts:
     - name: s3-rhema-rs-tls
       mountPath: /etc/caddy/certs/s3-rhema-rs
       readOnly: true
+    - name: wildcard-preview-together-vhaudiquet-fr-tls
+      mountPath: /etc/caddy/certs/wildcard-preview-together-vhaudiquet-fr
+      readOnly: true
     - name: routes
       mountPath: /etc/caddy/routes
       readOnly: true
@@ -159,7 +167,7 @@ affinity:
             - weight: 100
               preference:
                 matchExpressions:
-                    - key: ENC[AES256_GCM,data:AsOdq9OGQbAGV42W4d22EGVMi5E=,iv:U3sLu8pI7fqOPbvpfpVz21cUfwovKRFi8jY6laTyStY=,tag:EQVSFAzTYw2En2xdGTCF3Q==,type:str]
+                    - key: ENC[AES256_GCM,data:dip4IBybNSpYwQzeQ1SWE9ez8vw=,iv:PthFDkh2SKDGw6fCisbfkM0KE0UbfVs2hQ3q2ViS31g=,tag:jfhjo5EA+h+efC/7+VEckw==,type:str]
                       operator: NotIn
                       values:
                         - "true"
@@ -173,35 +181,35 @@ affinity:
                 topologyKey: kubernetes.io/hostname
 tolerations:
     # Tolerate the failover taint so caddy CAN schedule on p330 (small-node-1).
-    - key: ENC[AES256_GCM,data:s3X0PmRJCCVh,iv:UYZl3EsmdSTdF9NoYsL+zbxLlkfO2GU80Sy3CpSXMBY=,tag:35UtC37ldCItR9fAtSXVVw==,type:str]
+    - key: ENC[AES256_GCM,data:EVmnD6PFfl43,iv:/+xhRXWHIpM6O1VXYOYogsvNZe7oN2ZTggQPtKq4uTc=,tag:rAXQi7ndUisgKr8tncav1g==,type:str]
       operator: Equal
       value: failover
       effect: NoSchedule
-    - key: ENC[AES256_GCM,data:NYCyZsj7wMxKUjaDu+rUOQYxDKvvEwSWuDAxQkSGTczXyApCbw==,iv:3AcvLXryeZ6dfmqanFpGOgEf1nGuEVbvUmZzruxzL98=,tag:Daa9AgXQZkkr7RIzljWOeQ==,type:str]
+    - key: ENC[AES256_GCM,data:c4VsmtdebCi6Lj+C8zBzcSikWaJB5i8rez6tjeNGi++x7ti+dQ==,iv:ifoOCk9O3K20kaU3bflZsi1uJWDnD+ApQ1Rdjr3YAU0=,tag:DcJWSGkLZ/He3ppIJowG6g==,type:str]
       operator: Exists
       effect: NoSchedule
 sops:
-    lastmodified: "2026-10-16T07:06:11Z"
-    mac: ENC[AES256_GCM,data:kMIxep2WVIr8/uAiw12T1JXMbtpyijo1c1MOOUKuok2Z1zSrnFZovgIup3u8/2BhqJ2UUDm5hFJi41Tsq45ba5ELs4PX1whi6EXlHQJxNo7ScfepEi10es/wa+p+3w9V8Yv9cklIWk14zh0UABs8jRzOJXhn5XI3O644CJSULQA=,iv:3ssxqRNRvXbmn0HiQFdwoGVbsnzvtQxfpHPIUpplMK8=,tag:5VRyB/Hh4tZUWp6KCPNSQg==,type:str]
+    lastmodified: "2026-11-28T10:36:11Z"
+    mac: ENC[AES256_GCM,data:xSXMJ3I2A62WvFzL2cPYHfue5ed8Sk3E1SudRpMmNtMkRXSR05mQhe4eu68L4r++Kz/U5GAttLBIRcIAp9pVZul166+YfjpFg6E2O0d6QadPXV/sa+GhpTjjaJsJh/meLAZ/ShiSUX4/XvDi637/WMtTNDI5ElWeMrVoRw+Y2w8=,iv:fCg+M6wenZgM4foxOkg3x6s7cSZWrRW+D7VmdaqtRwM=,tag:aKgD92bbq1zhpQuf1gQS1Q==,type:str]
     pgp:
-        - created_at: "2026-10-16T07:06:11Z"
+        - created_at: "2026-11-28T10:36:11Z"
           enc: |-
             -----BEGIN PGP MESSAGE-----
 
-            hQIMA7uy4qQr71wiARAAuN5nBauJiH5bFx80iF2W2XJDwMCFG+SPlqv2ErxVaYkD
-            kSt8pA0o4Bzqr6gP6cEgEhzQHAVVvsvTZJTY5lX6KWNRxhz/RXDhxAi9xdBHQ81f
-            dDWn7pgD8sv8cODM39yeukhGlHxZuk7FiUJ4fBnouojWUCxf2Ib5m5TEaWwmmv5n
-            EBBjjcbGZzyWBzCkLbEY/ML1FIx5j/jyZjpjMp2En1309ljIBckjLk5s9Kntp6oJ
-            /TkW/BhU96y8fyGM6u3FV54wORNlCT3P5cDT4rsQd+KgG0DDchAdUSb7hmBEn+iC
-            W/eUsp7nhObkZZBjTKYeS502Q+3RUEXoLnVLWougDxMSA1rJNS3nkgzK1cmKs97/
-            Ghnb5TUGPmoQMUltQzxInDq1mgeGfuFUffprYprYKGeVC/oQ6uPHE4jVZImlWRjv
-            w6YPHv/2XhWMN5vH/ybsrqxcFb5+1z8u8J58GAJ37hDXzkL8ENJUouonM3sywaBc
-            VbXHzJwYEuLhRfNpay6ovwPkhU25gV3atBiXloIWc0PivPjOAJqqs0vkMgRiA+3R
-            yUagVKdyavVUhqou2LOxSGSv77uFPWZwhqUILtqzTeSE6GHUxVqKQPa91klRRNI7
-            YWNtM7ZqSeANK99h5vgphhPZpuKkIzXHSLEXdplxvaRERfWMU3UGCDZOMVcDMlbS
-            XgGovkHZ9+NKVgZVpsRyQQutbSJqvHVZJx162gu3UKC1IgnDnhslOGKVWw/oKNb5
-            KyPf0CLk9BCAlSngr5D5pw4GJ9eq7RNFOqC32LPwXgNSD1AfLFHYGWh3RZM+81w=
-            =eA3w
+            hQIMA7uy4qQr71wiARAAregcTc6eq0J55uyR+hB3Hh6iV3LHnOHBlIOEJDlgmIa8
+            HzsyvQVTFIpF7M41ltvhzzBVuP+nRoYIOvuZcLZtJukxdbY4hhVY1KHd4azX1gpe
+            0zXgTsG7QuWpBdQRlA2zOaFJ6uHSWGLemGAph76yUB8ARY7ytGPMYq28C/u+Isfh
+            +2gIg7WdR90bZlPYgx7TWqEIrzDJid9rmOJ8DsjLY6FbGELcKr50qUyLmXEtOfo4
+            TfB9IYUXiyOKOnjxzVLjVmvtlyUVC2fCIVrqJV4McvpwlMEYqQ4g/1YwjrOXL2hD
+            LrxoF3YdrAxktLS1b7yI1RubXWZjfKEqIJzMKSfrZlX4nuq87jPGRJOq+XnSDkCU
+            kB+u1efFTvtxPkLzj6Bjtfv7WullSv6871bcjxFXtLL/IJCkp1RPIfO79WLTqyWj
+            8P0rJvWb+RIUDaFu1/DRv4MI66QHedbFBkS4Ylm4UysA+7WnfW6Kxu9tNkfEU4AS
+            dZNwO2XSPfr/wzg/lnJNqhWJYYZmoBDOilBuKaTu6zEc5Sd5dGI6YHah/NFfTTmI
+            Ce2PGMzztuCJBvfvvTAy+fqaml00WMiNuW580h+ZujIpEk2lYMWrKoMr5I/UsW49
+            vbXM9l+Vn6Q0yHsAmCXxKCycUQcIhwtpGY9a0NK8GJr25A7pUyRTxpCxOpv3ZBrS
+            XgHRpNQF033R5uaRVM9PLRGgZORXdoPfeGk+ONPdtPE8g0dbh84o2TYHJEbhxkDb
+            eUS4he6cX0nqKmEAI0OCPxGk1RSfalPZyJpSojNQvypAHen1ueU8TwDWE7JfCjE=
+            =FiZN
             -----END PGP MESSAGE-----
           fp: DC6910268E657FF70BA7EC289974494E76938DDC
     encrypted_regex: ^(data|stringData|.*key|.*crt)$
